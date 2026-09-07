@@ -1,0 +1,265 @@
+Connected
+THREAD Burst-CompilerThread-11
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Thread Pool Worker
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], TimeSpan, Boolean) at :-1
+Void System.Threading.RegisteredWaitHandle:Wait (Object) at :-1
+Void System.Threading.QueueUserWorkItemCallback:WaitCallback_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.QueueUserWorkItemCallback:System.Threading.IThreadPoolWorkItem.ExecuteWorkItem () at :-1
+Boolean System.Threading.ThreadPoolWorkQueue:Dispatch () at :-1
+Boolean System.Threading._ThreadPoolWaitCallback:PerformWaitCallback () at :-1
+THREAD Burst-CompilerThread-8
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-15
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-13
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-6
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-5
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-7
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD 
+Int32 System.Threading.WaitHandle:WaitOneNative (SafeHandle, UInt32, Boolean, Boolean) at :-1
+Boolean System.Threading.WaitHandle:InternalWaitOne (SafeHandle, Int64, Boolean, Boolean) at :-1
+Boolean System.Threading.WaitHandle:WaitOne (Int64, Boolean) at :-1
+Boolean System.Threading.WaitHandle:WaitOne (Int32, Boolean) at :-1
+Boolean System.Threading.WaitHandle:WaitOne () at :-1
+HttpListenerContext System.Net.HttpListener:EndGetContext (IAsyncResult) at :-1
+HttpListenerContext System.Net.HttpListener:GetContext () at :-1
+Void UnityEditor.BuildReportRestService:RunServer () at :-1
+Void UnityEditor.BuildReportRestService:RunServerWithRetries (Int32) at :-1
+Void UnityEditor.BuildReportRestService:<OnEnable>b__13_0 () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-3
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-1
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-14
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-2
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Timer-Scheduler
+Int32 System.Threading.WaitHandle:WaitOneNative (SafeHandle, UInt32, Boolean, Boolean) at :-1
+Boolean System.Threading.WaitHandle:InternalWaitOne (SafeHandle, Int64, Boolean, Boolean) at :-1
+Boolean System.Threading.WaitHandle:WaitOne (Int64, Boolean) at :-1
+Boolean System.Threading.WaitHandle:WaitOne (Int32, Boolean) at :-1
+Boolean System.Threading.WaitHandle:WaitOne (Int32) at :-1
+Void Scheduler:SchedulerThread () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-10
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-ProgressReporter
+Boolean System.Threading.Monitor:ObjWait (Boolean, Int32, Object) at :-1
+Boolean System.Threading.Monitor:Wait (Object, Int32, Boolean) at :-1
+Boolean System.Threading.Monitor:Wait (Object, Int32) at :-1
+Boolean System.Threading.SemaphoreSlim:WaitUntilCountOrTimeout (Int32, UInt32, CancellationToken) at :-1
+Boolean System.Threading.SemaphoreSlim:Wait (Int32, CancellationToken) at :-1
+Boolean System.Collections.Concurrent.BlockingCollection`1:TryTakeWithNoTimeValidation (ReportProgressItem, Int32, CancellationToken, CancellationTokenSource) at :-1
+Boolean System.Collections.Concurrent.BlockingCollection`1:TryTake (ReportProgressItem, Int32, CancellationToken) at :-1
+ReportProgressItem System.Collections.Concurrent.BlockingCollection`1:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Client.ProgressHelper:ReportProgressWorker () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-12
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-4
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1
+THREAD Burst-CompilerThread-9
+Int32 System.Threading.WaitHandle:WaitMultiple (WaitHandle[], Int32, Boolean, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32, Boolean) at :-1
+Int32 System.Threading.WaitHandle:WaitAny (WaitHandle[], Int32) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCoreSlow (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TryTakeFromAnyCore (BlockingCollection`1[], CompilerServerJob, Int32, Boolean, CancellationToken) at :-1
+Int32 System.Collections.Concurrent.BlockingCollection`1:TakeFromAny (BlockingCollection`1[], CompilerServerJob, CancellationToken) at :-1
+CompilerServerJob Burst.Compiler.IL.Server.CompilationQueue:Take (CancellationToken) at :-1
+Void Burst.Compiler.IL.Server.CompilerThread:CompilerThreadLoop () at :-1
+Void System.Threading.ThreadHelper:ThreadStart_Context (Object) at :-1
+Void System.Threading.ExecutionContext:RunInternal (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object, Boolean) at :-1
+Void System.Threading.ExecutionContext:Run (ExecutionContext, ContextCallback, Object) at :-1
+Void System.Threading.ThreadHelper:ThreadStart () at :-1

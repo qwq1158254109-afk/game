@@ -1,0 +1,490 @@
+fileFormatVersion: 2
+guid: e34e28735d2a127419cff6e206861908
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8607732802296000971
+    second: ui_spec_04_prompt_bars_0
+  - first:
+      213: 5935486873200645775
+    second: ui_spec_04_prompt_bars_1
+  - first:
+      213: -2211094699457516131
+    second: ui_spec_04_prompt_bars_2
+  - first:
+      213: 3916225540924798327
+    second: ui_spec_04_prompt_bars_3
+  - first:
+      213: -3223571260925574238
+    second: ui_spec_04_prompt_bars_4
+  - first:
+      213: -8702925443107468892
+    second: ui_spec_04_prompt_bars_5
+  - first:
+      213: -3250437563157507264
+    second: ui_spec_04_prompt_bars_6
+  - first:
+      213: 3320692890875529915
+    second: ui_spec_04_prompt_bars_7
+  - first:
+      213: -1973304934671267453
+    second: ui_spec_04_prompt_bars_8
+  - first:
+      213: -2919756360977315758
+    second: ui_spec_04_prompt_bars_9
+  - first:
+      213: -6612173448116351349
+    second: ui_spec_04_prompt_bars_10
+  - first:
+      213: 6381293405433195956
+    second: ui_spec_04_prompt_bars_11
+  - first:
+      213: 4799098164864173853
+    second: prompt_bar_default
+  - first:
+      213: -556505615144756998
+    second: ui_spec_04_prompt_bars_slice_01
+  - first:
+      213: 5913221669250285860
+    second: ui_spec_04_prompt_bars_slice_02
+  - first:
+      213: -3284990519423066300
+    second: ui_spec_04_prompt_bars_slice_03
+  - first:
+      213: -4317089341935332803
+    second: ui_spec_04_prompt_bars_slice_04
+  - first:
+      213: 230512215529559754
+    second: ui_spec_04_prompt_bars_slice_05
+  - first:
+      213: 6012523823069790209
+    second: ui_spec_04_prompt_bars_slice_06
+  - first:
+      213: 2865978923214460581
+    second: ui_spec_04_prompt_bars_slice_07
+  - first:
+      213: -3359121321841524644
+    second: prompt_bar_long
+  - first:
+      213: 1732484483773387919
+    second: ui_spec_04_prompt_bars_slice_09
+  - first:
+      213: 7802318293894130752
+    second: ui_spec_04_prompt_bars_slice_10
+  - first:
+      213: -262911306119806672
+    second: ui_spec_04_prompt_bars_slice_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: prompt_bar_default
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 745
+        width: 347
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1745feaa52d99240800000000000000
+      internalID: 4799098164864173853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_01
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 745
+        width: 347
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af859cd6715e648f0800000000000000
+      internalID: -556505615144756998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_02
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 745
+        width: 347
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4214ec157cbff0250800000000000000
+      internalID: 5913221669250285860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_03
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 620
+        width: 1047
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44f1347f68e5962d0800000000000000
+      internalID: -3284990519423066300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_04
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 500
+        width: 327
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d32d15ecd1e9614c0800000000000000
+      internalID: -4317089341935332803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_05
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 490
+        width: 767
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac6170383a1f23300800000000000000
+      internalID: 230512215529559754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_06
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 330
+        width: 337
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10006a5bf86c07350800000000000000
+      internalID: 6012523823069790209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_07
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 385
+        width: 767
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a654f365a006c720800000000000000
+      internalID: 2865978923214460581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prompt_bar_long
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 280
+        width: 767
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c50023684f00261d0800000000000000
+      internalID: -3359121321841524644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_09
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 70
+        width: 387
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f84503a75750b0810800000000000000
+      internalID: 1732484483773387919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_10
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 175
+        width: 767
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04c671c5627674c60800000000000000
+      internalID: 7802318293894130752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_04_prompt_bars_slice_11
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 70
+        width: 767
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 22, y: 22, z: 22, w: 22}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0318b4f5f83f95cf0800000000000000
+      internalID: -262911306119806672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      prompt_bar_default: 4799098164864173853
+      prompt_bar_long: -3359121321841524644
+      ui_spec_04_prompt_bars_0: -8607732802296000971
+      ui_spec_04_prompt_bars_1: 5935486873200645775
+      ui_spec_04_prompt_bars_10: -6612173448116351349
+      ui_spec_04_prompt_bars_11: 6381293405433195956
+      ui_spec_04_prompt_bars_2: -2211094699457516131
+      ui_spec_04_prompt_bars_3: 3916225540924798327
+      ui_spec_04_prompt_bars_4: -3223571260925574238
+      ui_spec_04_prompt_bars_5: -8702925443107468892
+      ui_spec_04_prompt_bars_6: -3250437563157507264
+      ui_spec_04_prompt_bars_7: 3320692890875529915
+      ui_spec_04_prompt_bars_8: -1973304934671267453
+      ui_spec_04_prompt_bars_9: -2919756360977315758
+      ui_spec_04_prompt_bars_slice_01: -556505615144756998
+      ui_spec_04_prompt_bars_slice_02: 5913221669250285860
+      ui_spec_04_prompt_bars_slice_03: -3284990519423066300
+      ui_spec_04_prompt_bars_slice_04: -4317089341935332803
+      ui_spec_04_prompt_bars_slice_05: 230512215529559754
+      ui_spec_04_prompt_bars_slice_06: 6012523823069790209
+      ui_spec_04_prompt_bars_slice_07: 2865978923214460581
+      ui_spec_04_prompt_bars_slice_09: 1732484483773387919
+      ui_spec_04_prompt_bars_slice_10: 7802318293894130752
+      ui_spec_04_prompt_bars_slice_11: -262911306119806672
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

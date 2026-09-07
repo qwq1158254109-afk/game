@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="768" viewBox="0 0 512 768" shape-rendering="crispEdges" text-rendering="geometricPrecision" role="img" aria-label="????? pixel UI reference card">
+  <defs>
+    <pattern id="scanline" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="#000" opacity="0.10"/>
+    </pattern>
+    <pattern id="wallNoise" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#000" opacity="0"/>
+      <rect x="3" y="7" width="8" height="2" fill="#222" opacity="0.12"/>
+      <rect x="15" y="18" width="6" height="2" fill="#eee" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="512" height="768" fill="#151719"/>
+  <rect x="32" y="24" width="448" height="720" fill="#1f2428"/>
+  <rect x="40" y="32" width="432" height="704" fill="#3c4248"/>
+  <rect x="48" y="40" width="416" height="688" fill="#cbc0ad"/>
+  <rect x="56" y="48" width="400" height="672" fill="#ddd2bb"/>
+  <rect x="56" y="48" width="400" height="84" fill="#22282d"/>
+  <rect x="72" y="64" width="368" height="52" fill="#6f8798"/>
+  <rect x="132" y="76" width="260" height="28" fill="#d9e0e4"/>
+  <text x="262" y="98" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="22" font-weight="700" fill="#1f2428">?????</text>
+  <rect x="44" y="52" width="72" height="56" fill="#1f2428"/>
+  <rect x="52" y="44" width="56" height="72" fill="#1f2428"/>
+  <rect x="60" y="52" width="40" height="56" fill="#c7b274"/>
+  <rect x="52" y="68" width="56" height="24" fill="#c7b274"/>
+  <text x="80" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#1f2428">1</text>
+  <rect x="56" y="144" width="400" height="376" fill="#1f2428"/>
+  <rect x="72" y="160" width="368" height="344" fill="#2b3034"/>
+  <rect x="88" y="176" width="336" height="312" fill="#48535c"/>
+  <rect x="88" y="176" width="336" height="312" fill="url(#wallNoise)"/>
+  <g>
+      <rect x="96" y="184" width="320" height="288" fill="#475462" />
+      <rect x="96" y="184" width="320" height="8" fill="#1f2428" /><rect x="96" y="464" width="320" height="8" fill="#1f2428" /><rect x="96" y="184" width="8" height="288" fill="#1f2428" /><rect x="408" y="184" width="8" height="288" fill="#1f2428" />
+      <rect x="96" y="376" width="320" height="96" fill="#70523f" />
+      <rect x="96" y="366" width="320" height="10" fill="#2d2925" />
+      <rect x="116" y="236" width="142" height="12" fill="#92704b" /><rect x="286" y="236" width="106" height="12" fill="#92704b" />
+      <rect x="118" y="248" width="10" height="54" fill="#2a2e32" /><rect x="382" y="248" width="10" height="54" fill="#2a2e32" />
+      <rect x="128" y="210" width="48" height="8" fill="#2c3338" /><rect x="306" y="210" width="70" height="8" fill="#2c3338" />
+      <rect x="132" y="398" width="248" height="44" fill="#8f6546" /><rect x="132" y="398" width="248" height="8" fill="#2a211a" />
+      <rect x="148" y="442" width="8" height="28" fill="#2a211a" /><rect x="352" y="442" width="8" height="28" fill="#2a211a" />
+<rect x="216" y="276" width="80" height="56" fill="#c99a78" />
+      <rect x="166" y="308" width="42" height="70" fill="#6f8798" />
+      <rect x="304" y="308" width="42" height="70" fill="#6f8798" />
+      <rect x="178" y="258" width="156" height="14" fill="#1f2428" />
+      <rect x="184" y="272" width="8" height="40" fill="#1f2428" />
+      <rect x="322" y="272" width="8" height="40" fill="#1f2428" />
+      <rect x="378" y="252" width="8" height="66" fill="#c7b274" />
+      <rect x="378" y="252" width="44" height="8" fill="#c7b274" />
+      <rect x="352" y="318" width="34" height="24" fill="#c7b274" />
+  </g>
+  <rect x="56" y="536" width="400" height="152" fill="#1f2428"/>
+  <rect x="72" y="552" width="368" height="120" fill="#e8ddc8"/>
+  <rect x="88" y="568" width="96" height="32" fill="#6f8798"/>
+  <text x="136" y="591" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#1f2428">Rest</text>
+  <text x="92" y="634" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="22" fill="#1f2428">?? -6 / ?? +3</text>
+  <rect x="92" y="650" width="280" height="8" fill="#1f2428" opacity="0.16"/>
+  <rect x="92" y="666" width="218" height="8" fill="#1f2428" opacity="0.16"/>
+  <rect x="72" y="704" width="368" height="8" fill="#92704b"/>
+  <rect x="32" y="24" width="448" height="720" fill="url(#scanline)"/>
+</svg>

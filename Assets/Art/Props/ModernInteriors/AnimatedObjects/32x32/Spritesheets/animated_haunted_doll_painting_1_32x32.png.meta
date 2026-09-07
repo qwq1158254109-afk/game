@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 90b462442ac0ba44188ca1e27e46a811
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5520969030043348282
+    second: animated_haunted_doll_painting_1_32x32_0
+  - first:
+      213: -6268874706610284557
+    second: animated_haunted_doll_painting_1_32x32_1
+  - first:
+      213: 1316276867149635087
+    second: animated_haunted_doll_painting_1_32x32_2
+  - first:
+      213: 6549204762174994803
+    second: animated_haunted_doll_painting_1_32x32_3
+  - first:
+      213: -2118199212799317025
+    second: animated_haunted_doll_painting_1_32x32_4
+  - first:
+      213: 6015124220619264828
+    second: animated_haunted_doll_painting_1_32x32_5
+  - first:
+      213: 1725506802423901730
+    second: animated_haunted_doll_painting_1_32x32_6
+  - first:
+      213: -8740539175613101683
+    second: animated_haunted_doll_painting_1_32x32_7
+  - first:
+      213: 920163022656163693
+    second: animated_haunted_doll_painting_1_32x32_8
+  - first:
+      213: 4852241309120256022
+    second: animated_haunted_doll_painting_1_32x32_9
+  - first:
+      213: -4963451531326436198
+    second: animated_haunted_doll_painting_1_32x32_10
+  - first:
+      213: 7916676058109400231
+    second: animated_haunted_doll_painting_1_32x32_11
+  - first:
+      213: 5958382908410838670
+    second: animated_haunted_doll_painting_1_32x32_12
+  - first:
+      213: -3964665355647802620
+    second: animated_haunted_doll_painting_1_32x32_13
+  - first:
+      213: -530791566737185287
+    second: animated_haunted_doll_painting_1_32x32_14
+  - first:
+      213: -1357995173646430784
+    second: animated_haunted_doll_painting_1_32x32_15
+  - first:
+      213: -3866227647540101797
+    second: animated_haunted_doll_painting_1_32x32_16
+  - first:
+      213: -6256883109619840325
+    second: animated_haunted_doll_painting_1_32x32_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3daaabd41c6e9c40800000000000000
+      internalID: 5520969030043348282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f710131bab7009a0800000000000000
+      internalID: -6268874706610284557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e948436da544210800000000000000
+      internalID: 1316276867149635087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 379bcb2380373ea50800000000000000
+      internalID: 6549204762174994803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdba595e905aa92e0800000000000000
+      internalID: -2118199212799317025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c331cd1fb930a7350800000000000000
+      internalID: 6015124220619264828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22e2fff6b4b32f710800000000000000
+      internalID: 1725506802423901730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89023cdded53b680800000000000000
+      internalID: -8740539175613101683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6fced4d46315cc00800000000000000
+      internalID: 920163022656163693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 618d69a23cf965340800000000000000
+      internalID: 4852241309120256022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_10
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c4b6731274e1bb0800000000000000
+      internalID: -4963451531326436198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_11
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a453753eeeaddd60800000000000000
+      internalID: 7916676058109400231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_12
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8e3693bfad60b250800000000000000
+      internalID: 5958382908410838670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_13
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 403a05f5dddaaf8c0800000000000000
+      internalID: -3964665355647802620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_14
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f56bded1ef32a8f0800000000000000
+      internalID: -530791566737185287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_15
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cd0c14a59e672de0800000000000000
+      internalID: -1357995173646430784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_16
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5df39f4076685ac0800000000000000
+      internalID: -3866227647540101797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_doll_painting_1_32x32_17
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 11
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbac7f156f51b29a0800000000000000
+      internalID: -6256883109619840325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      animated_haunted_doll_painting_1_32x32_0: 5520969030043348282
+      animated_haunted_doll_painting_1_32x32_1: -6268874706610284557
+      animated_haunted_doll_painting_1_32x32_10: -4963451531326436198
+      animated_haunted_doll_painting_1_32x32_11: 7916676058109400231
+      animated_haunted_doll_painting_1_32x32_12: 5958382908410838670
+      animated_haunted_doll_painting_1_32x32_13: -3964665355647802620
+      animated_haunted_doll_painting_1_32x32_14: -530791566737185287
+      animated_haunted_doll_painting_1_32x32_15: -1357995173646430784
+      animated_haunted_doll_painting_1_32x32_16: -3866227647540101797
+      animated_haunted_doll_painting_1_32x32_17: -6256883109619840325
+      animated_haunted_doll_painting_1_32x32_2: 1316276867149635087
+      animated_haunted_doll_painting_1_32x32_3: 6549204762174994803
+      animated_haunted_doll_painting_1_32x32_4: -2118199212799317025
+      animated_haunted_doll_painting_1_32x32_5: 6015124220619264828
+      animated_haunted_doll_painting_1_32x32_6: 1725506802423901730
+      animated_haunted_doll_painting_1_32x32_7: -8740539175613101683
+      animated_haunted_doll_painting_1_32x32_8: 920163022656163693
+      animated_haunted_doll_painting_1_32x32_9: 4852241309120256022
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

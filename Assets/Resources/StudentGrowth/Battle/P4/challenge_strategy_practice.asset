@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce2853bd7b9d3e449f2389f00038f31, type: 3}
+  m_Name: challenge_strategy_practice
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.BattleChallengeAsset
+  battleRulesVersion: 1
+  unifiedHandLimit: 10
+  focusIntensityLimit: 10
+  loanDeck:
+  - {fileID: 11400000, guid: 97742ff9110c10e4d9812a1a59fa90e1, type: 2}
+  - {fileID: 11400000, guid: 97742ff9110c10e4d9812a1a59fa90e1, type: 2}
+  - {fileID: 11400000, guid: 97742ff9110c10e4d9812a1a59fa90e1, type: 2}
+  - {fileID: 11400000, guid: 0f125e70a22e2d2489bbd7caade6b6f5, type: 2}
+  - {fileID: 11400000, guid: 0f125e70a22e2d2489bbd7caade6b6f5, type: 2}
+  - {fileID: 11400000, guid: c1c79aedabd91954b992fa2f299f6ff8, type: 2}
+  - {fileID: 11400000, guid: fff3bbdc2b2e8914a8371b3582c23c67, type: 2}
+  - {fileID: 11400000, guid: 20fdfef95be469f4e8cce4e367cf26c1, type: 2}
+  - {fileID: 11400000, guid: 84c32af9dbd0c7e4ca135613d97ff4af, type: 2}
+  - {fileID: 11400000, guid: 84c32af9dbd0c7e4ca135613d97ff4af, type: 2}
+  intentMode: 1
+  fallbackIntent:
+    intentId: strategy_fallback_wait
+    displayName: "\u7B49\u5F85"
+    description: 
+    triggerTurn: 0
+    effects: []
+  requireSupportedBattleContent: 1
+  challengeId: challenge_strategy_practice
+  displayName: "\u4E66\u684C\u7B56\u7565\u7EC3\u4E60"
+  description: "\u501F\u7528 10 \u5F20\u7EC3\u4E60\u724C\uFF086 \u79CD\uFF09\u3002\u4E13\u6CE8\u63D0\u9AD8\u5B66\u4E60\u63A8\u8FDB\uFF1B\u5206\u5FC3\u548C\u8106\u5F31\u9632\u7EBF\u53EA\u5F71\u54CD\u6807\u660E\u7684\u56DE\u5408\u3002\u80DC\u5229\u6570\u5B66
+    +2\uFF0C\u7EC3\u4E60\u724C\u4E0D\u52A0\u5165\u6C38\u4E45\u5361\u7EC4\u3002"
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: 
+  isBoss: 0
+  requiredStageId: 
+  targetProgress: 60
+  maxTurns: 6
+  startingEnergy: 3
+  startingHandSize: 5
+  intents:
+  - intentId: strategy_disrupt
+    displayName: "\u6742\u5FF5\u5E72\u6270"
+    description: 
+    triggerTurn: 1
+    effects:
+    - effectType: 18
+      targetStat: 0
+      value: 7500
+      tag: 
+      durationTurns: 1
+    - effectType: 19
+      targetStat: 0
+      value: 5000
+      tag: 
+      durationTurns: 1
+  - intentId: strategy_pressure
+    displayName: "\u4F5C\u4E1A\u50AC\u4FC3 \xB7 2 \u6BB5"
+    description: 
+    triggerTurn: 2
+    effects:
+    - effectType: 16
+      targetStat: 0
+      value: 8
+      tag: 
+      durationTurns: 1
+    - effectType: 16
+      targetStat: 0
+      value: 8
+      tag: 
+      durationTurns: 1
+  - intentId: strategy_wait
+    displayName: "\u77ED\u6682\u7F13\u51B2"
+    description: 
+    triggerTurn: 3
+    effects: []
+  successRewards:
+  - battleTiming: 4
+    rewardType: 3
+    targetStat: 1
+    value: 2
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: 
+  failureRewards: []
+  bossClearRewards: []
+  bossFailureRewards: []

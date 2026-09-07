@@ -1,0 +1,19 @@
+{
+    "name": "StudentGrowth.PlayMode.Tests",
+    "rootNamespace": "StudentGrowth.Tests",
+    "references": [
+        "StudentGrowth.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "noEngineReferences": false
+}

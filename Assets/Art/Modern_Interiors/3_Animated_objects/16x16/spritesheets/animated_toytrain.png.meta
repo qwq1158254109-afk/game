@@ -1,0 +1,1040 @@
+fileFormatVersion: 2
+guid: b2a67cea10c2ad8448e597d101326a10
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7306008661924536310
+    second: animated_toytrain_0
+  - first:
+      213: 5202973550742753300
+    second: animated_toytrain_1
+  - first:
+      213: -8136238317473419331
+    second: animated_toytrain_2
+  - first:
+      213: 7428733502699753589
+    second: animated_toytrain_3
+  - first:
+      213: -5850915088557726130
+    second: animated_toytrain_4
+  - first:
+      213: -3913832273108336516
+    second: animated_toytrain_5
+  - first:
+      213: -5226255184096340944
+    second: animated_toytrain_6
+  - first:
+      213: 1826157525281156701
+    second: animated_toytrain_7
+  - first:
+      213: 5448077524378780516
+    second: animated_toytrain_8
+  - first:
+      213: -2272305029249170001
+    second: animated_toytrain_9
+  - first:
+      213: -4420933138403049077
+    second: animated_toytrain_10
+  - first:
+      213: -6638430819502014999
+    second: animated_toytrain_11
+  - first:
+      213: -8147110036685887245
+    second: animated_toytrain_12
+  - first:
+      213: 7223874185324524424
+    second: animated_toytrain_13
+  - first:
+      213: -3311801334289517485
+    second: animated_toytrain_14
+  - first:
+      213: 1488504280536507000
+    second: animated_toytrain_15
+  - first:
+      213: -4767828816133408046
+    second: animated_toytrain_16
+  - first:
+      213: 4737680762160593678
+    second: animated_toytrain_17
+  - first:
+      213: 6725562006819596840
+    second: animated_toytrain_18
+  - first:
+      213: 5952152034270704912
+    second: animated_toytrain_19
+  - first:
+      213: 78466784333840594
+    second: animated_toytrain_20
+  - first:
+      213: 8620563102710697495
+    second: animated_toytrain_21
+  - first:
+      213: -544320936762662367
+    second: animated_toytrain_22
+  - first:
+      213: -8289366500205083348
+    second: animated_toytrain_23
+  - first:
+      213: -3209134430732601996
+    second: animated_toytrain_24
+  - first:
+      213: -5547399752662744666
+    second: animated_toytrain_25
+  - first:
+      213: 3074725969038412595
+    second: animated_toytrain_26
+  - first:
+      213: -2376086267388926448
+    second: animated_toytrain_27
+  - first:
+      213: -4765608558271601387
+    second: animated_toytrain_28
+  - first:
+      213: -266913279476368681
+    second: animated_toytrain_29
+  - first:
+      213: 3244946602179810307
+    second: animated_toytrain_30
+  - first:
+      213: 2708141214286247505
+    second: animated_toytrain_31
+  - first:
+      213: -4323548258041929740
+    second: animated_toytrain_32
+  - first:
+      213: -4114333790484439948
+    second: animated_toytrain_33
+  - first:
+      213: 324177893492421631
+    second: animated_toytrain_34
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: animated_toytrain_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10
+        width: 96
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a00af04b4d7db9a90800000000000000
+      internalID: -7306008661924536310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41056cbb0eca43840800000000000000
+      internalID: 5202973550742753300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_2
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbf231f9b56461f80800000000000000
+      internalID: -8136238317473419331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_3
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5705677f2c9281760800000000000000
+      internalID: 7428733502699753589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_4
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e462b87f9bf5dcea0800000000000000
+      internalID: -5850915088557726130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_5
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 10
+        width: 97
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c700be2b8464fa9c0800000000000000
+      internalID: -3913832273108336516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_6
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 10
+        width: 97
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 034d466999c9877b0800000000000000
+      internalID: -5226255184096340944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_7
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 10
+        width: 97
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5e2a460890d75910800000000000000
+      internalID: 1826157525281156701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_8
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 463036da4a57b9b40800000000000000
+      internalID: 5448077524378780516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_9
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa505467d962770e0800000000000000
+      internalID: -2272305029249170001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_10
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b81cbb5dbb0b5a2c0800000000000000
+      internalID: -4420933138403049077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_11
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9edb391775e8fd3a0800000000000000
+      internalID: -6638430819502014999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_12
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f8615d3696afee80800000000000000
+      internalID: -8147110036685887245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_13
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 883f16e3c4b504460800000000000000
+      internalID: 7223874185324524424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_14
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 354320fab3e1a02d0800000000000000
+      internalID: -3311801334289517485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_15
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 872e608b1ca38a410800000000000000
+      internalID: 1488504280536507000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_16
+      rect:
+        serializedVersion: 2
+        x: 1535
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da3f78e3f445ddb0800000000000000
+      internalID: -4767828816133408046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_17
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0bb8c74d8f9fb140800000000000000
+      internalID: 4737680762160593678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_18
+      rect:
+        serializedVersion: 2
+        x: 1727
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82a685bf20ff55d50800000000000000
+      internalID: 6725562006819596840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_19
+      rect:
+        serializedVersion: 2
+        x: 1823
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 015f2d34dba4a9250800000000000000
+      internalID: 5952152034270704912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_20
+      rect:
+        serializedVersion: 2
+        x: 1919
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0c2e6ef15c61100800000000000000
+      internalID: 78466784333840594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_21
+      rect:
+        serializedVersion: 2
+        x: 2015
+        y: 10
+        width: 97
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e09ecd77462a770800000000000000
+      internalID: 8620563102710697495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_22
+      rect:
+        serializedVersion: 2
+        x: 2111
+        y: 10
+        width: 97
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1222470fdfe2278f0800000000000000
+      internalID: -544320936762662367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_23
+      rect:
+        serializedVersion: 2
+        x: 2207
+        y: 10
+        width: 97
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25c046461146fc80800000000000000
+      internalID: -8289366500205083348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_24
+      rect:
+        serializedVersion: 2
+        x: 2303
+        y: 10
+        width: 97
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47535bbec3dd673d0800000000000000
+      internalID: -3209134430732601996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_25
+      rect:
+        serializedVersion: 2
+        x: 2399
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a1827bf05da303b0800000000000000
+      internalID: -5547399752662744666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_26
+      rect:
+        serializedVersion: 2
+        x: 2495
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b043e6afe9baa20800000000000000
+      internalID: 3074725969038412595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_27
+      rect:
+        serializedVersion: 2
+        x: 2591
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 016699cf022760fd0800000000000000
+      internalID: -2376086267388926448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_28
+      rect:
+        serializedVersion: 2
+        x: 2687
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 515e8a9f3482dddb0800000000000000
+      internalID: -4765608558271601387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_29
+      rect:
+        serializedVersion: 2
+        x: 2783
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7daf9f659cbbb4cf0800000000000000
+      internalID: -266913279476368681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_30
+      rect:
+        serializedVersion: 2
+        x: 2879
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 304d9020ebd580d20800000000000000
+      internalID: 3244946602179810307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_31
+      rect:
+        serializedVersion: 2
+        x: 2975
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15670270610459520800000000000000
+      internalID: 2708141214286247505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_32
+      rect:
+        serializedVersion: 2
+        x: 3071
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ffd62634cbaff3c0800000000000000
+      internalID: -4323548258041929740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_33
+      rect:
+        serializedVersion: 2
+        x: 3167
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47cd9ca5733f6e6c0800000000000000
+      internalID: -4114333790484439948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_toytrain_34
+      rect:
+        serializedVersion: 2
+        x: 3263
+        y: 10
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff376a99316bf7400800000000000000
+      internalID: 324177893492421631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      animated_toytrain_0: -7306008661924536310
+      animated_toytrain_1: 5202973550742753300
+      animated_toytrain_10: -4420933138403049077
+      animated_toytrain_11: -6638430819502014999
+      animated_toytrain_12: -8147110036685887245
+      animated_toytrain_13: 7223874185324524424
+      animated_toytrain_14: -3311801334289517485
+      animated_toytrain_15: 1488504280536507000
+      animated_toytrain_16: -4767828816133408046
+      animated_toytrain_17: 4737680762160593678
+      animated_toytrain_18: 6725562006819596840
+      animated_toytrain_19: 5952152034270704912
+      animated_toytrain_2: -8136238317473419331
+      animated_toytrain_20: 78466784333840594
+      animated_toytrain_21: 8620563102710697495
+      animated_toytrain_22: -544320936762662367
+      animated_toytrain_23: -8289366500205083348
+      animated_toytrain_24: -3209134430732601996
+      animated_toytrain_25: -5547399752662744666
+      animated_toytrain_26: 3074725969038412595
+      animated_toytrain_27: -2376086267388926448
+      animated_toytrain_28: -4765608558271601387
+      animated_toytrain_29: -266913279476368681
+      animated_toytrain_3: 7428733502699753589
+      animated_toytrain_30: 3244946602179810307
+      animated_toytrain_31: 2708141214286247505
+      animated_toytrain_32: -4323548258041929740
+      animated_toytrain_33: -4114333790484439948
+      animated_toytrain_34: 324177893492421631
+      animated_toytrain_4: -5850915088557726130
+      animated_toytrain_5: -3913832273108336516
+      animated_toytrain_6: -5226255184096340944
+      animated_toytrain_7: 1826157525281156701
+      animated_toytrain_8: 5448077524378780516
+      animated_toytrain_9: -2272305029249170001
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

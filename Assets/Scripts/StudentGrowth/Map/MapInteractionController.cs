@@ -1,0 +1,192 @@
+using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace StudentGrowth
+{
+    public class MapInteractionController : MonoBehaviour
+    {
+        public LocationActionExecutor locationActionExecutor;
+        public LocationSceneRouter locationSceneRouter;
+        public SceneTransitionController sceneTransitionController;
+        public MapInteractionPoint currentInteractionPoint;
+
+        public event Action<LocationActionExecutionResult> InteractionCompleted;
+
+        public void SetCurrentInteractionPoint(MapInteractionPoint point)
+        {
+            currentInteractionPoint = point;
+        }
+
+        public LocationActionExecutionResult TryInteractCurrent()
+        {
+            return TryInteract(currentInteractionPoint);
+        }
+
+        public LocationActionExecutionResult TryInteract(MapInteractionTarget target)
+        {
+            if(UnityGameSaveSource.CurrentSession()?.BattleFlow.BlocksSave==true)return Fail("BattleBusy","请先结束战斗并返回地图。");
+            if (target == null)
+            {
+                return Fail("InvalidInteractionTarget", "没有可互动对象。");
+            }
+
+            if (target.interactionPoint == null)
+            {
+                return Fail("InvalidInteractionPoint", "互动对象没有绑定执行点。");
+            }
+
+            LocationActionExecutionResult result;
+            if (target.interactionPoint.interactionType == MapInteractionType.ReturnToMainUi || target.isExitPortal)
+            {
+                result = ReturnToMainUi();
+            }
+            else if (target.interactionPoint.interactionType == MapInteractionType.EnterLocationScene)
+            {
+                result = EnterLocationScene(target.interactionPoint);
+            }
+            else if (target.interactionPoint.interactionType == MapInteractionType.LocationAction)
+            {
+                result = ExecuteLocationAction(target);
+            }
+            else
+            {
+                result = Fail("UnsupportedInteractionType", "当前互动类型尚未接入执行流程。");
+            }
+
+            InteractionCompleted?.Invoke(result);
+            return result;
+        }
+
+        public LocationActionExecutionResult TryInteract(MapInteractionPoint point)
+        {
+            if(UnityGameSaveSource.CurrentSession()?.BattleFlow.BlocksSave==true)return Fail("BattleBusy","请先结束战斗并返回地图。");
+            if (point == null)
+            {
+                return Fail("InvalidInteractionPoint", "没有可互动对象。");
+            }
+
+            LocationActionExecutionResult result;
+            if (point.interactionType == MapInteractionType.ReturnToMainUi)
+            {
+                result = ReturnToMainUi();
+            }
+            else if (point.interactionType == MapInteractionType.EnterLocationScene)
+            {
+                result = EnterLocationScene(point);
+            }
+            else if (point.interactionType == MapInteractionType.LocationAction)
+            {
+                result = ExecuteLocationAction(point);
+            }
+            else
+            {
+                result = Fail("UnsupportedInteractionType", "当前互动类型尚未接入执行流程。");
+            }
+
+            InteractionCompleted?.Invoke(result);
+            return result;
+        }
+
+        private LocationActionExecutionResult ExecuteLocationAction(MapInteractionPoint point)
+        {
+            if (locationActionExecutor == null)
+            {
+                return Fail("MissingLocationActionExecutor", "地点行动执行器未初始化。");
+            }
+
+            return locationActionExecutor.TryExecute(point.CreateExecutionRequest(LocationActionSource.Map));
+        }
+
+        private LocationActionExecutionResult ExecuteLocationAction(MapInteractionTarget target)
+        {
+            if (locationActionExecutor == null)
+            {
+                return Fail("MissingLocationActionExecutor", "地点行动执行器未初始化。");
+            }
+
+            LocationActionExecutionRequest request = target.interactionPoint.CreateExecutionRequest(LocationActionSource.Map);
+            if (target.locationAction != null)
+            {
+                request.locationAction = target.locationAction;
+            }
+
+            if (target.fallbackActivity != null)
+            {
+                request.activity = target.fallbackActivity;
+            }
+
+            return locationActionExecutor.TryExecute(request);
+        }
+
+        private LocationActionExecutionResult EnterLocationScene(MapInteractionPoint point)
+        {
+            if (locationSceneRouter == null)
+            {
+                return Fail("MissingLocationSceneRouter", "地点场景路由器未初始化。");
+            }
+
+            LocationSceneRouteResult routeResult = locationSceneRouter.EnterLocationScene(point.locationId);
+            return new LocationActionExecutionResult
+            {
+                success = routeResult.success,
+                source = LocationActionSource.Map,
+                message = routeResult.message,
+                shouldRefreshUi = true,
+                remainingTimeBefore = routeResult.remainingTimeBefore,
+                remainingTimeAfter = routeResult.remainingTimeAfter
+            };
+        }
+
+        private LocationActionExecutionResult ReturnToMainUi()
+        {
+            if (locationSceneRouter != null)
+            {
+                LocationSceneRouteResult routeResult = locationSceneRouter.ReturnToStageMap();
+                return new LocationActionExecutionResult
+                {
+                    success = routeResult.success,
+                    source = LocationActionSource.Map,
+                    message = routeResult.message,
+                    shouldRefreshUi = true,
+                    shouldReturnToMap = routeResult.success,
+                    remainingTimeBefore = routeResult.remainingTimeBefore,
+                    remainingTimeAfter = routeResult.remainingTimeAfter
+                };
+            }
+
+            if (sceneTransitionController == null)
+            {
+                return Fail("MissingSceneTransitionController", "场景切换控制器未初始化。");
+            }
+
+            sceneTransitionController.ShowMap();
+            if (SceneManager.GetActiveScene().name != "StageHubMapScene"
+                && Application.CanStreamedLevelBeLoaded("StageHubMapScene"))
+            {
+                GameBootstrapper.SetSharedSession(sceneTransitionController.sessionState);
+                if (!AudioSettingsController.DisplayTransitionBlocked && !PauseMenuRuntime.BlocksGameplayNavigation) SceneManager.LoadScene("StageHubMapScene", LoadSceneMode.Single);
+            }
+
+            return new LocationActionExecutionResult
+            {
+                success = true,
+                source = LocationActionSource.Map,
+                message = "已返回阶段地图。返回不消耗时间。",
+                shouldRefreshUi = true,
+                shouldReturnToMap = true
+            };
+        }
+
+        private static LocationActionExecutionResult Fail(string errorCode, string message)
+        {
+            return new LocationActionExecutionResult
+            {
+                success = false,
+                source = LocationActionSource.Map,
+                errorCode = errorCode,
+                message = message
+            };
+        }
+    }
+}

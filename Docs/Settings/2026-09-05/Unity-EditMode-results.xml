@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="41" result="Passed" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.071571">
+  <test-suite type="TestSuite" id="1000" name="ML-project" fullname="ML-project" runstate="Runnable" testcasecount="176" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.071571" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1212" name="StudentGrowth.EditMode.Tests.dll" fullname="E:/unity/ML-project/Library/ScriptAssemblies/StudentGrowth.EditMode.Tests.dll" runstate="Runnable" testcasecount="176" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.067215" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="26184" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1213" name="StudentGrowth" fullname="StudentGrowth" runstate="Runnable" testcasecount="176" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.066399" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1214" name="Tests" fullname="StudentGrowth.Tests" runstate="Runnable" testcasecount="176" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.065633" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1009" name="AudioChannelSourceTests" fullname="StudentGrowth.Tests.AudioChannelSourceTests" classname="StudentGrowth.Tests.AudioChannelSourceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.015216" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1011" name="ChannelOnlyRespondsToMatchingVolumeChanges" fullname="StudentGrowth.Tests.AudioChannelSourceTests.ChannelOnlyRespondsToMatchingVolumeChanges" methodname="ChannelOnlyRespondsToMatchingVolumeChanges" classname="StudentGrowth.Tests.AudioChannelSourceTests" runstate="Runnable" seed="2053659975" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.007929" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="MasterVolumeScalesTheSelectedChannel" fullname="StudentGrowth.Tests.AudioChannelSourceTests.MasterVolumeScalesTheSelectedChannel" methodname="MasterVolumeScalesTheSelectedChannel" classname="StudentGrowth.Tests.AudioChannelSourceTests" runstate="Runnable" seed="701829572" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="SfxChannelScalesSourceBaseVolume" fullname="StudentGrowth.Tests.AudioChannelSourceTests.SfxChannelScalesSourceBaseVolume" methodname="SfxChannelScalesSourceBaseVolume" classname="StudentGrowth.Tests.AudioChannelSourceTests" runstate="Runnable" seed="1229751399" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000196" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1013" name="AudioSettingsModelTests" fullname="StudentGrowth.Tests.AudioSettingsModelTests" classname="StudentGrowth.Tests.AudioSettingsModelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.001077" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1014" name="MusicAndSfxVolumesAreIndependent" fullname="StudentGrowth.Tests.AudioSettingsModelTests.MusicAndSfxVolumesAreIndependent" methodname="MusicAndSfxVolumesAreIndependent" classname="StudentGrowth.Tests.AudioSettingsModelTests" runstate="Runnable" seed="352947485" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000388" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="NonfiniteAndInvalidChannelsCannotChangeModel" fullname="StudentGrowth.Tests.AudioSettingsModelTests.NonfiniteAndInvalidChannelsCannotChangeModel" methodname="NonfiniteAndInvalidChannelsCannotChangeModel" classname="StudentGrowth.Tests.AudioSettingsModelTests" runstate="Runnable" seed="1603534711" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000221" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="VolumeValuesAreClampedToNormalizedRange" fullname="StudentGrowth.Tests.AudioSettingsModelTests.VolumeValuesAreClampedToNormalizedRange" methodname="VolumeValuesAreClampedToNormalizedRange" classname="StudentGrowth.Tests.AudioSettingsModelTests" runstate="Runnable" seed="1316539450" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000072" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1095" name="PlayerMovementAudioControllerTests" fullname="StudentGrowth.Tests.PlayerMovementAudioControllerTests" classname="StudentGrowth.Tests.PlayerMovementAudioControllerTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.002983" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1096" name="ConfigureCreatesLoopingTwoDimensionalRunSource" fullname="StudentGrowth.Tests.PlayerMovementAudioControllerTests.ConfigureCreatesLoopingTwoDimensionalRunSource" methodname="ConfigureCreatesLoopingTwoDimensionalRunSource" classname="StudentGrowth.Tests.PlayerMovementAudioControllerTests" runstate="Runnable" seed="231344314" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.002755" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1134" name="SettingsRepositoryTests" fullname="StudentGrowth.Tests.SettingsRepositoryTests" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.014935" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1136" name="CorruptMainUsesValidBackupAndNeverRotatesCorruptionOverIt" fullname="StudentGrowth.Tests.SettingsRepositoryTests.CorruptMainUsesValidBackupAndNeverRotatesCorruptionOverIt" methodname="CorruptMainUsesValidBackupAndNeverRotatesCorruptionOverIt" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="613736744" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.002085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1139" name="FutureVersionIsProtectedEvenWithUnknownEnums" fullname="StudentGrowth.Tests.SettingsRepositoryTests.FutureVersionIsProtectedEvenWithUnknownEnums" methodname="FutureVersionIsProtectedEvenWithUnknownEnums" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="142834884" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000705" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1148" name="ImportSnapshotIsCreatedOnceAndLegacySourceNeverMutated" fullname="StudentGrowth.Tests.SettingsRepositoryTests.ImportSnapshotIsCreatedOnceAndLegacySourceNeverMutated" methodname="ImportSnapshotIsCreatedOnceAndLegacySourceNeverMutated" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="909967843" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000969" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1146" name="JournalCleanupFailureAfterCommitIsStillSuccess" fullname="StudentGrowth.Tests.SettingsRepositoryTests.JournalCleanupFailureAfterCommitIsStillSuccess" methodname="JournalCleanupFailureAfterCommitIsStillSuccess" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="1538385829" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000980" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1149" name="LoadUnavailableDisablesWritesRatherThanOverwritingUnknownData" fullname="StudentGrowth.Tests.SettingsRepositoryTests.LoadUnavailableDisablesWritesRatherThanOverwritingUnknownData" methodname="LoadUnavailableDisablesWritesRatherThanOverwritingUnknownData" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="1352023016" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000309" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1137" name="MandatoryObjectMissingFallsBackButOptionalScalarRepairs" fullname="StudentGrowth.Tests.SettingsRepositoryTests.MandatoryObjectMissingFallsBackButOptionalScalarRepairs" methodname="MandatoryObjectMissingFallsBackButOptionalScalarRepairs" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="1859355244" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.001421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1141" name="OrdinaryHighGenerationTempNeverPromotesWithoutJournal" fullname="StudentGrowth.Tests.SettingsRepositoryTests.OrdinaryHighGenerationTempNeverPromotesWithoutJournal" methodname="OrdinaryHighGenerationTempNeverPromotesWithoutJournal" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="1160309483" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000520" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1143" name="RecoveryRequiresMatchingOperationHashAndGeneration" fullname="StudentGrowth.Tests.SettingsRepositoryTests.RecoveryRequiresMatchingOperationHashAndGeneration" methodname="RecoveryRequiresMatchingOperationHashAndGeneration" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="1033563327" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.001081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1145" name="ReportedReplaceFailureCannotRecoverTempOnNextStartup" fullname="StudentGrowth.Tests.SettingsRepositoryTests.ReportedReplaceFailureCannotRecoverTempOnNextStartup" methodname="ReportedReplaceFailureCannotRecoverTempOnNextStartup" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="443516846" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000581" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1140" name="RootNullAndMissingGenerationDoNotEscapeAsNullState" fullname="StudentGrowth.Tests.SettingsRepositoryTests.RootNullAndMissingGenerationDoNotEscapeAsNullState" methodname="RootNullAndMissingGenerationDoNotEscapeAsNullState" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="1128859860" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000592" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1135" name="RoundtripAndBackupPreservePreviousAcceptedValues" fullname="StudentGrowth.Tests.SettingsRepositoryTests.RoundtripAndBackupPreservePreviousAcceptedValues" methodname="RoundtripAndBackupPreservePreviousAcceptedValues" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="292031912" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000625" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1144" name="SameGenerationConflictPrefersValidMain" fullname="StudentGrowth.Tests.SettingsRepositoryTests.SameGenerationConflictPrefersValidMain" methodname="SameGenerationConflictPrefersValidMain" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="84806081" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000626" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1138" name="UnknownEnumAndNonfiniteValuesInvalidateCandidate" fullname="StudentGrowth.Tests.SettingsRepositoryTests.UnknownEnumAndNonfiniteValuesInvalidateCandidate" methodname="UnknownEnumAndNonfiniteValuesInvalidateCandidate" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="1803193243" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.001634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1142" name="ValidJournalRecoversInterruptedValidatedTemp" fullname="StudentGrowth.Tests.SettingsRepositoryTests.ValidJournalRecoversInterruptedValidatedTemp" methodname="ValidJournalRecoversInterruptedValidatedTemp" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="1046383170" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000684" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1147" name="WriteDenialDoesNotDestroyOldFormalFile" fullname="StudentGrowth.Tests.SettingsRepositoryTests.WriteDenialDoesNotDestroyOldFormalFile" methodname="WriteDenialDoesNotDestroyOldFormalFile" classname="StudentGrowth.Tests.SettingsRepositoryTests" runstate="Runnable" seed="631305287" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000423" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1150" name="SettingsTransactionTests" fullname="StudentGrowth.Tests.SettingsTransactionTests" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.007343" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1152" name="ApplyNormalizesEveryPreviewBeforeStartingAnyApply" fullname="StudentGrowth.Tests.SettingsTransactionTests.ApplyNormalizesEveryPreviewBeforeStartingAnyApply" methodname="ApplyNormalizesEveryPreviewBeforeStartingAnyApply" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="782530855" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.001004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1165" name="EventHandlersCannotReenterApplyOrDestroyTransactionByThrowing" fullname="StudentGrowth.Tests.SettingsTransactionTests.EventHandlersCannotReenterApplyOrDestroyTransactionByThrowing" methodname="EventHandlersCannotReenterApplyOrDestroyTransactionByThrowing" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="712438259" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.001492" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1155" name="FailedPreviewIsRestoredAndCannotSilentlyBecomeAccepted" fullname="StudentGrowth.Tests.SettingsTransactionTests.FailedPreviewIsRestoredAndCannotSilentlyBecomeAccepted" methodname="FailedPreviewIsRestoredAndCannotSilentlyBecomeAccepted" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="2066835397" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000145" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1153" name="FailureDomainIsRestoredEvenWhenApplyPartiallyChangedIt" fullname="StudentGrowth.Tests.SettingsTransactionTests.FailureDomainIsRestoredEvenWhenApplyPartiallyChangedIt" methodname="FailureDomainIsRestoredEvenWhenApplyPartiallyChangedIt" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="1329271110" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000235" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1159" name="LifecycleRetryDoesNotSaveNewPendingPreview" fullname="StudentGrowth.Tests.SettingsTransactionTests.LifecycleRetryDoesNotSaveNewPendingPreview" methodname="LifecycleRetryDoesNotSaveNewPendingPreview" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="768187051" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1161" name="NonfiniteInputIsRejectedBeforeAnyApplier" fullname="StudentGrowth.Tests.SettingsTransactionTests.NonfiniteInputIsRejectedBeforeAnyApplier" methodname="NonfiniteInputIsRejectedBeforeAnyApplier" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="721645217" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1151" name="PreviewDoesNotChangeAppliedOrPersistedAndCancelRestoresEveryDomain" fullname="StudentGrowth.Tests.SettingsTransactionTests.PreviewDoesNotChangeAppliedOrPersistedAndCancelRestoresEveryDomain" methodname="PreviewDoesNotChangeAppliedOrPersistedAndCancelRestoresEveryDomain" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="1173545796" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1156" name="PreviewFailureAndRestoreFailureEnterDegraded" fullname="StudentGrowth.Tests.SettingsTransactionTests.PreviewFailureAndRestoreFailureEnterDegraded" methodname="PreviewFailureAndRestoreFailureEnterDegraded" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="552884193" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000167" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1154" name="PreviewNormalizationFailureBlocksApplyAndWrites" fullname="StudentGrowth.Tests.SettingsTransactionTests.PreviewNormalizationFailureBlocksApplyAndWrites" methodname="PreviewNormalizationFailureBlocksApplyAndWrites" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="1395921686" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000222" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1164" name="ReadOnlyConfigurationBlocksEveryPersistenceEntryPoint" fullname="StudentGrowth.Tests.SettingsTransactionTests.ReadOnlyConfigurationBlocksEveryPersistenceEntryPoint" methodname="ReadOnlyConfigurationBlocksEveryPersistenceEntryPoint" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="1127854708" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000134" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1166" name="ResetThenCancelPreservesAcceptedValues" fullname="StudentGrowth.Tests.SettingsTransactionTests.ResetThenCancelPreservesAcceptedValues" methodname="ResetThenCancelPreservesAcceptedValues" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="1666193937" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000195" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1157" name="RollbackContinuesAfterOneRestoreFailsAndCanRecoverLater" fullname="StudentGrowth.Tests.SettingsTransactionTests.RollbackContinuesAfterOneRestoreFailsAndCanRecoverLater" methodname="RollbackContinuesAfterOneRestoreFailsAndCanRecoverLater" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="100060947" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1158" name="SaveFailureKeepsAcceptedValuesAndRetryNeverCallsAppliers" fullname="StudentGrowth.Tests.SettingsTransactionTests.SaveFailureKeepsAcceptedValuesAndRetryNeverCallsAppliers" methodname="SaveFailureKeepsAcceptedValuesAndRetryNeverCallsAppliers" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="1394422663" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000170" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1160" name="StateSnapshotsHaveNoSettersAndRemainStableAfterSubsequentEdits" fullname="StudentGrowth.Tests.SettingsTransactionTests.StateSnapshotsHaveNoSettersAndRemainStableAfterSubsequentEdits" methodname="StateSnapshotsHaveNoSettersAndRemainStableAfterSubsequentEdits" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="839830277" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000300" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1162" name="UnavailableDomainDoesNotPretendToApplyLanguage" fullname="StudentGrowth.Tests.SettingsTransactionTests.UnavailableDomainDoesNotPretendToApplyLanguage" methodname="UnavailableDomainDoesNotPretendToApplyLanguage" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="2087720712" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000088" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1163" name="WrongObservationMakesServiceDegradedAtStartup" fullname="StudentGrowth.Tests.SettingsTransactionTests.WrongObservationMakesServiceDegradedAtStartup" methodname="WrongObservationMakesServiceDegradedAtStartup" classname="StudentGrowth.Tests.SettingsTransactionTests" runstate="Runnable" seed="965060946" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.000137" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1167" name="SettingsUiFactoryTests" fullname="StudentGrowth.Tests.SettingsUiFactoryTests" classname="StudentGrowth.Tests.SettingsUiFactoryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.021229" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1170" name="DegradedStateDisablesEditingButOffersRecovery" fullname="StudentGrowth.Tests.SettingsUiFactoryTests.DegradedStateDisablesEditingButOffersRecovery" methodname="DegradedStateDisablesEditingButOffersRecovery" classname="StudentGrowth.Tests.SettingsUiFactoryTests" runstate="Runnable" seed="5054671" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.008208" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1168" name="FactoryCreatesReferenceStyleMasterMusicAndSfxSliders" fullname="StudentGrowth.Tests.SettingsUiFactoryTests.FactoryCreatesReferenceStyleMasterMusicAndSfxSliders" methodname="FactoryCreatesReferenceStyleMasterMusicAndSfxSliders" classname="StudentGrowth.Tests.SettingsUiFactoryTests" runstate="Runnable" seed="579968499" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.006192" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1169" name="TransactionButtonsEmitCommandsAndDoNotSaveByThemselves" fullname="StudentGrowth.Tests.SettingsUiFactoryTests.TransactionButtonsEmitCommandsAndDoNotSaveByThemselves" methodname="TransactionButtonsEmitCommandsAndDoNotSaveByThemselves" classname="StudentGrowth.Tests.SettingsUiFactoryTests" runstate="Runnable" seed="1158755738" result="Passed" start-time="2026-09-05 04:36:17Z" end-time="2026-09-05 04:36:17Z" duration="0.005899" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Administrator/AppData/LocalLow/DefaultCompany/ML-project\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

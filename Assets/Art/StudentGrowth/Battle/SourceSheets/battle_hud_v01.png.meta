@@ -1,0 +1,451 @@
+fileFormatVersion: 2
+guid: 01b0b021606910d419007f6b35a844af
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1843592891253555099
+    second: battle_hud_v01_0
+  - first:
+      213: 5652557162517905491
+    second: battle_hud_v01_1
+  - first:
+      213: -4180163281845190524
+    second: battle_hud_v01_2
+  - first:
+      213: 3022008180670766856
+    second: battle_hud_v01_3
+  - first:
+      213: -3217178471362217449
+    second: battle_hud_v01_4
+  - first:
+      213: 3099264911395340612
+    second: battle_hud_v01_5
+  - first:
+      213: 6232630764431841495
+    second: battle_hud_v01_6
+  - first:
+      213: 851333063894000955
+    second: battle_hud_v01_7
+  - first:
+      213: 7424406044124309702
+    second: battle_hud_v01_8
+  - first:
+      213: -3293427238923999294
+    second: battle_hud_v01_9
+  - first:
+      213: 7099687365956242240
+    second: battle_hud_v01_10
+  - first:
+      213: 5657150817551240210
+    second: battle_hud_v01_11
+  - first:
+      213: 6841883968160631742
+    second: battle_hud_v01_12
+  - first:
+      213: 7746878401566745716
+    second: battle_hud_v01_13
+  - first:
+      213: 104775460306749430
+    second: battle_hud_v01_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hud_progress_track
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 828
+        width: 700
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 38, y: 30, z: 38, w: 30}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8904764f93ad84a45a36830efbdc506e
+      internalID: 2003795767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_stamina_track
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 828
+        width: 704
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 38, y: 30, z: 38, w: 30}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb53aa46fef5c3498a624e3df89f7ce
+      internalID: -1646349851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_progress_fill_source
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 686
+        width: 619
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3900a16da0806f4299b58e81dcbd954
+      internalID: 1598600488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_stamina_fill_source
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 685
+        width: 619
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bf4ba6078e177f4a8e378cc0db67dcf
+      internalID: 2055109216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_turns_plate
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 427
+        width: 420
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 30, y: 30, z: 30, w: 30}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40845657ae07dc3428ae718c4b74cc5e
+      internalID: 414864448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_energy_socket
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 391
+        width: 208
+        height: 203
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979bbfe476cb4a845955778373eb4289
+      internalID: -2106073676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_block_socket
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 379
+        width: 196
+        height: 236
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 425145131bbbf4a459105584d83a3e4b
+      internalID: -352831191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_tooltip_panel
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 81
+        width: 521
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 38, y: 38, z: 38, w: 38}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe1093cae0c68843ba6f2df047c6a9e
+      internalID: 247758649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_intent_bubble
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 86
+        width: 427
+        height: 229
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8955b6856275d1641832c0f2b8412b72
+      internalID: 17037520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_notice_plate
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 126
+        width: 469
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 32, y: 30, z: 32, w: 30}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b2870fe5115c784793058894d80d294
+      internalID: -985238009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_progress_fill
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 705
+        width: 538
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67a8f590687b46745ba8000039d1ca91
+      internalID: 1234537178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_stamina_fill
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 705
+        width: 533
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac5df5c1052e7449b214462831b0028
+      internalID: -998259011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2f466b8922ab7d64f9334aa35e6751cc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      hud_block_socket: -352831191
+      hud_energy_socket: -2106073676
+      hud_intent_bubble: 17037520
+      hud_notice_plate: -985238009
+      hud_progress_fill: 1234537178
+      hud_progress_fill_source: 1598600488
+      hud_progress_track: 2003795767
+      hud_stamina_fill: -998259011
+      hud_stamina_fill_source: 2055109216
+      hud_stamina_track: -1646349851
+      hud_tooltip_panel: 247758649
+      hud_turns_plate: 414864448
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

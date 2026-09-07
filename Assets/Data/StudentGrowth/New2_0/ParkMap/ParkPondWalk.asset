@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1034908a7c8644a8821dde6314f04f, type: 3}
+  m_Name: ParkPondWalk
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.ParkMapActivityData
+  activityId: activity_park_pond_walk
+  displayName: "\u6C60\u8FB9\u6563\u6B65"
+  description: "\u6CBF\u6C60\u5858\u6162\u6162\u6563\u6B65\uFF0C\u8BA9\u7D27\u7EF7\u7684\u60C5\u7EEA\u5E73\u9759\u4E0B\u6765\u3002"
+  activityType: 3
+  backgroundSprite: {fileID: 21300000, guid: 723eeca5f559a6f42ad28f303553000e, type: 3}
+  icon: {fileID: 0}
+  imagePath: 
+  timeCost: 1
+  linkedChallenge: {fileID: 0}
+  linkedEvent: {fileID: 0}
+  linkedMiniGame: {fileID: 0}
+  fixedRewards:
+  - rewardType: 6
+    targetStat: 5
+    value: 5
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u538B\u529B -5"
+  - rewardType: 3
+    targetStat: 6
+    value: 3
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u5FC3\u60C5 +3"
+  possibleRewards: []
+  appearConditions: []

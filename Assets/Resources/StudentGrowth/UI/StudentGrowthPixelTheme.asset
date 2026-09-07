@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765156f043f745a280cc3912891283f4, type: 3}
+  m_Name: StudentGrowthPixelTheme
+  m_EditorClassIdentifier: 
+  panelSprite: {fileID: 2500138959805509893, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  buttonSprite: {fileID: -8600933451547126573, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  buttonHoverSprite: {fileID: -1935744498511058602, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  buttonPressedSprite: {fileID: -6635081159972213984, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  buttonDisabledSprite: {fileID: -5382962097272113091, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  buttonSelectedSprite: {fileID: -1935744498511058602, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  hudPlateSprite: {fileID: 5755583602347636283, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  taskPanelSprite: {fileID: 8166169555606831695, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  promptBarSprite: {fileID: 3344758731751046457, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  quickbarSprite: {fileID: 3344758731751046457, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  quickbarSlotSprite: {fileID: -8600933451547126573, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  menuWindowSprite: {fileID: 2500138959805509893, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  dialoguePanelSprite: {fileID: 5755583602347636283, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  shopPanelSprite: {fileID: 5755583602347636283, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  inventoryPanelSprite: {fileID: 2500138959805509893, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  battlePanelSprite: {fileID: 5755583602347636283, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  resultPanelSprite: {fileID: 2500138959805509893, guid: f207aa730f14d1c4f9aac9d14cb65822, type: 3}
+  moneyIcon: {fileID: 21300000, guid: df951b169c55156b84bdd7b521b0fbe9, type: 3}
+  timeIcon: {fileID: 21300000, guid: 6d772132e0a24ccea399dbe36177c2aa, type: 3}
+  energyIcon: {fileID: 21300000, guid: 3b59dbd193a31128df931390c4aa2229, type: 3}
+  moodIcon: {fileID: 21300000, guid: afb5bec4ba62593afccacdca65db4ac9, type: 3}
+  stressIcon: {fileID: 21300000, guid: 763c0f862f9847adddd1ccccb3d04ec1, type: 3}
+  relationIcon: {fileID: 21300000, guid: b719dc986f03cbe39e68be69b1707cf7, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: b7ff4ffdbc26ce674b6936ce7f5ea09e, type: 3}
+  cardsIcon: {fileID: 21300000, guid: 2c5768206e0fbc0b2de6d745d860ba31, type: 3}
+  settingsIcon: {fileID: 21300000, guid: 5a1d3c922d50e4bb338d0af1159a5911, type: 3}
+  backIcon: {fileID: 21300000, guid: 6625ce38e72c1643ad82244fec04a77f, type: 3}
+  confirmIcon: {fileID: 21300000, guid: 34df979415000f1cb7d82a500fd2bda5, type: 3}
+  cancelIcon: {fileID: 21300000, guid: 57850435c403b23f270013bf8b8afb3a, type: 3}
+  font: {fileID: 0}
+  titleSize: 28
+  subtitleSize: 22
+  bodySize: 18
+  buttonTextSize: 18
+  statTextSize: 18
+  hintTextSize: 18
+  smallTextSize: 14
+  panelBackground: {r: 0.09019608, g: 0.101960786, b: 0.12941177, a: 0.972549}
+  panelDarkBackground: {r: 0.0627451, g: 0.07450981, b: 0.09803922, a: 0.9607843}
+  panelBorder: {r: 0.27058825, g: 0.29411766, b: 0.3372549, a: 1}
+  panelShadow: {r: 0.019607844, g: 0.023529412, b: 0.03529412, a: 0.4509804}
+  titleText: {r: 1, g: 1, b: 1, a: 1}
+  bodyText: {r: 0.9137255, g: 0.92941177, b: 0.9490196, a: 1}
+  inverseText: {r: 1, g: 1, b: 1, a: 1}
+  hintText: {r: 0.4509804, g: 0.90588236, b: 0.75686276, a: 1}
+  disabledText: {r: 0.52156866, g: 0.5568628, b: 0.60784316, a: 1}
+  buttonNormal: {r: 0.14117648, g: 0.15686275, b: 0.2, a: 1}
+  buttonHover: {r: 0.20392157, g: 0.27450982, b: 0.36862746, a: 1}
+  buttonPressed: {r: 0.09803922, g: 0.11372549, b: 0.14509805, a: 1}
+  buttonSelected: {r: 0.1764706, g: 0.2627451, b: 0.3372549, a: 1}
+  buttonDisabled: {r: 0.30588236, g: 0.31764707, b: 0.34117648, a: 0.5019608}
+  danger: {r: 0.9411765, g: 0.39215687, b: 0.3529412, a: 1}
+  success: {r: 0.25882354, g: 0.8392157, b: 0.6431373, a: 1}
+  gold: {r: 0.9647059, g: 0.78431374, b: 0.37254903, a: 1}
+  time: {r: 0.35686275, g: 0.654902, b: 0.96862745, a: 1}
+  panelPadding: 16
+  panelBorderThickness: 2
+  buttonBorderThickness: 2
+  panelFadeDuration: 0.16
+  buttonHoverScale: 1.02
+  buttonPressedScale: 0.98
+  floatingTextDuration: 0.8

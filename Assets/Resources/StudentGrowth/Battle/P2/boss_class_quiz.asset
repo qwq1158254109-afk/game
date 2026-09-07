@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce2853bd7b9d3e449f2389f00038f31, type: 3}
+  m_Name: boss_class_quiz
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.BattleChallengeAsset
+  battleRulesVersion: 0
+  unifiedHandLimit: 10
+  intentMode: 0
+  fallbackIntent:
+    intentId: 
+    displayName: 
+    description: 
+    triggerTurn: 0
+    effects: []
+  requireSupportedBattleContent: 1
+  challengeId: boss_class_quiz
+  displayName: "\u8BFE\u5802\u5C0F\u6D4B"
+  description: 
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_boss_class_quiz.png
+  isBoss: 1
+  requiredStageId: stage_01_adaptation
+  targetProgress: 45
+  maxTurns: 3
+  startingEnergy: 3
+  startingHandSize: 5
+  intents: []
+  successRewards: []
+  failureRewards: []
+  bossClearRewards:
+  - rewardType: 3
+    targetStat: 10
+    value: 3
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: 
+  bossFailureRewards:
+  - rewardType: 3
+    targetStat: 5
+    value: 5
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: 

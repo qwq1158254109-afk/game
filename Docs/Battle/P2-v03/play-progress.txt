@@ -1,0 +1,19 @@
+PASS save isolation active
+PASS migrated assets survive domain reload with script references
+PASS existing Controller opens isolated Engine with frozen definitions
+PASS same CardData is bound to distinct instance IDs after reversed rebuild
+PASS per-instance costs and availability match Engine preview
+PASS actual cost labels show independent prices
+PASS unaffordable real UI click changes nothing
+PASS presentation busy rejects input without advancing rules
+PASS supplied artwork leaves card raycast accessible
+PASS real click plays only free instance A
+PASS stale pre-rebuild callback cannot play B
+PASS rebuilt B shows current cost 2
+PASS cancelled real drag does not spend energy
+PASS targeted real drag spends B's cost and moves B
+PASS real end-turn control resets both temporary costs
+PASS source asset, permanent deck and real long-term state unchanged
+PASS uncommitted P2 sandbox cannot be saved
+PASS existing GameSessionLifetime rejects callback after session replacement
+PASS disposal releases only this sandbox

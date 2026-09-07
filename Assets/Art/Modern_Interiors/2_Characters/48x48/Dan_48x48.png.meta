@@ -1,0 +1,858 @@
+fileFormatVersion: 2
+guid: ddd8da3ee7f94cf439622f083346b723
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9066988346157976306
+    second: Dan_48x48_0
+  - first:
+      213: -95402022265170296
+    second: Dan_48x48_1
+  - first:
+      213: 1223358006368381661
+    second: Dan_48x48_2
+  - first:
+      213: 4815640269958524041
+    second: Dan_48x48_3
+  - first:
+      213: 3816381378342139785
+    second: Dan_48x48_4
+  - first:
+      213: 3658606888117022946
+    second: Dan_48x48_5
+  - first:
+      213: 3885272892438570492
+    second: Dan_48x48_6
+  - first:
+      213: 4552331712301033203
+    second: Dan_48x48_7
+  - first:
+      213: 1033523392875503692
+    second: Dan_48x48_8
+  - first:
+      213: -5106217195586623605
+    second: Dan_48x48_9
+  - first:
+      213: 1520070828716627520
+    second: Dan_48x48_10
+  - first:
+      213: 1612679656072056354
+    second: Dan_48x48_11
+  - first:
+      213: 3497753657154887524
+    second: Dan_48x48_12
+  - first:
+      213: 2692348042140473382
+    second: Dan_48x48_13
+  - first:
+      213: -2527455117028920249
+    second: Dan_48x48_14
+  - first:
+      213: 7275779569835368194
+    second: Dan_48x48_15
+  - first:
+      213: 5854234706547809210
+    second: Dan_48x48_16
+  - first:
+      213: -2531709403842823637
+    second: Dan_48x48_17
+  - first:
+      213: 5043799700765630690
+    second: Dan_48x48_18
+  - first:
+      213: -2994527121942833556
+    second: Dan_48x48_19
+  - first:
+      213: 8297082940720512700
+    second: Dan_48x48_20
+  - first:
+      213: 7964117617244823547
+    second: Dan_48x48_21
+  - first:
+      213: 1026917164076982915
+    second: Dan_48x48_22
+  - first:
+      213: -7026705733976890839
+    second: Dan_48x48_23
+  - first:
+      213: 3500262184668898296
+    second: Dan_48x48_24
+  - first:
+      213: 2378243438893121338
+    second: Dan_48x48_25
+  - first:
+      213: 23576689858299004
+    second: Dan_48x48_26
+  - first:
+      213: 2249019734384913041
+    second: Dan_48x48_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dan_48x48_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 191
+        width: 41
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fa4a53acd964dd70800000000000000
+      internalID: 9066988346157976306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 191
+        width: 50
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886d700cd501daef0800000000000000
+      internalID: -95402022265170296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_2
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 191
+        width: 41
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddaa7ba00ad3af010800000000000000
+      internalID: 1223358006368381661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_3
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 191
+        width: 50
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98ca1f8af4794d240800000000000000
+      internalID: 4815640269958524041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 95
+        width: 289
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 987bf7fb4a286f430800000000000000
+      internalID: 3816381378342139785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_5
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e03303a49bf5c230800000000000000
+      internalID: 3658606888117022946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_6
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 2
+        width: 44
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf561415c134be530800000000000000
+      internalID: 3885272892438570492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_7
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f6e273b2912d2f30800000000000000
+      internalID: 4552331712301033203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_8
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 0
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c40a66bcc00d75e00800000000000000
+      internalID: 1033523392875503692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_9
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 2
+        width: 41
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b876117b3821329b0800000000000000
+      internalID: -5106217195586623605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_10
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 0
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04696137d50681510800000000000000
+      internalID: 1520070828716627520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_11
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 0
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22e8ca45a93616610800000000000000
+      internalID: 1612679656072056354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_12
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 0
+        width: 50
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46f5a865b648a8030800000000000000
+      internalID: 3497753657154887524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_13
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 0
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628508797442d5520800000000000000
+      internalID: 2692348042140473382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_14
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 0
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7447fbb46fcacecd0800000000000000
+      internalID: -2527455117028920249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_15
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 0
+        width: 50
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20fd41458f2c8f460800000000000000
+      internalID: 7275779569835368194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_16
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 0
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abb9b83d27b6e3150800000000000000
+      internalID: 5854234706547809210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_17
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 0
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2abe65f5bf8ddcd0800000000000000
+      internalID: -2531709403842823637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_18
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 2
+        width: 44
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e06b5aca1d2ff540800000000000000
+      internalID: 5043799700765630690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_19
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 0
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c661352c27d4176d0800000000000000
+      internalID: -2994527121942833556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_20
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 0
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbe799989f8252370800000000000000
+      internalID: 8297082940720512700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_21
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 2
+        width: 41
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bffde45f6ca368e60800000000000000
+      internalID: 7964117617244823547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_22
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 0
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3826f8a48b7504e00800000000000000
+      internalID: 1026917164076982915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_23
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 2
+        width: 47
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9226b113d502c7e90800000000000000
+      internalID: -7026705733976890839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_24
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 0
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f32ce969ed639030800000000000000
+      internalID: 3500262184668898296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_25
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 2
+        width: 92
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3fb0a4aec7310120800000000000000
+      internalID: 2378243438893121338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_26
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 0
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c74cbffdfd2c35000800000000000000
+      internalID: 23576689858299004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dan_48x48_27
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 2
+        width: 47
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19a2bd8588f163f10800000000000000
+      internalID: 2249019734384913041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Dan_48x48_0: 9066988346157976306
+      Dan_48x48_1: -95402022265170296
+      Dan_48x48_10: 1520070828716627520
+      Dan_48x48_11: 1612679656072056354
+      Dan_48x48_12: 3497753657154887524
+      Dan_48x48_13: 2692348042140473382
+      Dan_48x48_14: -2527455117028920249
+      Dan_48x48_15: 7275779569835368194
+      Dan_48x48_16: 5854234706547809210
+      Dan_48x48_17: -2531709403842823637
+      Dan_48x48_18: 5043799700765630690
+      Dan_48x48_19: -2994527121942833556
+      Dan_48x48_2: 1223358006368381661
+      Dan_48x48_20: 8297082940720512700
+      Dan_48x48_21: 7964117617244823547
+      Dan_48x48_22: 1026917164076982915
+      Dan_48x48_23: -7026705733976890839
+      Dan_48x48_24: 3500262184668898296
+      Dan_48x48_25: 2378243438893121338
+      Dan_48x48_26: 23576689858299004
+      Dan_48x48_27: 2249019734384913041
+      Dan_48x48_3: 4815640269958524041
+      Dan_48x48_4: 3816381378342139785
+      Dan_48x48_5: 3658606888117022946
+      Dan_48x48_6: 3885272892438570492
+      Dan_48x48_7: 4552331712301033203
+      Dan_48x48_8: 1033523392875503692
+      Dan_48x48_9: -5106217195586623605
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

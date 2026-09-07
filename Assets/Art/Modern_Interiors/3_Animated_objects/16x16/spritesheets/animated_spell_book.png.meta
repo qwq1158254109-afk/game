@@ -1,0 +1,1066 @@
+fileFormatVersion: 2
+guid: c5952c2f40589214cb330aa187a18431
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6930217000669513524
+    second: animated_spell_book_0
+  - first:
+      213: -8646233598250412923
+    second: animated_spell_book_1
+  - first:
+      213: 241369434689307211
+    second: animated_spell_book_2
+  - first:
+      213: -3708372712207705728
+    second: animated_spell_book_3
+  - first:
+      213: -1584947605779764826
+    second: animated_spell_book_4
+  - first:
+      213: 7543973401144729218
+    second: animated_spell_book_5
+  - first:
+      213: -1776274111110377004
+    second: animated_spell_book_6
+  - first:
+      213: -789467479532815623
+    second: animated_spell_book_7
+  - first:
+      213: -6227567009522301814
+    second: animated_spell_book_8
+  - first:
+      213: 9008984369108938814
+    second: animated_spell_book_9
+  - first:
+      213: 6207341388419131677
+    second: animated_spell_book_10
+  - first:
+      213: 8519144727149394871
+    second: animated_spell_book_11
+  - first:
+      213: 861746828759601844
+    second: animated_spell_book_12
+  - first:
+      213: -2753870312056719813
+    second: animated_spell_book_13
+  - first:
+      213: 3122232208602333758
+    second: animated_spell_book_14
+  - first:
+      213: 5204077869743224752
+    second: animated_spell_book_15
+  - first:
+      213: 6922931229133533849
+    second: animated_spell_book_16
+  - first:
+      213: -3401589489245599660
+    second: animated_spell_book_17
+  - first:
+      213: -6183852997397907049
+    second: animated_spell_book_18
+  - first:
+      213: 5153991512758817781
+    second: animated_spell_book_19
+  - first:
+      213: 2386773538244374279
+    second: animated_spell_book_20
+  - first:
+      213: -2803280394057056589
+    second: animated_spell_book_21
+  - first:
+      213: 3705534895903950952
+    second: animated_spell_book_22
+  - first:
+      213: -3954356735993958473
+    second: animated_spell_book_23
+  - first:
+      213: 1009858595998436149
+    second: animated_spell_book_24
+  - first:
+      213: 3911717555478637833
+    second: animated_spell_book_25
+  - first:
+      213: -7850948574868063328
+    second: animated_spell_book_26
+  - first:
+      213: 7086280153706353591
+    second: animated_spell_book_27
+  - first:
+      213: 3624816751230482693
+    second: animated_spell_book_28
+  - first:
+      213: -8275628238790146181
+    second: animated_spell_book_29
+  - first:
+      213: -615225020111405957
+    second: animated_spell_book_30
+  - first:
+      213: 651918164910532611
+    second: animated_spell_book_31
+  - first:
+      213: 5587379807299773152
+    second: animated_spell_book_32
+  - first:
+      213: 742114495280072954
+    second: animated_spell_book_33
+  - first:
+      213: -2132885586727582538
+    second: animated_spell_book_34
+  - first:
+      213: 8192077937476155718
+    second: animated_spell_book_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: animated_spell_book_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc878b21b5ce2df90800000000000000
+      internalID: -6930217000669513524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5849c332a58620880800000000000000
+      internalID: -8646233598250412923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b420b46d834895300800000000000000
+      internalID: 241369434689307211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_3
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0899b128aa6398cc0800000000000000
+      internalID: -3708372712207705728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a924e9cc82210ae0800000000000000
+      internalID: -1584947605779764826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_5
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28e1a32b6d391b860800000000000000
+      internalID: 7543973401144729218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_6
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d11b876b186957e0800000000000000
+      internalID: -1776274111110377004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_7
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fa39b8928f3b05f0800000000000000
+      internalID: -789467479532815623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_8
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a844b76cccc3399a0800000000000000
+      internalID: -6227567009522301814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_9
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30f8c35d87560d70800000000000000
+      internalID: 9008984369108938814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_10
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d196d48da18e42650800000000000000
+      internalID: 6207341388419131677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_11
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bbb1e33ef41a3670800000000000000
+      internalID: 8519144727149394871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_12
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b2198ecc2a85fb00800000000000000
+      internalID: 861746828759601844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_13
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b367d54ba8948c9d0800000000000000
+      internalID: -2753870312056719813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_14
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e328604c6a5645b20800000000000000
+      internalID: 3122232208602333758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_15
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b734890049983840800000000000000
+      internalID: 5204077869743224752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_16
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99276fc0641331060800000000000000
+      internalID: 6922931229133533849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_17
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45840d5c1602bc0d0800000000000000
+      internalID: -3401589489245599660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_18
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 799fcda567a8e2aa0800000000000000
+      internalID: -6183852997397907049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_19
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f31e5d49f7a68740800000000000000
+      internalID: 5153991512758817781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_20
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70fab5a23e58f1120800000000000000
+      internalID: 2386773538244374279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_21
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3be7962855fb819d0800000000000000
+      internalID: -2803280394057056589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_22
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8684b25ea54bc6330800000000000000
+      internalID: 3705534895903950952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_23
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf28ebef7d4f19c0800000000000000
+      internalID: -3954356735993958473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_24
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53b8cd7ea0db30e00800000000000000
+      internalID: 1009858595998436149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_25
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90da6fb3466394630800000000000000
+      internalID: 3911717555478637833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_26
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab31250ed3db0390800000000000000
+      internalID: -7850948574868063328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_27
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b3519c4146875260800000000000000
+      internalID: 7086280153706353591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_28
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5097af051afed4230800000000000000
+      internalID: 3624816751230482693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_29
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b77c8b586ff072d80800000000000000
+      internalID: -8275628238790146181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_30
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7cb3539a184677f0800000000000000
+      internalID: -615225020111405957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_31
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 308ed12fd141c0900800000000000000
+      internalID: 651918164910532611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_32
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e22b4fd45c5a8d40800000000000000
+      internalID: 5587379807299773152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_33
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af846d993358c4a00800000000000000
+      internalID: 742114495280072954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_34
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b44d800cd77662e0800000000000000
+      internalID: -2132885586727582538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_spell_book_35
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 5
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 649b49b0b7b10b170800000000000000
+      internalID: 8192077937476155718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      animated_spell_book_0: -6930217000669513524
+      animated_spell_book_1: -8646233598250412923
+      animated_spell_book_10: 6207341388419131677
+      animated_spell_book_11: 8519144727149394871
+      animated_spell_book_12: 861746828759601844
+      animated_spell_book_13: -2753870312056719813
+      animated_spell_book_14: 3122232208602333758
+      animated_spell_book_15: 5204077869743224752
+      animated_spell_book_16: 6922931229133533849
+      animated_spell_book_17: -3401589489245599660
+      animated_spell_book_18: -6183852997397907049
+      animated_spell_book_19: 5153991512758817781
+      animated_spell_book_2: 241369434689307211
+      animated_spell_book_20: 2386773538244374279
+      animated_spell_book_21: -2803280394057056589
+      animated_spell_book_22: 3705534895903950952
+      animated_spell_book_23: -3954356735993958473
+      animated_spell_book_24: 1009858595998436149
+      animated_spell_book_25: 3911717555478637833
+      animated_spell_book_26: -7850948574868063328
+      animated_spell_book_27: 7086280153706353591
+      animated_spell_book_28: 3624816751230482693
+      animated_spell_book_29: -8275628238790146181
+      animated_spell_book_3: -3708372712207705728
+      animated_spell_book_30: -615225020111405957
+      animated_spell_book_31: 651918164910532611
+      animated_spell_book_32: 5587379807299773152
+      animated_spell_book_33: 742114495280072954
+      animated_spell_book_34: -2132885586727582538
+      animated_spell_book_35: 8192077937476155718
+      animated_spell_book_4: -1584947605779764826
+      animated_spell_book_5: 7543973401144729218
+      animated_spell_book_6: -1776274111110377004
+      animated_spell_book_7: -789467479532815623
+      animated_spell_book_8: -6227567009522301814
+      animated_spell_book_9: 9008984369108938814
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

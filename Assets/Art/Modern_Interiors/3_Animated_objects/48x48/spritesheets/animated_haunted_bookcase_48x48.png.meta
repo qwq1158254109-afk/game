@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 1ee8c90fe9797954aa48f64bf31920a6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2607213686838236814
+    second: animated_haunted_bookcase_48x48_0
+  - first:
+      213: -610856793075616521
+    second: animated_haunted_bookcase_48x48_1
+  - first:
+      213: -7649598599316064550
+    second: animated_haunted_bookcase_48x48_2
+  - first:
+      213: 7568407058226383486
+    second: animated_haunted_bookcase_48x48_3
+  - first:
+      213: -8269219775854399330
+    second: animated_haunted_bookcase_48x48_4
+  - first:
+      213: 7538233672443045802
+    second: animated_haunted_bookcase_48x48_5
+  - first:
+      213: -6912736129242428462
+    second: animated_haunted_bookcase_48x48_6
+  - first:
+      213: -1335786287514489797
+    second: animated_haunted_bookcase_48x48_7
+  - first:
+      213: -5359050999453204745
+    second: animated_haunted_bookcase_48x48_8
+  - first:
+      213: -2118462487429661005
+    second: animated_haunted_bookcase_48x48_9
+  - first:
+      213: -9126664541404036620
+    second: animated_haunted_bookcase_48x48_10
+  - first:
+      213: 4843388295755718041
+    second: animated_haunted_bookcase_48x48_11
+  - first:
+      213: -2178445914172460108
+    second: animated_haunted_bookcase_48x48_12
+  - first:
+      213: -6019058713620718486
+    second: animated_haunted_bookcase_48x48_13
+  - first:
+      213: -8961515587969402588
+    second: animated_haunted_bookcase_48x48_14
+  - first:
+      213: -2654356385686691159
+    second: animated_haunted_bookcase_48x48_15
+  - first:
+      213: -2061449554325700833
+    second: animated_haunted_bookcase_48x48_16
+  - first:
+      213: -4248168197195030241
+    second: animated_haunted_bookcase_48x48_17
+  - first:
+      213: 34934184536667680
+    second: animated_haunted_bookcase_48x48_18
+  - first:
+      213: -2379292826357087865
+    second: animated_haunted_bookcase_48x48_19
+  - first:
+      213: -8148075846122635836
+    second: animated_haunted_bookcase_48x48_20
+  - first:
+      213: 3867518674617310495
+    second: animated_haunted_bookcase_48x48_21
+  - first:
+      213: -5285369450665498376
+    second: animated_haunted_bookcase_48x48_22
+  - first:
+      213: 4525265726069214225
+    second: animated_haunted_bookcase_48x48_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e869789d80fae2420800000000000000
+      internalID: 2607213686838236814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_1
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f4f710bbfcc587f0800000000000000
+      internalID: -610856793075616521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_2
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad6b07d6a9a27d590800000000000000
+      internalID: -7649598599316064550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_3
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a842dce12680960800000000000000
+      internalID: 7568407058226383486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_4
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9030921d64dd3d80800000000000000
+      internalID: -8269219775854399330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_5
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa72bd7f59f2d9860800000000000000
+      internalID: 7538233672443045802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_6
+      rect:
+        serializedVersion: 2
+        x: 1454
+        y: 11
+        width: 215
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db0f7e9d170110a0800000000000000
+      internalID: -6912736129242428462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_7
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 0
+        width: 215
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3c6cd4e275567de0800000000000000
+      internalID: -1335786287514489797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_8
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 0
+        width: 215
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7feb36c6283d0a5b0800000000000000
+      internalID: -5359050999453204745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_9
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 2
+        width: 215
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3beb3ce7795b992e0800000000000000
+      internalID: -2118462487429661005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_10
+      rect:
+        serializedVersion: 2
+        x: 2414
+        y: 2
+        width: 215
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f1857964f2975180800000000000000
+      internalID: -9126664541404036620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_11
+      rect:
+        serializedVersion: 2
+        x: 2654
+        y: 2
+        width: 215
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99dddcd5efb273340800000000000000
+      internalID: 4843388295755718041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_12
+      rect:
+        serializedVersion: 2
+        x: 2894
+        y: 2
+        width: 215
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b37953abfa94c1e0800000000000000
+      internalID: -2178445914172460108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_13
+      rect:
+        serializedVersion: 2
+        x: 3134
+        y: 2
+        width: 215
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6cda648df1087ca0800000000000000
+      internalID: -6019058713620718486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_14
+      rect:
+        serializedVersion: 2
+        x: 3374
+        y: 2
+        width: 215
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42935f98d0d42a380800000000000000
+      internalID: -8961515587969402588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_15
+      rect:
+        serializedVersion: 2
+        x: 3614
+        y: 2
+        width: 215
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a2eadb3ee4d92bd0800000000000000
+      internalID: -2654356385686691159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_16
+      rect:
+        serializedVersion: 2
+        x: 3854
+        y: 5
+        width: 215
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1f77086d824463e0800000000000000
+      internalID: -2061449554325700833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_17
+      rect:
+        serializedVersion: 2
+        x: 4094
+        y: 5
+        width: 215
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f11241c48897b05c0800000000000000
+      internalID: -4248168197195030241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_18
+      rect:
+        serializedVersion: 2
+        x: 4334
+        y: 5
+        width: 215
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02673dba47c1c7000800000000000000
+      internalID: 34934184536667680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_19
+      rect:
+        serializedVersion: 2
+        x: 4574
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 781c95cc7cd0bfed0800000000000000
+      internalID: -2379292826357087865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_20
+      rect:
+        serializedVersion: 2
+        x: 4814
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cd7be430383cee80800000000000000
+      internalID: -8148075846122635836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_21
+      rect:
+        serializedVersion: 2
+        x: 5054
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1d11ca5ebf2ca530800000000000000
+      internalID: 3867518674617310495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_22
+      rect:
+        serializedVersion: 2
+        x: 5294
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f8a16adc7896a6b0800000000000000
+      internalID: -5285369450665498376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_bookcase_48x48_23
+      rect:
+        serializedVersion: 2
+        x: 5534
+        y: 17
+        width: 215
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11c0b94b339fcce30800000000000000
+      internalID: 4525265726069214225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      animated_haunted_bookcase_48x48_0: 2607213686838236814
+      animated_haunted_bookcase_48x48_1: -610856793075616521
+      animated_haunted_bookcase_48x48_10: -9126664541404036620
+      animated_haunted_bookcase_48x48_11: 4843388295755718041
+      animated_haunted_bookcase_48x48_12: -2178445914172460108
+      animated_haunted_bookcase_48x48_13: -6019058713620718486
+      animated_haunted_bookcase_48x48_14: -8961515587969402588
+      animated_haunted_bookcase_48x48_15: -2654356385686691159
+      animated_haunted_bookcase_48x48_16: -2061449554325700833
+      animated_haunted_bookcase_48x48_17: -4248168197195030241
+      animated_haunted_bookcase_48x48_18: 34934184536667680
+      animated_haunted_bookcase_48x48_19: -2379292826357087865
+      animated_haunted_bookcase_48x48_2: -7649598599316064550
+      animated_haunted_bookcase_48x48_20: -8148075846122635836
+      animated_haunted_bookcase_48x48_21: 3867518674617310495
+      animated_haunted_bookcase_48x48_22: -5285369450665498376
+      animated_haunted_bookcase_48x48_23: 4525265726069214225
+      animated_haunted_bookcase_48x48_3: 7568407058226383486
+      animated_haunted_bookcase_48x48_4: -8269219775854399330
+      animated_haunted_bookcase_48x48_5: 7538233672443045802
+      animated_haunted_bookcase_48x48_6: -6912736129242428462
+      animated_haunted_bookcase_48x48_7: -1335786287514489797
+      animated_haunted_bookcase_48x48_8: -5359050999453204745
+      animated_haunted_bookcase_48x48_9: -2118462487429661005
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

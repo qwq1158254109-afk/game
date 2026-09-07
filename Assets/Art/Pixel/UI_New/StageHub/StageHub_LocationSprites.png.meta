@@ -1,0 +1,424 @@
+fileFormatVersion: 2
+guid: 1d72ec0ca2d78824eb8c4270d9c6faa6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6980927158478517657
+    second: StageHub_LocationSprites_0
+  - first:
+      213: -6542138014155757552
+    second: StageHub_LocationSprites_1
+  - first:
+      213: 1757572488100495612
+    second: StageHub_LocationSprites_2
+  - first:
+      213: -5888948267176437159
+    second: StageHub_LocationSprites_3
+  - first:
+      213: -1277199665025653533
+    second: StageHub_LocationSprites_4
+  - first:
+      213: -4002813849455938770
+    second: StageHub_LocationSprites_5
+  - first:
+      213: 391546375687303153
+    second: StageHub_LocationSprites_6
+  - first:
+      213: 1043027102348446411
+    second: StageHub_LocationSprites_7
+  - first:
+      213: 1243961982670364630
+    second: StageHub_LocationSprites_8
+  - first:
+      213: 435256589609900679
+    second: StageHub_LocationSprites_9
+  - first:
+      213: -8852847210325023761
+    second: StageHub_LocationSprites_10
+  - first:
+      213: 7826454732313741357
+    second: StageHub_LocationSprites_11
+  - first:
+      213: -1355951831343198765
+    second: StageHub_LocationSprites_12
+  - first:
+      213: 8509398681449225351
+    second: StageHub_LocationSprites_13
+  - first:
+      213: 5744397780574926631
+    second: StageHub_LocationSprites_14
+  - first:
+      213: -546451378521710205
+    second: StageHub_Node_Home
+  - first:
+      213: 2512663681090816139
+    second: StageHub_Node_School
+  - first:
+      213: 1448355351111969144
+    second: StageHub_Node_Park
+  - first:
+      213: 726924174713149562
+    second: StageHub_Node_Shop
+  - first:
+      213: 2832160121339800822
+    second: StageHub_Node_Library
+  - first:
+      213: 6755992299427625303
+    second: StageHub_Node_Club
+  - first:
+      213: -2911874107603428798
+    second: StageHub_Selection_Outline
+  - first:
+      213: 269521390614397851
+    second: StageHub_Selection_Pin
+  - first:
+      213: 2161183395323384371
+    second: StageHub_Selection_Sparkles
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StageHub_Node_Home
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 420
+        width: 295
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 381e030dd5d9a68f0800000000000000
+      internalID: -546451378521710205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageHub_Node_School
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 420
+        width: 300
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8881772e46ced220800000000000000
+      internalID: 2512663681090816139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageHub_Node_Park
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 420
+        width: 285
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 879a093a487991410800000000000000
+      internalID: 1448355351111969144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageHub_Node_Shop
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 420
+        width: 285
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78db6c7fad861a00800000000000000
+      internalID: 726924174713149562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageHub_Node_Library
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 420
+        width: 300
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fc6c7bff9add4720800000000000000
+      internalID: 2832160121339800822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageHub_Node_Club
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 420
+        width: 305
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75978a8933b12cd50800000000000000
+      internalID: 6755992299427625303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageHub_Selection_Outline
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 120
+        width: 315
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24ad3a94de1f697d0800000000000000
+      internalID: -2911874107603428798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageHub_Selection_Pin
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 125
+        width: 165
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b93c0fad6488db300800000000000000
+      internalID: 269521390614397851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageHub_Selection_Sparkles
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 120
+        width: 245
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33219bcf8d01efd10800000000000000
+      internalID: 2161183395323384371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      StageHub_LocationSprites_0: -6980927158478517657
+      StageHub_LocationSprites_1: -6542138014155757552
+      StageHub_LocationSprites_10: -8852847210325023761
+      StageHub_LocationSprites_11: 7826454732313741357
+      StageHub_LocationSprites_12: -1355951831343198765
+      StageHub_LocationSprites_13: 8509398681449225351
+      StageHub_LocationSprites_14: 5744397780574926631
+      StageHub_LocationSprites_2: 1757572488100495612
+      StageHub_LocationSprites_3: -5888948267176437159
+      StageHub_LocationSprites_4: -1277199665025653533
+      StageHub_LocationSprites_5: -4002813849455938770
+      StageHub_LocationSprites_6: 391546375687303153
+      StageHub_LocationSprites_7: 1043027102348446411
+      StageHub_LocationSprites_8: 1243961982670364630
+      StageHub_LocationSprites_9: 435256589609900679
+      StageHub_Node_Club: 6755992299427625303
+      StageHub_Node_Home: -546451378521710205
+      StageHub_Node_Library: 2832160121339800822
+      StageHub_Node_Park: 1448355351111969144
+      StageHub_Node_School: 2512663681090816139
+      StageHub_Node_Shop: 726924174713149562
+      StageHub_Selection_Outline: -2911874107603428798
+      StageHub_Selection_Pin: 269521390614397851
+      StageHub_Selection_Sparkles: 2161183395323384371
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

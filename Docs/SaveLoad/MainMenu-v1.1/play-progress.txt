@@ -1,0 +1,72 @@
+Started 2026-09-05T13:43:43.2571312Z
+PASS isolated save directory
+PASS initial menu: 
+PASS menu has no session/player
+PASS ten slots without session
+PASS settings without session
+PASS settings returns to menu
+PASS new game home 0 notice=
+PASS one player 0
+PASS input/time resumed 0 scale=1
+PASS empty/occupied save confirmation
+PASS save committed SAVE_SUCCESS
+PASS saved snapshot baseline
+PASS direct mutation detected
+PASS restore playable 
+PASS restored money
+PASS load baseline after ready
+PASS menu unloaded game 0
+PASS no stale players 0
+PASS unique application host 0
+PASS new game home 1 notice=
+PASS one player 1
+PASS input/time resumed 1 scale=1
+PASS empty/occupied save confirmation
+PASS save committed SAVE_SUCCESS
+PASS saved snapshot baseline
+PASS direct mutation detected
+PASS restore playable 
+PASS restored money
+PASS load baseline after ready
+PASS menu unloaded game 1
+PASS no stale players 1
+PASS unique application host 1
+PASS new game home 2 notice=
+PASS one player 2
+PASS input/time resumed 2 scale=1
+PASS empty/occupied save confirmation
+PASS save committed SAVE_SUCCESS
+PASS saved snapshot baseline
+PASS direct mutation detected
+PASS restore playable 
+PASS restored money
+PASS load baseline after ready
+PASS menu unloaded game 2
+PASS no stale players 2
+PASS unique application host 2
+PASS new game home 3 notice=
+PASS one player 3
+PASS input/time resumed 3 scale=1
+PASS empty/occupied save confirmation
+PASS save committed SAVE_SUCCESS
+PASS saved snapshot baseline
+PASS direct mutation detected
+PASS restore playable 
+PASS restored money
+PASS load baseline after ready
+PASS menu unloaded game 3
+PASS no stale players 3
+PASS unique application host 3
+PASS new game home 4 notice=
+PASS one player 4
+PASS input/time resumed 4 scale=1
+PASS empty/occupied save confirmation
+PASS save committed SAVE_SUCCESS
+PASS saved snapshot baseline
+PASS direct mutation detected
+PASS restore playable 
+PASS restored money
+PASS load baseline after ready
+PASS menu unloaded game 4
+PASS no stale players 4
+PASS unique application host 4

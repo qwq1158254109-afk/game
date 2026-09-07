@@ -1,0 +1,1809 @@
+THREAD 18364
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+ProfilerMutexLock + 0x130
+PersistentManager::Lock + 0x173
+PersistentManager::GetPathName + 0x3b
+GetGUIDFromEntityId + 0x2e
+AssetChangedNotifier::UnsubscribeFromAll + 0x1ce
+SpriteRenderer::MainThreadCleanup + 0x22
+delete_object_internal_step1 + 0x1f0
+CommitBatchDelete + 0x92
+DestroyObjectHighLevel_Internal + 0x211
+DestroyObjectHighLevel + 0x98
+DelayedDestroyCallback + 0xb
+DelayedCallManager::Update + 0x228
+`InitPlayerLoopCallbacks'::`2'::PostLateUpdateScriptRunDelayedDynamicFrameRateRegistrator::Forward + 0x4b
+ExecutePlayerLoop + 0x9b
+ExecutePlayerLoop + 0x25a
+PlayerLoop + 0x215
+EditorPlayerLoop::Execute + 0xda
+PlayerLoopController::InternalUpdateScene + 0x30c
+PlayerLoopController::UpdateSceneIfNeededFromMainLoop + 0xad
+Application::TickTimer + 0x1523
+MainMessageLoop + 0x62c
+UnityMain + 0x1683
+__scrt_common_main_seh + 0x106
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 20900
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+profiling::Dispatcher::Run + 0x19f
+profiling::Dispatcher::ThreadFunc + 0x2e
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 5044
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+UnityEditor::CoreBusinessMetrics::MetricsCache::RunThread + 0xe3
+UnityEditor::CoreBusinessMetrics::ThreadFunc + 0x9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 24776
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 2492
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 1768
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 33284
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 28404
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 26108
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 6052
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31300
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 348
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 11708
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 33104
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 30900
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32752
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 4276
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 20088
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+UnityClassic::Baselib_SystemSemaphore_Acquire + 0x12
+AGCThread::RunThread + 0x29
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 15308
+NtWaitForWorkViaWorkerFactory + 0x14
+RtlClearThreadWorkOnBehalfTicket + 0x35e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 26260
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+HighResolutionTimer::Wait + 0x163
+ThreadHelper::SleepInSeconds + 0xbd
+Editor::TaskManager::RunBackgroundThread + 0x160
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 5384
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+AutoBackgroundProgressBar::ThreadFunction + 0xb0
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35852
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 29728
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 25404
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31580
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 24760
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 34988
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 13812
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32820
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 9964
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 8264
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 33832
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31676
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 19508
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32376
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 4492
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 25360
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32636
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36180
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36672
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31824
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 25608
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 11968
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 23000
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 13456
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 29492
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 34620
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 11400
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 30152
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32052
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31220
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35192
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32068
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+ThreadedStreamBuffer::HandleOutOfBufferToReadFrom + 0x23d
+ThreadedStreamBuffer::HandleOutOfBufferToReadFromMaybeWithProfiler + 0x24
+BatchDeleteStep2Threaded + 0x4b
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 15092
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+AsyncReadManagerThreaded::ThreadEntry + 0x283
+AsyncReadManagerThreaded::StaticThreadEntry + 0x9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35936
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+FMOD_OS_Time_Sleep + 0x104
+FMOD::Thread::callback + 0xe0
+thread_start<unsigned int (__cdecl*)(void *),1> + 0x5a
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36744
+NtRemoveIoCompletion + 0x14
+GetQueuedCompletionStatus + 0x53
+releaseMessageBusInterface + 0x500ca
+releaseMessageBusInterface + 0x4cec6
+releaseMessageBusInterface + 0x23a3ca
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31596
+NtWaitForAlertByThreadId + 0x14
+RtlSleepConditionVariableSRW + 0x13b
+SleepConditionVariableSRW + 0x29
+releaseMessageBusInterface + 0x1d4d39
+releaseMessageBusInterface + 0xa7c2
+releaseMessageBusInterface + 0x21da
+releaseMessageBusInterface + 0x23a3ca
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 6676
+NtWaitForAlertByThreadId + 0x14
+RtlSleepConditionVariableSRW + 0x13b
+SleepConditionVariableSRW + 0x29
+NVDEV_Thunk + 0x631bed
+NVDEV_Thunk + 0x631de6
+NVENCODEAPI_Thunk + 0x20b6c3
+NVENCODEAPI_Thunk + 0x210aaf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 30036
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+NVDEV_Thunk + 0x233e6
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 5356
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+NVAPI_DirectMethods + 0x2ea56
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 5732
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+NVDEV_Thunk + 0x86dff
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32908
+NtWaitForAlertByThreadId + 0x14
+RtlSleepConditionVariableSRW + 0x13b
+SleepConditionVariableSRW + 0x29
+D3D12GetInterface + 0x100008
+0x7ffc8317e3c6
+D3D12GetInterface + 0x1fc024
+D3D12GetInterface + 0x10cadf
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 33676
+NtWaitForAlertByThreadId + 0x14
+RtlSleepConditionVariableSRW + 0x13b
+SleepConditionVariableSRW + 0x29
+D3D12GetInterface + 0x100008
+0x7ffc8317e3c6
+D3D12GetInterface + 0x1fc024
+D3D12GetInterface + 0x10cadf
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36552
+NtWaitForAlertByThreadId + 0x14
+RtlSleepConditionVariableSRW + 0x13b
+SleepConditionVariableSRW + 0x29
+D3D12GetInterface + 0x100008
+0x7ffc8317e3c6
+D3D12GetInterface + 0x1fc024
+D3D12GetInterface + 0x10cadf
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 33140
+NtWaitForAlertByThreadId + 0x14
+RtlSleepConditionVariableSRW + 0x13b
+SleepConditionVariableSRW + 0x29
+D3D12GetInterface + 0x100008
+0x7ffc8317e3c6
+D3D12GetInterface + 0x1fc024
+D3D12GetInterface + 0x10cadf
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 33124
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+NVAPI_DirectMethods + 0x2ea56
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31648
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+NVAPI_DirectMethods + 0x2ea56
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 2712
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+NVAPI_DirectMethods + 0x2ea56
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 30924
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+NVAPI_DirectMethods + 0x2ea56
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 328
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+NVAPI_DirectMethods + 0x2ea56
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 3216
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+0x7ffcfa6a7ac5
+0x7ffcfa6a09a9
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 34292
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+ThreadedStreamBuffer::HandleOutOfBufferToReadFrom + 0x23d
+ThreadedStreamBuffer::HandleOutOfBufferToReadFromMaybeWithProfiler + 0x24
+GfxTaskExecutorD3D12::RunTask + 0xb2
+GfxTaskExecutorD3D12::Task + 0x2e
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 11800
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+ThreadedStreamBuffer::HandleOutOfBufferToReadFrom + 0x23d
+ThreadedStreamBuffer::HandleOutOfBufferToReadFromMaybeWithProfiler + 0x24
+GfxDeviceWorker::RunCommand + 0x74
+GfxDeviceWorker::RunExt + 0x6c
+GfxDeviceWorker::RunGfxDeviceWorker + 0xcf
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35528
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 2996
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 24916
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31956
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31092
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 8152
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 34184
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 17112
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 25032
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+finalizer_thread + 0x1e5
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 17204
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+asio::detail::win_thread::func<asio::detail::win_iocp_io_context::timer_thread_function,std::allocator<void> >::run + 0x33
+asio::detail::win_thread_function + 0x1c
+thread_start<unsigned int (__cdecl*)(void *),1> + 0x5a
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 21368
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+DirectoryMonitorWindows::ThreadFunction + 0x35
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36336
+NtRemoveIoCompletion + 0x14
+GetQueuedCompletionStatus + 0x53
+asio::detail::win_iocp_io_context::do_one + 0x2c3
+asio::detail::win_iocp_io_context::run + 0x114
+IOService::Run + 0x236
+IOService::Impl::ThreadFunction + 0xb
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31904
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 17504
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 22464
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 29524
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 7132
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 24772
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 9528
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87d5fe870
+0xd87d5fe840
+0xffffffffffffffff
+0x237cb071960
+0x236ddfad6a0
+0xd87d5fe840
+0xd87d5fe7d0
+0xd87d5fe870
+0x3
+0xd87d5fe890
+0x3
+0x237cb071cc0
+0x237f056bfc0
+THREAD 7420
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87ddfe850
+0xd87ddfe820
+0xffffffffffffffff
+0x237fa0d37e0
+0x236ddfad460
+0xd87ddfe820
+0xd87ddfe7b0
+0xd87ddfe850
+0x3
+0xd87ddfe870
+0x3
+0x237fa0d39c0
+0x237fa65e800
+THREAD 16524
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87defe840
+0xd87defe810
+0xffffffffffffffff
+0x237f9ee38a0
+0x236ddfaddc0
+0xd87defe810
+0xd87defe7a0
+0xd87defe840
+0x3
+0xd87defe860
+0x3
+0x237f9ebf0f0
+0x237f9024e40
+THREAD 26056
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87dffeb70
+0xd87dffeb40
+0xffffffffffffffff
+0x237fa0b31b0
+0x236dcd15f40
+0xd87dffeb40
+0xd87dffead0
+0xd87dffeb70
+0x3
+0xd87dffeb90
+0x3
+0x237fa0b3810
+0x237fa629840
+THREAD 18476
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e0fe9c0
+0xd87e0fe990
+0xffffffffffffffff
+0x237f9072c90
+0x236dc116e60
+0xd87e0fe990
+0xd87e0fe920
+0xd87e0fe9c0
+0x3
+0xd87e0fe9e0
+0x3
+0x237f906c0c0
+0x237f1ddd7c0
+THREAD 32816
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e1fe860
+0xd87e1fe830
+0xffffffffffffffff
+0x237cb1cb090
+0x236dcd16860
+0xd87e1fe830
+0xd87e1fe7c0
+0xd87e1fe860
+0x3
+0xd87e1fe880
+0x3
+0x237cb1cb3c0
+0x237f05df8c0
+THREAD 4948
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e2fe910
+0xd87e2fe8e0
+0xffffffffffffffff
+0x237fa875630
+0x236de09c260
+0xd87e2fe8e0
+0xd87e2fe870
+0xd87e2fe910
+0x3
+0xd87e2fe930
+0x3
+0x237fa855750
+0x237fa818500
+THREAD 25624
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e3fed70
+0xd87e3fed40
+0xffffffffffffffff
+0x237f90de660
+0x236db696f30
+0xd87e3fed40
+0xd87e3fecd0
+0xd87e3fed70
+0x3
+0xd87e3fed90
+0x3
+0x237f90deb70
+0x237f1b227c0
+THREAD 21184
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e4fede0
+0xd87e4fedb0
+0xffffffffffffffff
+0x237f9225f90
+0x236effd8cc0
+0xd87e4fedb0
+0xd87e4fed40
+0xd87e4fede0
+0x3
+0xd87e4fee00
+0x3
+0x237f921d1e0
+0x237f15274c0
+THREAD 28948
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e5feb40
+0xd87e5feb10
+0xffffffffffffffff
+0x237f8a4bcc0
+0x236ddfb7e20
+0xd87e5feb10
+0xd87e5feaa0
+0xd87e5feb40
+0x3
+0xd87e5feb60
+0x3
+0x237f8a4be10
+0x237f1688a00
+THREAD 35552
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e6fef90
+0xd87e6fef60
+0xffffffffffffffff
+0x237fa0af570
+0x236de09bf00
+0xd87e6fef60
+0xd87e6feef0
+0xd87e6fef90
+0x3
+0xd87e6fefb0
+0x3
+0x237fa0774b0
+0x237fa6298c0
+THREAD 15772
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e7fe9f0
+0xd87e7fe9c0
+0xffffffffffffffff
+0x237fa83e0f0
+0x236db6973b0
+0xd87e7fe9c0
+0xd87e7fe950
+0xd87e7fe9f0
+0x3
+0xd87e7fea10
+0x3
+0x237fa83e660
+0x237fa8187c0
+THREAD 4600
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e8feec0
+0xd87e8fee90
+0xffffffffffffffff
+0x237f9521090
+0x236ee45f850
+0xd87e8fee90
+0xd87e8fee20
+0xd87e8feec0
+0x3
+0xd87e8feee0
+0x3
+0x237f9521360
+0x237f6896380
+THREAD 33660
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87e9fea80
+0xd87e9fea50
+0xffffffffffffffff
+0x237cb0637b0
+0x236db95ab30
+0xd87e9fea50
+0xd87e9fe9e0
+0xd87e9fea80
+0x3
+0xd87e9feaa0
+0x3
+0x237cb05d090
+0x237f055b980
+THREAD 10792
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x236f0890c4d
+0xd87eafef10
+0xd87eafeee0
+0xffffffffffffffff
+0x237f9195f00
+0x23508bec290
+0xd87eafeee0
+0xd87eafee70
+0xd87eafef10
+0x3
+0xd87eafef30
+0x3
+0x237f918b4e0
+0x237f1473640
+THREAD 15276
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_monitor_wait + 0x2ba
+ves_icall_System_Threading_Monitor_Monitor_wait_raw + 0x47
+0x236f087aff9
+0x237f8395620
+0xd87ebfecb0
+0xffffffffffffffff
+0x236ede3a380
+0xd87ebfec90
+0x236eec80d30
+0x236dc028e80
+0xd87ebfecb0
+0xd87ebfec30
+0x237f8395620
+0x236eec80d30
+0xffffffffffffffff
+0x237f8395620
+0x236eec95c80
+0xffffffffffffffff
+0x236eec80d30
+0xd87ebfed20
+0x236f087ad23
+THREAD 31004
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 14484
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 400
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 9716
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 28696
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 11792
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 4560
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36096
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32240
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36624
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 4544
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 5660
+ZwDelayExecution + 0x14
+RtlDelayExecution + 0x43
+SleepEx + 0x7d
+DllGetClassObject + 0x565e7
+DllGetClassObject + 0x5644c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 3208
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+win::HIDInputThread + 0x192
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 2260
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+CoreUICallReceive + 0x297e7
+CoreUICallReceive + 0x2955b
+CoreUICallReceive + 0x29332
+CoreUICallReceive + 0xee06
+CoreUICallReceive + 0x109e5
+CoreUICallReceive + 0xe1cf
+CoreUICallReceive + 0xd00b
+CoreUICallCreateConversationHost + 0x11c1
+CoreUICallCreateConversationHost + 0x10ff
+MsgBlobCreateStack + 0x23c6
+Ordinal2604 + 0x818
+SetInputFocus + 0x34b9
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 26204
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+NVDEV_Thunk + 0x233e6
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 17036
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+NVAPI_DirectMethods + 0x2ea56
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 12704
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36320
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 11356
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 12128
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 26176
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36500
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 26328
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 32260
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35736
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 15400
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 10428
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 3932
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 13448
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 7160
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 8820
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36152
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 8368
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+SetDependencyInfo + 0x69ace
+SetDependencyInfo + 0x69445
+SetDependencyInfo + 0x5e1bd
+NVDEV_Thunk + 0x15a48a
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 34644
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter12 + 0x147fb8
+OpenAdapter12 + 0x147edf
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31012
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+OpenAdapter10 + 0x141ea2
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 33420
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+WaitForMultipleObjects + 0xe
+NVDEV_Thunk + 0x83567
+NVDEV_Thunk + 0x15a48a
+NVDEV_Thunk + 0x602536
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 31032
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+HighResolutionTimer::Wait + 0x163
+ThreadHelper::SleepInSeconds + 0xbd
+CurlRequest::MessageThread + 0x70d
+CurlRequest::_ThreadEntryPoint + 0x9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 4472
+ZwWaitForSingleObject + 0x14
+WSPStartup + 0x373f
+0x7ffd7a3a1f74
+select + 0x152
+mono_poll + 0x1f0
+poll_event_wait + 0x96
+selector_thread + 0xcb6
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 18392
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+Geo::GeoEvent::Wait + 0x12
+Enlighten::MultithreadCpuWorkerCommon::CommandThreadFunction + 0x61
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35272
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+TUpdateFunction + 0xf0
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 28848
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+TUpdateFunction + 0xf0
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 17716
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+TUpdateFunction + 0xf0
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 33076
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+TUpdateFunction + 0xf0
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 34208
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+lane_guts + 0x65c
+worker_thread_routine + 0xb9
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35020
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+mono_os_sem_timedwait + 0x30
+worker_park + 0x145
+worker_thread + 0x2aa
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36532
+ZwWaitForMultipleObjects + 0x14
+WaitForMultipleObjectsEx + 0xe9
+win32_wait_for_multiple_objects_ex + 0x1f0
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0xed
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x23509e0e38d
+0xd800dfed90
+0xd800dfed60
+0xffffffffffffffff
+0xd800dfedf0
+0xd800dff340
+0xd800dfed60
+0xd800dfecf0
+0xd800dfed90
+0x2
+0xd800dfeda0
+0x2
+0x237f05af640
+0x237f56628d0
+THREAD 9380
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0x102
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x23509e0e38d
+THREAD 6576
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+win32_wait_for_single_object_ex + 0x1ca
+ves_icall_System_Threading_WaitHandle_Wait_internal + 0x102
+ves_icall_System_Threading_WaitHandle_Wait_internal_raw + 0x6d
+0x23509e0e38d
+0x2384ef73520
+0xd8009ff000
+0xffffffff
+0xd8009feff0
+0x23852c09a00
+0xd8009ff000
+0xd8009fef90
+0x2384ef73520
+0xffffffff
+0xffffffffffffffff
+0x23719b97690
+0x23719ae5d70
+0x236fd53d7e0
+THREAD 35324
+NtWaitForAlertByThreadId + 0x14
+TpWorkOnBehalfClearTicket + 0x95
+RtlDllShutdownInProgress + 0x28c
+RtlWaitOnAddress + 0x13
+WaitOnAddress + 0x33
+UnityClassic::Baselib_SystemFutex_Wait + 0x26
+Semaphore::WaitForSignalNoProfile + 0x4d
+Semaphore::WaitForSignal + 0x86
+SetObjectLockForRead + 0x195
+PersistentManager::PreallocateObjectThreaded + 0x53
+PersistentManager::LocalSerializedObjectIdentifierToEntityId + 0x253
+PersistentManager::LocalSerializedObjectIdentifierToEntityId + 0x19
+ReadPPtrWithInstanceIDRemappingIfNecessary<ImmediatePtr<Object>,YAMLRead> + 0x4ff
+YAMLRead::Transfer<ImmediatePtr<GameObject> > + 0x10d
+Unity::Component::Transfer<YAMLRead> + 0x3f
+Behaviour::Transfer<YAMLRead> + 0x15
+MonoBehaviour::Transfer<YAMLRead> + 0x2b
+MonoBehaviour::VirtualRedirectTransfer + 0x54
+SerializedFile::ReadObject + 0x5fd
+PersistentManager::ReadAndActivateObjectThreaded + 0x37e
+PersistentManager::LoadFileCompletelyThreaded + 0x67c
+LoadSceneOperation::Perform + 0x4f5
+PreloadManager::ProcessSingleOperation + 0x107
+PreloadManager::Run + 0x313
+PreloadManager::Run + 0x2a
+Thread::RunThreadWrapper + 0x80c
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 6436
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+FMOD_OS_Time_Sleep + 0x104
+FMOD::Thread::callback + 0xe0
+thread_start<unsigned int (__cdecl*)(void *),1> + 0x5a
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35120
+ZwWaitForSingleObject + 0x14
+WaitForSingleObjectEx + 0x8e
+EnterMeteredSection + 0x5a
+FMOD_OS_Semaphore_Wait + 0x1c
+FMOD::Thread::callback + 0x76
+thread_start<unsigned int (__cdecl*)(void *),1> + 0x5a
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 2124
+NtWaitForWorkViaWorkerFactory + 0x14
+RtlClearThreadWorkOnBehalfTicket + 0x35e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 34772
+ZwWaitForSingleObject + 0x14
+WSPStartup + 0x373f
+Tcpip6_WSHSetSocketInformation + 0x5f5
+WSAAccept + 0x11d
+accept + 0x12
+mono_w32socket_accept + 0x126
+socket_transport_accept + 0x17
+debugger_thread + 0x1c8
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 36052
+NtWaitForWorkViaWorkerFactory + 0x14
+RtlClearThreadWorkOnBehalfTicket + 0x35e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 26556
+NtWaitForAlertByThreadId + 0x14
+RtlSleepConditionVariableSRW + 0x13b
+SleepConditionVariableSRW + 0x29
+sleep_interruptable + 0x293
+monitor_thread + 0x1a3
+start_wrapper_internal + 0x28b
+start_wrapper + 0x3e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28
+THREAD 35980
+NtWaitForWorkViaWorkerFactory + 0x14
+RtlClearThreadWorkOnBehalfTicket + 0x35e
+BaseThreadInitThunk + 0x1d
+RtlUserThreadStart + 0x28

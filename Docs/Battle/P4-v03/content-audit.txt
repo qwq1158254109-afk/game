@@ -1,0 +1,9 @@
+Success=True
+Loan deck=10
+Rules=Unified; handLimit=10; focusLimit=10; permanent deck unchanged
+card_p4_basic_practice | cost=1 | 进度 +6 | exhaust=False
+card_p4_organize_thoughts | cost=1 | 格挡 +5 | exhaust=False
+card_p4_browse_notes | cost=1 | 抽牌 2 | exhaust=False
+card_p4_adjust_rhythm | cost=0 | 行动能量 +1 | exhaust=True
+card_p4_focused_review | cost=2 | 进度 +12 | exhaust=True
+card_p4_enter_focus | cost=1 | 专注 +2（本场） | exhaust=False

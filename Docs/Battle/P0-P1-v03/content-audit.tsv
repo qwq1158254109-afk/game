@@ -1,0 +1,59 @@
+source	type	id	displayName	validation
+MvpSampleDataFactory	ItemData	item_lucky_pen	幸运笔	effects=AddChallengeProgress:10
+MvpSampleDataFactory	ItemData	item_wrong_book	错题本	effects=DrawCards:1
+MvpSampleDataFactory	ItemData	item_energy_drink	功能饮料	effects=GainEnergy:15
+MvpSampleDataFactory	ItemData	item_warm_tea	热茶	effects=GainEnergy:8
+MvpSampleDataFactory	ActivityData	activity_weekend_plan	周末安排	timeCost=1; fixedRewards=0
+MvpSampleDataFactory	GameEventData			registered
+MvpSampleDataFactory	ActivityData	activity_focus_timing	专注计时	timeCost=1; fixedRewards=0
+MvpSampleDataFactory	MiniGameData			registered
+MvpSampleDataFactory	ItemData	item_wrong_book	错题本	effects=DrawCards:1
+MvpSampleDataFactory	ActivityData	activity_final_review	综合复习	timeCost=1; fixedRewards=1
+MvpSampleDataFactory	ActivityData	activity_music_break	听音乐放松	timeCost=1; fixedRewards=2
+MvpSampleDataFactory	ActivityData	activity_word_memory	单词记忆	timeCost=1; fixedRewards=0
+MvpSampleDataFactory	MiniGameData			registered
+MvpSampleDataFactory	CardData	card_study_after_class_review	课后复盘	errors=0; warnings=0; 
+MvpSampleDataFactory	ActivityData	activity_math_drill	数学刷题	timeCost=1; fixedRewards=1
+MvpSampleDataFactory	ActivityData	activity_family_dinner	家庭晚饭聊天	timeCost=1; fixedRewards=0
+MvpSampleDataFactory	GameEventData			registered
+MvpSampleDataFactory	ItemData	item_warm_tea	热茶	effects=GainEnergy:8
+MvpSampleDataFactory	ActivityData	activity_rest_early_sleep	早点休息	timeCost=1; fixedRewards=2
+MvpSampleDataFactory	ActivityData	activity_focus_class	认真听课	timeCost=1; fixedRewards=1
+MvpSampleDataFactory	ChallengeData	boss_final_exam	期末综合考试	errors=0; warnings=0; 
+MvpSampleDataFactory	ChallengeData	boss_month_exam	月考	errors=0; warnings=0; 
+MvpSampleDataFactory	ChallengeData	boss_class_quiz	课堂小测	errors=0; warnings=0; 
+MvpSampleDataFactory	StageData	stage_03_final_sprint	期末冲刺	enterRewards=0; clearRewards=0
+MvpSampleDataFactory	StageData	stage_02_month_exam	月考压力	enterRewards=0; clearRewards=0
+MvpSampleDataFactory	StageData	stage_01_adaptation	适应新学期	enterRewards=0; clearRewards=0
+MvpSampleDataFactory	ItemData	item_lucky_pen	幸运笔	effects=AddChallengeProgress:10
+MvpSampleDataFactory	ItemData	item_energy_drink	功能饮料	effects=GainEnergy:15
+MvpSampleDataFactory	CardData	card_rest_good_sleep	好好睡觉	errors=0; warnings=0; 
+MvpSampleDataFactory	CardData	card_study_english_words	背单词	errors=0; warnings=0; 
+MvpSampleDataFactory	CardData	card_study_wrong_book	整理错题	errors=0; warnings=0; 
+MvpSampleDataFactory	CardData	card_study_mock_exam	模拟考试	errors=0; warnings=0; 
+MvpSampleDataFactory	CardData	card_study_math_practice	数学练习	errors=0; warnings=0; 
+MvpSampleDataFactory	CardData	card_study_class_focus	课堂专注	errors=0; warnings=0; 
+AssetDatabase	CardData	COUNT=0
+AssetDatabase	ChallengeData	COUNT=0
+AssetDatabase	ItemData	COUNT=0
+AssetDatabase	ActivityData	COUNT=17
+Assets/Data/StudentGrowth/HomeMap/HomeDeskPlan.asset	HomeMapActivityData	activity_home_desk_plan	整理计划	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/HomeMap/HomeFamilyDinner.asset	HomeMapActivityData	activity_home_family_dinner	家庭晚饭聊天	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/HomeMap/HomeRestEarlySleep.asset	HomeMapActivityData	activity_home_rest_early_sleep	早点休息	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/ClubMap/ClubMeeting.asset	ClubMapActivityData	activity_club_meeting	社团讨论	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/ClubMap/ClubPlanning.asset	ClubMapActivityData	activity_club_planning	策划社团活动	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/ClubMap/ClubRelax.asset	ClubMapActivityData	activity_club_relax	社团休息	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/HomeMap/New20_HomeComputerStudy.asset	HomeMapActivityData	activity_home_computer_study	电脑学习	timeCost=1; fixedRewards=3
+Assets/Data/StudentGrowth/New2_0/HomeMap/New20_HomeDeskPlan.asset	HomeMapActivityData	activity_home_desk_plan	整理计划	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/HomeMap/New20_HomeFamilyDinner.asset	HomeMapActivityData	activity_home_family_dinner	家庭晚饭聊天	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/HomeMap/New20_HomeRestEarlySleep.asset	HomeMapActivityData	activity_home_rest_early_sleep	早点休息	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/LibraryMap/LibraryLibrarianTalkData.asset	LibraryMapActivityData	activity_library_librarian_talk	询问图书管理员	timeCost=0; fixedRewards=0
+Assets/Data/StudentGrowth/New2_0/ParkMap/ParkBenchRest.asset	ParkMapActivityData	activity_park_bench_rest	长椅休息	timeCost=1; fixedRewards=3
+Assets/Data/StudentGrowth/New2_0/ParkMap/ParkFlowerViewing.asset	ParkMapActivityData	activity_park_flower_viewing	赏花观察	timeCost=1; fixedRewards=3
+Assets/Data/StudentGrowth/New2_0/ParkMap/ParkPondWalk.asset	ParkMapActivityData	activity_park_pond_walk	池边散步	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/SchoolMap/SchoolClassStudy.asset	SchoolMapActivityData	activity_school_class_study	课堂学习	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/SchoolMap/SchoolTeacherHelp.asset	SchoolMapActivityData	activity_school_teacher_help	老师答疑	timeCost=1; fixedRewards=2
+Assets/Data/StudentGrowth/New2_0/ShopMap/New20_ShopBrowseGoods.asset	ShopMapActivityData	activity_shop_browse_goods	浏览商店	timeCost=0; fixedRewards=0
+AssetDatabase	StageData	COUNT=0
+AssetDatabase	BattleUIConfig	COUNT=1
+Assets/Resources/StudentGrowth/Battle/BattleUIConfig.asset	BattleUIConfig		BattleUIConfig	registered

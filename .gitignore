@@ -1,0 +1,52 @@
+# Unity generated folders
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Logs/
+/UserSettings/
+/MemoryCaptures/
+/Recordings/
+
+# Unity generated files
+*.csproj
+*.sln
+*.slnx
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity crash/debug artifacts
+sysinfo.txt
+*.stackdump
+
+# Unity asset/cache artifacts
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# IDE/editor folders
+/.vscode/
+/.idea/
+/.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Local logs and temporary generated previews
+*.log
+codex_tmp_*.png
+
+# Local machine tool configuration
+/.codex/

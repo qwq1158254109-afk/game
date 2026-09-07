@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 37d8c1c3252b18e499d86c81b980fe51
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6506663567862687360
+    second: '!$Kitchen_BBQ_0'
+  - first:
+      213: -4942444799276237259
+    second: '!$Kitchen_BBQ_1'
+  - first:
+      213: -3987664920158371697
+    second: '!$Kitchen_BBQ_2'
+  - first:
+      213: -3131631478235312047
+    second: '!$Kitchen_BBQ_3'
+  - first:
+      213: -8226065827815254382
+    second: '!$Kitchen_BBQ_4'
+  - first:
+      213: -5301173756459993112
+    second: '!$Kitchen_BBQ_5'
+  - first:
+      213: -8724353698660238074
+    second: '!$Kitchen_BBQ_6'
+  - first:
+      213: -5942583287814652471
+    second: '!$Kitchen_BBQ_7'
+  - first:
+      213: -5696440047014132114
+    second: '!$Kitchen_BBQ_8'
+  - first:
+      213: 664675318181804367
+    second: '!$Kitchen_BBQ_9'
+  - first:
+      213: 7185544096387200527
+    second: '!$Kitchen_BBQ_10'
+  - first:
+      213: -4830241529899382872
+    second: '!$Kitchen_BBQ_11'
+  - first:
+      213: -5352603144848820918
+    second: '!$Kitchen_BBQ_12'
+  - first:
+      213: -9189869968105421077
+    second: '!$Kitchen_BBQ_13'
+  - first:
+      213: 2201859798446301770
+    second: '!$Kitchen_BBQ_14'
+  - first:
+      213: -2084497223910788600
+    second: '!$Kitchen_BBQ_15'
+  - first:
+      213: 2169548231975722041
+    second: '!$Kitchen_BBQ_16'
+  - first:
+      213: 7932023549656824443
+    second: '!$Kitchen_BBQ_17'
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_0'
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 443
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0866e6b8a005c4a50800000000000000
+      internalID: 6506663567862687360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_1'
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 443
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53eb92924a8e86bb0800000000000000
+      internalID: -4942444799276237259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_2'
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 443
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f808ca6f1e7f8a8c0800000000000000
+      internalID: -3987664920158371697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_3'
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 299
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1505a5c33c53a84d0800000000000000
+      internalID: -3131631478235312047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_4'
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 299
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 296971296b427dd80800000000000000
+      internalID: -8226065827815254382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_5'
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 299
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e734992e827e66b0800000000000000
+      internalID: -5301173756459993112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_6'
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 155
+        width: 71
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60dbd70e88edce680800000000000000
+      internalID: -8724353698660238074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_7'
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 248
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cd72a12cf3b78da0800000000000000
+      internalID: -5942583287814652471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_8'
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 242
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e66c96155fd22f0b0800000000000000
+      internalID: -5696440047014132114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_9'
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 155
+        width: 71
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4932372ea6693900800000000000000
+      internalID: 664675318181804367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_10'
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 248
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f067017f84e28b360800000000000000
+      internalID: 7185544096387200527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_11'
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 242
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a702079be887fcb0800000000000000
+      internalID: -4830241529899382872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_12'
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 155
+        width: 71
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a45b5af8ccbb7b5b0800000000000000
+      internalID: -5352603144848820918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_13'
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 248
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be6cb0b34f5077080800000000000000
+      internalID: -9189869968105421077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_14'
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 242
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42ea9b12d39e8e10800000000000000
+      internalID: 2201859798446301770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_15'
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 11
+        width: 71
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8027289a1d06213e0800000000000000
+      internalID: -2084497223910788600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_16'
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 11
+        width: 71
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93c5df94f98cb1e10800000000000000
+      internalID: 2169548231975722041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_BBQ_17'
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 11
+        width: 71
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7af35b8465341e60800000000000000
+      internalID: 7932023549656824443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      '!$Kitchen_BBQ_0': 6506663567862687360
+      '!$Kitchen_BBQ_1': -4942444799276237259
+      '!$Kitchen_BBQ_10': 7185544096387200527
+      '!$Kitchen_BBQ_11': -4830241529899382872
+      '!$Kitchen_BBQ_12': -5352603144848820918
+      '!$Kitchen_BBQ_13': -9189869968105421077
+      '!$Kitchen_BBQ_14': 2201859798446301770
+      '!$Kitchen_BBQ_15': -2084497223910788600
+      '!$Kitchen_BBQ_16': 2169548231975722041
+      '!$Kitchen_BBQ_17': 7932023549656824443
+      '!$Kitchen_BBQ_2': -3987664920158371697
+      '!$Kitchen_BBQ_3': -3131631478235312047
+      '!$Kitchen_BBQ_4': -8226065827815254382
+      '!$Kitchen_BBQ_5': -5301173756459993112
+      '!$Kitchen_BBQ_6': -8724353698660238074
+      '!$Kitchen_BBQ_7': -5942583287814652471
+      '!$Kitchen_BBQ_8': -5696440047014132114
+      '!$Kitchen_BBQ_9': 664675318181804367
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,16 @@
+PASS isolated save directory
+PASS existing Boss entry starts playable battle
+PASS all 70 imported Sprite references resolve
+PASS supplied card art bound by stable cardId
+PASS visible card remains raycast accessible through artwork
+PASS UI click spends card cost exactly once
+PASS UI click moves one card
+PASS cancelled target drag does not spend energy
+PASS targeted drag spends card cost exactly once
+PASS end turn through UI advances one turn
+PASS real card plays reach challenge target and settle victory
+PASS opening actual result View three times leaves rewards and stage counts unchanged
+PASS complete window sprite is used
+PASS result Continue callback advances stage only once
+PASS Boss failure uses the same result consumer
+PASS ALL

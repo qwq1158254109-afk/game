@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6045955d166f5bd4daf124543f3663aa, type: 3}
+  m_Name: ClubMeeting
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.ClubMapActivityData
+  activityId: activity_club_meeting
+  displayName: "\u793E\u56E2\u8BA8\u8BBA"
+  description: "\u548C\u793E\u56E2\u6210\u5458\u4E00\u8D77\u8BA8\u8BBA\u4E0B\u4E00\u6B21\u6D3B\u52A8\u3002"
+  activityType: 0
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: 
+  timeCost: 1
+  linkedChallenge: {fileID: 0}
+  linkedEvent: {fileID: 0}
+  linkedMiniGame: {fileID: 0}
+  fixedRewards:
+  - rewardType: 3
+    targetStat: 8
+    value: 5
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u793E\u4EA4 +5"
+  - rewardType: 3
+    targetStat: 10
+    value: 2
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u81EA\u4FE1 +2"
+  possibleRewards: []
+  appearConditions: []

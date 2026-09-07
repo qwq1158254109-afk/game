@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: cdaee62a6744d6f40b8aa39bf65e9341
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1403546716824063490
+    second: animated_kitchen_pan_with_omelette_32x32_0
+  - first:
+      213: -4781404060122082056
+    second: animated_kitchen_pan_with_omelette_32x32_1
+  - first:
+      213: -8385936456790704837
+    second: animated_kitchen_pan_with_omelette_32x32_2
+  - first:
+      213: 2460269208627643622
+    second: animated_kitchen_pan_with_omelette_32x32_3
+  - first:
+      213: 6183852023155190701
+    second: animated_kitchen_pan_with_omelette_32x32_4
+  - first:
+      213: 7400240289885290603
+    second: animated_kitchen_pan_with_omelette_32x32_5
+  - first:
+      213: -6672414449040405361
+    second: animated_kitchen_pan_with_omelette_32x32_6
+  - first:
+      213: 7557794091847762791
+    second: animated_kitchen_pan_with_omelette_32x32_7
+  - first:
+      213: 1740633193545134058
+    second: animated_kitchen_pan_with_omelette_32x32_8
+  - first:
+      213: -3042679444538097735
+    second: animated_kitchen_pan_with_omelette_32x32_9
+  - first:
+      213: 3938072994179156854
+    second: animated_kitchen_pan_with_omelette_32x32_10
+  - first:
+      213: 4340492795623022972
+    second: animated_kitchen_pan_with_omelette_32x32_11
+  - first:
+      213: -1146056217035989644
+    second: animated_kitchen_pan_with_omelette_32x32_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_0
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 0
+        width: 38
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef1390682b9958ce0800000000000000
+      internalID: -1403546716824063490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_1
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 25
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f410dc175a05adb0800000000000000
+      internalID: -4781404060122082056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 23
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3dfdff193b2f9b80800000000000000
+      internalID: -8385936456790704837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 37
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e405186fc1a42220800000000000000
+      internalID: 2460269208627643622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 35
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dabeebfc6a471d550800000000000000
+      internalID: 6183852023155190701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 39
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b608523e55fe2b660800000000000000
+      internalID: 7400240289885290603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8c43ca1962d663a0800000000000000
+      internalID: -6672414449040405361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 0
+        width: 38
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 763c1220fada2e860800000000000000
+      internalID: 7557794091847762791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 38
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aefe281daa8f72810800000000000000
+      internalID: 1740633193545134058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 0
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bf7cee7a2b36c5d0800000000000000
+      internalID: -3042679444538097735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_10
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 0
+        width: 38
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67b8b9df588d6a630800000000000000
+      internalID: 3938072994179156854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_11
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71a04163378c3c30800000000000000
+      internalID: 4340492795623022972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_kitchen_pan_with_omelette_32x32_12
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 0
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47d11f251f36810f0800000000000000
+      internalID: -1146056217035989644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      animated_kitchen_pan_with_omelette_32x32_0: -1403546716824063490
+      animated_kitchen_pan_with_omelette_32x32_1: -4781404060122082056
+      animated_kitchen_pan_with_omelette_32x32_10: 3938072994179156854
+      animated_kitchen_pan_with_omelette_32x32_11: 4340492795623022972
+      animated_kitchen_pan_with_omelette_32x32_12: -1146056217035989644
+      animated_kitchen_pan_with_omelette_32x32_2: -8385936456790704837
+      animated_kitchen_pan_with_omelette_32x32_3: 2460269208627643622
+      animated_kitchen_pan_with_omelette_32x32_4: 6183852023155190701
+      animated_kitchen_pan_with_omelette_32x32_5: 7400240289885290603
+      animated_kitchen_pan_with_omelette_32x32_6: -6672414449040405361
+      animated_kitchen_pan_with_omelette_32x32_7: 7557794091847762791
+      animated_kitchen_pan_with_omelette_32x32_8: 1740633193545134058
+      animated_kitchen_pan_with_omelette_32x32_9: -3042679444538097735
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

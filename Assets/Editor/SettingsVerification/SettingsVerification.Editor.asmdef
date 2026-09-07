@@ -1,0 +1,6 @@
+{
+    "name": "SettingsVerification.Editor",
+    "references": ["StudentGrowth.Runtime", "UnityEditor.TestRunner", "UnityEngine.TestRunner", "UnityEngine.UI"],
+    "includePlatforms": ["Editor"],
+    "autoReferenced": true
+}

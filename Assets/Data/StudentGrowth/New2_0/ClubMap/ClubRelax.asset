@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6045955d166f5bd4daf124543f3663aa, type: 3}
+  m_Name: ClubRelax
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.ClubMapActivityData
+  activityId: activity_club_relax
+  displayName: "\u793E\u56E2\u4F11\u606F"
+  description: "\u5728\u4F11\u606F\u533A\u653E\u677E\u5E76\u548C\u540C\u4F34\u95F2\u804A\u3002"
+  activityType: 3
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: 
+  timeCost: 1
+  linkedChallenge: {fileID: 0}
+  linkedEvent: {fileID: 0}
+  linkedMiniGame: {fileID: 0}
+  fixedRewards:
+  - rewardType: 3
+    targetStat: 6
+    value: 6
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u5FC3\u60C5 +6"
+  - rewardType: 6
+    targetStat: 5
+    value: 4
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u538B\u529B -4"
+  possibleRewards: []
+  appearConditions: []

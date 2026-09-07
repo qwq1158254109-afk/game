@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1034908a7c8644a8821dde6314f04f, type: 3}
+  m_Name: ParkBenchRest
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.ParkMapActivityData
+  activityId: activity_park_bench_rest
+  displayName: "\u957F\u6905\u4F11\u606F"
+  description: "\u5728\u6811\u836B\u4E0B\u7A0D\u4F5C\u4F11\u606F\uFF0C\u6062\u590D\u7CBE\u529B\u5E76\u653E\u677E\u5FC3\u60C5\u3002"
+  activityType: 3
+  backgroundSprite: {fileID: 21300000, guid: 723eeca5f559a6f42ad28f303553000e, type: 3}
+  icon: {fileID: 0}
+  imagePath: 
+  timeCost: 1
+  linkedChallenge: {fileID: 0}
+  linkedEvent: {fileID: 0}
+  linkedMiniGame: {fileID: 0}
+  fixedRewards:
+  - rewardType: 3
+    targetStat: 3
+    value: 3
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u7CBE\u529B +3"
+  - rewardType: 3
+    targetStat: 6
+    value: 2
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u5FC3\u60C5 +2"
+  - rewardType: 6
+    targetStat: 5
+    value: 3
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u538B\u529B -3"
+  possibleRewards: []
+  appearConditions: []

@@ -1,0 +1,25 @@
+{
+    "name": "StudentGrowth.EditMode.Tests",
+    "rootNamespace": "StudentGrowth.Tests",
+    "references": [
+        "StudentGrowth.Runtime",
+        "StudentGrowth.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "noEngineReferences": false
+}

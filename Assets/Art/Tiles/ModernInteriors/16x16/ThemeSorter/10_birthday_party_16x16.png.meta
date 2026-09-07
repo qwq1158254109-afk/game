@@ -1,0 +1,806 @@
+fileFormatVersion: 2
+guid: 467c4444174ec24419e108d7b1737183
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7978356919184577653
+    second: 10_birthday_party_16x16_0
+  - first:
+      213: 6798686812977727788
+    second: 10_birthday_party_16x16_1
+  - first:
+      213: -8176337766485362934
+    second: 10_birthday_party_16x16_2
+  - first:
+      213: -7234201639337946128
+    second: 10_birthday_party_16x16_3
+  - first:
+      213: 6987364946740616131
+    second: 10_birthday_party_16x16_4
+  - first:
+      213: -809787748921899032
+    second: 10_birthday_party_16x16_5
+  - first:
+      213: -8426304350229195442
+    second: 10_birthday_party_16x16_6
+  - first:
+      213: 5303556550194375573
+    second: 10_birthday_party_16x16_7
+  - first:
+      213: -8831902541607268652
+    second: 10_birthday_party_16x16_8
+  - first:
+      213: 7839225282600132430
+    second: 10_birthday_party_16x16_9
+  - first:
+      213: 5587617747099063977
+    second: 10_birthday_party_16x16_10
+  - first:
+      213: 5557332916419063477
+    second: 10_birthday_party_16x16_11
+  - first:
+      213: -2872838519190310025
+    second: 10_birthday_party_16x16_12
+  - first:
+      213: -2982935547575993407
+    second: 10_birthday_party_16x16_13
+  - first:
+      213: -7525463851622502165
+    second: 10_birthday_party_16x16_14
+  - first:
+      213: -8362620811189253509
+    second: 10_birthday_party_16x16_15
+  - first:
+      213: -278183956729528144
+    second: 10_birthday_party_16x16_16
+  - first:
+      213: 5948455247825663269
+    second: 10_birthday_party_16x16_17
+  - first:
+      213: -6016787759452993646
+    second: 10_birthday_party_16x16_18
+  - first:
+      213: -514339485867886311
+    second: 10_birthday_party_16x16_19
+  - first:
+      213: -2834121381551618787
+    second: 10_birthday_party_16x16_20
+  - first:
+      213: -5950601332367630276
+    second: 10_birthday_party_16x16_21
+  - first:
+      213: 1607009566877700652
+    second: 10_birthday_party_16x16_22
+  - first:
+      213: -2392509621458376933
+    second: 10_birthday_party_16x16_23
+  - first:
+      213: 1675847572893770433
+    second: 10_birthday_party_16x16_24
+  - first:
+      213: -1915660517052735939
+    second: 10_birthday_party_16x16_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 40
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8b29b437ae274190800000000000000
+      internalID: -7978356919184577653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 47
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c298baaa2a9c95e50800000000000000
+      internalID: 6798686812977727788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_2
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 34
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0777091f10d78e80800000000000000
+      internalID: -8176337766485362934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_3
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 47
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f396bdffe3fa9b90800000000000000
+      internalID: -7234201639337946128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_4
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 34
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cb9d7ef56b18f060800000000000000
+      internalID: 6987364946740616131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_5
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 33
+        width: 13
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e70c02355e03c4f0800000000000000
+      internalID: -809787748921899032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_6
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 36
+        width: 13
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e45924386d0cf0b80800000000000000
+      internalID: -8426304350229195442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_7
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 47
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59b288c35940a9940800000000000000
+      internalID: 5303556550194375573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_8
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 47
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4de01ac8e67ce6580800000000000000
+      internalID: -8831902541607268652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_9
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 39
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f54ab4cd58acc60800000000000000
+      internalID: 7839225282600132430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_10
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 39
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a6128c8cb43b8d40800000000000000
+      internalID: 5587617747099063977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_11
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5be6ebde7dc9f1d40800000000000000
+      internalID: 5557332916419063477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_12
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 24
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7733a967690a128d0800000000000000
+      internalID: -2872838519190310025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_13
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 17
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cbf8da7ceb7a96d0800000000000000
+      internalID: -2982935547575993407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_14
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 16
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be07ff1af7e209790800000000000000
+      internalID: -7525463851622502165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 33
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7a86c5eda002fb80800000000000000
+      internalID: -8362620811189253509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_16
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 12
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b08cec4a21b32cf0800000000000000
+      internalID: -278183956729528144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_17
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 15
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 525f4f818882d8250800000000000000
+      internalID: 5948455247825663269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_18
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 15
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 297c2ec3963108ca0800000000000000
+      internalID: -6016787759452993646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 15
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91933e276f2bcd8f0800000000000000
+      internalID: -514339485867886311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_20
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 16
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15c64a8e9d2ba8d0800000000000000
+      internalID: -2834121381551618787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_21
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 7
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c30e248ad973b6da0800000000000000
+      internalID: -5950601332367630276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_22
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 7
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c225660dfae3d4610800000000000000
+      internalID: 1607009566877700652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_23
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 28
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b17e443ec291cced0800000000000000
+      internalID: -2392509621458376933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_24
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c2a8001d7ec14710800000000000000
+      internalID: 1675847572893770433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10_birthday_party_16x16_25
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3e94dac8e43a65e0800000000000000
+      internalID: -1915660517052735939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      10_birthday_party_16x16_0: -7978356919184577653
+      10_birthday_party_16x16_1: 6798686812977727788
+      10_birthday_party_16x16_10: 5587617747099063977
+      10_birthday_party_16x16_11: 5557332916419063477
+      10_birthday_party_16x16_12: -2872838519190310025
+      10_birthday_party_16x16_13: -2982935547575993407
+      10_birthday_party_16x16_14: -7525463851622502165
+      10_birthday_party_16x16_15: -8362620811189253509
+      10_birthday_party_16x16_16: -278183956729528144
+      10_birthday_party_16x16_17: 5948455247825663269
+      10_birthday_party_16x16_18: -6016787759452993646
+      10_birthday_party_16x16_19: -514339485867886311
+      10_birthday_party_16x16_2: -8176337766485362934
+      10_birthday_party_16x16_20: -2834121381551618787
+      10_birthday_party_16x16_21: -5950601332367630276
+      10_birthday_party_16x16_22: 1607009566877700652
+      10_birthday_party_16x16_23: -2392509621458376933
+      10_birthday_party_16x16_24: 1675847572893770433
+      10_birthday_party_16x16_25: -1915660517052735939
+      10_birthday_party_16x16_3: -7234201639337946128
+      10_birthday_party_16x16_4: 6987364946740616131
+      10_birthday_party_16x16_5: -809787748921899032
+      10_birthday_party_16x16_6: -8426304350229195442
+      10_birthday_party_16x16_7: 5303556550194375573
+      10_birthday_party_16x16_8: -8831902541607268652
+      10_birthday_party_16x16_9: 7839225282600132430
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

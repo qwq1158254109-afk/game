@@ -1,0 +1,610 @@
+fileFormatVersion: 2
+guid: df3897479670b424dad2e87761c6585c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9106967354418042543
+    second: ui_spec_01_hud_panels_0
+  - first:
+      213: -1185097126032992330
+    second: ui_spec_01_hud_panels_1
+  - first:
+      213: 8914665683423502581
+    second: ui_spec_01_hud_panels_2
+  - first:
+      213: -5440217938919060481
+    second: ui_spec_01_hud_panels_3
+  - first:
+      213: -8492608727005680855
+    second: ui_spec_01_hud_panels_4
+  - first:
+      213: -5013434777131088166
+    second: ui_spec_01_hud_panels_5
+  - first:
+      213: 196912261262374862
+    second: ui_spec_01_hud_panels_6
+  - first:
+      213: 8783688357120196806
+    second: ui_spec_01_hud_panels_7
+  - first:
+      213: 8854129543859571075
+    second: ui_spec_01_hud_panels_8
+  - first:
+      213: 9088875424094281862
+    second: ui_spec_01_hud_panels_9
+  - first:
+      213: -109944787632559220
+    second: ui_spec_01_hud_panels_10
+  - first:
+      213: 1417450401582943700
+    second: ui_spec_01_hud_panels_11
+  - first:
+      213: -7027090064205840001
+    second: ui_spec_01_hud_panels_12
+  - first:
+      213: -6282202389217353185
+    second: ui_spec_01_hud_panels_13
+  - first:
+      213: -343147782204572516
+    second: ui_spec_01_hud_panels_14
+  - first:
+      213: -7022905126301021126
+    second: ui_spec_01_hud_panels_15
+  - first:
+      213: -175073043775619788
+    second: hud_panel_main
+  - first:
+      213: -2891782260165425173
+    second: hud_panel_resource_wide
+  - first:
+      213: -4031223063795791513
+    second: ui_spec_01_hud_panels_slice_02
+  - first:
+      213: -7370220050935609004
+    second: ui_spec_01_hud_panels_slice_03
+  - first:
+      213: 456492904107956222
+    second: ui_spec_01_hud_panels_slice_04
+  - first:
+      213: -8066913938926972812
+    second: ui_spec_01_hud_panels_slice_05
+  - first:
+      213: 8218383231655383383
+    second: hud_panel_compact
+  - first:
+      213: 8869863759421852142
+    second: hud_panel_status_medium
+  - first:
+      213: 8405872616252899388
+    second: hud_panel_avatar_stats
+  - first:
+      213: -4974434666621483353
+    second: ui_spec_01_hud_panels_slice_09
+  - first:
+      213: 8003819190725672744
+    second: ui_spec_01_hud_panels_slice_10
+  - first:
+      213: -3228605958781232871
+    second: ui_spec_01_hud_panels_slice_11
+  - first:
+      213: -6751853630281406685
+    second: ui_spec_01_hud_panels_slice_12
+  - first:
+      213: 4336445629493024109
+    second: ui_spec_01_hud_panels_slice_13
+  - first:
+      213: 7326822722161844324
+    second: ui_spec_01_hud_panels_slice_14
+  - first:
+      213: 8187774010067498822
+    second: ui_spec_01_hud_panels_slice_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hud_panel_main
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 750
+        width: 207
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43df1088ef3029df0800000000000000
+      internalID: -175073043775619788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_panel_resource_wide
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 750
+        width: 207
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be7401f0b535ed7d0800000000000000
+      internalID: -2891782260165425173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_02
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 750
+        width: 207
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76907185bf73e08c0800000000000000
+      internalID: -4031223063795791513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_03
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 750
+        width: 207
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 459858ba9e7b7b990800000000000000
+      internalID: -7370220050935609004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_04
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 750
+        width: 207
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef757dfa0e9c55600800000000000000
+      internalID: 456492904107956222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_05
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 620
+        width: 307
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4705c9c43809c0090800000000000000
+      internalID: -8066913938926972812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_panel_compact
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 500
+        width: 357
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75198de91009d0270800000000000000
+      internalID: 8218383231655383383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_panel_status_medium
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 500
+        width: 487
+        height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee9437a3816181b70800000000000000
+      internalID: 8869863759421852142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_panel_avatar_stats
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 500
+        width: 307
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3000f6bb98a7a470800000000000000
+      internalID: 8405872616252899388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_09
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 360
+        width: 347
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a643a1c60247fab0800000000000000
+      internalID: -4974434666621483353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_10
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 315
+        width: 767
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f78add527431f60800000000000000
+      internalID: 8003819190725672744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_11
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 175
+        width: 267
+        height: 167
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91992238cffa133d0800000000000000
+      internalID: -3228605958781232871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_12
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 245
+        width: 277
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32725a765e89c42a0800000000000000
+      internalID: -6751853630281406685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_13
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 60
+        width: 647
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d651ab513562e2c30800000000000000
+      internalID: 4336445629493024109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_14
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 175
+        width: 277
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 460a7b6527a1ea560800000000000000
+      internalID: 7326822722161844324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_01_hud_panels_slice_15
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 70
+        width: 567
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 647bf3bd411d0a170800000000000000
+      internalID: 8187774010067498822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      hud_panel_avatar_stats: 8405872616252899388
+      hud_panel_compact: 8218383231655383383
+      hud_panel_main: -175073043775619788
+      hud_panel_resource_wide: -2891782260165425173
+      hud_panel_status_medium: 8869863759421852142
+      ui_spec_01_hud_panels_0: -9106967354418042543
+      ui_spec_01_hud_panels_1: -1185097126032992330
+      ui_spec_01_hud_panels_10: -109944787632559220
+      ui_spec_01_hud_panels_11: 1417450401582943700
+      ui_spec_01_hud_panels_12: -7027090064205840001
+      ui_spec_01_hud_panels_13: -6282202389217353185
+      ui_spec_01_hud_panels_14: -343147782204572516
+      ui_spec_01_hud_panels_15: -7022905126301021126
+      ui_spec_01_hud_panels_2: 8914665683423502581
+      ui_spec_01_hud_panels_3: -5440217938919060481
+      ui_spec_01_hud_panels_4: -8492608727005680855
+      ui_spec_01_hud_panels_5: -5013434777131088166
+      ui_spec_01_hud_panels_6: 196912261262374862
+      ui_spec_01_hud_panels_7: 8783688357120196806
+      ui_spec_01_hud_panels_8: 8854129543859571075
+      ui_spec_01_hud_panels_9: 9088875424094281862
+      ui_spec_01_hud_panels_slice_02: -4031223063795791513
+      ui_spec_01_hud_panels_slice_03: -7370220050935609004
+      ui_spec_01_hud_panels_slice_04: 456492904107956222
+      ui_spec_01_hud_panels_slice_05: -8066913938926972812
+      ui_spec_01_hud_panels_slice_09: -4974434666621483353
+      ui_spec_01_hud_panels_slice_10: 8003819190725672744
+      ui_spec_01_hud_panels_slice_11: -3228605958781232871
+      ui_spec_01_hud_panels_slice_12: -6751853630281406685
+      ui_spec_01_hud_panels_slice_13: 4336445629493024109
+      ui_spec_01_hud_panels_slice_14: 7326822722161844324
+      ui_spec_01_hud_panels_slice_15: 8187774010067498822
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

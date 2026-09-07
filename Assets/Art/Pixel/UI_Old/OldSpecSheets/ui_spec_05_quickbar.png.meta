@@ -1,0 +1,756 @@
+fileFormatVersion: 2
+guid: c761c0412c4fb12489a3ebf07fcad9f2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4922860291239251935
+    second: ui_spec_05_quickbar_0
+  - first:
+      213: 6121438908368350910
+    second: ui_spec_05_quickbar_1
+  - first:
+      213: 4200624638423341232
+    second: ui_spec_05_quickbar_2
+  - first:
+      213: 7956286977077573753
+    second: ui_spec_05_quickbar_3
+  - first:
+      213: -2110067293797581020
+    second: ui_spec_05_quickbar_4
+  - first:
+      213: 8036597469865034205
+    second: ui_spec_05_quickbar_5
+  - first:
+      213: -4475024979328368645
+    second: ui_spec_05_quickbar_6
+  - first:
+      213: 1207050169259108822
+    second: ui_spec_05_quickbar_7
+  - first:
+      213: 9100536245902303148
+    second: ui_spec_05_quickbar_8
+  - first:
+      213: 6962648119526672249
+    second: ui_spec_05_quickbar_9
+  - first:
+      213: -2862793054028984116
+    second: ui_spec_05_quickbar_10
+  - first:
+      213: 6352486989587408256
+    second: ui_spec_05_quickbar_11
+  - first:
+      213: -4740890284985271014
+    second: ui_spec_05_quickbar_12
+  - first:
+      213: 1932264519102955710
+    second: ui_spec_05_quickbar_13
+  - first:
+      213: 6662422949778582308
+    second: ui_spec_05_quickbar_14
+  - first:
+      213: -5406767178620688564
+    second: ui_spec_05_quickbar_15
+  - first:
+      213: -7436958825247112422
+    second: ui_spec_05_quickbar_16
+  - first:
+      213: -7765981289848974177
+    second: ui_spec_05_quickbar_17
+  - first:
+      213: 1594479853796010528
+    second: ui_spec_05_quickbar_18
+  - first:
+      213: -5186260949089479565
+    second: ui_spec_05_quickbar_19
+  - first:
+      213: -5982715966916233818
+    second: ui_spec_05_quickbar_20
+  - first:
+      213: 2745985493018525177
+    second: ui_spec_05_quickbar_21
+  - first:
+      213: -811248813965474152
+    second: ui_spec_05_quickbar_22
+  - first:
+      213: -4518525164010020896
+    second: ui_spec_05_quickbar_23
+  - first:
+      213: -8441999742007774309
+    second: ui_spec_05_quickbar_24
+  - first:
+      213: 7694588030565334446
+    second: ui_spec_05_quickbar_25
+  - first:
+      213: -7016716591444415737
+    second: ui_spec_05_quickbar_26
+  - first:
+      213: 5863490405778530155
+    second: ui_spec_05_quickbar_27
+  - first:
+      213: -7947410071773300180
+    second: ui_spec_05_quickbar_28
+  - first:
+      213: 7033077548187620353
+    second: ui_spec_05_quickbar_29
+  - first:
+      213: 4878122214227176225
+    second: ui_spec_05_quickbar_30
+  - first:
+      213: -5577840728091508280
+    second: ui_spec_05_quickbar_31
+  - first:
+      213: 5827518322197157860
+    second: ui_spec_05_quickbar_32
+  - first:
+      213: -1939039864893877999
+    second: quickbar_full
+  - first:
+      213: 5540977479532217077
+    second: quickbar_icons
+  - first:
+      213: 3120245670095988644
+    second: ui_spec_05_quickbar_slice_02
+  - first:
+      213: -899986108634260636
+    second: ui_spec_05_quickbar_slice_03
+  - first:
+      213: -8076821714720890511
+    second: ui_spec_05_quickbar_slice_04
+  - first:
+      213: 8353214109737956134
+    second: quickbar_slot_large
+  - first:
+      213: 2250223295758791134
+    second: ui_spec_05_quickbar_slice_06
+  - first:
+      213: 3843881589504263265
+    second: ui_spec_05_quickbar_slice_07
+  - first:
+      213: -7740819387054989538
+    second: ui_spec_05_quickbar_slice_08
+  - first:
+      213: 8585685917787508842
+    second: ui_spec_05_quickbar_slice_09
+  - first:
+      213: 590111865620634025
+    second: quickbar_slot_compact
+  - first:
+      213: 4052603273899537058
+    second: ui_spec_05_quickbar_slice_11
+  - first:
+      213: 68560384783224244
+    second: ui_spec_05_quickbar_slice_12
+  - first:
+      213: 6888165364069495392
+    second: ui_spec_05_quickbar_slice_13
+  - first:
+      213: -4337131968352429610
+    second: ui_spec_05_quickbar_slice_14
+  - first:
+      213: 1027577559743657450
+    second: quickbar_strip
+  - first:
+      213: 4157222708931247965
+    second: ui_spec_05_quickbar_slice_16
+  - first:
+      213: 3368965596475372638
+    second: ui_spec_05_quickbar_slice_17
+  - first:
+      213: 6861672324102325952
+    second: ui_spec_05_quickbar_slice_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: quickbar_full
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 794
+        width: 657
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 111ddaf24852715e0800000000000000
+      internalID: -1939039864893877999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quickbar_icons
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 794
+        width: 61
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f205f709a185ec40800000000000000
+      internalID: 5540977479532217077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_02
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 794
+        width: 61
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a7a50ab7e65d4b20800000000000000
+      internalID: 3120245670095988644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_03
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 720
+        width: 1187
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46b911c076b9283f0800000000000000
+      internalID: -899986108634260636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_04
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 570
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17166eb717d59ef80800000000000000
+      internalID: -8076821714720890511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quickbar_slot_large
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 570
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62336bfb9f39ce370800000000000000
+      internalID: 8353214109737956134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_06
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 570
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed1f2015a266a3f10800000000000000
+      internalID: 2250223295758791134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_07
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 570
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 164c01d90f5385530800000000000000
+      internalID: 3843881589504263265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_08
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 570
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1f5124b7c5139490800000000000000
+      internalID: -7740819387054989538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_09
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 585
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a605cc27adb762770800000000000000
+      internalID: 8585685917787508842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quickbar_slot_compact
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 585
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a99f008d9f703800800000000000000
+      internalID: 590111865620634025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_11
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 585
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a2fd5cb43dbd3830800000000000000
+      internalID: 4052603273899537058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_12
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 585
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd0ba48e4393f000800000000000000
+      internalID: 68560384783224244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_13
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 585
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 062f28f47eda79f50800000000000000
+      internalID: 6888165364069495392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_14
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 430
+        width: 627
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d9dc5234796fc3c0800000000000000
+      internalID: -4337131968352429610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quickbar_strip
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 430
+        width: 457
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae5fea3a850b24e00800000000000000
+      internalID: 1027577559743657450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_16
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 430
+        width: 247
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5fb802270c61b930800000000000000
+      internalID: 4157222708931247965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_17
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 240
+        width: 1307
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e543d664c58f0ce20800000000000000
+      internalID: 3368965596475372638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_05_quickbar_slice_18
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 60
+        width: 1467
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c68f33cf9e893f50800000000000000
+      internalID: 6861672324102325952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      quickbar_full: -1939039864893877999
+      quickbar_icons: 5540977479532217077
+      quickbar_slot_compact: 590111865620634025
+      quickbar_slot_large: 8353214109737956134
+      quickbar_strip: 1027577559743657450
+      ui_spec_05_quickbar_0: -4922860291239251935
+      ui_spec_05_quickbar_1: 6121438908368350910
+      ui_spec_05_quickbar_10: -2862793054028984116
+      ui_spec_05_quickbar_11: 6352486989587408256
+      ui_spec_05_quickbar_12: -4740890284985271014
+      ui_spec_05_quickbar_13: 1932264519102955710
+      ui_spec_05_quickbar_14: 6662422949778582308
+      ui_spec_05_quickbar_15: -5406767178620688564
+      ui_spec_05_quickbar_16: -7436958825247112422
+      ui_spec_05_quickbar_17: -7765981289848974177
+      ui_spec_05_quickbar_18: 1594479853796010528
+      ui_spec_05_quickbar_19: -5186260949089479565
+      ui_spec_05_quickbar_2: 4200624638423341232
+      ui_spec_05_quickbar_20: -5982715966916233818
+      ui_spec_05_quickbar_21: 2745985493018525177
+      ui_spec_05_quickbar_22: -811248813965474152
+      ui_spec_05_quickbar_23: -4518525164010020896
+      ui_spec_05_quickbar_24: -8441999742007774309
+      ui_spec_05_quickbar_25: 7694588030565334446
+      ui_spec_05_quickbar_26: -7016716591444415737
+      ui_spec_05_quickbar_27: 5863490405778530155
+      ui_spec_05_quickbar_28: -7947410071773300180
+      ui_spec_05_quickbar_29: 7033077548187620353
+      ui_spec_05_quickbar_3: 7956286977077573753
+      ui_spec_05_quickbar_30: 4878122214227176225
+      ui_spec_05_quickbar_31: -5577840728091508280
+      ui_spec_05_quickbar_32: 5827518322197157860
+      ui_spec_05_quickbar_4: -2110067293797581020
+      ui_spec_05_quickbar_5: 8036597469865034205
+      ui_spec_05_quickbar_6: -4475024979328368645
+      ui_spec_05_quickbar_7: 1207050169259108822
+      ui_spec_05_quickbar_8: 9100536245902303148
+      ui_spec_05_quickbar_9: 6962648119526672249
+      ui_spec_05_quickbar_slice_02: 3120245670095988644
+      ui_spec_05_quickbar_slice_03: -899986108634260636
+      ui_spec_05_quickbar_slice_04: -8076821714720890511
+      ui_spec_05_quickbar_slice_06: 2250223295758791134
+      ui_spec_05_quickbar_slice_07: 3843881589504263265
+      ui_spec_05_quickbar_slice_08: -7740819387054989538
+      ui_spec_05_quickbar_slice_09: 8585685917787508842
+      ui_spec_05_quickbar_slice_11: 4052603273899537058
+      ui_spec_05_quickbar_slice_12: 68560384783224244
+      ui_spec_05_quickbar_slice_13: 6888165364069495392
+      ui_spec_05_quickbar_slice_14: -4337131968352429610
+      ui_spec_05_quickbar_slice_16: 4157222708931247965
+      ui_spec_05_quickbar_slice_17: 3368965596475372638
+      ui_spec_05_quickbar_slice_18: 6861672324102325952
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: 247197a22af39184b8d7d27057538f07
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 15010366140997420
+    second: Colored_ceilings_32x32_0
+  - first:
+      213: -7953456362445727114
+    second: Colored_ceilings_32x32_1
+  - first:
+      213: 7533846784257463886
+    second: Colored_ceilings_32x32_2
+  - first:
+      213: -6015065829206911633
+    second: Colored_ceilings_32x32_3
+  - first:
+      213: -3653106069262563543
+    second: Colored_ceilings_32x32_4
+  - first:
+      213: 4057319101472007966
+    second: Colored_ceilings_32x32_5
+  - first:
+      213: -8207117456843174607
+    second: Colored_ceilings_32x32_6
+  - first:
+      213: -4767649631639276540
+    second: Colored_ceilings_32x32_7
+  - first:
+      213: 215526497111265947
+    second: Colored_ceilings_32x32_8
+  - first:
+      213: 7724786834865231294
+    second: Colored_ceilings_32x32_9
+  - first:
+      213: 5055760447534933228
+    second: Colored_ceilings_32x32_10
+  - first:
+      213: 6636486890871140145
+    second: Colored_ceilings_32x32_11
+  - first:
+      213: -3356843016527302402
+    second: Colored_ceilings_32x32_12
+  - first:
+      213: -3237301149027967369
+    second: Colored_ceilings_32x32_13
+  - first:
+      213: -7415602064931690716
+    second: Colored_ceilings_32x32_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 403
+        width: 62
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2f58c539d3553000800000000000000
+      internalID: 15010366140997420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 403
+        width: 130
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a1adbd395af9190800000000000000
+      internalID: -7953456362445727114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 403
+        width: 62
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4692e7fbb99d8860800000000000000
+      internalID: 7533846784257463886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 403
+        width: 130
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f65188d5f71368ca0800000000000000
+      internalID: -6015065829206911633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 403
+        width: 62
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92708ce826f8d4dc0800000000000000
+      internalID: -3653106069262563543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 403
+        width: 129
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1765a7e93e7e4830800000000000000
+      internalID: 4057319101472007966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 275
+        width: 162
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13d84faf7267a1e80800000000000000
+      internalID: -8207117456843174607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 275
+        width: 162
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4047e9c8be7e5ddb0800000000000000
+      internalID: -4767649631639276540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 275
+        width: 162
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b92500c0534bdf200800000000000000
+      internalID: 215526497111265947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 147
+        width: 62
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb591c9d2b4f33b60800000000000000
+      internalID: 7724786834865231294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_10
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 147
+        width: 130
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce42ac8275ba92640800000000000000
+      internalID: 5055760447534933228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_11
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 147
+        width: 62
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f29e66aa9891c50800000000000000
+      internalID: 6636486890871140145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_12
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 147
+        width: 130
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef0b321df091a61d0800000000000000
+      internalID: -3356843016527302402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_13
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 19
+        width: 162
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e5935c1cbc213d0800000000000000
+      internalID: -3237301149027967369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colored_ceilings_32x32_14
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 19
+        width: 162
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427e714263d761990800000000000000
+      internalID: -7415602064931690716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Colored_ceilings_32x32_0: 15010366140997420
+      Colored_ceilings_32x32_1: -7953456362445727114
+      Colored_ceilings_32x32_10: 5055760447534933228
+      Colored_ceilings_32x32_11: 6636486890871140145
+      Colored_ceilings_32x32_12: -3356843016527302402
+      Colored_ceilings_32x32_13: -3237301149027967369
+      Colored_ceilings_32x32_14: -7415602064931690716
+      Colored_ceilings_32x32_2: 7533846784257463886
+      Colored_ceilings_32x32_3: -6015065829206911633
+      Colored_ceilings_32x32_4: -3653106069262563543
+      Colored_ceilings_32x32_5: 4057319101472007966
+      Colored_ceilings_32x32_6: -8207117456843174607
+      Colored_ceilings_32x32_7: -4767649631639276540
+      Colored_ceilings_32x32_8: 215526497111265947
+      Colored_ceilings_32x32_9: 7724786834865231294
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

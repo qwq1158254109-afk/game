@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="81" result="Passed" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:47Z" duration="0.1220324">
+  <test-suite type="TestSuite" id="1000" name="ML-project" fullname="ML-project" runstate="Runnable" testcasecount="280" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:47Z" duration="0.122032" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1326" name="StudentGrowth.EditMode.Tests.dll" fullname="E:/unity/ML-project/Library/ScriptAssemblies/StudentGrowth.EditMode.Tests.dll" runstate="Runnable" testcasecount="280" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:47Z" duration="0.117564" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="7680" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1327" name="StudentGrowth" fullname="StudentGrowth" runstate="Runnable" testcasecount="280" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:47Z" duration="0.116479" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1328" name="Tests" fullname="StudentGrowth.Tests" runstate="Runnable" testcasecount="280" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:47Z" duration="0.115460" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1017" name="BattleEngineTests" fullname="StudentGrowth.Tests.BattleEngineTests" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.065597" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1029" name="CapacityStopsOpeningDrawBeforeTakingOrShufflingCards" fullname="StudentGrowth.Tests.BattleEngineTests.CapacityStopsOpeningDrawBeforeTakingOrShufflingCards" methodname="CapacityStopsOpeningDrawBeforeTakingOrShufflingCards" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1884336927" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.017409" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1028" name="ChallengeRulesControlCapacityAndOverflow" fullname="StudentGrowth.Tests.BattleEngineTests.ChallengeRulesControlCapacityAndOverflow" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.005084" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1024" name="ChallengeRulesControlCapacityAndOverflow(Legacy,Legacy,12,120)" fullname="StudentGrowth.Tests.BattleEngineTests.ChallengeRulesControlCapacityAndOverflow(Legacy,Legacy,12,120)" methodname="ChallengeRulesControlCapacityAndOverflow" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1434429628" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.002356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1025" name="ChallengeRulesControlCapacityAndOverflow(Legacy,Unified,12,120)" fullname="StudentGrowth.Tests.BattleEngineTests.ChallengeRulesControlCapacityAndOverflow(Legacy,Unified,12,120)" methodname="ChallengeRulesControlCapacityAndOverflow" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="889348627" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1026" name="ChallengeRulesControlCapacityAndOverflow(Unified,Legacy,10,100)" fullname="StudentGrowth.Tests.BattleEngineTests.ChallengeRulesControlCapacityAndOverflow(Unified,Legacy,10,100)" methodname="ChallengeRulesControlCapacityAndOverflow" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1792781231" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000528" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1027" name="ChallengeRulesControlCapacityAndOverflow(Unified,Unified,10,100)" fullname="StudentGrowth.Tests.BattleEngineTests.ChallengeRulesControlCapacityAndOverflow(Unified,Unified,10,100)" methodname="ChallengeRulesControlCapacityAndOverflow" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="602301390" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000518" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1044" name="DeathOutranksProgressAndStopsLaterEffects" fullname="StudentGrowth.Tests.BattleEngineTests.DeathOutranksProgressAndStopsLaterEffects" methodname="DeathOutranksProgressAndStopsLaterEffects" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1680671705" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1049" name="DifferentAssetsCannotShareDefinitionIdButRepeatedSameAssetIsValid" fullname="StudentGrowth.Tests.BattleEngineTests.DifferentAssetsCannotShareDefinitionIdButRepeatedSameAssetIsValid" methodname="DifferentAssetsCannotShareDefinitionIdButRepeatedSameAssetIsValid" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1910441529" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001078" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="DuplicateInstancesHaveIndependentCostsAndDefinitionsStayFrozen" fullname="StudentGrowth.Tests.BattleEngineTests.DuplicateInstancesHaveIndependentCostsAndDefinitionsStayFrozen" methodname="DuplicateInstancesHaveIndependentCostsAndDefinitionsStayFrozen" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="247136118" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.002643" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="EtherealWinsOverRetainAndRetainedCostResets" fullname="StudentGrowth.Tests.BattleEngineTests.EtherealWinsOverRetainAndRetainedCostResets" methodname="EtherealWinsOverRetainAndRetainedCostResets" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="59611883" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001433" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1047" name="ExecutionExceptionFaultsAfterCostAndReturnsResolvingCard" fullname="StudentGrowth.Tests.BattleEngineTests.ExecutionExceptionFaultsAfterCostAndReturnsResolvingCard" methodname="ExecutionExceptionFaultsAfterCostAndReturnsResolvingCard" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1726069357" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.002004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="InvalidContentReportsFieldsBeforeEngineStarts" fullname="StudentGrowth.Tests.BattleEngineTests.InvalidContentReportsFieldsBeforeEngineStarts" methodname="InvalidContentReportsFieldsBeforeEngineStarts" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="556687588" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000887" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="InvalidRequestsAreZeroMutation" fullname="StudentGrowth.Tests.BattleEngineTests.InvalidRequestsAreZeroMutation" methodname="InvalidRequestsAreZeroMutation" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1272008539" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000905" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="InvalidTargetDoesNotSpendOrAdvanceRandom" fullname="StudentGrowth.Tests.BattleEngineTests.InvalidTargetDoesNotSpendOrAdvanceRandom" methodname="InvalidTargetDoesNotSpendOrAdvanceRandom" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="244633115" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000658" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1043" name="LastTurnAllowsCardVictoryButEndTurnSkipsEnemy" fullname="StudentGrowth.Tests.BattleEngineTests.LastTurnAllowsCardVictoryButEndTurnSkipsEnemy" methodname="LastTurnAllowsCardVictoryButEndTurnSkipsEnemy" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1760510016" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000985" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="LegacyDefaultDamageAndCopiedIntentArePreserved" fullname="StudentGrowth.Tests.BattleEngineTests.LegacyDefaultDamageAndCopiedIntentArePreserved" methodname="LegacyDefaultDamageAndCopiedIntentArePreserved" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="914880034" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.002139" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="LegacyEnergyAndAssociatedCapsStayIsolatedAndOrdered" fullname="StudentGrowth.Tests.BattleEngineTests.LegacyEnergyAndAssociatedCapsStayIsolatedAndOrdered" methodname="LegacyEnergyAndAssociatedCapsStayIsolatedAndOrdered" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1882230528" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000857" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1055" name="LegacyEntryCannotAccidentallyInterpretNewRulesOrSchema" fullname="StudentGrowth.Tests.BattleEngineTests.LegacyEntryCannotAccidentallyInterpretNewRulesOrSchema" methodname="LegacyEntryCannotAccidentallyInterpretNewRulesOrSchema" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1396719381" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001308" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="LegacyScalarsAreNotAppliedTwiceAndRestBlockIsExplicit" fullname="StudentGrowth.Tests.BattleEngineTests.LegacyScalarsAreNotAppliedTwiceAndRestBlockIsExplicit" methodname="LegacyScalarsAreNotAppliedTwiceAndRestBlockIsExplicit" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="297824049" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000664" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="LoopIntentsNeedEntriesAndByTurnNeedsFallback" fullname="StudentGrowth.Tests.BattleEngineTests.LoopIntentsNeedEntriesAndByTurnNeedsFallback" methodname="LoopIntentsNeedEntriesAndByTurnNeedsFallback" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="45150776" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="LoopIntentsSelectOrderedActionsWithoutRandomUse" fullname="StudentGrowth.Tests.BattleEngineTests.LoopIntentsSelectOrderedActionsWithoutRandomUse" methodname="LoopIntentsSelectOrderedActionsWithoutRandomUse" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="415971748" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001003" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1035" name="MixedSchemasUseFrozenChallengeRules" fullname="StudentGrowth.Tests.BattleEngineTests.MixedSchemasUseFrozenChallengeRules" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.002497" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1033" name="MixedSchemasUseFrozenChallengeRules(Legacy,12,120)" fullname="StudentGrowth.Tests.BattleEngineTests.MixedSchemasUseFrozenChallengeRules(Legacy,12,120)" methodname="MixedSchemasUseFrozenChallengeRules" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="640740481" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1034" name="MixedSchemasUseFrozenChallengeRules(Unified,10,100)" fullname="StudentGrowth.Tests.BattleEngineTests.MixedSchemasUseFrozenChallengeRules(Unified,10,100)" methodname="MixedSchemasUseFrozenChallengeRules" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1578317934" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1042" name="MultiHitDamageUsesRemainingBlockPerHit" fullname="StudentGrowth.Tests.BattleEngineTests.MultiHitDamageUsesRemainingBlockPerHit" methodname="MultiHitDamageUsesRemainingBlockPerHit" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="2069878384" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000703" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1052" name="OpeningItemsUseTheirTimingAndRecordIsolatedSource" fullname="StudentGrowth.Tests.BattleEngineTests.OpeningItemsUseTheirTimingAndRecordIsolatedSource" methodname="OpeningItemsUseTheirTimingAndRecordIsolatedSource" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1962591067" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001880" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1032" name="OpeningVictoryRespectsChallengeOrder" fullname="StudentGrowth.Tests.BattleEngineTests.OpeningVictoryRespectsChallengeOrder" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001566" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1030" name="OpeningVictoryRespectsChallengeOrder(Legacy,0)" fullname="StudentGrowth.Tests.BattleEngineTests.OpeningVictoryRespectsChallengeOrder(Legacy,0)" methodname="OpeningVictoryRespectsChallengeOrder" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="644165561" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1031" name="OpeningVictoryRespectsChallengeOrder(Unified,5)" fullname="StudentGrowth.Tests.BattleEngineTests.OpeningVictoryRespectsChallengeOrder(Unified,5)" methodname="OpeningVictoryRespectsChallengeOrder" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1069546118" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1053" name="PreviewAndExecutionReportSameActualCapacityAndClamping" fullname="StudentGrowth.Tests.BattleEngineTests.PreviewAndExecutionReportSameActualCapacityAndClamping" methodname="PreviewAndExecutionReportSameActualCapacityAndClamping" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1778954173" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000862" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="PreviewsDoNotChangeReplayOrRandomPosition" fullname="StudentGrowth.Tests.BattleEngineTests.PreviewsDoNotChangeReplayOrRandomPosition" methodname="PreviewsDoNotChangeReplayOrRandomPosition" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1183323818" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001473" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="ProgressReachedMidCardStillExecutesRemainingEffects" fullname="StudentGrowth.Tests.BattleEngineTests.ProgressReachedMidCardStillExecutesRemainingEffects" methodname="ProgressReachedMidCardStillExecutesRemainingEffects" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="2106550653" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000585" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="RepeatedPlayAndEndTurnCannotExecuteTwice" fullname="StudentGrowth.Tests.BattleEngineTests.RepeatedPlayAndEndTurnCannotExecuteTwice" methodname="RepeatedPlayAndEndTurnCannotExecuteTwice" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="845080031" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000817" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="ReshuffleExcludesResolvingAndExhaust" fullname="StudentGrowth.Tests.BattleEngineTests.ReshuffleExcludesResolvingAndExhaust" methodname="ReshuffleExcludesResolvingAndExhaust" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1155847005" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001174" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="ResolvingCardNeverDrawsItself" fullname="StudentGrowth.Tests.BattleEngineTests.ResolvingCardNeverDrawsItself" methodname="ResolvingCardNeverDrawsItself" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1699394093" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000715" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="ResultAndSnapshotCannotMutateEngine" fullname="StudentGrowth.Tests.BattleEngineTests.ResultAndSnapshotCannotMutateEngine" methodname="ResultAndSnapshotCannotMutateEngine" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="154662488" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001945" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="UnifiedSelfDoesNotGainImplicitBlock" fullname="StudentGrowth.Tests.BattleEngineTests.UnifiedSelfDoesNotGainImplicitBlock" methodname="UnifiedSelfDoesNotGainImplicitBlock" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1982684035" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000653" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1040" name="UnifiedWaitDoesNotUseLegacyDefaultDamage" fullname="StudentGrowth.Tests.BattleEngineTests.UnifiedWaitDoesNotUseLegacyDefaultDamage" methodname="UnifiedWaitDoesNotUseLegacyDefaultDamage" classname="StudentGrowth.Tests.BattleEngineTests" runstate="Runnable" seed="1738260952" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000566" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1056" name="BattleP1Tests" fullname="StudentGrowth.Tests.BattleP1Tests" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.015976" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1065" name="FaultedRewardCannotBeReplayed" fullname="StudentGrowth.Tests.BattleP1Tests.FaultedRewardCannotBeReplayed" methodname="FaultedRewardCannotBeReplayed" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="1584568574" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.003277" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1064" name="FinalTurnFailsWithoutEnemyAttack" fullname="StudentGrowth.Tests.BattleP1Tests.FinalTurnFailsWithoutEnemyAttack" methodname="FinalTurnFailsWithoutEnemyAttack" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="1361947923" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000517" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1061" name="IllegalPlayAndInvalidStartDoNotSpendOrMoveCards" fullname="StudentGrowth.Tests.BattleP1Tests.IllegalPlayAndInvalidStartDoNotSpendOrMoveCards" methodname="IllegalPlayAndInvalidStartDoNotSpendOrMoveCards" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="621093680" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001119" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1060" name="IntentSnapshotUsesCurrentTurnAndAllLegacyEffects" fullname="StudentGrowth.Tests.BattleP1Tests.IntentSnapshotUsesCurrentTurnAndAllLegacyEffects" methodname="IntentSnapshotUsesCurrentTurnAndAllLegacyEffects" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="533279139" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000957" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1063" name="LegacyDrawHasNoTenCardCapAndProgressCanOverflow" fullname="StudentGrowth.Tests.BattleP1Tests.LegacyDrawHasNoTenCardCapAndProgressCanOverflow" methodname="LegacyDrawHasNoTenCardCapAndProgressCanOverflow" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="966787724" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001227" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="NormalChallengeDoesNotCompleteCurrentStage" fullname="StudentGrowth.Tests.BattleP1Tests.NormalChallengeDoesNotCompleteCurrentStage" methodname="NormalChallengeDoesNotCompleteCurrentStage" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="25676104" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.002273" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1066" name="OldBattleRecordCannotSettleNewAttempt" fullname="StudentGrowth.Tests.BattleP1Tests.OldBattleRecordCannotSettleNewAttempt" methodname="OldBattleRecordCannotSettleNewAttempt" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="645809812" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000437" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="OpeningPassiveCompletesWithoutPlayerInput" fullname="StudentGrowth.Tests.BattleP1Tests.OpeningPassiveCompletesWithoutPlayerInput" methodname="OpeningPassiveCompletesWithoutPlayerInput" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="409234167" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000874" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1068" name="PartiallyAppliedResultCannotBeSaved" fullname="StudentGrowth.Tests.BattleP1Tests.PartiallyAppliedResultCannotBeSaved" methodname="PartiallyAppliedResultCannotBeSaved" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="1997506404" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001080" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="RepeatedResultAndStageCallsAwardChallengeAndStageOnce" fullname="StudentGrowth.Tests.BattleP1Tests.RepeatedResultAndStageCallsAwardChallengeAndStageOnce" methodname="RepeatedResultAndStageCallsAwardChallengeAndStageOnce" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="1632320660" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001192" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1069" name="SeparateResultViewsShareOneReturnRequest" fullname="StudentGrowth.Tests.BattleP1Tests.SeparateResultViewsShareOneReturnRequest" methodname="SeparateResultViewsShareOneReturnRequest" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="999340072" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000509" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1067" name="StaleControllerCannotSpendOrEndNewBattle" fullname="StudentGrowth.Tests.BattleP1Tests.StaleControllerCannotSpendOrEndNewBattle" methodname="StaleControllerCannotSpendOrEndNewBattle" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="55603331" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000665" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1062" name="UnsupportedNewEffectsAreBlockedWithFieldLocation" fullname="StudentGrowth.Tests.BattleP1Tests.UnsupportedNewEffectsAreBlockedWithFieldLocation" methodname="UnsupportedNewEffectsAreBlockedWithFieldLocation" classname="StudentGrowth.Tests.BattleP1Tests" runstate="Runnable" seed="2082147907" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000400" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1070" name="CardEffectResolverTests" fullname="StudentGrowth.Tests.CardEffectResolverTests" classname="StudentGrowth.Tests.CardEffectResolverTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.002090" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1073" name="DrawCardsEffectUsesDeckController" fullname="StudentGrowth.Tests.CardEffectResolverTests.DrawCardsEffectUsesDeckController" methodname="DrawCardsEffectUsesDeckController" classname="StudentGrowth.Tests.CardEffectResolverTests" runstate="Runnable" seed="2056371080" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.001101" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1072" name="RestCardCanRestoreEnergyAndReducePressure" fullname="StudentGrowth.Tests.CardEffectResolverTests.RestCardCanRestoreEnergyAndReducePressure" methodname="RestCardCanRestoreEnergyAndReducePressure" classname="StudentGrowth.Tests.CardEffectResolverTests" runstate="Runnable" seed="1384400932" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000353" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1071" name="StudyCardAddsChallengeProgress" fullname="StudentGrowth.Tests.CardEffectResolverTests.StudyCardAddsChallengeProgress" methodname="StudyCardAddsChallengeProgress" classname="StudentGrowth.Tests.CardEffectResolverTests" runstate="Runnable" seed="46960533" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000297" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1074" name="ChallengeControllerTests" fullname="StudentGrowth.Tests.ChallengeControllerTests" classname="StudentGrowth.Tests.ChallengeControllerTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.003371" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1078" name="BossChallengeAppliesClearRewardsOnSuccess" fullname="StudentGrowth.Tests.ChallengeControllerTests.BossChallengeAppliesClearRewardsOnSuccess" methodname="BossChallengeAppliesClearRewardsOnSuccess" classname="StudentGrowth.Tests.ChallengeControllerTests" runstate="Runnable" seed="155477126" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000745" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1079" name="BossChallengeAppliesFailureRewardsOnFailure" fullname="StudentGrowth.Tests.ChallengeControllerTests.BossChallengeAppliesFailureRewardsOnFailure" methodname="BossChallengeAppliesFailureRewardsOnFailure" classname="StudentGrowth.Tests.ChallengeControllerTests" runstate="Runnable" seed="1799349129" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000422" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1077" name="MaxTurnsEndsChallengeAsFailureWhenTargetNotReached" fullname="StudentGrowth.Tests.ChallengeControllerTests.MaxTurnsEndsChallengeAsFailureWhenTargetNotReached" methodname="MaxTurnsEndsChallengeAsFailureWhenTargetNotReached" classname="StudentGrowth.Tests.ChallengeControllerTests" runstate="Runnable" seed="1026778711" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000320" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1075" name="PlayingProgressCardAddsChallengeProgress" fullname="StudentGrowth.Tests.ChallengeControllerTests.PlayingProgressCardAddsChallengeProgress" methodname="PlayingProgressCardAddsChallengeProgress" classname="StudentGrowth.Tests.ChallengeControllerTests" runstate="Runnable" seed="1397817796" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000625" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1076" name="ReachingTargetProgressCompletesChallengeSuccessfully" fullname="StudentGrowth.Tests.ChallengeControllerTests.ReachingTargetProgressCompletesChallengeSuccessfully" methodname="ReachingTargetProgressCompletesChallengeSuccessfully" classname="StudentGrowth.Tests.ChallengeControllerTests" runstate="Runnable" seed="636688936" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000558" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1085" name="DeckControllerTests" fullname="StudentGrowth.Tests.DeckControllerTests" classname="StudentGrowth.Tests.DeckControllerTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:47Z" duration="0.003085" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1087" name="DrawCardsMovesCardsFromDrawPileToHand" fullname="StudentGrowth.Tests.DeckControllerTests.DrawCardsMovesCardsFromDrawPileToHand" methodname="DrawCardsMovesCardsFromDrawPileToHand" classname="StudentGrowth.Tests.DeckControllerTests" runstate="Runnable" seed="961160348" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:46Z" duration="0.000725" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1086" name="InitializeBattleDeckKeepsMasterDeck" fullname="StudentGrowth.Tests.DeckControllerTests.InitializeBattleDeckKeepsMasterDeck" methodname="InitializeBattleDeckKeepsMasterDeck" classname="StudentGrowth.Tests.DeckControllerTests" runstate="Runnable" seed="1111148941" result="Passed" start-time="2026-09-06 10:46:46Z" end-time="2026-09-06 10:46:47Z" duration="0.000654" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1089" name="PlayExhaustCardMovesItToExhaustPile" fullname="StudentGrowth.Tests.DeckControllerTests.PlayExhaustCardMovesItToExhaustPile" methodname="PlayExhaustCardMovesItToExhaustPile" classname="StudentGrowth.Tests.DeckControllerTests" runstate="Runnable" seed="1525444089" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000374" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1090" name="PlayNonExhaustCardMovesItToDiscardPile" fullname="StudentGrowth.Tests.DeckControllerTests.PlayNonExhaustCardMovesItToDiscardPile" methodname="PlayNonExhaustCardMovesItToDiscardPile" classname="StudentGrowth.Tests.DeckControllerTests" runstate="Runnable" seed="720893855" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000350" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1088" name="ReshuffleDiscardIntoDrawPileMovesDiscardedCards" fullname="StudentGrowth.Tests.DeckControllerTests.ReshuffleDiscardIntoDrawPileMovesDiscardedCards" methodname="ReshuffleDiscardIntoDrawPileMovesDiscardedCards" classname="StudentGrowth.Tests.DeckControllerTests" runstate="Runnable" seed="1061359932" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000346" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1140" name="ItemEffectResolverTests" fullname="StudentGrowth.Tests.ItemEffectResolverTests" classname="StudentGrowth.Tests.ItemEffectResolverTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.003830" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1141" name="ConsumableUseAppliesEffectAndRemovesItem" fullname="StudentGrowth.Tests.ItemEffectResolverTests.ConsumableUseAppliesEffectAndRemovesItem" methodname="ConsumableUseAppliesEffectAndRemovesItem" classname="StudentGrowth.Tests.ItemEffectResolverTests" runstate="Runnable" seed="1848871010" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000625" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1142" name="PassiveBattleStartItemAppliesAtBattleStart" fullname="StudentGrowth.Tests.ItemEffectResolverTests.PassiveBattleStartItemAppliesAtBattleStart" methodname="PassiveBattleStartItemAppliesAtBattleStart" classname="StudentGrowth.Tests.ItemEffectResolverTests" runstate="Runnable" seed="1401854346" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000483" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1143" name="PassiveBossStartItemAppliesWhenChallengeStartsAsBoss" fullname="StudentGrowth.Tests.ItemEffectResolverTests.PassiveBossStartItemAppliesWhenChallengeStartsAsBoss" methodname="PassiveBossStartItemAppliesWhenChallengeStartsAsBoss" classname="StudentGrowth.Tests.ItemEffectResolverTests" runstate="Runnable" seed="667062832" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000655" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1145" name="StageControllerClearsStageOnlyItemsWhenMovingToNextStage" fullname="StudentGrowth.Tests.ItemEffectResolverTests.StageControllerClearsStageOnlyItemsWhenMovingToNextStage" methodname="StageControllerClearsStageOnlyItemsWhenMovingToNextStage" classname="StudentGrowth.Tests.ItemEffectResolverTests" runstate="Runnable" seed="720010513" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000908" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1144" name="StageOnlyItemsAreCleared" fullname="StudentGrowth.Tests.ItemEffectResolverTests.StageOnlyItemsAreCleared" methodname="StageOnlyItemsAreCleared" classname="StudentGrowth.Tests.ItemEffectResolverTests" runstate="Runnable" seed="2068195277" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000547" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1146" name="LocationActionExecutorTests" fullname="StudentGrowth.Tests.LocationActionExecutorTests" classname="StudentGrowth.Tests.LocationActionExecutorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.006498" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1147" name="LocationActionExecutor_LegacyAndMapSource_ProduceSameResult" fullname="StudentGrowth.Tests.LocationActionExecutorTests.LocationActionExecutor_LegacyAndMapSource_ProduceSameResult" methodname="LocationActionExecutor_LegacyAndMapSource_ProduceSameResult" classname="StudentGrowth.Tests.LocationActionExecutorTests" runstate="Runnable" seed="1425723869" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.004271" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1148" name="LocationActionExecutor_MapInteraction_ConsumesTimeOnce" fullname="StudentGrowth.Tests.LocationActionExecutorTests.LocationActionExecutor_MapInteraction_ConsumesTimeOnce" methodname="LocationActionExecutor_MapInteraction_ConsumesTimeOnce" classname="StudentGrowth.Tests.LocationActionExecutorTests" runstate="Runnable" seed="1758155721" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000763" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1149" name="MapInteractionController_ReturnToMainUi_DoesNotResetSession" fullname="StudentGrowth.Tests.LocationActionExecutorTests.MapInteractionController_ReturnToMainUi_DoesNotResetSession" methodname="MapInteractionController_ReturnToMainUi_DoesNotResetSession" classname="StudentGrowth.Tests.LocationActionExecutorTests" runstate="Runnable" seed="1022062476" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000988" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1211" name="RewardResolverTests" fullname="StudentGrowth.Tests.RewardResolverTests" classname="StudentGrowth.Tests.RewardResolverTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.001312" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1214" name="AddCardAddsToMasterDeck" fullname="StudentGrowth.Tests.RewardResolverTests.AddCardAddsToMasterDeck" methodname="AddCardAddsToMasterDeck" classname="StudentGrowth.Tests.RewardResolverTests" runstate="Runnable" seed="119811563" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000377" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1215" name="AddItemAddsToInventory" fullname="StudentGrowth.Tests.RewardResolverTests.AddItemAddsToInventory" methodname="AddItemAddsToInventory" classname="StudentGrowth.Tests.RewardResolverTests" runstate="Runnable" seed="2012616428" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1212" name="AddPlayerStatIncreasesTargetStat" fullname="StudentGrowth.Tests.RewardResolverTests.AddPlayerStatIncreasesTargetStat" methodname="AddPlayerStatIncreasesTargetStat" classname="StudentGrowth.Tests.RewardResolverTests" runstate="Runnable" seed="1937819733" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000057" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1216" name="AddStageTimeIncreasesRemainingTime" fullname="StudentGrowth.Tests.RewardResolverTests.AddStageTimeIncreasesRemainingTime" methodname="AddStageTimeIncreasesRemainingTime" classname="StudentGrowth.Tests.RewardResolverTests" runstate="Runnable" seed="1354655458" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000041" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1213" name="ReducePressureLowersPressure" fullname="StudentGrowth.Tests.RewardResolverTests.ReducePressureLowersPressure" methodname="ReducePressureLowersPressure" classname="StudentGrowth.Tests.RewardResolverTests" runstate="Runnable" seed="787845257" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000035" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1285" name="StageControllerTests" fullname="StudentGrowth.Tests.StageControllerTests" classname="StudentGrowth.Tests.StageControllerTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.012282" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1289" name="BossVictoryIncrementsDefeatedBossCount" fullname="StudentGrowth.Tests.StageControllerTests.BossVictoryIncrementsDefeatedBossCount" methodname="BossVictoryIncrementsDefeatedBossCount" classname="StudentGrowth.Tests.StageControllerTests" runstate="Runnable" seed="790841043" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000541" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1287" name="CompleteActivityAppliesRewardsAndReducesRemainingTime" fullname="StudentGrowth.Tests.StageControllerTests.CompleteActivityAppliesRewardsAndReducesRemainingTime" methodname="CompleteActivityAppliesRewardsAndReducesRemainingTime" classname="StudentGrowth.Tests.StageControllerTests" runstate="Runnable" seed="392694466" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000465" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1290" name="FinalStageBossCompletionReachesEnding" fullname="StudentGrowth.Tests.StageControllerTests.FinalStageBossCompletionReachesEnding" methodname="FinalStageBossCompletionReachesEnding" classname="StudentGrowth.Tests.StageControllerTests" runstate="Runnable" seed="1744692487" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000335" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1291" name="MoveToNextStageUsesConfiguredNextStageId" fullname="StudentGrowth.Tests.StageControllerTests.MoveToNextStageUsesConfiguredNextStageId" methodname="MoveToNextStageUsesConfiguredNextStageId" classname="StudentGrowth.Tests.StageControllerTests" runstate="Runnable" seed="317000819" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.005645" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1288" name="RemainingTimeAtZeroShouldStartBoss" fullname="StudentGrowth.Tests.StageControllerTests.RemainingTimeAtZeroShouldStartBoss" methodname="RemainingTimeAtZeroShouldStartBoss" classname="StudentGrowth.Tests.StageControllerTests" runstate="Runnable" seed="1026222784" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000608" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1292" name="SampleDataCanAdvanceFromStageOneToFinalEnding" fullname="StudentGrowth.Tests.StageControllerTests.SampleDataCanAdvanceFromStageOneToFinalEnding" methodname="SampleDataCanAdvanceFromStageOneToFinalEnding" classname="StudentGrowth.Tests.StageControllerTests" runstate="Runnable" seed="1398982505" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.003845" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1286" name="StartStageSetsRemainingTimeToTimeLimit" fullname="StudentGrowth.Tests.StageControllerTests.StartStageSetsRemainingTimeToTimeLimit" methodname="StartStageSetsRemainingTimeToTimeLimit" classname="StudentGrowth.Tests.StageControllerTests" runstate="Runnable" seed="838174387" result="Passed" start-time="2026-09-06 10:46:47Z" end-time="2026-09-06 10:46:47Z" duration="0.000123" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Administrator/AppData/LocalLow/DefaultCompany/ML-project\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

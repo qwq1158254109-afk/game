@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3d88836cf6b33469f7510e4f023798, type: 3}
+  m_Name: SchoolClassStudy
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.SchoolMapActivityData
+  activityId: activity_school_class_study
+  displayName: "\u8BFE\u5802\u5B66\u4E60"
+  description: "\u8BA4\u771F\u5B8C\u6210\u4E00\u8282\u8BFE\u5802\u5B66\u4E60\u3002"
+  activityType: 5
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: 
+  timeCost: 1
+  linkedChallenge: {fileID: 0}
+  linkedEvent: {fileID: 0}
+  linkedMiniGame: {fileID: 0}
+  fixedRewards:
+  - rewardType: 3
+    targetStat: 1
+    value: 4
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u6570\u5B66 +4"
+  - rewardType: 3
+    targetStat: 0
+    value: 2
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u8BED\u6587 +2"
+  possibleRewards: []
+  appearConditions: []

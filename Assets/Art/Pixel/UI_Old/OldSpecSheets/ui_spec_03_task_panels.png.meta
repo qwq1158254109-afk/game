@@ -1,0 +1,400 @@
+fileFormatVersion: 2
+guid: d632323c1b51e6744917515d43c5c586
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1146013507590553894
+    second: ui_spec_03_task_panels_0
+  - first:
+      213: -4130563180964197098
+    second: ui_spec_03_task_panels_1
+  - first:
+      213: 6654937416011971505
+    second: ui_spec_03_task_panels_2
+  - first:
+      213: -5171744866038982673
+    second: ui_spec_03_task_panels_3
+  - first:
+      213: 5004130277821069555
+    second: ui_spec_03_task_panels_4
+  - first:
+      213: 7068445544285376942
+    second: ui_spec_03_task_panels_5
+  - first:
+      213: -6627887057741276431
+    second: ui_spec_03_task_panels_6
+  - first:
+      213: 6769791922080443200
+    second: ui_spec_03_task_panels_7
+  - first:
+      213: 5943352423029622325
+    second: ui_spec_03_task_panels_8
+  - first:
+      213: -586831286178076976
+    second: task_panel_large
+  - first:
+      213: 1293586647673133501
+    second: task_panel_compact
+  - first:
+      213: 3445878919991610855
+    second: ui_spec_03_task_panels_slice_02
+  - first:
+      213: 6843894879517448681
+    second: ui_spec_03_task_panels_slice_03
+  - first:
+      213: 3581595669198951439
+    second: ui_spec_03_task_panels_slice_04
+  - first:
+      213: 147773546791298340
+    second: ui_spec_03_task_panels_slice_05
+  - first:
+      213: -557814156130127069
+    second: task_panel_note
+  - first:
+      213: 2072965414357359998
+    second: ui_spec_03_task_panels_slice_07
+  - first:
+      213: -1434097775361827410
+    second: ui_spec_03_task_panels_slice_08
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: task_panel_large
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 560
+        width: 567
+        height: 267
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d6254ced082bd7f0800000000000000
+      internalID: -586831286178076976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: task_panel_compact
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 740
+        width: 567
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db9debcc33eb3f110800000000000000
+      internalID: 1293586647673133501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_03_task_panels_slice_02
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 628
+        width: 567
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ed4b15ee9832df20800000000000000
+      internalID: 3445878919991610855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_03_task_panels_slice_03
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 546
+        width: 567
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e990c5e1266afe50800000000000000
+      internalID: 6843894879517448681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_03_task_panels_slice_04
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 464
+        width: 567
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f045ea7f84264b130800000000000000
+      internalID: 3581595669198951439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_03_task_panels_slice_05
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 60
+        width: 617
+        height: 437
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 425e1b3024ffc0200800000000000000
+      internalID: 147773546791298340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: task_panel_note
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 382
+        width: 567
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 323fd2dfafe3248f0800000000000000
+      internalID: -557814156130127069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_03_task_panels_slice_07
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 300
+        width: 567
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7dd072bf07a4cc10800000000000000
+      internalID: 2072965414357359998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_03_task_panels_slice_08
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 60
+        width: 567
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 28, y: 28, z: 28, w: 28}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ead5166ebaf091ce0800000000000000
+      internalID: -1434097775361827410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      task_panel_compact: 1293586647673133501
+      task_panel_large: -586831286178076976
+      task_panel_note: -557814156130127069
+      ui_spec_03_task_panels_0: -1146013507590553894
+      ui_spec_03_task_panels_1: -4130563180964197098
+      ui_spec_03_task_panels_2: 6654937416011971505
+      ui_spec_03_task_panels_3: -5171744866038982673
+      ui_spec_03_task_panels_4: 5004130277821069555
+      ui_spec_03_task_panels_5: 7068445544285376942
+      ui_spec_03_task_panels_6: -6627887057741276431
+      ui_spec_03_task_panels_7: 6769791922080443200
+      ui_spec_03_task_panels_8: 5943352423029622325
+      ui_spec_03_task_panels_slice_02: 3445878919991610855
+      ui_spec_03_task_panels_slice_03: 6843894879517448681
+      ui_spec_03_task_panels_slice_04: 3581595669198951439
+      ui_spec_03_task_panels_slice_05: 147773546791298340
+      ui_spec_03_task_panels_slice_07: 2072965414357359998
+      ui_spec_03_task_panels_slice_08: -1434097775361827410
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

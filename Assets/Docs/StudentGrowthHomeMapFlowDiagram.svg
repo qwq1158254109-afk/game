@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbfdff"/>
+      <stop offset="100%" stop-color="#f3f7ff"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-18%" y="-22%" width="136%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#1f396c" flood-opacity="0.13"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L12,7 L2,12 Z" fill="#7284a5"/>
+    </marker>
+    <style>
+      .title {
+        font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+        font-size: 42px;
+        font-weight: 800;
+        fill: #14357f;
+      }
+      .subtitle {
+        font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        fill: #5a6780;
+      }
+      .section {
+        font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+        fill: #71809b;
+        letter-spacing: 1px;
+      }
+      .cardTitle {
+        font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+      }
+      .cardText {
+        font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        fill: #26354d;
+      }
+      .miniText {
+        font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        fill: #53627a;
+      }
+      .pillText {
+        font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+        font-size: 17px;
+        font-weight: 800;
+      }
+      .footer {
+        font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        fill: #14357f;
+      }
+      .arrow {
+        stroke: #7284a5;
+        stroke-width: 3.2;
+        fill: none;
+        marker-end: url(#arrow);
+      }
+      .arrowThin {
+        stroke: #8796b4;
+        stroke-width: 2.4;
+        fill: none;
+        marker-end: url(#arrow);
+      }
+      .dash {
+        stroke: #9badca;
+        stroke-width: 2;
+        stroke-dasharray: 7 8;
+        fill: none;
+      }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#pageBg)"/>
+  <line x1="90" y1="120" x2="1510" y2="120" stroke="#dce5f4" stroke-width="2"/>
+
+  <text x="800" y="58" text-anchor="middle" class="title">图 3 StudentGrowth 家里地图交互与成长结算流程图</text>
+  <text x="800" y="94" text-anchor="middle" class="subtitle">从 2D RPG 场景探索出发，将玩家移动、互动对象、活动结算、出口返回与 HUD 反馈统一编排</text>
+
+  <text x="88" y="157" class="section">输入层</text>
+  <text x="405" y="157" class="section">表示层</text>
+  <text x="757" y="157" class="section">融合决策</text>
+  <text x="1075" y="157" class="section">执行分流</text>
+  <text x="1340" y="157" class="section">输出层</text>
+
+  <!-- Input layer -->
+  <g filter="url(#cardShadow)">
+    <rect x="60" y="190" width="252" height="112" rx="18" fill="#edf4ff" stroke="#3d70ff" stroke-width="3"/>
+    <text x="186" y="229" text-anchor="middle" class="cardTitle" fill="#155bd8">地图素材输入</text>
+    <text x="186" y="260" text-anchor="middle" class="cardText">Tilemap / Sprite</text>
+    <text x="186" y="285" text-anchor="middle" class="miniText">地板、墙体、家具、门</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="60" y="336" width="252" height="112" rx="18" fill="#f5edff" stroke="#8d46ff" stroke-width="3"/>
+    <text x="186" y="375" text-anchor="middle" class="cardTitle" fill="#6a2bd7">玩家操作输入</text>
+    <text x="186" y="406" text-anchor="middle" class="cardText">WASD / 方向 / E</text>
+    <text x="186" y="431" text-anchor="middle" class="miniText">移动、朝向、确认互动</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="60" y="482" width="252" height="112" rx="18" fill="#fff2e7" stroke="#ff7442" stroke-width="3"/>
+    <text x="186" y="521" text-anchor="middle" class="cardTitle" fill="#d84e18">互动配置输入</text>
+    <text x="186" y="552" text-anchor="middle" class="cardText">MapInteractionTarget</text>
+    <text x="186" y="577" text-anchor="middle" class="miniText">床、书桌、餐桌、家人、出口</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="60" y="628" width="252" height="112" rx="18" fill="#eaf8ed" stroke="#4a9d58" stroke-width="3"/>
+    <text x="186" y="667" text-anchor="middle" class="cardTitle" fill="#21843c">运行状态输入</text>
+    <text x="186" y="698" text-anchor="middle" class="cardText">GameSessionState</text>
+    <text x="186" y="723" text-anchor="middle" class="miniText">时间、精力、心情、亲子、金钱</text>
+  </g>
+
+  <!-- Representation layer -->
+  <g filter="url(#cardShadow)">
+    <rect x="382" y="202" width="278" height="96" rx="16" fill="#edf4ff" stroke="#3d70ff" stroke-width="3"/>
+    <text x="521" y="238" text-anchor="middle" class="cardTitle" fill="#155bd8">场景空间表示</text>
+    <text x="521" y="270" text-anchor="middle" class="cardText">Ground / Wall / Collision</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="382" y="348" width="278" height="96" rx="16" fill="#f5edff" stroke="#8d46ff" stroke-width="3"/>
+    <text x="521" y="384" text-anchor="middle" class="cardTitle" fill="#6a2bd7">角色移动表示</text>
+    <text x="521" y="416" text-anchor="middle" class="cardText">Rigidbody2D + Animator</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="382" y="494" width="278" height="96" rx="16" fill="#fff2e7" stroke="#ff7442" stroke-width="3"/>
+    <text x="521" y="530" text-anchor="middle" class="cardTitle" fill="#d84e18">互动语义表示</text>
+    <text x="521" y="562" text-anchor="middle" class="cardText">ActivityData / Prompt / Reward</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="382" y="640" width="278" height="96" rx="16" fill="#eaf8ed" stroke="#4a9d58" stroke-width="3"/>
+    <text x="521" y="676" text-anchor="middle" class="cardTitle" fill="#21843c">界面反馈表示</text>
+    <text x="521" y="708" text-anchor="middle" class="cardText">TopHud / Prompt / Debug</text>
+  </g>
+
+  <!-- Fusion decision -->
+  <g filter="url(#cardShadow)">
+    <rect x="748" y="274" width="286" height="212" rx="20" fill="#fff8f1" stroke="#ff7442" stroke-width="3.2"/>
+    <text x="891" y="318" text-anchor="middle" class="cardTitle" fill="#d84e18">地图交互融合器</text>
+    <text x="891" y="355" text-anchor="middle" class="cardText">MapInteractionFlowController</text>
+    <text x="891" y="386" text-anchor="middle" class="miniText">最近目标选择 + 提示切换</text>
+    <text x="891" y="414" text-anchor="middle" class="miniText">确认弹窗 + 执行状态</text>
+    <text x="891" y="442" text-anchor="middle" class="miniText">一次性完成标记 + DebugOverlay</text>
+  </g>
+
+  <g>
+    <rect x="760" y="526" width="262" height="44" rx="22" fill="#edf4ff" stroke="#3d70ff" stroke-width="2"/>
+    <text x="891" y="555" text-anchor="middle" class="pillText" fill="#155bd8">状态：Idle / Nearby / Confirming</text>
+    <rect x="760" y="586" width="262" height="44" rx="22" fill="#eaf8ed" stroke="#4a9d58" stroke-width="2"/>
+    <text x="891" y="615" text-anchor="middle" class="pillText" fill="#21843c">Executing / Completed / Debug</text>
+  </g>
+
+  <!-- Execution split -->
+  <g filter="url(#cardShadow)">
+    <rect x="1100" y="238" width="242" height="158" rx="18" fill="#eff8ff" stroke="#3d70ff" stroke-width="3"/>
+    <text x="1221" y="281" text-anchor="middle" class="cardTitle" fill="#155bd8">正式活动链路</text>
+    <text x="1221" y="317" text-anchor="middle" class="cardText">LocationActionExecutor</text>
+    <text x="1221" y="345" text-anchor="middle" class="miniText">ResolveActivityForCompletion</text>
+    <text x="1221" y="371" text-anchor="middle" class="miniText">StageController.CompleteActivity</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="1100" y="486" width="242" height="158" rx="18" fill="#fff0f0" stroke="#ef3b3b" stroke-width="3"/>
+    <text x="1221" y="529" text-anchor="middle" class="cardTitle" fill="#df2525">出口返回链路</text>
+    <text x="1221" y="565" text-anchor="middle" class="cardText">MapExitPortal</text>
+    <text x="1221" y="593" text-anchor="middle" class="miniText">ReturnToStageMap / ShowMap</text>
+    <text x="1221" y="619" text-anchor="middle" class="miniText">不扣时间，不发奖励</text>
+  </g>
+
+  <!-- Output layer -->
+  <g filter="url(#cardShadow)">
+    <rect x="1390" y="202" width="160" height="98" rx="16" fill="#eaf8ed" stroke="#4a9d58" stroke-width="3"/>
+    <text x="1470" y="238" text-anchor="middle" class="cardTitle" fill="#21843c">属性更新</text>
+    <text x="1470" y="269" text-anchor="middle" class="miniText">精力 / 压力 / 心情</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="1390" y="334" width="160" height="98" rx="16" fill="#fff6e5" stroke="#ffa72c" stroke-width="3"/>
+    <text x="1470" y="370" text-anchor="middle" class="cardTitle" fill="#c87200">成长反馈</text>
+    <text x="1470" y="401" text-anchor="middle" class="miniText">自主 / 亲子 / 金钱</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="1390" y="466" width="160" height="98" rx="16" fill="#edf4ff" stroke="#3d70ff" stroke-width="3"/>
+    <text x="1470" y="502" text-anchor="middle" class="cardTitle" fill="#155bd8">场景反馈</text>
+    <text x="1470" y="533" text-anchor="middle" class="miniText">HUD / 弹窗 / 提示条</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="1390" y="598" width="160" height="98" rx="16" fill="#fff0f0" stroke="#ef3b3b" stroke-width="3"/>
+    <text x="1470" y="634" text-anchor="middle" class="cardTitle" fill="#df2525">安全返回</text>
+    <text x="1470" y="665" text-anchor="middle" class="miniText">阶段地图不重置</text>
+  </g>
+
+  <!-- Arrows: input to representation -->
+  <path class="arrow" d="M312 246 L376 250"/>
+  <path class="arrow" d="M312 392 L376 396"/>
+  <path class="arrow" d="M312 538 L376 542"/>
+  <path class="arrow" d="M312 684 L376 688"/>
+
+  <!-- Arrows: representation to fusion -->
+  <path class="arrowThin" d="M660 250 C706 250 710 326 746 340"/>
+  <path class="arrowThin" d="M660 396 C706 396 710 390 746 388"/>
+  <path class="arrowThin" d="M660 542 C712 542 710 442 746 426"/>
+  <path class="arrowThin" d="M660 688 C718 688 716 602 758 608"/>
+
+  <!-- Arrows: fusion to execution split -->
+  <path class="arrow" d="M1034 346 C1064 346 1068 317 1096 317"/>
+  <path class="arrow" d="M1034 418 C1066 418 1068 565 1096 565"/>
+
+  <!-- Arrows: execution to output -->
+  <path class="arrow" d="M1342 317 C1360 317 1365 251 1386 251"/>
+  <path class="arrow" d="M1342 337 C1360 337 1366 383 1386 383"/>
+  <path class="arrow" d="M1342 565 L1386 647"/>
+  <path class="arrowThin" d="M891 630 C1048 746 1295 746 1470 700"/>
+
+  <!-- Context rail -->
+  <path class="dash" d="M734 724 C870 778 1060 778 1200 724"/>
+  <text x="967" y="760" text-anchor="middle" class="miniText">约束：UI 不直接改属性 / 不直接扣时间 / 出口不进入活动结算链 / Debug 默认隐藏</text>
+
+  <text x="800" y="842" text-anchor="middle" class="footer">输出：可探索 2D 像素家里地图 + 一次性活动结算 + 清晰 HUD 反馈 + 安全返回阶段地图</text>
+</svg>

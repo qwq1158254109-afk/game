@@ -1,0 +1,189 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14b77fab241a9143a52a941f0fc27b2, type: 3}
+  m_Name: BattleUIConfig
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.BattleUIConfig
+  artwork:
+  - key: card_art_adjust_rhythm
+    sprite: {fileID: 1320945598, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - key: card_art_basic_practice
+    sprite: {fileID: -1791375014, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - key: card_art_browse_notes
+    sprite: {fileID: -666063208, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - key: card_art_enter_focus
+    sprite: {fileID: 627487174, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - key: card_art_focused_review
+    sprite: {fileID: -799783959, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - key: card_art_organize_thoughts
+    sprite: {fileID: -1490410479, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - key: icon_action_energy
+    sprite: {fileID: 749994071, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_battle_stamina
+    sprite: {fileID: -633087614, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_block
+    sprite: {fileID: 64531829, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_challenge_progress
+    sprite: {fileID: 1379535123, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_challenge_target
+    sprite: {fileID: 996992250, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_intent_attack
+    sprite: {fileID: 1015546576, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_intent_distraction
+    sprite: {fileID: -1726084581, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_intent_multi_attack
+    sprite: {fileID: -57919600, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_intent_wait
+    sprite: {fileID: 57001161, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_intent_weak_defense
+    sprite: {fileID: 16960375, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_keyword_ethereal
+    sprite: {fileID: -765286064, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_keyword_exhaust
+    sprite: {fileID: 158729331, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_keyword_retain
+    sprite: {fileID: -934207129, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_long_term_stamina
+    sprite: {fileID: -1496792780, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_pile_discard
+    sprite: {fileID: 1563524293, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_pile_draw
+    sprite: {fileID: 1911706991, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_pile_exhaust
+    sprite: {fileID: -200726874, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_pile_hand
+    sprite: {fileID: -580041143, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_result_complete
+    sprite: {fileID: -973503738, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_reward
+    sprite: {fileID: -200666679, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_status_distraction
+    sprite: {fileID: -1054205702, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_status_focus
+    sprite: {fileID: -1694641530, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_status_weak_defense
+    sprite: {fileID: 510544796, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: icon_turns
+    sprite: {fileID: 1396171301, guid: 44c47b7e1fa804c448d052f4876ccd64, type: 3}
+  - key: hud_block_socket
+    sprite: {fileID: -352831191, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_energy_socket
+    sprite: {fileID: -2106073676, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_intent_bubble
+    sprite: {fileID: 17037520, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_notice_plate
+    sprite: {fileID: -985238009, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_progress_fill
+    sprite: {fileID: 1234537178, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_progress_fill_source
+    sprite: {fileID: 1598600488, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_progress_track
+    sprite: {fileID: 2003795767, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_stamina_fill
+    sprite: {fileID: -998259011, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_stamina_fill_source
+    sprite: {fileID: 2055109216, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_stamina_track
+    sprite: {fileID: -1646349851, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_tooltip_panel
+    sprite: {fileID: 247758649, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: hud_turns_plate
+    sprite: {fileID: 414864448, guid: 01b0b021606910d419007f6b35a844af, type: 3}
+  - key: btn_close_disabled
+    sprite: {fileID: 805359800, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_close_hover
+    sprite: {fileID: -1014337106, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_close_normal
+    sprite: {fileID: 1869976457, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_close_pressed
+    sprite: {fileID: -1180076378, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_icon_disabled
+    sprite: {fileID: -71194653, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_icon_hover
+    sprite: {fileID: -664146934, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_icon_normal
+    sprite: {fileID: 834647302, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_icon_pressed
+    sprite: {fileID: 501892805, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_next_disabled
+    sprite: {fileID: 1124116420, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_next_hover
+    sprite: {fileID: 1288651825, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_next_normal
+    sprite: {fileID: 396229494, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_next_pressed
+    sprite: {fileID: -134145118, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_prev_disabled
+    sprite: {fileID: -1236576741, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_prev_hover
+    sprite: {fileID: -1655399208, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_prev_normal
+    sprite: {fileID: 417766086, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_prev_pressed
+    sprite: {fileID: -944754736, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_primary_disabled
+    sprite: {fileID: 1600055760, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_primary_hover
+    sprite: {fileID: -1245831924, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_primary_normal
+    sprite: {fileID: -1394520966, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_primary_pressed
+    sprite: {fileID: 1251754933, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_secondary_disabled
+    sprite: {fileID: -895077448, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_secondary_hover
+    sprite: {fileID: -1313422344, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_secondary_normal
+    sprite: {fileID: -796455727, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: btn_secondary_pressed
+    sprite: {fileID: -1752653615, guid: 7f45d8f9378fa7f4b8a5d3cb590ace0d, type: 3}
+  - key: window_card_choice
+    sprite: {fileID: 38858912, guid: 35984cbb15ece584babf67d380fa8d81, type: 3}
+  - key: window_challenge_complete
+    sprite: {fileID: -721372763, guid: 35984cbb15ece584babf67d380fa8d81, type: 3}
+  - key: window_challenge_incomplete
+    sprite: {fileID: -2007329348, guid: 35984cbb15ece584babf67d380fa8d81, type: 3}
+  - key: window_recovery
+    sprite: {fileID: -1420873100, guid: 35984cbb15ece584babf67d380fa8d81, type: 3}
+  cardArtwork:
+  - cardId: card_study_math_practice
+    sprite: {fileID: -1791375014, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - cardId: card_study_wrong_book
+    sprite: {fileID: -1490410479, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - cardId: card_study_after_class_review
+    sprite: {fileID: -666063208, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  - cardId: card_study_mock_exam
+    sprite: {fileID: -799783959, guid: e630ea71ef3953345ba35f2ba1450339, type: 3}
+  topBarHeight: 88
+  handAreaHeight: 230
+  logHeight: 72
+  safePadding: {x: 24, y: 24}
+  cardBaseScale: 0.9
+  cardHoverScale: 1.15
+  cardHoverYOffset: 90
+  cardSpacing: 130
+  maxCardRotation: 10
+  handArcHeight: 28
+  hoverSpread: 36
+  cardAnimSpeed: 14
+  tooltipMaxWidth: 340
+  tooltipPadding: {x: 18, y: 14}
+  theme: {fileID: 0}
+  weakBorderAlpha: 0.45
+  showHandAreaBorder: 0
+  handAreaBackgroundAlpha: 0.35
+  disabledCardAlpha: 0.45
+  playableCardGlowAlpha: 0.35
+  hoverGlowAlpha: 0.85
+  hudAnimationDuration: 0.15
+  progressAnimDuration: 0.35
+  buttonHoverScale: 1.04
+  floatingTextDuration: 0.8

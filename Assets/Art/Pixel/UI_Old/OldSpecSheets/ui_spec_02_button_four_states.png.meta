@@ -1,0 +1,2850 @@
+fileFormatVersion: 2
+guid: 19b28d3dc60ecbd4d8663d4d0a9269c7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4842155002540284661
+    second: ui_spec_02_button_four_states_0
+  - first:
+      213: -7074609660684766330
+    second: ui_spec_02_button_four_states_1
+  - first:
+      213: 1755735909159487819
+    second: ui_spec_02_button_four_states_2
+  - first:
+      213: 3356087986812423557
+    second: ui_spec_02_button_four_states_3
+  - first:
+      213: 5896999880060768486
+    second: ui_spec_02_button_four_states_4
+  - first:
+      213: 6755970526038018149
+    second: ui_spec_02_button_four_states_5
+  - first:
+      213: -8459662023352096993
+    second: ui_spec_02_button_four_states_6
+  - first:
+      213: 6828543297672599
+    second: ui_spec_02_button_four_states_7
+  - first:
+      213: 2831401254255102268
+    second: ui_spec_02_button_four_states_8
+  - first:
+      213: -1494635870543967166
+    second: ui_spec_02_button_four_states_9
+  - first:
+      213: 2622983607964958483
+    second: ui_spec_02_button_four_states_10
+  - first:
+      213: 4149616735678951061
+    second: ui_spec_02_button_four_states_11
+  - first:
+      213: 2120041665160590491
+    second: ui_spec_02_button_four_states_12
+  - first:
+      213: -1915432865962962518
+    second: ui_spec_02_button_four_states_13
+  - first:
+      213: 8637070989699385139
+    second: ui_spec_02_button_four_states_14
+  - first:
+      213: -2103329338128526145
+    second: ui_spec_02_button_four_states_15
+  - first:
+      213: -4408278999934443118
+    second: ui_spec_02_button_four_states_16
+  - first:
+      213: 8313489966864996702
+    second: ui_spec_02_button_four_states_17
+  - first:
+      213: 5542924287861067686
+    second: ui_spec_02_button_four_states_18
+  - first:
+      213: 1556477927662483968
+    second: ui_spec_02_button_four_states_19
+  - first:
+      213: -6334576147223971320
+    second: ui_spec_02_button_four_states_20
+  - first:
+      213: -8498267041258329461
+    second: ui_spec_02_button_four_states_21
+  - first:
+      213: -7719838481282021672
+    second: ui_spec_02_button_four_states_22
+  - first:
+      213: -7723983214862426480
+    second: ui_spec_02_button_four_states_23
+  - first:
+      213: -3802830650093223043
+    second: ui_spec_02_button_four_states_24
+  - first:
+      213: 3884857412223938517
+    second: ui_spec_02_button_four_states_25
+  - first:
+      213: 3668156680017647516
+    second: ui_spec_02_button_four_states_26
+  - first:
+      213: 1116999952482412534
+    second: ui_spec_02_button_four_states_27
+  - first:
+      213: -2270166097727018571
+    second: ui_spec_02_button_four_states_28
+  - first:
+      213: -5841316899737507859
+    second: ui_spec_02_button_four_states_29
+  - first:
+      213: 3869864985706765506
+    second: ui_spec_02_button_four_states_30
+  - first:
+      213: 6480427503187425952
+    second: ui_spec_02_button_four_states_31
+  - first:
+      213: 2306900419213473431
+    second: ui_spec_02_button_four_states_32
+  - first:
+      213: 6043995327110580988
+    second: ui_spec_02_button_four_states_33
+  - first:
+      213: 6509498042664133148
+    second: ui_spec_02_button_four_states_34
+  - first:
+      213: 4620138762320065943
+    second: ui_spec_02_button_four_states_35
+  - first:
+      213: -5423813676566560909
+    second: ui_spec_02_button_four_states_36
+  - first:
+      213: -8562356905424526317
+    second: ui_spec_02_button_four_states_37
+  - first:
+      213: -5763256855384266834
+    second: ui_spec_02_button_four_states_38
+  - first:
+      213: 2818104355363017124
+    second: ui_spec_02_button_four_states_39
+  - first:
+      213: 1417008861890327171
+    second: ui_spec_02_button_four_states_40
+  - first:
+      213: -8152953459671894600
+    second: ui_spec_02_button_four_states_41
+  - first:
+      213: 2232488702891366742
+    second: ui_spec_02_button_four_states_42
+  - first:
+      213: 1809923376827168337
+    second: ui_spec_02_button_four_states_43
+  - first:
+      213: 277369581783426557
+    second: ui_spec_02_button_four_states_44
+  - first:
+      213: -204806594748096825
+    second: ui_spec_02_button_four_states_45
+  - first:
+      213: 6344222413509528421
+    second: ui_spec_02_button_four_states_46
+  - first:
+      213: 5225759206948762670
+    second: ui_spec_02_button_four_states_47
+  - first:
+      213: -3205499650091730060
+    second: ui_spec_02_button_four_states_48
+  - first:
+      213: -9138466987306967727
+    second: ui_spec_02_button_four_states_49
+  - first:
+      213: 1109928214434984744
+    second: ui_spec_02_button_four_states_50
+  - first:
+      213: -5667515311611779483
+    second: ui_spec_02_button_four_states_51
+  - first:
+      213: 4185118235423382887
+    second: ui_spec_02_button_four_states_52
+  - first:
+      213: 1773913412736874253
+    second: ui_spec_02_button_four_states_53
+  - first:
+      213: 8603471056756043394
+    second: ui_spec_02_button_four_states_54
+  - first:
+      213: -8569513807377173383
+    second: ui_spec_02_button_four_states_55
+  - first:
+      213: 3911332109964846224
+    second: ui_spec_02_button_four_states_56
+  - first:
+      213: -5630699618246584152
+    second: ui_spec_02_button_four_states_57
+  - first:
+      213: 5022036522223480774
+    second: ui_spec_02_button_four_states_58
+  - first:
+      213: 8221200300373275388
+    second: ui_spec_02_button_four_states_59
+  - first:
+      213: 1089287146769686748
+    second: ui_spec_02_button_four_states_60
+  - first:
+      213: -2558989360991965677
+    second: ui_spec_02_button_four_states_61
+  - first:
+      213: 979312699959613616
+    second: ui_spec_02_button_four_states_62
+  - first:
+      213: -2052964026735382662
+    second: ui_spec_02_button_four_states_63
+  - first:
+      213: 4434534256569330316
+    second: ui_spec_02_button_four_states_64
+  - first:
+      213: 6980634342049168783
+    second: ui_spec_02_button_four_states_65
+  - first:
+      213: -7616828379293754119
+    second: ui_spec_02_button_four_states_66
+  - first:
+      213: -991770111122941287
+    second: ui_spec_02_button_four_states_67
+  - first:
+      213: 7168784316369712505
+    second: ui_spec_02_button_four_states_68
+  - first:
+      213: -7252203700886602785
+    second: ui_spec_02_button_four_states_69
+  - first:
+      213: -1973887006092014685
+    second: ui_spec_02_button_four_states_70
+  - first:
+      213: -7052069650105354609
+    second: ui_spec_02_button_four_states_71
+  - first:
+      213: 8605876468087413667
+    second: ui_spec_02_button_four_states_72
+  - first:
+      213: 3401221365422843152
+    second: ui_spec_02_button_four_states_73
+  - first:
+      213: 5065901720499711204
+    second: ui_spec_02_button_four_states_74
+  - first:
+      213: -3449324938876023541
+    second: ui_spec_02_button_four_states_75
+  - first:
+      213: 7503772414069212498
+    second: ui_spec_02_button_four_states_76
+  - first:
+      213: -1219112505737252433
+    second: ui_spec_02_button_four_states_77
+  - first:
+      213: 5978884945621230889
+    second: ui_spec_02_button_four_states_78
+  - first:
+      213: -2345234609525359449
+    second: ui_spec_02_button_four_states_79
+  - first:
+      213: -8579156020427293317
+    second: ui_spec_02_button_four_states_80
+  - first:
+      213: -7543194107034480589
+    second: ui_spec_02_button_four_states_81
+  - first:
+      213: 2641864730630615290
+    second: ui_spec_02_button_four_states_82
+  - first:
+      213: 4906770388307654851
+    second: ui_spec_02_button_four_states_83
+  - first:
+      213: 3417907128177225368
+    second: ui_spec_02_button_four_states_84
+  - first:
+      213: 1710202011171605769
+    second: ui_spec_02_button_four_states_85
+  - first:
+      213: -318612193318732217
+    second: ui_spec_02_button_four_states_86
+  - first:
+      213: 5530577800413039488
+    second: ui_spec_02_button_four_states_87
+  - first:
+      213: 6923960016244674835
+    second: ui_spec_02_button_four_states_88
+  - first:
+      213: 5917440412108913733
+    second: ui_spec_02_button_four_states_89
+  - first:
+      213: 3354270414375633120
+    second: ui_spec_02_button_four_states_90
+  - first:
+      213: -2627448817447979803
+    second: ui_spec_02_button_four_states_91
+  - first:
+      213: -5083331721970340761
+    second: ui_spec_02_button_four_states_92
+  - first:
+      213: 6289683667385417670
+    second: ui_spec_02_button_four_states_93
+  - first:
+      213: 4926346138417391413
+    second: ui_spec_02_button_four_states_94
+  - first:
+      213: -1704034860061816026
+    second: ui_spec_02_button_four_states_95
+  - first:
+      213: 8252116858984586314
+    second: ui_spec_02_button_four_states_96
+  - first:
+      213: 4476551599649954943
+    second: ui_spec_02_button_four_states_97
+  - first:
+      213: -2207936720658728233
+    second: ui_spec_02_button_four_states_98
+  - first:
+      213: -4623676131444219541
+    second: ui_spec_02_button_four_states_99
+  - first:
+      213: 4507391173761517838
+    second: ui_spec_02_button_four_states_100
+  - first:
+      213: -6082860975317987041
+    second: ui_spec_02_button_four_states_101
+  - first:
+      213: -786117770194492153
+    second: ui_spec_02_button_four_states_102
+  - first:
+      213: -9038362991014530987
+    second: ui_spec_02_button_four_states_103
+  - first:
+      213: 7447525542089806319
+    second: ui_spec_02_button_four_states_104
+  - first:
+      213: -7117513004427801243
+    second: ui_spec_02_button_four_states_105
+  - first:
+      213: 1343276555904519616
+    second: ui_spec_02_button_four_states_106
+  - first:
+      213: 3189249384264434773
+    second: ui_spec_02_button_four_states_107
+  - first:
+      213: -1494529912743806768
+    second: ui_spec_02_button_four_states_slice_00
+  - first:
+      213: -321787685773369980
+    second: ui_spec_02_button_four_states_slice_01
+  - first:
+      213: 2711433140779874735
+    second: ui_spec_02_button_four_states_slice_02
+  - first:
+      213: 4709633580460476718
+    second: ui_spec_02_button_four_states_slice_03
+  - first:
+      213: 8088146674092088652
+    second: ui_spec_02_button_four_states_slice_04
+  - first:
+      213: 7046947949189186992
+    second: ui_spec_02_button_four_states_slice_05
+  - first:
+      213: -6471966281465618922
+    second: ui_spec_02_button_four_states_slice_06
+  - first:
+      213: 187924627658229589
+    second: ui_spec_02_button_four_states_slice_07
+  - first:
+      213: -4919048072760568392
+    second: ui_spec_02_button_four_states_slice_08
+  - first:
+      213: 4972875515216014845
+    second: ui_spec_02_button_four_states_slice_09
+  - first:
+      213: -5790603484923397830
+    second: ui_spec_02_button_four_states_slice_10
+  - first:
+      213: -4153025614913136337
+    second: ui_spec_02_button_four_states_slice_11
+  - first:
+      213: 3267425723926967011
+    second: ui_spec_02_button_four_states_slice_12
+  - first:
+      213: -4697902501587873768
+    second: ui_spec_02_button_four_states_slice_13
+  - first:
+      213: -1694883530496146849
+    second: ui_spec_02_button_four_states_slice_14
+  - first:
+      213: 6121783726077102629
+    second: ui_spec_02_button_four_states_slice_15
+  - first:
+      213: -7786063599247119672
+    second: button_default
+  - first:
+      213: 425597936212420307
+    second: button_hover
+  - first:
+      213: 5123317806511552220
+    second: button_pressed
+  - first:
+      213: -5730984250091439851
+    second: button_disabled
+  - first:
+      213: -66988770386661985
+    second: ui_spec_02_button_four_states_slice_20
+  - first:
+      213: -5675875980844194866
+    second: ui_spec_02_button_four_states_slice_21
+  - first:
+      213: 4469808366413274722
+    second: ui_spec_02_button_four_states_slice_22
+  - first:
+      213: 4086199507113141862
+    second: ui_spec_02_button_four_states_slice_23
+  - first:
+      213: -4375143006971880786
+    second: ui_spec_02_button_four_states_slice_24
+  - first:
+      213: -8874436009161468493
+    second: ui_spec_02_button_four_states_slice_25
+  - first:
+      213: 6087189866757718226
+    second: ui_spec_02_button_four_states_slice_26
+  - first:
+      213: 5884238167477765582
+    second: ui_spec_02_button_four_states_slice_27
+  - first:
+      213: -9083333550869441530
+    second: ui_spec_02_button_four_states_slice_28
+  - first:
+      213: 8689120250193666327
+    second: ui_spec_02_button_four_states_slice_29
+  - first:
+      213: 727969393766592002
+    second: ui_spec_02_button_four_states_slice_30
+  - first:
+      213: -8766682049121757674
+    second: ui_spec_02_button_four_states_slice_31
+  - first:
+      213: 8002547474702548682
+    second: ui_spec_02_button_four_states_slice_32
+  - first:
+      213: 6421838544122720550
+    second: ui_spec_02_button_four_states_slice_33
+  - first:
+      213: -374964984645753137
+    second: ui_spec_02_button_four_states_slice_34
+  - first:
+      213: 3700956709331599764
+    second: ui_spec_02_button_four_states_slice_35
+  - first:
+      213: 5889279620448140716
+    second: ui_spec_02_button_four_states_slice_36
+  - first:
+      213: 7915287997229791031
+    second: ui_spec_02_button_four_states_slice_37
+  - first:
+      213: 1677768885729310682
+    second: ui_spec_02_button_four_states_slice_38
+  - first:
+      213: 7159122278237569214
+    second: ui_spec_02_button_four_states_slice_39
+  - first:
+      213: -3994928701855945887
+    second: ui_spec_02_button_four_states_slice_40
+  - first:
+      213: 4333524841006689471
+    second: ui_spec_02_button_four_states_slice_41
+  - first:
+      213: -2289995592329074486
+    second: ui_spec_02_button_four_states_slice_42
+  - first:
+      213: 2503236341273297279
+    second: ui_spec_02_button_four_states_slice_43
+  - first:
+      213: 1150373896731248245
+    second: ui_spec_02_button_four_states_slice_44
+  - first:
+      213: 1260772125775451589
+    second: ui_spec_02_button_four_states_slice_45
+  - first:
+      213: 5342112776293780268
+    second: ui_spec_02_button_four_states_slice_46
+  - first:
+      213: -7128706083144536255
+    second: ui_spec_02_button_four_states_slice_47
+  - first:
+      213: 4988509753983135309
+    second: ui_spec_02_button_four_states_slice_48
+  - first:
+      213: 7939797456190466754
+    second: ui_spec_02_button_four_states_slice_49
+  - first:
+      213: -7472735442104833954
+    second: ui_spec_02_button_four_states_slice_50
+  - first:
+      213: -8516497418130489021
+    second: ui_spec_02_button_four_states_slice_51
+  - first:
+      213: 3446908299002917727
+    second: ui_spec_02_button_four_states_slice_52
+  - first:
+      213: 2151216814320058564
+    second: ui_spec_02_button_four_states_slice_53
+  - first:
+      213: -8256005507497075607
+    second: ui_spec_02_button_four_states_slice_54
+  - first:
+      213: 8859473174328975775
+    second: ui_spec_02_button_four_states_slice_55
+  - first:
+      213: -7485928840839502721
+    second: ui_spec_02_button_four_states_slice_56
+  - first:
+      213: -8793157554369395360
+    second: ui_spec_02_button_four_states_slice_57
+  - first:
+      213: 1512941899089162185
+    second: ui_spec_02_button_four_states_slice_58
+  - first:
+      213: 1516477239760350488
+    second: ui_spec_02_button_four_states_slice_59
+  - first:
+      213: 2035215430977810968
+    second: ui_spec_02_button_four_states_slice_60
+  - first:
+      213: 8296306355280861582
+    second: ui_spec_02_button_four_states_slice_61
+  - first:
+      213: 5375075296565285820
+    second: ui_spec_02_button_four_states_slice_62
+  - first:
+      213: 5584170905699677629
+    second: ui_spec_02_button_four_states_slice_63
+  - first:
+      213: -3269375667033283019
+    second: ui_spec_02_button_four_states_slice_64
+  - first:
+      213: 4533344030957746145
+    second: ui_spec_02_button_four_states_slice_65
+  - first:
+      213: 368209503323402680
+    second: ui_spec_02_button_four_states_slice_66
+  - first:
+      213: 4880703347559005960
+    second: ui_spec_02_button_four_states_slice_67
+  - first:
+      213: -5577858301310737691
+    second: ui_spec_02_button_four_states_slice_68
+  - first:
+      213: -7016672618055187566
+    second: ui_spec_02_button_four_states_slice_69
+  - first:
+      213: 5877653337122024892
+    second: ui_spec_02_button_four_states_slice_70
+  - first:
+      213: 819895092305320520
+    second: ui_spec_02_button_four_states_slice_71
+  - first:
+      213: -8367937213474050809
+    second: ui_spec_02_button_four_states_slice_72
+  - first:
+      213: 198753314776245469
+    second: ui_spec_02_button_four_states_slice_73
+  - first:
+      213: -8321709351019212503
+    second: ui_spec_02_button_four_states_slice_74
+  - first:
+      213: 2923229474928396250
+    second: ui_spec_02_button_four_states_slice_75
+  - first:
+      213: 5798397491342997333
+    second: ui_spec_02_button_four_states_slice_76
+  - first:
+      213: 1351041006075598313
+    second: ui_spec_02_button_four_states_slice_77
+  - first:
+      213: -3410749429097876047
+    second: ui_spec_02_button_four_states_slice_78
+  - first:
+      213: -8819980844094887742
+    second: ui_spec_02_button_four_states_slice_79
+  - first:
+      213: 3254427465637315687
+    second: ui_spec_02_button_four_states_slice_80
+  - first:
+      213: 9211082323166567327
+    second: ui_spec_02_button_four_states_slice_81
+  - first:
+      213: -2362054682462590028
+    second: ui_spec_02_button_four_states_slice_82
+  - first:
+      213: 4822599813488291850
+    second: ui_spec_02_button_four_states_slice_83
+  - first:
+      213: -517377059691735986
+    second: ui_spec_02_button_four_states_slice_84
+  - first:
+      213: -3846466079692463057
+    second: ui_spec_02_button_four_states_slice_85
+  - first:
+      213: -897967882124994063
+    second: ui_spec_02_button_four_states_slice_86
+  - first:
+      213: 7110464915538385382
+    second: ui_spec_02_button_four_states_slice_87
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_00
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 870
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d8b5b476fc524be0800000000000000
+      internalID: -1494529912743806768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_01
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 870
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48d12600ec7c88bf0800000000000000
+      internalID: -321787685773369980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_02
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 870
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa9f7646312f0a520800000000000000
+      internalID: 2711433140779874735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_03
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 870
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e290999e9cafb5140800000000000000
+      internalID: 4709633580460476718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_04
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 870
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4d14881c8ede3070800000000000000
+      internalID: 8088146674092088652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_05
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 870
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b5c61ec2d9cbc160800000000000000
+      internalID: 7046947949189186992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_06
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 870
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61e9feaf4f4fe26a0800000000000000
+      internalID: -6471966281465618922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_07
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 870
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 557cd140474ab9200800000000000000
+      internalID: 187924627658229589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_08
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b5590e07d70cbbb0800000000000000
+      internalID: -4919048072760568392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_09
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfd20b40fe3330540800000000000000
+      internalID: 4972875515216014845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_10
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3970067fc4a3afa0800000000000000
+      internalID: -5790603484923397830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_11
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f291108f43d7d56c0800000000000000
+      internalID: -4153025614913136337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_12
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e2f3a4626a385d20800000000000000
+      internalID: 3267425723926967011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_13
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8109f6bb092bdceb0800000000000000
+      internalID: -4697902501587873768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_14
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f520e1da8609a78e0800000000000000
+      internalID: -1694883530496146849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_15
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52ac7904dd1f4f450800000000000000
+      internalID: 6121783726077102629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_default
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8caa648a86852f390800000000000000
+      internalID: -7786063599247119672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_hover
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d6a41d611708e500800000000000000
+      internalID: 425597936212420307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_pressed
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd6fd88866ea91740800000000000000
+      internalID: 5123317806511552220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_disabled
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 519f0f740347770b0800000000000000
+      internalID: -5730984250091439851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_20
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9da9297112021ff0800000000000000
+      internalID: -66988770386661985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_21
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec32c941edc3b31b0800000000000000
+      internalID: -5675875980844194866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_22
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26ed126f603f70e30800000000000000
+      internalID: 4469808366413274722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_23
+      rect:
+        serializedVersion: 2
+        x: 1366
+        y: 780
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 666ead65dc815b830800000000000000
+      internalID: 4086199507113141862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_24
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 635
+        width: 317
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa18eb9d9e5843c0800000000000000
+      internalID: -4375143006971880786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_25
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 635
+        width: 317
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b5defbe77ba7d480800000000000000
+      internalID: -8874436009161468493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_26
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 635
+        width: 317
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d08378beea0a7450800000000000000
+      internalID: 6087189866757718226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_27
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 635
+        width: 317
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec5ce42ff6309a150800000000000000
+      internalID: 5884238167477765582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_28
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 555
+        width: 137
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6041a04d24481f180800000000000000
+      internalID: -9083333550869441530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_29
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 555
+        width: 137
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7116273a4d4f59870800000000000000
+      internalID: 8689120250193666327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_30
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 555
+        width: 137
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e60d28e444a1a00800000000000000
+      internalID: 727969393766592002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_31
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 555
+        width: 137
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 616dd4bcf1d765680800000000000000
+      internalID: -8766682049121757674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_32
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 555
+        width: 137
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ace38d76782ce0f60800000000000000
+      internalID: 8002547474702548682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_33
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 555
+        width: 137
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 621b85ba124fe1950800000000000000
+      internalID: 6421838544122720550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_34
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 555
+        width: 137
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc6eaf6455bdbcaf0800000000000000
+      internalID: -374964984645753137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_35
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 555
+        width: 137
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4910fc4c4807c5330800000000000000
+      internalID: 3700956709331599764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_36
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cad32cfac9ceab150800000000000000
+      internalID: 5889279620448140716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_37
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7377bc91f70c8dd60800000000000000
+      internalID: 7915287997229791031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_38
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad7391199e1a84710800000000000000
+      internalID: 1677768885729310682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_39
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb08fe908cf4a5360800000000000000
+      internalID: 7159122278237569214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_40
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16b2ddef2892f88c0800000000000000
+      internalID: -3994928701855945887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_41
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbce88502e5c32c30800000000000000
+      internalID: 4333524841006689471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_42
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac8e306442d4830e0800000000000000
+      internalID: -2289995592329074486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_43
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f71817e80384db220800000000000000
+      internalID: 2503236341273297279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_44
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5764c81d6f2f6ff00800000000000000
+      internalID: 1150373896731248245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_45
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c55f8b81992f7110800000000000000
+      internalID: 1260772125775451589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_46
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2b011d244ff22a40800000000000000
+      internalID: 5342112776293780268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_47
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14fe00e369fb11d90800000000000000
+      internalID: -7128706083144536255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_48
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e6cb4e03fba3540800000000000000
+      internalID: 4988509753983135309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_49
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ca68c438b3df2e60800000000000000
+      internalID: 7939797456190466754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_50
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58aed825b28b4890800000000000000
+      internalID: -7472735442104833954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_51
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3410dc578b25fc980800000000000000
+      internalID: -8516497418130489021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_52
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f533a6fd5d0e5df20800000000000000
+      internalID: 3446908299002917727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_53
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c005648b48aadd10800000000000000
+      internalID: 2151216814320058564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_54
+      rect:
+        serializedVersion: 2
+        x: 1366
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96cd7fdabb6cc6d80800000000000000
+      internalID: -8256005507497075607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_55
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 455
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f912bfc99eb23fa70800000000000000
+      internalID: 8859473174328975775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_56
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 365
+        width: 317
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f74e8e3a163ac1890800000000000000
+      internalID: -7485928840839502721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_57
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 365
+        width: 317
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06505cddacd68f580800000000000000
+      internalID: -8793157554369395360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_58
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 365
+        width: 317
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cfa30d24ac0ff410800000000000000
+      internalID: 1512941899089162185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_59
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 365
+        width: 317
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81d61e1d30c9b0510800000000000000
+      internalID: 1516477239760350488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_60
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 280
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81273d4c6a98e3c10800000000000000
+      internalID: 2035215430977810968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_61
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 280
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e89d456aca6622370800000000000000
+      internalID: 8296306355280861582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_62
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 280
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb350ccf08a189a40800000000000000
+      internalID: 5375075296565285820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_63
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 280
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db5fc4f3ad5fe7d40800000000000000
+      internalID: 5584170905699677629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_64
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 220
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 536ec291728d0a2d0800000000000000
+      internalID: -3269375667033283019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_65
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 220
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e7bfd1a06ca9ee30800000000000000
+      internalID: 4533344030957746145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_66
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 220
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b1b388a7942c1500800000000000000
+      internalID: 368209503323402680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_67
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 220
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80f7055e5ddbbb340800000000000000
+      internalID: 4880703347559005960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_68
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 160
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e2e8ee7d677792b0800000000000000
+      internalID: -5577858301310737691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_69
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 160
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2934c970e65cf9e90800000000000000
+      internalID: -7016672618055187566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_70
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 160
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbd2c08a19e919150800000000000000
+      internalID: 5877653337122024892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_71
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 160
+        width: 267
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84ad1f11e3ad06b00800000000000000
+      internalID: 819895092305320520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_72
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70d6b18807d1fdb80800000000000000
+      internalID: -8367937213474050809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_73
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd46b25361d12c200800000000000000
+      internalID: 198753314776245469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_74
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92114708f69538c80800000000000000
+      internalID: -8321709351019212503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_75
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad70f0238b5619820800000000000000
+      internalID: 2923229474928396250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_76
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 557f3021ccb087050800000000000000
+      internalID: 5798397491342997333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_77
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e55f1c03acdfb210800000000000000
+      internalID: 1351041006075598313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_78
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b531c417759aa0d0800000000000000
+      internalID: -3410749429097876047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_79
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c869fd0722299580800000000000000
+      internalID: -8819980844094887742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_80
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 764469c898c0a2d20800000000000000
+      internalID: 3254427465637315687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_81
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9b193d029654df70800000000000000
+      internalID: 9211082323166567327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_82
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bbe4cfe7cb483fd0800000000000000
+      internalID: -2362054682462590028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_83
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a00b5d8aaf05de240800000000000000
+      internalID: 4822599813488291850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_84
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e44532e2e48e1d8f0800000000000000
+      internalID: -517377059691735986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_85
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f24675fda7b9e9ac0800000000000000
+      internalID: -3846466079692463057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_86
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f9da3608f6c983f0800000000000000
+      internalID: -897967882124994063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_spec_02_button_four_states_slice_87
+      rect:
+        serializedVersion: 2
+        x: 1366
+        y: 60
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e91b86fa227da260800000000000000
+      internalID: 7110464915538385382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      button_default: -7786063599247119672
+      button_disabled: -5730984250091439851
+      button_hover: 425597936212420307
+      button_pressed: 5123317806511552220
+      ui_spec_02_button_four_states_0: -4842155002540284661
+      ui_spec_02_button_four_states_1: -7074609660684766330
+      ui_spec_02_button_four_states_10: 2622983607964958483
+      ui_spec_02_button_four_states_100: 4507391173761517838
+      ui_spec_02_button_four_states_101: -6082860975317987041
+      ui_spec_02_button_four_states_102: -786117770194492153
+      ui_spec_02_button_four_states_103: -9038362991014530987
+      ui_spec_02_button_four_states_104: 7447525542089806319
+      ui_spec_02_button_four_states_105: -7117513004427801243
+      ui_spec_02_button_four_states_106: 1343276555904519616
+      ui_spec_02_button_four_states_107: 3189249384264434773
+      ui_spec_02_button_four_states_11: 4149616735678951061
+      ui_spec_02_button_four_states_12: 2120041665160590491
+      ui_spec_02_button_four_states_13: -1915432865962962518
+      ui_spec_02_button_four_states_14: 8637070989699385139
+      ui_spec_02_button_four_states_15: -2103329338128526145
+      ui_spec_02_button_four_states_16: -4408278999934443118
+      ui_spec_02_button_four_states_17: 8313489966864996702
+      ui_spec_02_button_four_states_18: 5542924287861067686
+      ui_spec_02_button_four_states_19: 1556477927662483968
+      ui_spec_02_button_four_states_2: 1755735909159487819
+      ui_spec_02_button_four_states_20: -6334576147223971320
+      ui_spec_02_button_four_states_21: -8498267041258329461
+      ui_spec_02_button_four_states_22: -7719838481282021672
+      ui_spec_02_button_four_states_23: -7723983214862426480
+      ui_spec_02_button_four_states_24: -3802830650093223043
+      ui_spec_02_button_four_states_25: 3884857412223938517
+      ui_spec_02_button_four_states_26: 3668156680017647516
+      ui_spec_02_button_four_states_27: 1116999952482412534
+      ui_spec_02_button_four_states_28: -2270166097727018571
+      ui_spec_02_button_four_states_29: -5841316899737507859
+      ui_spec_02_button_four_states_3: 3356087986812423557
+      ui_spec_02_button_four_states_30: 3869864985706765506
+      ui_spec_02_button_four_states_31: 6480427503187425952
+      ui_spec_02_button_four_states_32: 2306900419213473431
+      ui_spec_02_button_four_states_33: 6043995327110580988
+      ui_spec_02_button_four_states_34: 6509498042664133148
+      ui_spec_02_button_four_states_35: 4620138762320065943
+      ui_spec_02_button_four_states_36: -5423813676566560909
+      ui_spec_02_button_four_states_37: -8562356905424526317
+      ui_spec_02_button_four_states_38: -5763256855384266834
+      ui_spec_02_button_four_states_39: 2818104355363017124
+      ui_spec_02_button_four_states_4: 5896999880060768486
+      ui_spec_02_button_four_states_40: 1417008861890327171
+      ui_spec_02_button_four_states_41: -8152953459671894600
+      ui_spec_02_button_four_states_42: 2232488702891366742
+      ui_spec_02_button_four_states_43: 1809923376827168337
+      ui_spec_02_button_four_states_44: 277369581783426557
+      ui_spec_02_button_four_states_45: -204806594748096825
+      ui_spec_02_button_four_states_46: 6344222413509528421
+      ui_spec_02_button_four_states_47: 5225759206948762670
+      ui_spec_02_button_four_states_48: -3205499650091730060
+      ui_spec_02_button_four_states_49: -9138466987306967727
+      ui_spec_02_button_four_states_5: 6755970526038018149
+      ui_spec_02_button_four_states_50: 1109928214434984744
+      ui_spec_02_button_four_states_51: -5667515311611779483
+      ui_spec_02_button_four_states_52: 4185118235423382887
+      ui_spec_02_button_four_states_53: 1773913412736874253
+      ui_spec_02_button_four_states_54: 8603471056756043394
+      ui_spec_02_button_four_states_55: -8569513807377173383
+      ui_spec_02_button_four_states_56: 3911332109964846224
+      ui_spec_02_button_four_states_57: -5630699618246584152
+      ui_spec_02_button_four_states_58: 5022036522223480774
+      ui_spec_02_button_four_states_59: 8221200300373275388
+      ui_spec_02_button_four_states_6: -8459662023352096993
+      ui_spec_02_button_four_states_60: 1089287146769686748
+      ui_spec_02_button_four_states_61: -2558989360991965677
+      ui_spec_02_button_four_states_62: 979312699959613616
+      ui_spec_02_button_four_states_63: -2052964026735382662
+      ui_spec_02_button_four_states_64: 4434534256569330316
+      ui_spec_02_button_four_states_65: 6980634342049168783
+      ui_spec_02_button_four_states_66: -7616828379293754119
+      ui_spec_02_button_four_states_67: -991770111122941287
+      ui_spec_02_button_four_states_68: 7168784316369712505
+      ui_spec_02_button_four_states_69: -7252203700886602785
+      ui_spec_02_button_four_states_7: 6828543297672599
+      ui_spec_02_button_four_states_70: -1973887006092014685
+      ui_spec_02_button_four_states_71: -7052069650105354609
+      ui_spec_02_button_four_states_72: 8605876468087413667
+      ui_spec_02_button_four_states_73: 3401221365422843152
+      ui_spec_02_button_four_states_74: 5065901720499711204
+      ui_spec_02_button_four_states_75: -3449324938876023541
+      ui_spec_02_button_four_states_76: 7503772414069212498
+      ui_spec_02_button_four_states_77: -1219112505737252433
+      ui_spec_02_button_four_states_78: 5978884945621230889
+      ui_spec_02_button_four_states_79: -2345234609525359449
+      ui_spec_02_button_four_states_8: 2831401254255102268
+      ui_spec_02_button_four_states_80: -8579156020427293317
+      ui_spec_02_button_four_states_81: -7543194107034480589
+      ui_spec_02_button_four_states_82: 2641864730630615290
+      ui_spec_02_button_four_states_83: 4906770388307654851
+      ui_spec_02_button_four_states_84: 3417907128177225368
+      ui_spec_02_button_four_states_85: 1710202011171605769
+      ui_spec_02_button_four_states_86: -318612193318732217
+      ui_spec_02_button_four_states_87: 5530577800413039488
+      ui_spec_02_button_four_states_88: 6923960016244674835
+      ui_spec_02_button_four_states_89: 5917440412108913733
+      ui_spec_02_button_four_states_9: -1494635870543967166
+      ui_spec_02_button_four_states_90: 3354270414375633120
+      ui_spec_02_button_four_states_91: -2627448817447979803
+      ui_spec_02_button_four_states_92: -5083331721970340761
+      ui_spec_02_button_four_states_93: 6289683667385417670
+      ui_spec_02_button_four_states_94: 4926346138417391413
+      ui_spec_02_button_four_states_95: -1704034860061816026
+      ui_spec_02_button_four_states_96: 8252116858984586314
+      ui_spec_02_button_four_states_97: 4476551599649954943
+      ui_spec_02_button_four_states_98: -2207936720658728233
+      ui_spec_02_button_four_states_99: -4623676131444219541
+      ui_spec_02_button_four_states_slice_00: -1494529912743806768
+      ui_spec_02_button_four_states_slice_01: -321787685773369980
+      ui_spec_02_button_four_states_slice_02: 2711433140779874735
+      ui_spec_02_button_four_states_slice_03: 4709633580460476718
+      ui_spec_02_button_four_states_slice_04: 8088146674092088652
+      ui_spec_02_button_four_states_slice_05: 7046947949189186992
+      ui_spec_02_button_four_states_slice_06: -6471966281465618922
+      ui_spec_02_button_four_states_slice_07: 187924627658229589
+      ui_spec_02_button_four_states_slice_08: -4919048072760568392
+      ui_spec_02_button_four_states_slice_09: 4972875515216014845
+      ui_spec_02_button_four_states_slice_10: -5790603484923397830
+      ui_spec_02_button_four_states_slice_11: -4153025614913136337
+      ui_spec_02_button_four_states_slice_12: 3267425723926967011
+      ui_spec_02_button_four_states_slice_13: -4697902501587873768
+      ui_spec_02_button_four_states_slice_14: -1694883530496146849
+      ui_spec_02_button_four_states_slice_15: 6121783726077102629
+      ui_spec_02_button_four_states_slice_20: -66988770386661985
+      ui_spec_02_button_four_states_slice_21: -5675875980844194866
+      ui_spec_02_button_four_states_slice_22: 4469808366413274722
+      ui_spec_02_button_four_states_slice_23: 4086199507113141862
+      ui_spec_02_button_four_states_slice_24: -4375143006971880786
+      ui_spec_02_button_four_states_slice_25: -8874436009161468493
+      ui_spec_02_button_four_states_slice_26: 6087189866757718226
+      ui_spec_02_button_four_states_slice_27: 5884238167477765582
+      ui_spec_02_button_four_states_slice_28: -9083333550869441530
+      ui_spec_02_button_four_states_slice_29: 8689120250193666327
+      ui_spec_02_button_four_states_slice_30: 727969393766592002
+      ui_spec_02_button_four_states_slice_31: -8766682049121757674
+      ui_spec_02_button_four_states_slice_32: 8002547474702548682
+      ui_spec_02_button_four_states_slice_33: 6421838544122720550
+      ui_spec_02_button_four_states_slice_34: -374964984645753137
+      ui_spec_02_button_four_states_slice_35: 3700956709331599764
+      ui_spec_02_button_four_states_slice_36: 5889279620448140716
+      ui_spec_02_button_four_states_slice_37: 7915287997229791031
+      ui_spec_02_button_four_states_slice_38: 1677768885729310682
+      ui_spec_02_button_four_states_slice_39: 7159122278237569214
+      ui_spec_02_button_four_states_slice_40: -3994928701855945887
+      ui_spec_02_button_four_states_slice_41: 4333524841006689471
+      ui_spec_02_button_four_states_slice_42: -2289995592329074486
+      ui_spec_02_button_four_states_slice_43: 2503236341273297279
+      ui_spec_02_button_four_states_slice_44: 1150373896731248245
+      ui_spec_02_button_four_states_slice_45: 1260772125775451589
+      ui_spec_02_button_four_states_slice_46: 5342112776293780268
+      ui_spec_02_button_four_states_slice_47: -7128706083144536255
+      ui_spec_02_button_four_states_slice_48: 4988509753983135309
+      ui_spec_02_button_four_states_slice_49: 7939797456190466754
+      ui_spec_02_button_four_states_slice_50: -7472735442104833954
+      ui_spec_02_button_four_states_slice_51: -8516497418130489021
+      ui_spec_02_button_four_states_slice_52: 3446908299002917727
+      ui_spec_02_button_four_states_slice_53: 2151216814320058564
+      ui_spec_02_button_four_states_slice_54: -8256005507497075607
+      ui_spec_02_button_four_states_slice_55: 8859473174328975775
+      ui_spec_02_button_four_states_slice_56: -7485928840839502721
+      ui_spec_02_button_four_states_slice_57: -8793157554369395360
+      ui_spec_02_button_four_states_slice_58: 1512941899089162185
+      ui_spec_02_button_four_states_slice_59: 1516477239760350488
+      ui_spec_02_button_four_states_slice_60: 2035215430977810968
+      ui_spec_02_button_four_states_slice_61: 8296306355280861582
+      ui_spec_02_button_four_states_slice_62: 5375075296565285820
+      ui_spec_02_button_four_states_slice_63: 5584170905699677629
+      ui_spec_02_button_four_states_slice_64: -3269375667033283019
+      ui_spec_02_button_four_states_slice_65: 4533344030957746145
+      ui_spec_02_button_four_states_slice_66: 368209503323402680
+      ui_spec_02_button_four_states_slice_67: 4880703347559005960
+      ui_spec_02_button_four_states_slice_68: -5577858301310737691
+      ui_spec_02_button_four_states_slice_69: -7016672618055187566
+      ui_spec_02_button_four_states_slice_70: 5877653337122024892
+      ui_spec_02_button_four_states_slice_71: 819895092305320520
+      ui_spec_02_button_four_states_slice_72: -8367937213474050809
+      ui_spec_02_button_four_states_slice_73: 198753314776245469
+      ui_spec_02_button_four_states_slice_74: -8321709351019212503
+      ui_spec_02_button_four_states_slice_75: 2923229474928396250
+      ui_spec_02_button_four_states_slice_76: 5798397491342997333
+      ui_spec_02_button_four_states_slice_77: 1351041006075598313
+      ui_spec_02_button_four_states_slice_78: -3410749429097876047
+      ui_spec_02_button_four_states_slice_79: -8819980844094887742
+      ui_spec_02_button_four_states_slice_80: 3254427465637315687
+      ui_spec_02_button_four_states_slice_81: 9211082323166567327
+      ui_spec_02_button_four_states_slice_82: -2362054682462590028
+      ui_spec_02_button_four_states_slice_83: 4822599813488291850
+      ui_spec_02_button_four_states_slice_84: -517377059691735986
+      ui_spec_02_button_four_states_slice_85: -3846466079692463057
+      ui_spec_02_button_four_states_slice_86: -897967882124994063
+      ui_spec_02_button_four_states_slice_87: 7110464915538385382
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

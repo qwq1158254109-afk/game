@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace4876682b1522429834a3f69022743, type: 3}
+  m_Name: New20_HomeFamilyDinner
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.HomeMapActivityData
+  activityId: activity_home_family_dinner
+  displayName: "\u5BB6\u5EAD\u665A\u996D\u804A\u5929"
+  description: "\u548C\u5BB6\u4EBA\u8FB9\u5403\u665A\u996D\u8FB9\u804A\u804A\u8FD1\u51B5\u3002"
+  activityType: 0
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: 
+  timeCost: 1
+  linkedChallenge: {fileID: 0}
+  linkedEvent: {fileID: 0}
+  linkedMiniGame: {fileID: 0}
+  fixedRewards:
+  - rewardType: 3
+    targetStat: 7
+    value: 5
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u4EB2\u5B50 +5"
+  - rewardType: 3
+    targetStat: 6
+    value: 5
+    card: {fileID: 0}
+    item: {fileID: 0}
+    activity: {fileID: 0}
+    stage: {fileID: 0}
+    description: "\u5FC3\u60C5 +5"
+  possibleRewards: []
+  appearConditions: []

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbace73e5dd6ed4c8d0d5f4bfe84788, type: 3}
+  m_Name: New20_ShopBrowseGoods
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.ShopMapActivityData
+  activityId: activity_shop_browse_goods
+  displayName: "\u6D4F\u89C8\u5546\u5E97"
+  description: "\u67E5\u770B\u8D27\u67B6\u4E0E\u8865\u7ED9\u3002\u8D2D\u4E70\u7CFB\u7EDF\u540E\u7EED\u63A5\u5165\u3002"
+  activityType: 4
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: 
+  timeCost: 0
+  linkedChallenge: {fileID: 0}
+  linkedEvent: {fileID: 0}
+  linkedMiniGame: {fileID: 0}
+  fixedRewards: []
+  possibleRewards: []
+  appearConditions: []

@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 5358d6fe0f666ff4bb4c5ec163500a9a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7136475493365079257
+    second: animated_trap_falling_blade_32x32_0
+  - first:
+      213: 3049274924051276475
+    second: animated_trap_falling_blade_32x32_1
+  - first:
+      213: -8055374873857167194
+    second: animated_trap_falling_blade_32x32_2
+  - first:
+      213: -5748569395128452993
+    second: animated_trap_falling_blade_32x32_3
+  - first:
+      213: -1076543485067121195
+    second: animated_trap_falling_blade_32x32_4
+  - first:
+      213: -3939647123085026172
+    second: animated_trap_falling_blade_32x32_5
+  - first:
+      213: 830599892974805833
+    second: animated_trap_falling_blade_32x32_6
+  - first:
+      213: -4581516499865791020
+    second: animated_trap_falling_blade_32x32_7
+  - first:
+      213: 4377229720722767568
+    second: animated_trap_falling_blade_32x32_8
+  - first:
+      213: 4402270566760956989
+    second: animated_trap_falling_blade_32x32_9
+  - first:
+      213: -3582483868184327440
+    second: animated_trap_falling_blade_32x32_10
+  - first:
+      213: -6319467275122440131
+    second: animated_trap_falling_blade_32x32_11
+  - first:
+      213: -3337964510605956650
+    second: animated_trap_falling_blade_32x32_12
+  - first:
+      213: -4516115485153836455
+    second: animated_trap_falling_blade_32x32_13
+  - first:
+      213: -2529518310650362603
+    second: animated_trap_falling_blade_32x32_14
+  - first:
+      213: -5218907401263543691
+    second: animated_trap_falling_blade_32x32_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7
+        width: 384
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dc5e4a86aad90360800000000000000
+      internalID: 7136475493365079257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_1
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2259e3363315a20800000000000000
+      internalID: 3049274924051276475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 7
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a0f22f3b3f853090800000000000000
+      internalID: -8055374873857167194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f78bfa4a79af830b0800000000000000
+      internalID: -5748569395128452993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 7
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dd205377695f01f0800000000000000
+      internalID: -1076543485067121195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48c902090df8359c0800000000000000
+      internalID: -3939647123085026172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 7
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 943ad33b332e68b00800000000000000
+      internalID: 830599892974805833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d598ec640f2b60c0800000000000000
+      internalID: -4581516499865791020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0de76fb4d3b0fbc30800000000000000
+      internalID: 4377229720722767568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d34c1f891c1081d30800000000000000
+      internalID: 4402270566760956989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_10
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fa4e4717e5784ec0800000000000000
+      internalID: -3582483868184327440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_11
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d380f98cefdbc48a0800000000000000
+      internalID: -6319467275122440131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_12
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d9a87086fa2da1d0800000000000000
+      internalID: -3337964510605956650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_13
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 952c3c6c4e88351c0800000000000000
+      internalID: -4516115485153836455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_14
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 515c6d89f7855ecd0800000000000000
+      internalID: -2529518310650362603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_trap_falling_blade_32x32_15
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a87089e57b297b0800000000000000
+      internalID: -5218907401263543691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      animated_trap_falling_blade_32x32_0: 7136475493365079257
+      animated_trap_falling_blade_32x32_1: 3049274924051276475
+      animated_trap_falling_blade_32x32_10: -3582483868184327440
+      animated_trap_falling_blade_32x32_11: -6319467275122440131
+      animated_trap_falling_blade_32x32_12: -3337964510605956650
+      animated_trap_falling_blade_32x32_13: -4516115485153836455
+      animated_trap_falling_blade_32x32_14: -2529518310650362603
+      animated_trap_falling_blade_32x32_15: -5218907401263543691
+      animated_trap_falling_blade_32x32_2: -8055374873857167194
+      animated_trap_falling_blade_32x32_3: -5748569395128452993
+      animated_trap_falling_blade_32x32_4: -1076543485067121195
+      animated_trap_falling_blade_32x32_5: -3939647123085026172
+      animated_trap_falling_blade_32x32_6: 830599892974805833
+      animated_trap_falling_blade_32x32_7: -4581516499865791020
+      animated_trap_falling_blade_32x32_8: 4377229720722767568
+      animated_trap_falling_blade_32x32_9: 4402270566760956989
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

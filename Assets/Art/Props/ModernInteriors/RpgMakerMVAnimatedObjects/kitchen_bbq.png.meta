@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: ea89c6dd61f154b46a3b468a332cd341
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2876235640130979277
+    second: kitchen_bbq_0
+  - first:
+      213: 309452469460456556
+    second: kitchen_bbq_1
+  - first:
+      213: -8581349725943719999
+    second: kitchen_bbq_2
+  - first:
+      213: 2195691041900324473
+    second: kitchen_bbq_3
+  - first:
+      213: -6143981716564856044
+    second: kitchen_bbq_4
+  - first:
+      213: -6693763865805937326
+    second: kitchen_bbq_5
+  - first:
+      213: -1309944610046913216
+    second: kitchen_bbq_6
+  - first:
+      213: 6570619190455365073
+    second: kitchen_bbq_7
+  - first:
+      213: -8376552692766812977
+    second: kitchen_bbq_8
+  - first:
+      213: -1832256999536488346
+    second: kitchen_bbq_9
+  - first:
+      213: -4038719696670839784
+    second: kitchen_bbq_10
+  - first:
+      213: -202888433145730820
+    second: kitchen_bbq_11
+  - first:
+      213: 4806544882322240195
+    second: kitchen_bbq_12
+  - first:
+      213: 1031352587923947646
+    second: kitchen_bbq_13
+  - first:
+      213: -6980755179976879404
+    second: kitchen_bbq_14
+  - first:
+      213: -6822960304833498150
+    second: kitchen_bbq_15
+  - first:
+      213: 6092712769877640026
+    second: kitchen_bbq_16
+  - first:
+      213: 5269984236860674704
+    second: kitchen_bbq_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kitchen_bbq_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 443
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc5435463117ae720800000000000000
+      internalID: 2876235640130979277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_1
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 443
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c64de05a1656b4400800000000000000
+      internalID: 309452469460456556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_2
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 443
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c79ab3e3ebe8e880800000000000000
+      internalID: -8581349725943719999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_3
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 299
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976e9fc8e59a87e10800000000000000
+      internalID: 2195691041900324473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_4
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 299
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41338a55e213cbaa0800000000000000
+      internalID: -6143981716564856044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_5
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 299
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 255aa48aa39fa13a0800000000000000
+      internalID: -6693763865805937326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_6
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 155
+        width: 71
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04557ba415422dde0800000000000000
+      internalID: -1309944610046913216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_7
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 248
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dde47157578f2b50800000000000000
+      internalID: 6570619190455365073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_8
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 242
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc4da41f4b180cb80800000000000000
+      internalID: -8376552692766812977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_9
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 155
+        width: 71
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 660976577f38296e0800000000000000
+      internalID: -1832256999536488346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_10
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 248
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81caf8c75d593f7c0800000000000000
+      internalID: -4038719696670839784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_11
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 242
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf820558b023f2df0800000000000000
+      internalID: -202888433145730820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_12
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 155
+        width: 71
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c2f9c3ba1744b240800000000000000
+      internalID: 4806544882322240195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_13
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 248
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e700361e6b9105e00800000000000000
+      internalID: 1031352587923947646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_14
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 242
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d2928146206f1f90800000000000000
+      internalID: -6980755179976879404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_15
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 11
+        width: 71
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad3fec990c9ff41a0800000000000000
+      internalID: -6822960304833498150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_16
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 11
+        width: 71
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a530b0fcbf9ad8450800000000000000
+      internalID: 6092712769877640026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitchen_bbq_17
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 11
+        width: 71
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0921df9edbeb22940800000000000000
+      internalID: 5269984236860674704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      kitchen_bbq_0: 2876235640130979277
+      kitchen_bbq_1: 309452469460456556
+      kitchen_bbq_10: -4038719696670839784
+      kitchen_bbq_11: -202888433145730820
+      kitchen_bbq_12: 4806544882322240195
+      kitchen_bbq_13: 1031352587923947646
+      kitchen_bbq_14: -6980755179976879404
+      kitchen_bbq_15: -6822960304833498150
+      kitchen_bbq_16: 6092712769877640026
+      kitchen_bbq_17: 5269984236860674704
+      kitchen_bbq_2: -8581349725943719999
+      kitchen_bbq_3: 2195691041900324473
+      kitchen_bbq_4: -6143981716564856044
+      kitchen_bbq_5: -6693763865805937326
+      kitchen_bbq_6: -1309944610046913216
+      kitchen_bbq_7: 6570619190455365073
+      kitchen_bbq_8: -8376552692766812977
+      kitchen_bbq_9: -1832256999536488346
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

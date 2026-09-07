@@ -1,0 +1,676 @@
+fileFormatVersion: 2
+guid: 28c4698a35d809f46a42c4fd09fd388d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6860428335014246061
+    second: '!$Trapdoors_0'
+  - first:
+      213: -3902376133232225881
+    second: '!$Trapdoors_1'
+  - first:
+      213: 3537397426704446062
+    second: '!$Trapdoors_2'
+  - first:
+      213: 1997039127725010967
+    second: '!$Trapdoors_3'
+  - first:
+      213: 8065886019573872292
+    second: '!$Trapdoors_4'
+  - first:
+      213: -6739413855619193191
+    second: '!$Trapdoors_5'
+  - first:
+      213: -3837501547898697298
+    second: '!$Trapdoors_6'
+  - first:
+      213: -847134852301759008
+    second: '!$Trapdoors_7'
+  - first:
+      213: -5776579688220308354
+    second: '!$Trapdoors_8'
+  - first:
+      213: 9100545672138535759
+    second: '!$Trapdoors_9'
+  - first:
+      213: 3299738867444424326
+    second: '!$Trapdoors_10'
+  - first:
+      213: -4511019177239857000
+    second: '!$Trapdoors_11'
+  - first:
+      213: -1827245383913907418
+    second: '!$Trapdoors_12'
+  - first:
+      213: -2774687458401595521
+    second: '!$Trapdoors_13'
+  - first:
+      213: 2057302816142038698
+    second: '!$Trapdoors_14'
+  - first:
+      213: -7456086090598536413
+    second: '!$Trapdoors_15'
+  - first:
+      213: 7038993132021095426
+    second: '!$Trapdoors_16'
+  - first:
+      213: 25213634500305628
+    second: '!$Trapdoors_17'
+  - first:
+      213: 2377714902907385936
+    second: '!$Trapdoors_18'
+  - first:
+      213: -1491299682267894637
+    second: '!$Trapdoors_19'
+  - first:
+      213: -7340661178367015226
+    second: '!$Trapdoors_20'
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: '!$Trapdoors_0'
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 146
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da67c8bf833253f50800000000000000
+      internalID: 6860428335014246061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_1'
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 146
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a11bbe1599f7d9c0800000000000000
+      internalID: -3902376133232225881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_2'
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 146
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e627918b73c571130800000000000000
+      internalID: 3537397426704446062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_3'
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 98
+        width: 22
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 710fa928188e6bb10800000000000000
+      internalID: 1997039127725010967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_4'
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 98
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a67d739998cfef60800000000000000
+      internalID: 8065886019573872292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_5'
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 98
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 996e8752ecac872a0800000000000000
+      internalID: -6739413855619193191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_6'
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 98
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea98c749ca47ebac0800000000000000
+      internalID: -3837501547898697298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_7'
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 98
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed53b3175f5e34f0800000000000000
+      internalID: -847134852301759008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_8'
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 98
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7c44e2116775dfa0800000000000000
+      internalID: -5776579688220308354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_9'
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 16
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4339027212ab4e70800000000000000
+      internalID: 9100545672138535759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_10'
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 50
+        width: 17
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68e139564070bcd20800000000000000
+      internalID: 3299738867444424326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_11'
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 50
+        width: 17
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 898b4ad65f3a561c0800000000000000
+      internalID: -4511019177239857000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_12'
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 50
+        width: 17
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62bd656210254a6e0800000000000000
+      internalID: -1827245383913907418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_13'
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 50
+        width: 17
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7fcd3f15745e79d0800000000000000
+      internalID: -2774687458401595521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_14'
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 50
+        width: 17
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa69e8fd2020d8c10800000000000000
+      internalID: 2057302816142038698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_15'
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 10
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32ba4236439a68890800000000000000
+      internalID: -7456086090598536413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_16'
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 2
+        width: 11
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20c188a95f68fa160800000000000000
+      internalID: 7038993132021095426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_17'
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 2
+        width: 11
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd223efbaa3995000800000000000000
+      internalID: 25213634500305628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_18'
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 2
+        width: 11
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05872f44b175ff020800000000000000
+      internalID: 2377714902907385936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_19'
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 2
+        width: 11
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39ce4c817d6dd4be0800000000000000
+      internalID: -1491299682267894637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Trapdoors_20'
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 2
+        width: 11
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c60feefc8bb02a90800000000000000
+      internalID: -7340661178367015226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      '!$Trapdoors_0': 6860428335014246061
+      '!$Trapdoors_1': -3902376133232225881
+      '!$Trapdoors_10': 3299738867444424326
+      '!$Trapdoors_11': -4511019177239857000
+      '!$Trapdoors_12': -1827245383913907418
+      '!$Trapdoors_13': -2774687458401595521
+      '!$Trapdoors_14': 2057302816142038698
+      '!$Trapdoors_15': -7456086090598536413
+      '!$Trapdoors_16': 7038993132021095426
+      '!$Trapdoors_17': 25213634500305628
+      '!$Trapdoors_18': 2377714902907385936
+      '!$Trapdoors_19': -1491299682267894637
+      '!$Trapdoors_2': 3537397426704446062
+      '!$Trapdoors_20': -7340661178367015226
+      '!$Trapdoors_3': 1997039127725010967
+      '!$Trapdoors_4': 8065886019573872292
+      '!$Trapdoors_5': -6739413855619193191
+      '!$Trapdoors_6': -3837501547898697298
+      '!$Trapdoors_7': -847134852301759008
+      '!$Trapdoors_8': -5776579688220308354
+      '!$Trapdoors_9': 9100545672138535759
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

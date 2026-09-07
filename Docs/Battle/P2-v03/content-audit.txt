@@ -1,0 +1,18 @@
+Success=True
+Challenge=Assets/Resources/StudentGrowth/Battle/P2/boss_class_quiz.asset
+Cards=7
+card_rest_good_sleep => Assets/Resources/StudentGrowth/Battle/P2/card_rest_good_sleep.asset
+card_study_after_class_review => Assets/Resources/StudentGrowth/Battle/P2/card_study_after_class_review.asset
+card_study_class_focus => Assets/Resources/StudentGrowth/Battle/P2/card_study_class_focus.asset
+card_study_english_words => Assets/Resources/StudentGrowth/Battle/P2/card_study_english_words.asset
+card_study_math_practice => Assets/Resources/StudentGrowth/Battle/P2/card_study_math_practice.asset
+card_study_mock_exam => Assets/Resources/StudentGrowth/Battle/P2/card_study_mock_exam.asset
+card_study_wrong_book => Assets/Resources/StudentGrowth/Battle/P2/card_study_wrong_book.asset
+WARNING Card[card_rest_good_sleep].effects[0]: legacy long-term scope computes on isolated copy only
+WARNING Card[card_rest_good_sleep].effects[1]: legacy long-term scope computes on isolated copy only
+WARNING Card[card_study_after_class_review].damage/drawCount: display-only legacy scalars ignored; effects are authoritative
+WARNING Card[card_study_class_focus].damage/drawCount: display-only legacy scalars ignored; effects are authoritative
+WARNING Card[card_study_english_words].damage/drawCount: display-only legacy scalars ignored; effects are authoritative
+WARNING Card[card_study_math_practice]: Unified ignores legacy scalar fields and exhaustAfterUse
+WARNING Card[card_study_mock_exam]: Unified ignores legacy scalar fields and exhaustAfterUse
+WARNING Card[card_study_wrong_book].damage/drawCount: display-only legacy scalars ignored; effects are authoritative

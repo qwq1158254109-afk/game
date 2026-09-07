@@ -1,0 +1,49 @@
+PASS save isolation: fresh GUID directory under test-only root
+PASS desk is reachable and facing-selectable
+PASS original desk planning option remains available
+PASS original planning activity still consumes its configured time
+PASS completed planning is disabled while battle option remains available
+PASS keyboard confirmation cannot repeat completed planning
+PASS existing desk interaction opens
+PASS startup failure restores cost and discards next-frame notifications
+PASS existing desk interaction opens
+PASS next legitimate action publishes exactly one notification
+PASS each time budget charged once
+PASS player identity preserved at entry
+PASS active battle blocks all save capture
+PASS pre-captured automatic snapshot cannot bypass save gate
+PASS map input cannot re-enter while battle active
+PASS cancelled drag leaves rules and energy unchanged
+PASS targeted drag plays exactly its bound instance
+PASS real card buttons reach victory
+PASS normal victory awards once at terminal
+PASS normal victory does not advance stage
+PASS result display stays unsaveable
+PASS return failure preserves committed result
+PASS failed return blocks save
+PASS retry returns without a second cost or reward
+PASS save capture permitted after restored map
+PASS existing desk interaction opens
+PASS real end-turn button reaches defeat
+PASS normal defeat keeps entry cost without stage completion
+PASS old result callback cannot return a newer battle
+PASS existing desk interaction opens
+PASS last ordinary activity records pending boss
+PASS real card buttons reach victory
+PASS return hands off directly to boss with save gate held
+PASS automatic boss does not charge activity time
+PASS real end-turn button reaches defeat
+PASS boss defeat leaves stage retryable
+PASS boss retry does not charge activity time
+PASS real card buttons reach victory
+PASS boss retry victory claims completion once
+PASS boss victory proceeds to next stage and restores map
+PASS post-stage map can be saved
+PASS test slot is empty before first write; existing slots are never overwritten
+PASS manual save writes restored map state
+PASS saved post-battle state decodes through existing codec
+PASS existing desk interaction opens
+PASS existing session termination cancels battle and releases ownership
+PASS old callbacks rejected after session end
+PASS no runtime Console errors
+PASS ALL

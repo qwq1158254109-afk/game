@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc64f56fd8b8b6418886aa27cd607e1, type: 3}
+  m_Name: card_study_class_focus
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.BattleCardAsset
+  effectSchemaVersion: 0
+  requireSupportedBattleContent: 1
+  cardId: card_study_class_focus
+  displayName: "\u8BFE\u5802\u4E13\u6CE8"
+  cardType: 0
+  rarity: 0
+  cost: 1
+  description: 
+  cardSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_study_class_focus.png
+  targetType: 2
+  damage: 6
+  block: 0
+  drawCount: 0
+  discardCount: 0
+  exhaust: 0
+  ethereal: 0
+  retain: 0
+  effects:
+  - effectType: 0
+    targetStat: 0
+    value: 6
+    tag: 
+  tags: []
+  exhaustAfterUse: 0
+  isUpgradeable: 0
+  upgradedVersion: {fileID: 0}

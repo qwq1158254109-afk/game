@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 39c9bcbcc6853fb44b5671817f495741
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1949756593607041432
+    second: animated_haunted_mirror_2_48x48_0
+  - first:
+      213: 7886412430666696533
+    second: animated_haunted_mirror_2_48x48_1
+  - first:
+      213: -3202565059377986358
+    second: animated_haunted_mirror_2_48x48_2
+  - first:
+      213: -1577652882422540190
+    second: animated_haunted_mirror_2_48x48_3
+  - first:
+      213: -455293485399100540
+    second: animated_haunted_mirror_2_48x48_4
+  - first:
+      213: -7259829789179440854
+    second: animated_haunted_mirror_2_48x48_5
+  - first:
+      213: 8899690505737422137
+    second: animated_haunted_mirror_2_48x48_6
+  - first:
+      213: 3390730295155723661
+    second: animated_haunted_mirror_2_48x48_7
+  - first:
+      213: 2178682538352841622
+    second: animated_haunted_mirror_2_48x48_8
+  - first:
+      213: -5622749041297874285
+    second: animated_haunted_mirror_2_48x48_9
+  - first:
+      213: -7717290043390644530
+    second: animated_haunted_mirror_2_48x48_10
+  - first:
+      213: 7922251018155882023
+    second: animated_haunted_mirror_2_48x48_11
+  - first:
+      213: -1022440642753318906
+    second: animated_haunted_mirror_2_48x48_12
+  - first:
+      213: -5843603744982828340
+    second: animated_haunted_mirror_2_48x48_13
+  - first:
+      213: -4788544334883937505
+    second: animated_haunted_mirror_2_48x48_14
+  - first:
+      213: -4157563106043692055
+    second: animated_haunted_mirror_2_48x48_15
+  - first:
+      213: 5774699165149333523
+    second: animated_haunted_mirror_2_48x48_16
+  - first:
+      213: 7973783909482793293
+    second: animated_haunted_mirror_2_48x48_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8916c68aa4dee0b10800000000000000
+      internalID: 1949756593607041432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_1
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5570d1a525a227d60800000000000000
+      internalID: 7886412430666696533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_2
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac482b1eb043e83d0800000000000000
+      internalID: -3202565059377986358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_3
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 268555cef0d0b1ae0800000000000000
+      internalID: -1577652882422540190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_4
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 483bc3ebcf87ea9f0800000000000000
+      internalID: -455293485399100540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_5
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a21192e5547ef3b90800000000000000
+      internalID: -7259829789179440854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_6
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9354565cc5d028b70800000000000000
+      internalID: 8899690505737422137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_7
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8d89e31d3b4e0f20800000000000000
+      internalID: 3390730295155723661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_8
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6931ed8b93c3c3e10800000000000000
+      internalID: 2178682538352841622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_9
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 392a54c998bf7f1b0800000000000000
+      internalID: -5622749041297874285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_10
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eceaa0fe79da6e490800000000000000
+      internalID: -7717290043390644530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_11
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72678aeb35d71fd60800000000000000
+      internalID: 7922251018155882023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_12
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60034cc07af8fc1f0800000000000000
+      internalID: -1022440642753318906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_13
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccaf72cca5957eea0800000000000000
+      internalID: -5843603744982828340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_14
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f13a8085c4cab8db0800000000000000
+      internalID: -4788544334883937505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_15
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ebfefcf16e5d46c0800000000000000
+      internalID: -4157563106043692055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_16
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31888778b4ad32050800000000000000
+      internalID: 5774699165149333523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_haunted_mirror_2_48x48_17
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 17
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d498270083298ae60800000000000000
+      internalID: 7973783909482793293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      animated_haunted_mirror_2_48x48_0: 1949756593607041432
+      animated_haunted_mirror_2_48x48_1: 7886412430666696533
+      animated_haunted_mirror_2_48x48_10: -7717290043390644530
+      animated_haunted_mirror_2_48x48_11: 7922251018155882023
+      animated_haunted_mirror_2_48x48_12: -1022440642753318906
+      animated_haunted_mirror_2_48x48_13: -5843603744982828340
+      animated_haunted_mirror_2_48x48_14: -4788544334883937505
+      animated_haunted_mirror_2_48x48_15: -4157563106043692055
+      animated_haunted_mirror_2_48x48_16: 5774699165149333523
+      animated_haunted_mirror_2_48x48_17: 7973783909482793293
+      animated_haunted_mirror_2_48x48_2: -3202565059377986358
+      animated_haunted_mirror_2_48x48_3: -1577652882422540190
+      animated_haunted_mirror_2_48x48_4: -455293485399100540
+      animated_haunted_mirror_2_48x48_5: -7259829789179440854
+      animated_haunted_mirror_2_48x48_6: 8899690505737422137
+      animated_haunted_mirror_2_48x48_7: 3390730295155723661
+      animated_haunted_mirror_2_48x48_8: 2178682538352841622
+      animated_haunted_mirror_2_48x48_9: -5622749041297874285
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

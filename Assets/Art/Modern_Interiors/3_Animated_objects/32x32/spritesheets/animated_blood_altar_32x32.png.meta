@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: 670806df0bcd092439b39e2a56eed9e1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5765166231832220272
+    second: animated_blood_altar_32x32_0
+  - first:
+      213: 8356459185966948556
+    second: animated_blood_altar_32x32_1
+  - first:
+      213: 3324243792019973294
+    second: animated_blood_altar_32x32_2
+  - first:
+      213: 2932982678093406302
+    second: animated_blood_altar_32x32_3
+  - first:
+      213: 3792069955445199346
+    second: animated_blood_altar_32x32_4
+  - first:
+      213: 1978343072230928351
+    second: animated_blood_altar_32x32_5
+  - first:
+      213: 3588404996004547225
+    second: animated_blood_altar_32x32_6
+  - first:
+      213: 4950816540538556219
+    second: animated_blood_altar_32x32_7
+  - first:
+      213: -4036574952177672103
+    second: animated_blood_altar_32x32_8
+  - first:
+      213: 3022833897802646618
+    second: animated_blood_altar_32x32_9
+  - first:
+      213: -2393704166695821250
+    second: animated_blood_altar_32x32_10
+  - first:
+      213: 6280762347026981786
+    second: animated_blood_altar_32x32_11
+  - first:
+      213: 7238165388267711431
+    second: animated_blood_altar_32x32_12
+  - first:
+      213: 3000053845129781346
+    second: animated_blood_altar_32x32_13
+  - first:
+      213: -3012371384508487020
+    second: animated_blood_altar_32x32_14
+  - first:
+      213: 8917808176384329655
+    second: animated_blood_altar_32x32_15
+  - first:
+      213: 5257353669137258383
+    second: animated_blood_altar_32x32_16
+  - first:
+      213: 1767341463051740300
+    second: animated_blood_altar_32x32_17
+  - first:
+      213: 8980763272855285567
+    second: animated_blood_altar_32x32_18
+  - first:
+      213: 5906628414439178214
+    second: animated_blood_altar_32x32_19
+  - first:
+      213: 7609343509065349957
+    second: animated_blood_altar_32x32_20
+  - first:
+      213: -359571281186893773
+    second: animated_blood_altar_32x32_21
+  - first:
+      213: 8090803620876193105
+    second: animated_blood_altar_32x32_22
+  - first:
+      213: -8334426045377121969
+    second: animated_blood_altar_32x32_23
+  - first:
+      213: -1698531385751447075
+    second: animated_blood_altar_32x32_24
+  - first:
+      213: 209730874193209723
+    second: animated_blood_altar_32x32_25
+  - first:
+      213: 4024317130752603284
+    second: animated_blood_altar_32x32_26
+  - first:
+      213: -922916171144761485
+    second: animated_blood_altar_32x32_27
+  - first:
+      213: 5544161867007359488
+    second: animated_blood_altar_32x32_28
+  - first:
+      213: -1149288954886878047
+    second: animated_blood_altar_32x32_29
+  - first:
+      213: -4266340269396047986
+    second: animated_blood_altar_32x32_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 71
+        width: 92
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 072df67842cf10050800000000000000
+      internalID: 5765166231832220272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_1
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 71
+        width: 92
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc02c9fea5b18f370800000000000000
+      internalID: 8356459185966948556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 71
+        width: 92
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea4e522cd16122e20800000000000000
+      internalID: 3324243792019973294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 71
+        width: 92
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e50a124c43c04b820800000000000000
+      internalID: 2932982678093406302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 71
+        width: 92
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f11eb1888320a430800000000000000
+      internalID: 3792069955445199346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 91
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdfed20ea8c747b10800000000000000
+      internalID: 1978343072230928351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 71
+        width: 91
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a8619e4539cc130800000000000000
+      internalID: 3588404996004547225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 17
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3fcdeeb965d4b440800000000000000
+      internalID: 4950816540538556219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 41
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 950e53ab7743bf7c0800000000000000
+      internalID: -4036574952177672103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 17
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5449851a6343f920800000000000000
+      internalID: 3022833897802646618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_10
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 17
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3029b62ebad7ced0800000000000000
+      internalID: -2393704166695821250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_11
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 41
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a932135e310c92750800000000000000
+      internalID: 6280762347026981786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_12
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 17
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cb69393211237460800000000000000
+      internalID: 7238165388267711431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_13
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 17
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2606102c31552a920800000000000000
+      internalID: 3000053845129781346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_14
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 41
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49ae1de9f28e136d0800000000000000
+      internalID: -3012371384508487020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_15
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 17
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b74670b94b62cb70800000000000000
+      internalID: 8917808176384329655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_16
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 17
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87d583be4fd5f840800000000000000
+      internalID: 5257353669137258383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_17
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 41
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c84a40662bbd68810800000000000000
+      internalID: 1767341463051740300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_18
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 17
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3fe9625d9412ac70800000000000000
+      internalID: 8980763272855285567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_19
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 17
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ef30ee8f3f88f150800000000000000
+      internalID: 5906628414439178214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_20
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 41
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54bb3cffa91d99960800000000000000
+      internalID: 7609343509065349957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_21
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 17
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3305c6923db820bf0800000000000000
+      internalID: -359571281186893773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_22
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 17
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15d05c9b60f484070800000000000000
+      internalID: 8090803620876193105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_23
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 41
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f41788e5bab265c80800000000000000
+      internalID: -8334426045377121969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_24
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 17
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd9de6034ba9d68e0800000000000000
+      internalID: -1698531385751447075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_25
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 21
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b79e7be6e1d19e200800000000000000
+      internalID: 209730874193209723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_26
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 21
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4943702db1f39d730800000000000000
+      internalID: 4024317130752603284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_27
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 21
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37fe375d1a42133f0800000000000000
+      internalID: -922916171144761485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_28
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 21
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00a7d3408d1d0fc40800000000000000
+      internalID: 5544161867007359488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_29
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 21
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ac00b3e8c7ec00f0800000000000000
+      internalID: -1149288954886878047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animated_blood_altar_32x32_30
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 21
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8744b7012aeac4c0800000000000000
+      internalID: -4266340269396047986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      animated_blood_altar_32x32_0: 5765166231832220272
+      animated_blood_altar_32x32_1: 8356459185966948556
+      animated_blood_altar_32x32_10: -2393704166695821250
+      animated_blood_altar_32x32_11: 6280762347026981786
+      animated_blood_altar_32x32_12: 7238165388267711431
+      animated_blood_altar_32x32_13: 3000053845129781346
+      animated_blood_altar_32x32_14: -3012371384508487020
+      animated_blood_altar_32x32_15: 8917808176384329655
+      animated_blood_altar_32x32_16: 5257353669137258383
+      animated_blood_altar_32x32_17: 1767341463051740300
+      animated_blood_altar_32x32_18: 8980763272855285567
+      animated_blood_altar_32x32_19: 5906628414439178214
+      animated_blood_altar_32x32_2: 3324243792019973294
+      animated_blood_altar_32x32_20: 7609343509065349957
+      animated_blood_altar_32x32_21: -359571281186893773
+      animated_blood_altar_32x32_22: 8090803620876193105
+      animated_blood_altar_32x32_23: -8334426045377121969
+      animated_blood_altar_32x32_24: -1698531385751447075
+      animated_blood_altar_32x32_25: 209730874193209723
+      animated_blood_altar_32x32_26: 4024317130752603284
+      animated_blood_altar_32x32_27: -922916171144761485
+      animated_blood_altar_32x32_28: 5544161867007359488
+      animated_blood_altar_32x32_29: -1149288954886878047
+      animated_blood_altar_32x32_3: 2932982678093406302
+      animated_blood_altar_32x32_30: -4266340269396047986
+      animated_blood_altar_32x32_4: 3792069955445199346
+      animated_blood_altar_32x32_5: 1978343072230928351
+      animated_blood_altar_32x32_6: 3588404996004547225
+      animated_blood_altar_32x32_7: 4950816540538556219
+      animated_blood_altar_32x32_8: -4036574952177672103
+      animated_blood_altar_32x32_9: 3022833897802646618
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

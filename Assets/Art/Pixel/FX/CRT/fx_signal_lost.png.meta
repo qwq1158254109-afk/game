@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: 9d604580c9f4ff348b24b27aa8b2dddf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1790224407000366311
+    second: fx_signal_lost_0
+  - first:
+      213: -2221819573722779413
+    second: fx_signal_lost_1
+  - first:
+      213: 7137332812223077184
+    second: fx_signal_lost_2
+  - first:
+      213: 5875583643206122406
+    second: fx_signal_lost_3
+  - first:
+      213: 3850810720182274109
+    second: fx_signal_lost_4
+  - first:
+      213: 153708368953649850
+    second: fx_signal_lost_5
+  - first:
+      213: -8858507385497616588
+    second: fx_signal_lost_6
+  - first:
+      213: 8919759071375536591
+    second: fx_signal_lost_7
+  - first:
+      213: -7699570797479644309
+    second: fx_signal_lost_8
+  - first:
+      213: 405491619744380373
+    second: fx_signal_lost_9
+  - first:
+      213: -5357830617275705077
+    second: fx_signal_lost_10
+  - first:
+      213: 7958864541870658337
+    second: fx_signal_lost_11
+  - first:
+      213: -7582260709215326315
+    second: fx_signal_lost_12
+  - first:
+      213: 4101734039218016044
+    second: fx_signal_lost_13
+  - first:
+      213: -5491930537035418954
+    second: fx_signal_lost_14
+  - first:
+      213: 4517791237768340451
+    second: fx_signal_lost_15
+  - first:
+      213: 6019412689701672779
+    second: fx_signal_lost_16
+  - first:
+      213: -5651014524271330165
+    second: fx_signal_lost_17
+  - first:
+      213: 2461987639236932681
+    second: fx_signal_lost_18
+  - first:
+      213: -2426847370519502271
+    second: fx_signal_lost_19
+  - first:
+      213: 2770206658814625212
+    second: fx_signal_lost_20
+  - first:
+      213: -8173055431886177582
+    second: fx_signal_lost_21
+  - first:
+      213: -6881462379721799875
+    second: fx_signal_lost_22
+  - first:
+      213: 5205560326645968901
+    second: fx_signal_lost_23
+  - first:
+      213: 7892583847638055779
+    second: fx_signal_lost_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fx_signal_lost_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 169
+        width: 320
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91342880368d727e0800000000000000
+      internalID: -1790224407000366311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 164
+        width: 320
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be07e319ed28a21e0800000000000000
+      internalID: -2221819573722779413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 157
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04bdb44a066ec0360800000000000000
+      internalID: 7137332812223077184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 151
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ab756d71344a8150800000000000000
+      internalID: 5875583643206122406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 145
+        width: 320
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d380bb192f3d07530800000000000000
+      internalID: 3850810720182274109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 320
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abaac7a72f4122200800000000000000
+      internalID: 153708368953649850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 134
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f7d3f9772401580800000000000000
+      internalID: -8858507385497616588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 127
+        width: 320
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc13863dd9959cb70800000000000000
+      internalID: 8919759071375536591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 122
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b63314d5721a52590800000000000000
+      internalID: -7699570797479644309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 109
+        width: 320
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d5f242da7890a500800000000000000
+      internalID: 405491619744380373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 103
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b09d19ac07925a5b0800000000000000
+      internalID: -5357830617275705077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 98
+        width: 320
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12317a90221937e60800000000000000
+      internalID: 7958864541870658337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 91
+        width: 320
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59fa1d8be0666c690800000000000000
+      internalID: -7582260709215326315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 86
+        width: 320
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2fc7b270694ce830800000000000000
+      internalID: 4101734039218016044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b232e8264eb8c3b0800000000000000
+      internalID: -5491930537035418954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 73
+        width: 320
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e3ed88c13b62be30800000000000000
+      internalID: 4517791237768340451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 67
+        width: 320
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b479526f2ff398350800000000000000
+      internalID: 6019412689701672779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8cfb340b309391b0800000000000000
+      internalID: -5651014524271330165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 944be16b6bcba2220800000000000000
+      internalID: 2461987639236932681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45
+        width: 320
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 142281cac2b125ed0800000000000000
+      internalID: -2426847370519502271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 37
+        width: 320
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb5411d6740c17620800000000000000
+      internalID: 2770206658814625212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 19
+        width: 320
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2daf8dc2369739e80800000000000000
+      internalID: -8173055431886177582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 14
+        width: 320
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d37c779dc622080a0800000000000000
+      internalID: -6881462379721799875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 320
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 500799e698ddd3840800000000000000
+      internalID: 5205560326645968901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_signal_lost_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36bb3765137188d60800000000000000
+      internalID: 7892583847638055779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      fx_signal_lost_0: -1790224407000366311
+      fx_signal_lost_1: -2221819573722779413
+      fx_signal_lost_10: -5357830617275705077
+      fx_signal_lost_11: 7958864541870658337
+      fx_signal_lost_12: -7582260709215326315
+      fx_signal_lost_13: 4101734039218016044
+      fx_signal_lost_14: -5491930537035418954
+      fx_signal_lost_15: 4517791237768340451
+      fx_signal_lost_16: 6019412689701672779
+      fx_signal_lost_17: -5651014524271330165
+      fx_signal_lost_18: 2461987639236932681
+      fx_signal_lost_19: -2426847370519502271
+      fx_signal_lost_2: 7137332812223077184
+      fx_signal_lost_20: 2770206658814625212
+      fx_signal_lost_21: -8173055431886177582
+      fx_signal_lost_22: -6881462379721799875
+      fx_signal_lost_23: 5205560326645968901
+      fx_signal_lost_24: 7892583847638055779
+      fx_signal_lost_3: 5875583643206122406
+      fx_signal_lost_4: 3850810720182274109
+      fx_signal_lost_5: 153708368953649850
+      fx_signal_lost_6: -8858507385497616588
+      fx_signal_lost_7: 8919759071375536591
+      fx_signal_lost_8: -7699570797479644309
+      fx_signal_lost_9: 405491619744380373
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

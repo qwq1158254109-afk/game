@@ -1,0 +1,763 @@
+fileFormatVersion: 2
+guid: 44c47b7e1fa804c448d052f4876ccd64
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2556474336387168756
+    second: battle_icons_v01_0
+  - first:
+      213: -3941907412509589069
+    second: battle_icons_v01_1
+  - first:
+      213: 4098081592768662745
+    second: battle_icons_v01_2
+  - first:
+      213: 2858607282643981599
+    second: battle_icons_v01_3
+  - first:
+      213: 6032998689439615398
+    second: battle_icons_v01_4
+  - first:
+      213: 8506211496773700979
+    second: battle_icons_v01_5
+  - first:
+      213: 6582831601648981202
+    second: battle_icons_v01_6
+  - first:
+      213: -2699040727699694823
+    second: battle_icons_v01_7
+  - first:
+      213: 3179286532014892843
+    second: battle_icons_v01_8
+  - first:
+      213: -8134486927252628747
+    second: battle_icons_v01_9
+  - first:
+      213: 1602402202669347174
+    second: battle_icons_v01_10
+  - first:
+      213: -9040187612504162016
+    second: battle_icons_v01_11
+  - first:
+      213: 4977486655600904103
+    second: battle_icons_v01_12
+  - first:
+      213: 1405159016200672253
+    second: battle_icons_v01_13
+  - first:
+      213: 1847689664170252157
+    second: battle_icons_v01_14
+  - first:
+      213: -5405346487763903942
+    second: battle_icons_v01_15
+  - first:
+      213: -461344201886066429
+    second: battle_icons_v01_16
+  - first:
+      213: -3452128009811723660
+    second: battle_icons_v01_17
+  - first:
+      213: 4436438568075136431
+    second: battle_icons_v01_18
+  - first:
+      213: -4610733432266409552
+    second: battle_icons_v01_19
+  - first:
+      213: 1859397147943071917
+    second: battle_icons_v01_20
+  - first:
+      213: -2695357527652457599
+    second: battle_icons_v01_21
+  - first:
+      213: -2053828316551023857
+    second: battle_icons_v01_22
+  - first:
+      213: -548146380600902163
+    second: battle_icons_v01_23
+  - first:
+      213: 2925555904811038084
+    second: battle_icons_v01_24
+  - first:
+      213: 8025426968856960866
+    second: battle_icons_v01_25
+  - first:
+      213: 3034252668309807664
+    second: battle_icons_v01_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: icon_long_term_stamina
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 756
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4729213b12a06714d85be4978a6236c9
+      internalID: -1496792780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_battle_stamina
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 756
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed1cffaf3864974582ec6b7ff0723bc
+      internalID: -633087614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_action_energy
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 756
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90d57d2366bd00046815b6bba68d8362
+      internalID: 749994071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_challenge_progress
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 756
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc0c04d001c8db4b83150dc70849bb5
+      internalID: 1379535123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_block
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 756
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 636106e9d134918489553fbb62765586
+      internalID: 64531829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_turns
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 756
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8505122709ffbf47969a9a9b767c12b
+      internalID: 1396171301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_status_focus
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 511
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e44e82763f2285e4e9c0a3e35d2e0157
+      internalID: -1694641530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_status_distraction
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 511
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f3c41403af3fae4cac1e3f225aaf38d
+      internalID: -1054205702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_status_weak_defense
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 511
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e08721045c353847b61c93429275f29
+      internalID: 510544796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_keyword_retain
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 511
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9178b7c6b25de084a914ff10b7c1829e
+      internalID: -934207129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_keyword_ethereal
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 511
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7d82c1397558a4479a61507b91ccc57
+      internalID: -765286064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_keyword_exhaust
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 511
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea2e301ab894d147a00af13d01c5082
+      internalID: 158729331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_intent_attack
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 268
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd9d6d22cbe44d5488aa6b465e97ce8a
+      internalID: 1015546576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_intent_multi_attack
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 268
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5857bf63ddc5a4344931d9a088e9a3ac
+      internalID: -57919600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_intent_distraction
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 268
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaf73e53db468e34a8fd382ee58423de
+      internalID: -1726084581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_intent_weak_defense
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 268
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96d190662f739f74290af82622a25797
+      internalID: 16960375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_intent_wait
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 268
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a43be5d14db7c64196635f44be8e484
+      internalID: 57001161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_challenge_target
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 268
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38849c3e83d94454282366fd72020670
+      internalID: 996992250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_pile_draw
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 38
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6debddbd7ca39f48a7d69c8e0e7b5a1
+      internalID: 1911706991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_pile_hand
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 38
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17c35d91b31750949ad5aa13272c09c9
+      internalID: -580041143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_pile_discard
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 38
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e420deb06d5ad445a608779d8d108e5
+      internalID: 1563524293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_pile_exhaust
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 38
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96dab367cf92f4b4baeb953508d72108
+      internalID: -200726874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_reward
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 38
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0d97e5e475107748bd897202172348a
+      internalID: -200666679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_result_complete
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 38
+        width: 230
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c20bef42937a94e939e8608aad3581
+      internalID: -973503738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 52050c2b21086ac4c98b2187130c6a46
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      icon_action_energy: 749994071
+      icon_battle_stamina: -633087614
+      icon_block: 64531829
+      icon_challenge_progress: 1379535123
+      icon_challenge_target: 996992250
+      icon_intent_attack: 1015546576
+      icon_intent_distraction: -1726084581
+      icon_intent_multi_attack: -57919600
+      icon_intent_wait: 57001161
+      icon_intent_weak_defense: 16960375
+      icon_keyword_ethereal: -765286064
+      icon_keyword_exhaust: 158729331
+      icon_keyword_retain: -934207129
+      icon_long_term_stamina: -1496792780
+      icon_pile_discard: 1563524293
+      icon_pile_draw: 1911706991
+      icon_pile_exhaust: -200726874
+      icon_pile_hand: -580041143
+      icon_result_complete: -973503738
+      icon_reward: -200666679
+      icon_status_distraction: -1054205702
+      icon_status_focus: -1694641530
+      icon_status_weak_defense: 510544796
+      icon_turns: 1396171301
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

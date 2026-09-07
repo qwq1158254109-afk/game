@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: 49d8c6dd09153494e8bfde647b573c8b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6434231535533524839
+    second: '!$Kitchen_fridge_0'
+  - first:
+      213: -7559944185449481929
+    second: '!$Kitchen_fridge_1'
+  - first:
+      213: -2307931238297897772
+    second: '!$Kitchen_fridge_2'
+  - first:
+      213: 1080817428234299037
+    second: '!$Kitchen_fridge_3'
+  - first:
+      213: 6272556224742512920
+    second: '!$Kitchen_fridge_4'
+  - first:
+      213: -4637227330512399213
+    second: '!$Kitchen_fridge_5'
+  - first:
+      213: 9057199160180124146
+    second: '!$Kitchen_fridge_6'
+  - first:
+      213: 7050928607815122229
+    second: '!$Kitchen_fridge_7'
+  - first:
+      213: -6905585225020058754
+    second: '!$Kitchen_fridge_8'
+  - first:
+      213: 1630573302263198977
+    second: '!$Kitchen_fridge_9'
+  - first:
+      213: 1073031086100637312
+    second: '!$Kitchen_fridge_10'
+  - first:
+      213: -3316889751133890129
+    second: '!$Kitchen_fridge_11'
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_0'
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 446
+        width: 49
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7678716dd7bfa4950800000000000000
+      internalID: 6434231535533524839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_1'
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 446
+        width: 50
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 739f08051dea51790800000000000000
+      internalID: -7559944185449481929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_2'
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 446
+        width: 50
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d4f93744c498ffd0800000000000000
+      internalID: -2307931238297897772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_3'
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 302
+        width: 49
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d96e4fc79b5dffe00800000000000000
+      internalID: 1080817428234299037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_4'
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 302
+        width: 50
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 819517927a89c0750800000000000000
+      internalID: 6272556224742512920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_5'
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 302
+        width: 50
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394531edf4245afb0800000000000000
+      internalID: -4637227330512399213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_6'
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 158
+        width: 64
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f9a08a26a2a1bd70800000000000000
+      internalID: 9057199160180124146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_7'
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 158
+        width: 65
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53db57d163ee9d160800000000000000
+      internalID: 7050928607815122229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_8'
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 158
+        width: 65
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e735e7043de6a20a0800000000000000
+      internalID: -6905585225020058754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_9'
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 14
+        width: 73
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10532ad77c5f0a610800000000000000
+      internalID: 1630573302263198977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_10'
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 14
+        width: 74
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 086eaff661c24ee00800000000000000
+      internalID: 1073031086100637312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!$Kitchen_fridge_11'
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 14
+        width: 74
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa9d780585a08f1d0800000000000000
+      internalID: -3316889751133890129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      '!$Kitchen_fridge_0': 6434231535533524839
+      '!$Kitchen_fridge_1': -7559944185449481929
+      '!$Kitchen_fridge_10': 1073031086100637312
+      '!$Kitchen_fridge_11': -3316889751133890129
+      '!$Kitchen_fridge_2': -2307931238297897772
+      '!$Kitchen_fridge_3': 1080817428234299037
+      '!$Kitchen_fridge_4': 6272556224742512920
+      '!$Kitchen_fridge_5': -4637227330512399213
+      '!$Kitchen_fridge_6': 9057199160180124146
+      '!$Kitchen_fridge_7': 7050928607815122229
+      '!$Kitchen_fridge_8': -6905585225020058754
+      '!$Kitchen_fridge_9': 1630573302263198977
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
