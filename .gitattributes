@@ -1,0 +1,157 @@
+# ===========================================================================
+#  换行符与二进制文件规范
+# ===========================================================================
+#  背景：本机 core.autocrlf=true，会把文本文件检出为 CRLF；而 Unity 原生以
+#  LF 写入 YAML 资产与 .meta。两者冲突导致 EditorBuildSettings.asset、
+#  ShaderGraphSettings.asset 等文件长期显示为"已修改"，实际 0 行内容变化。
+#  本文件用于消除这类伪修改，并防止二进制文件被换行符转换损坏。
+#
+#  原则：
+#    1) Unity 自己生成的文件 → 强制 LF（与 Unity 写法一致，杜绝来回翻转）
+#    2) 二进制文件 → 声明为 binary，禁止任何转换
+#    3) 其余文本 → 交给 git 自动判定（text=auto），不强行干预
+#
+#  参考：https://docs.unity3d.com/Manual/upm-git.html
+# ===========================================================================
+
+# 默认：由 git 自动判定文本/二进制
+* text=auto
+
+# ---------------------------------------------------------------------------
+# 一、Unity 生成的 YAML 资产与元数据 —— 强制 LF
+# ---------------------------------------------------------------------------
+# 这些是 Unity 每次保存工程都可能重写的文件，也是伪修改的高发区。
+*.meta                 text eol=lf
+*.asset                text eol=lf
+*.unity                text eol=lf
+*.prefab               text eol=lf
+*.mat                  text eol=lf
+
+*.controller           text eol=lf
+*.overrideController   text eol=lf
+*.anim                 text eol=lf
+*.playable             text eol=lf
+*.signal               text eol=lf
+*.mask                 text eol=lf
+*.preset               text eol=lf
+*.brush                text eol=lf
+*.terrainlayer         text eol=lf
+*.lighting             text eol=lf
+*.renderTexture        text eol=lf
+*.cubemap              text eol=lf
+*.flare                text eol=lf
+*.index                text eol=lf
+
+*.shadergraph          text eol=lf
+*.shadersubgraph       text eol=lf
+*.shadersubgraphblock  text eol=lf
+
+*.asmdef               text eol=lf
+*.asmref               text eol=lf
+*.inputactions         text eol=lf
+
+*.physicMaterial       text eol=lf
+*.physicsMaterial2D    text eol=lf
+*.mixer                text eol=lf
+
+# ---------------------------------------------------------------------------
+# 二、代码与配置文件 —— 同样强制 LF
+# ---------------------------------------------------------------------------
+# 理由同上：Unity 在解析包时会重写 manifest.json / packages-lock.json，
+# 各类编辑器与工具对 .cs/.json 的行尾写法也不统一。统一强制 LF 后，
+# 任何工具写出的文本都不会再与 git 的期待产生冲突。
+# 注：本机 core.autocrlf=true 会把文本检出为 CRLF，这与 Unity 的 LF 写法相悖，
+#     故此处显式覆盖为 LF —— 覆盖面见下方"验证记录"。
+*.cs           text eol=lf
+*.shader       text eol=lf
+*.hlsl         text eol=lf
+*.cginc        text eol=lf
+*.compute      text eol=lf
+*.uss          text eol=lf
+*.uxml         text eol=lf
+*.json         text eol=lf
+*.md           text eol=lf
+*.txt          text eol=lf
+*.xml          text eol=lf
+*.yml          text eol=lf
+*.yaml         text eol=lf
+*.csv          text eol=lf
+*.tsv          text eol=lf
+*.py           text eol=lf
+*.mjs          text eol=lf
+*.js           text eol=lf
+*.ts           text eol=lf
+*.gitignore    text eol=lf
+*.gitattributes text eol=lf
+
+# ---------------------------------------------------------------------------
+# 三、二进制文件 —— 禁止换行符转换（防止损坏）
+# ---------------------------------------------------------------------------
+# 图片
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.bmp      binary
+*.tga      binary
+*.psd      binary
+*.tif      binary
+*.tiff     binary
+*.exr      binary
+*.hdr      binary
+*.ico      binary
+*.dds      binary
+
+# 音频
+*.wav      binary
+*.mp3      binary
+*.ogg      binary
+*.aiff     binary
+*.aif      binary
+*.flac     binary
+*.m4a      binary
+
+# 字体
+*.ttf      binary
+*.otf      binary
+*.woff     binary
+*.woff2    binary
+*.fnt      binary
+
+# 编译产物 / 原生库
+*.dll      binary
+*.so       binary
+*.dylib    binary
+*.bundle   binary
+*.a        binary
+*.lib      binary
+*.exe      binary
+*.pdb      binary
+
+# 3D / 模型
+*.fbx      binary
+*.obj      binary
+*.blend    binary
+*.dae      binary
+*.3ds      binary
+*.max      binary
+
+# 视频
+*.mp4      binary
+*.mov      binary
+*.webm     binary
+
+# 归档 / 文档
+*.unitypackage  binary
+*.zip      binary
+*.7z       binary
+*.rar      binary
+*.gz       binary
+*.tar      binary
+*.pdf      binary
+
+# ---------------------------------------------------------------------------
+# 四、Windows 脚本例外 —— 必须 CRLF，否则 cmd 解析异常
+# ---------------------------------------------------------------------------
+*.bat      text eol=crlf
+*.cmd      text eol=crlf
