@@ -6,7 +6,6 @@ namespace StudentGrowth
     {
         public const string Stage2OrLaterCondition = "stage_02_or_later";
         public const string Stage3OrLaterCondition = "stage_03_or_later";
-        public const string ClubInterestOrSocialCondition = "club_interest_or_social";
 
         public StageMapLocationStatus ResolveStatus(
             StageMapLocationEntry entry,
@@ -106,8 +105,6 @@ namespace StudentGrowth
                     return stageRank >= 2;
                 case Stage3OrLaterCondition:
                     return stageRank >= 3;
-                case ClubInterestOrSocialCondition:
-                    return stageRank >= 3 && HasClubAccess(sessionState);
                 default:
                     return false;
             }
@@ -142,24 +139,6 @@ namespace StudentGrowth
                 default:
                     return stage.isFinalStage ? 3 : 0;
             }
-        }
-
-        private static bool HasClubAccess(GameSessionState sessionState)
-        {
-            if (sessionState == null)
-            {
-                return false;
-            }
-
-            PlayerState player = sessionState.playerState;
-            if (player != null && (player.interest >= 45 || player.social >= 45))
-            {
-                return true;
-            }
-
-            return sessionState.locationState.locationFlags != null
-                && sessionState.locationState.locationFlags.TryGetValue("club_intro", out bool completed)
-                && completed;
         }
     }
 }

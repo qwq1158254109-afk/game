@@ -48,13 +48,23 @@ namespace StudentGrowth.Tests
         }
 
         [Test]
-        public void StageThreeClubUnlocksWhenInterestOrSocialIsHighEnough()
+        public void StageOneAndTwoKeepClubLocked()
+        {
+            AssertStatus(CreateStageContext("stage_01_adaptation"), "location_club", StageMapLocationStatus.Locked);
+            AssertStatus(CreateStageContext("stage_02_month_exam"), "location_club", StageMapLocationStatus.Locked);
+        }
+
+        [Test]
+        public void StageThreeUnlocksClubAsPureStageGate()
         {
             StageContext context = CreateStageContext("stage_03_final_sprint");
 
-            AssertStatus(context, "location_club", StageMapLocationStatus.Locked);
-
-            context.sessionState.playerState.SetStat(PlayerStatKey.Social, 45);
+            // 刻意把兴趣与社交压到 0：社团依然必须开放。
+            // 社团的门槛是「第三学段」，不是属性值——原来的「兴趣或社交 >= 45」是自锁的：
+            // 这两个属性的增量来源有一半就在社团里面，进不去就永远涨不到 45。
+            // 详见 MvpSampleDataFactory.CreateDefaultLocations 里那段说明。
+            context.sessionState.playerState.SetStat(PlayerStatKey.Social, 0);
+            context.sessionState.playerState.SetStat(PlayerStatKey.Interest, 0);
 
             AssertStatus(context, "location_club", StageMapLocationStatus.Unlocked);
         }

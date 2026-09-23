@@ -176,14 +176,25 @@ namespace StudentGrowth
                 GameArtAssetCatalog.BackgroundPaths["study_desk"],
                 Condition(PlayerStatKey.Confidence, ComparisonType.GreaterOrEqual, 45));
 
+            // 社团活动室：第三学段开放的自由地点。
+            //
+            // ⚠ 2026-09-23 变更（原设计见下）：这里原本是 `unlockedByDefault: false` +
+            //   `Condition(Interest >= 45)`，同时阶段地图上的门槛也是"兴趣或社交 >= 45"。
+            //   实测发现这道门是**自锁**的：兴趣与社交的增量来源只有 3 处，其中 2 处
+            //   （策划社团活动 +5 兴趣、社团讨论 +5 社交）就在社团活动室里面，
+            //   而社团外仅"公园赏花"能提供 +2 兴趣，社交在社团外完全零来源。
+            //   于是：进不去 → 涨不了属性 → 达不到 45 → 更进不去。社团连同里面 3 个活动、
+            //   6 个非出口交互点位永远不可达（内容体检工具 B1 的"循环依赖"检查项已能自动报出）。
+            //   改为按学段开放：门槛是"第三学段"而非属性值。兴趣/社交本来也不该当门——
+            //   它们更适合作为事件与结局的分叉条件（见 GDD "交友是钥匙不是分数"）。
+            //   原始门槛值 45 保留在此处备查，若要回退请先补足够的外部来源。
             LocationData club = CreateLocation(
                 "location_club",
                 "社团活动室",
                 "发展兴趣、社交和自信。",
                 LocationType.Club,
-                false,
-                GameArtAssetCatalog.BackgroundPaths["school_classroom"],
-                Condition(PlayerStatKey.Interest, ComparisonType.GreaterOrEqual, 45));
+                true,
+                GameArtAssetCatalog.BackgroundPaths["school_classroom"]);
 
             return new List<LocationData> { home, school, shop, park, library, club };
         }
@@ -204,7 +215,7 @@ namespace StudentGrowth
                     AddStageMapLocation(mapData, "location_shop", "商店", "进入商店地图", "ShopMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 20);
                     AddStageMapLocation(mapData, "location_park", "公园", "降低压力、社交事件", "ParkMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 30);
                     AddStageMapLocation(mapData, "location_library", "图书馆", "精读笔记、整理卡组", "LibraryMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 40);
-                    AddStageMapLocation(mapData, "location_club", "社团活动室", "兴趣或社交条件未满足", "ClubRoomMapScene", StageMapLocationStatus.Locked, StageMapLocationAvailabilityService.ClubInterestOrSocialCondition, "兴趣或社交条件未满足。", string.Empty, 50);
+                    AddStageMapLocation(mapData, "location_club", "社团活动室", "第三学段起开放", "ClubRoomMapScene", StageMapLocationStatus.Locked, StageMapLocationAvailabilityService.Stage3OrLaterCondition, "第三学段起开放。", string.Empty, 50);
                     break;
                 case "stage_03_final_sprint":
                     mapData.title = "期末冲刺地图";
@@ -214,7 +225,7 @@ namespace StudentGrowth
                     AddStageMapLocation(mapData, "location_shop", "商店", "进入商店地图", "ShopMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 20);
                     AddStageMapLocation(mapData, "location_park", "公园", "压力调整、社交收尾", "ParkMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 30);
                     AddStageMapLocation(mapData, "location_library", "图书馆", "高强度复习、整理卡组", "LibraryMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 40);
-                    AddStageMapLocation(mapData, "location_club", "社团活动室", "兴趣路线、社交收尾", "ClubRoomMapScene", StageMapLocationStatus.Locked, StageMapLocationAvailabilityService.ClubInterestOrSocialCondition, "解锁条件：兴趣或社交达到 45。", string.Empty, 50);
+                    AddStageMapLocation(mapData, "location_club", "社团活动室", "兴趣与社交的收尾地点", "ClubRoomMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 50);
                     break;
                 default:
                     mapData.title = "阶段地图";
@@ -224,7 +235,7 @@ namespace StudentGrowth
                     AddStageMapLocation(mapData, "location_shop", "商店", "进入商店地图", "ShopMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 20);
                     AddStageMapLocation(mapData, "location_park", "公园", "降低压力、社交事件", "ParkMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 30);
                     AddStageMapLocation(mapData, "location_library", "图书馆", "精读笔记、整理卡组", "LibraryMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 40);
-                    AddStageMapLocation(mapData, "location_club", "社团活动室", "解锁条件未满足", "ClubRoomMapScene", StageMapLocationStatus.Locked, StageMapLocationAvailabilityService.ClubInterestOrSocialCondition, "解锁条件未满足。", string.Empty, 50);
+                    AddStageMapLocation(mapData, "location_club", "社团活动室", "第三学段起开放", "ClubRoomMapScene", StageMapLocationStatus.Locked, StageMapLocationAvailabilityService.Stage3OrLaterCondition, "第三学段起开放。", string.Empty, 50);
                     break;
             }
 
