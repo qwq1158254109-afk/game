@@ -16,6 +16,12 @@ namespace StudentGrowth
 
         public int timeLimit;
 
+        [Tooltip("日期标签表。约定：长度 = timeLimit + 1，第 0 项是进入本阶段，最后一项是 Boss 前。" +
+            "★ 长度限制：HUD 日期槽只有 80x32px / 20px 粗体，最多放 4 个汉字（如「初三下」）。" +
+            "超过会折行被裁切。正文更长的日期请放在阶段进入弹窗里，不要塞这里。" +
+            "整表留空是合法状态，HUD 会回退显示「剩 N 次」。")]
+        public string[] dateMilestones = new string[0];
+
         public List<ActivityData> availableActivities = new List<ActivityData>();
         public ChallengeData bossChallenge;
 
@@ -38,6 +44,11 @@ namespace StudentGrowth
         public string imagePath;
 
         public int timeCost = 1;
+
+        [Tooltip("本阶段最多可执行次数（GDD §5.2）。1 = 只做一次（默认）；n > 1 = 上限 n；负数 = 不限次数（睡觉等循环活动）。" +
+            "计数在进入新阶段时清空。0 按 1 处理（兼容旧资产）。")]
+        public int maxUsesPerStage = 1;
+
         public BattleRewardTiming battleRewardTiming = BattleRewardTiming.Participation;
 
         public ChallengeData linkedChallenge;
@@ -121,6 +132,12 @@ namespace StudentGrowth
         public List<RewardData> failureRewards = new List<RewardData>();
         public List<RewardData> bossClearRewards = new List<RewardData>();
         public List<RewardData> bossFailureRewards = new List<RewardData>();
+
+        [Tooltip("胜利后是否弹「三选一」：从玩家自己的牌组抽 N 张互不重复的卡，选一张复制进牌组（批次 1）")]
+        public bool victoryCardChoice;
+
+        [Tooltip("三选一的候选张数，默认 3；牌组里种类不足时有多少给多少")]
+        public int victoryCardChoiceCount = 3;
     }
 
     [Serializable]

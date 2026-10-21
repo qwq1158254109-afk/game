@@ -22,7 +22,14 @@ namespace StudentGrowth
         public void Show(IReadOnlyList<IReadOnlySaveSlotSummary> summaries,bool save,string message)
         { slots = summaries; saving = save; notice = message; gameObject.SetActive(true); RefreshText(); }
         public void SetThumbnail(SaveSlotId slot,Texture2D texture)
-        { images[slot.Value].texture = texture; images[slot.Value].color = texture == null ? new Color(0.16f,0.2f,0.26f) : Color.white; }
+        {
+            // 防御：非工厂路径创建的实例 images[] 可能为空槽位——退出播放时
+            // GameApplicationRuntime.OnDestroy → ClearThumbnails 曾在此 NRE（2026-10-14）。
+            RawImage image = images[slot.Value];
+            if (image == null) return;
+            image.texture = texture;
+            image.color = texture == null ? new Color(0.16f,0.2f,0.26f) : Color.white;
+        }
         public void ClearThumbnails() { for(int i=0;i<10;i++) SetThumbnail(new SaveSlotId(i),null); }
         private void RefreshText()
         {

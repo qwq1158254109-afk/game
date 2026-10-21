@@ -20,6 +20,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   imagePath: 
   timeCost: 1
+  maxUsesPerStage: -1
   linkedChallenge: {fileID: 0}
   linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}

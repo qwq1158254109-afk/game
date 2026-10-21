@@ -7,31 +7,42 @@ PASS permanent deck unchanged at entry
 PASS one stage time and one daily action charged
 PASS intent previews next player turn without fake damage
 PASS auxiliary intent deals zero damage
-PASS card click matches current preview: 进入状态
-PASS card click matches current preview: 基础练习
+PASS card click matches current preview: 集中复习
 PASS both enemy statuses cover player turn two
 PASS all three status rows render
 PASS status icons use supplied artwork
 PASS status tooltip shows exact effective interval
-PASS real drag executes the displayed status-modified progress
 PASS card click matches current preview: 调整节奏
-PASS card click matches current preview: 基础练习
+PASS card click matches current preview: 进入状态
 PASS card click matches current preview: 翻阅笔记
+PASS card click matches current preview: 基础练习
+PASS card click matches current preview: 基础练习
 PASS timed debuffs expire at turn two end; focus persists
 PASS multi-hit intent preview equals execution after actual block
 PASS card click matches current preview: 基础练习
 PASS card click matches current preview: 基础练习
-PASS card click matches current preview: 翻阅笔记
+PASS card click matches current preview: 整理思路
 PASS card click matches current preview: 基础练习
-PASS card click matches current preview: 整理思路
-PASS card click matches current preview: 整理思路
 PASS card click matches current preview: 基础练习
 PASS strategy card combination reaches victory
 PASS statuses removed and fixed result committed
 PASS strategy reward once without stage advancement
 PASS result window retains save gate
+PASS victory panel offers card choice
+PASS card choice panel opens
+PASS three candidate slots from a three-card offer
+PASS candidates are distinct within one popup
+PASS candidates come from the player's own deck
+PASS panel title matches the design
+PASS confirm button present
+PASS confirm adds exactly one card
+PASS added card matches the confirmed candidate
+PASS panel closes after confirm
+PASS return button appears only after choosing
+PASS skip closes without picking
+PASS skip adds no card
 PASS return restores original map position
-PASS loan cards never enter permanent deck after result
+PASS loan cards never enter permanent deck; only the chosen card is appended
 PASS save permitted after return
 PASS save slot empty before first write
 PASS post-strategy map save succeeds

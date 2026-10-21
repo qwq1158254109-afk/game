@@ -74,6 +74,10 @@ namespace StudentGrowth
         public int energyCost;
         public int moneyCost;
 
+        [Tooltip("本阶段最多可执行次数（GDD §5.2）。1 = 只做一次（默认）；n > 1 = 上限 n；负数 = 不限次数。" +
+            "计数在进入新阶段时清空。0 按 1 处理（兼容旧资产）。")]
+        public int maxUsesPerStage = 1;
+
         public ActivityData linkedActivity;
         public ChallengeData linkedChallenge;
         public MiniGameData linkedMiniGame;

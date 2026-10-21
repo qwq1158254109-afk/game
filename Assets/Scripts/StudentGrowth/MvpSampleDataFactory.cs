@@ -210,7 +210,7 @@ namespace StudentGrowth
                 case "stage_02_month_exam":
                     mapData.title = "月考压力地图";
                     mapData.description = "利用图书馆和公园管理复习效率与压力。进入地点不消耗时间，完成互动才会消耗时间。";
-                    AddStageMapLocation(mapData, "location_home", "家里", "恢复精力、沟通家庭", "HomeMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 0);
+                    AddStageMapLocation(mapData, "location_home", "家里", "恢复精力、沟通家庭", "HomeLivingRoomScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 0);
                     AddStageMapLocation(mapData, "location_school", "学校", "月考训练、老师答疑", "Assets/Scenes/StudentGrowth/Maps/SchoolMapScene.unity", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 10);
                     AddStageMapLocation(mapData, "location_shop", "商店", "进入商店地图", "ShopMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 20);
                     AddStageMapLocation(mapData, "location_park", "公园", "降低压力、社交事件", "ParkMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 30);
@@ -220,7 +220,7 @@ namespace StudentGrowth
                 case "stage_03_final_sprint":
                     mapData.title = "期末冲刺地图";
                     mapData.description = "期末前的时间有限。选择地点不会消耗时间，完成互动后才会消耗时间。";
-                    AddStageMapLocation(mapData, "location_home", "家里", "休息、家庭支持", "HomeMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 0);
+                    AddStageMapLocation(mapData, "location_home", "家里", "休息、家庭支持", "HomeLivingRoomScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 0);
                     AddStageMapLocation(mapData, "location_school", "学校", "最终复习、期末挑战", "Assets/Scenes/StudentGrowth/Maps/SchoolMapScene.unity", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 10);
                     AddStageMapLocation(mapData, "location_shop", "商店", "进入商店地图", "ShopMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 20);
                     AddStageMapLocation(mapData, "location_park", "公园", "压力调整、社交收尾", "ParkMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 30);
@@ -230,7 +230,7 @@ namespace StudentGrowth
                 default:
                     mapData.title = "阶段地图";
                     mapData.description = "选择地点进入地图。移动和进入地点不消耗时间，只有完成互动才会消耗时间。";
-                    AddStageMapLocation(mapData, "location_home", "家里", "恢复精力、沟通家庭", "HomeMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 0);
+                    AddStageMapLocation(mapData, "location_home", "家里", "恢复精力、沟通家庭", "HomeLivingRoomScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 0);
                     AddStageMapLocation(mapData, "location_school", "学校", "学习、老师、课堂挑战", "Assets/Scenes/StudentGrowth/Maps/SchoolMapScene.unity", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 10);
                     AddStageMapLocation(mapData, "location_shop", "商店", "进入商店地图", "ShopMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 20);
                     AddStageMapLocation(mapData, "location_park", "公园", "降低压力、社交事件", "ParkMapScene", StageMapLocationStatus.Unlocked, string.Empty, string.Empty, string.Empty, 30);

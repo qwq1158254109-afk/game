@@ -3,7 +3,8 @@
     "rootNamespace": "StudentGrowth.Tests",
     "references": [
         "StudentGrowth.Runtime",
-        "StudentGrowth.Editor"
+        "StudentGrowth.Editor",
+        "LitMotion"
     ],
     "includePlatforms": [
         "Editor"

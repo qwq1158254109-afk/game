@@ -1,7 +1,9 @@
 {
     "name": "StudentGrowth.Runtime",
     "rootNamespace": "StudentGrowth",
-    "references": [],
+    "references": [
+        "LitMotion"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

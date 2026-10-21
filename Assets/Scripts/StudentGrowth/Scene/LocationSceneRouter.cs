@@ -234,8 +234,64 @@ namespace StudentGrowth
             }
 
             GameBootstrapper.SetSharedSession(sessionState);
+            SchedulePlayerRebindAfterSceneLoad();
             SceneManager.LoadScene(entry.sceneName, LoadSceneMode.Single);
             return true;
+        }
+
+        private static bool pendingPlayerRebind;
+
+        /// <summary>
+        /// 预约「场景加载完成后收拾玩家」并挂一次性 sceneLoaded 回调。
+        /// 不能像旧版那样在 LoadScene 后同一帧直接执行——同步 LoadScene 官方语义是
+        /// 「下一帧才完成加载」，当场执行跑在旧场景上，对「新场景自带的玩家」去重无效
+        /// （历史 bug：进新地图后两个人物共存）。
+        /// </summary>
+        private static void SchedulePlayerRebindAfterSceneLoad()
+        {
+            pendingPlayerRebind = true;
+            SceneManager.sceneLoaded -= OnSceneLoadedPlayerRebind;
+            SceneManager.sceneLoaded += OnSceneLoadedPlayerRebind;
+        }
+
+        private static void OnSceneLoadedPlayerRebind(Scene scene, LoadSceneMode mode)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoadedPlayerRebind;
+
+            if (!pendingPlayerRebind)
+            {
+                return;
+            }
+
+            pendingPlayerRebind = false;
+            RebindPlayerAfterSceneLoad();
+        }
+
+        /// <summary>
+        /// 场景加载完成后：补齐去重（销毁场景自带的那份、保留持久玩家）并把新场景的
+        /// 地图控制器重新绑到存活玩家上、传送到该场景出生点。
+        /// （PlayerManager 的全局 sceneLoaded 钩子先行兜底；此处重复执行为幂等。）
+        /// </summary>
+        private static void RebindPlayerAfterSceneLoad()
+        {
+            RpgPlayerController survivor = PlayerManager.Instance.ResolvePlayerAfterSceneLoad();
+            if (survivor == null)
+            {
+                return;
+            }
+
+            FullscreenMapSceneController[] controllers = FindObjectsOfType<FullscreenMapSceneController>();
+            for (int i = 0; i < controllers.Length; i++)
+            {
+                FullscreenMapSceneController controller = controllers[i];
+                if (controller == null)
+                {
+                    continue;
+                }
+
+                controller.RebindPlayer(survivor);
+                controller.MovePlayerToSpawn(controller.defaultSpawnPointId);
+            }
         }
 
         private bool TryLoadStageMapScene(LocationSceneRouteResult result)

@@ -302,7 +302,24 @@ namespace StudentGrowth
                 }
 
                 fallback ??= node;
-                if (node.CanConfirm)
+            }
+
+            // 光标默认落在角色当前所在地点；找不到（例如尚未进入过任何地点）再退回
+            // 第一个可进入的地点。原实现只挑「第一个可确认节点」，光标总是停在家里。
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                StageHubLocationNodeView node = nodes[i];
+                if (node != null && IsCurrentLocation(node.locationId))
+                {
+                    SelectNode(node);
+                    return;
+                }
+            }
+
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                StageHubLocationNodeView node = nodes[i];
+                if (node != null && node.CanConfirm)
                 {
                     SelectNode(node);
                     return;

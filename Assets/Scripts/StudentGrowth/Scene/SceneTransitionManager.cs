@@ -231,7 +231,7 @@ namespace StudentGrowth
         {
             if (sceneName == "Home")
             {
-                return "HomeMapScene";
+                return "HomeLivingRoomScene";
             }
 
             if (sceneName == "Shop")

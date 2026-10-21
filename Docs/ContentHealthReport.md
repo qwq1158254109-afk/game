@@ -1,7 +1,7 @@
 # 内容体检报告
 
 > 由 `ContentHealthAudit` 生成（工具位于 `Assets/Scripts/StudentGrowth/Editor/ContentHealthAudit.cs`）
-> 生成时间：2026-09-23 18:57:01
+> 生成时间：2026-10-17 11:56:22
 
 > **口径分两套，并排给出，不静默替换。**
 > 「纸面上界」= 把扫描到的所有来源都算上（含未接线资产、锁死地点内的内容），首版口径，系统性偏乐观。
@@ -14,7 +14,7 @@
 | 不可达结局（实机口径） | **5 / 6** |
 | 不可达地点 | **0 / 6** |
 | 零来源的属性（实机口径） | **2 / 13** |
-| 瓶颈属性（实机来源仅 1 处） | **3 / 13** |
+| 瓶颈属性（实机来源仅 1 处） | **0 / 13** |
 | 无来源或无出口的资源类型 | **9 / 13** |
 | **未接线的活动资产**（写完没挂进场景） | **5 / 17** |
 | **实机不可达的活动**（未接线 + 地点锁死） | **5 / 17** |
@@ -31,7 +31,7 @@
 - GameBootstrapperData 资产：**未找到**（StudentGrowth/MvpBootstrapperData）→ 实际运行走 MvpSampleDataFactory 代码兜底
 - 运行时内容：阶段 3 / 地点 6 / 结局 6
 - 场景接线索引：扫描地图场景 7 个（另跳过 Backups/_Recovery 下的 30 个），找到 12 个活动资产被 MapInteractionTarget 引用（合计 16 处引用）
-- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 37 个，其中活动 17 个
+- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 70 个，其中活动 17 个
 - 地点可达性不动点：迭代 1 轮后收敛，可达地点 6 / 6
 
 ## 2. 结局可达性
@@ -41,11 +41,11 @@
 
 | 结局 | 优先级 | 实机判定 | 原因 |
 | --- | ---: | --- | --- |
-| 压力调整<br><code>ending_pressure_recovery</code> | 60 | **不可达** | 压力 需 ≥ 85，但全部来源的上界只有 38 |
-| 稳定升学<br><code>ending_stable_admission</code> | 50 | **不可达** | 要求三科均值 ≥ 55，上界仅 41 |
-| 兴趣成长<br><code>ending_interest_growth</code> | 40 | **不可达** | 兴趣 需 ≥ 70，但全部来源的上界只有 47 |
-| 家庭支持<br><code>ending_family_support</code> | 40 | **不可达** | 亲子关系 需 ≥ 70，但全部来源的上界只有 59 |
-| 自主选择<br><code>ending_self_driven</code> | 40 | **不可达** | 自主性 需 ≥ 70，但全部来源的上界只有 48 |
+| 压力调整<br><code>ending_pressure_recovery</code> | 60 | **不可达** | 压力 需 ≥ 85，但全部来源的上界只有 41 |
+| 稳定升学<br><code>ending_stable_admission</code> | 50 | **不可达** | 要求三科均值 ≥ 55，上界仅 42 |
+| 兴趣成长<br><code>ending_interest_growth</code> | 40 | **不可达** | 兴趣 需 ≥ 70，但全部来源的上界只有 53 |
+| 家庭支持<br><code>ending_family_support</code> | 40 | **不可达** | 亲子关系 需 ≥ 70，但全部来源的上界只有 67 |
+| 自主选择<br><code>ending_self_driven</code> | 40 | **不可达** | 自主性 需 ≥ 70，但全部来源的上界只有 50 |
 | 普通但完整的成长<br><code>ending_growth_complete</code> | 0 | 可达（上界） | — |
 
 ## 3. 地点解锁可达性
@@ -83,18 +83,18 @@
 
 | 属性 | 初始值 | 实机来源数 | 纸面来源数 | 实机上界 | 纸面上界 | 判定 | 来源示例（实机） |
 | --- | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| 语文 | 35 | 1 | 2 | 38 | 40 | **仅 1 处来源（瓶颈）**（纸面多 1 处不可达） | 阶段可用活动固定奖励 ｜ activity_focus_class（认真听课） |
-| 数学 | 35 | 3 | 5 | 47 | 54 | 有（纸面多 2 处不可达） | 阶段可用活动固定奖励 ｜ activity_math_drill（数学刷题）<br>活动资产固定奖励 ｜ activity_home_computer_study（电脑学习）<br>挑战资产成功奖励 ｜ challenge_strategy_practice（书桌策略练习） |
-| 英语 | 35 | 1 | 1 | 39 | 39 | **仅 1 处来源（瓶颈）** | 阶段可用活动关联小游戏成功 ｜ activity_word_memory_mini（单词记忆） |
-| 精力 | 60 | 5 | 5 | 60 | 60 | 有 | 阶段可用活动固定奖励 ｜ activity_rest_early_sleep（早点休息）<br>阶段可用活动固定奖励 ｜ activity_music_break（听音乐放松）<br>活动资产固定奖励 ｜ activity_home_rest_early_sleep（早点休息） |
+| 语文 | 35 | 2 | 3 | 39 | 41 | 有（纸面多 1 处不可达） | 阶段可用活动固定奖励 ｜ activity_focus_class（认真听课）<br>卡牌效果 ｜ card_study_note_taking（课堂笔记） |
+| 数学 | 35 | 4 | 6 | 48 | 55 | 有（纸面多 2 处不可达） | 阶段可用活动固定奖励 ｜ activity_math_drill（数学刷题）<br>活动资产固定奖励 ｜ activity_home_computer_study（电脑学习）<br>挑战资产成功奖励 ｜ challenge_strategy_practice（书桌策略练习） |
+| 英语 | 35 | 2 | 2 | 40 | 40 | 有 | 阶段可用活动关联小游戏成功 ｜ activity_word_memory_mini（单词记忆）<br>卡牌效果 ｜ card_study_word_dictation（默写单词） |
+| 精力 | 60 | 6 | 6 | 60 | 60 | 有 | 阶段可用活动固定奖励 ｜ activity_rest_early_sleep（早点休息）<br>阶段可用活动固定奖励 ｜ activity_music_break（听音乐放松）<br>活动资产固定奖励 ｜ activity_home_rest_early_sleep（早点休息） |
 | 精力上限 | 60 | 0 | 0 | 60 | 60 | **零来源** | — |
-| 压力 | 20 | 4 | 4 | 38 | 38 | 有 | 阶段Boss失败奖励 ｜ boss_class_quiz（课堂小测）<br>阶段Boss失败奖励 ｜ boss_month_exam（月考）<br>阶段Boss失败奖励 ｜ boss_final_exam（期末综合考试） |
+| 压力 | 20 | 5 | 5 | 41 | 41 | 有 | 阶段Boss失败奖励 ｜ boss_class_quiz（课堂小测）<br>阶段Boss失败奖励 ｜ boss_month_exam（月考）<br>阶段Boss失败奖励 ｜ boss_final_exam（期末综合考试） |
 | 心情 | 60 | 8 | 8 | 85 | 85 | 有 | 阶段可用活动关联事件选项1(稳妥处理) ｜ activity_family_dinner_event（家庭晚饭聊天）<br>阶段可用活动关联事件选项1(稳妥处理) ｜ activity_weekend_plan_event（周末安排）<br>活动资产固定奖励 ｜ activity_home_family_dinner（家庭晚饭聊天） |
-| 亲子关系 | 50 | 3 | 3 | 59 | 59 | 有 | 阶段可用活动关联事件选项1(稳妥处理) ｜ activity_family_dinner_event（家庭晚饭聊天）<br>阶段可用活动关联事件选项1(稳妥处理) ｜ activity_weekend_plan_event（周末安排）<br>活动资产固定奖励 ｜ activity_home_family_dinner（家庭晚饭聊天） |
-| 社交 | 40 | 1 | 1 | 45 | 45 | **仅 1 处来源（瓶颈）** | 活动资产固定奖励 ｜ activity_club_meeting（社团讨论） |
-| 兴趣 | 40 | 2 | 2 | 47 | 47 | 有 | 活动资产固定奖励 ｜ activity_club_planning（策划社团活动）<br>活动资产固定奖励 ｜ activity_park_flower_viewing（赏花观察） |
-| 自信 | 45 | 5 | 6 | 60 | 63 | 有（纸面多 1 处不可达） | 阶段Boss通关奖励 ｜ boss_class_quiz（课堂小测）<br>阶段Boss通关奖励 ｜ boss_month_exam（月考）<br>阶段可用活动固定奖励 ｜ activity_final_review（综合复习） |
-| 自主性 | 35 | 4 | 4 | 48 | 48 | 有 | 阶段可用活动关联小游戏成功 ｜ activity_focus_timing_mini（专注计时）<br>活动资产固定奖励 ｜ activity_home_desk_plan（整理计划）<br>活动资产固定奖励 ｜ activity_club_planning（策划社团活动） |
+| 亲子关系 | 50 | 6 | 6 | 67 | 67 | 有 | 阶段可用活动关联事件选项1(稳妥处理) ｜ activity_family_dinner_event（家庭晚饭聊天）<br>阶段可用活动关联事件选项1(稳妥处理) ｜ activity_weekend_plan_event（周末安排）<br>活动资产固定奖励 ｜ activity_home_family_dinner（家庭晚饭聊天） |
+| 社交 | 40 | 3 | 3 | 50 | 50 | 有 | 活动资产固定奖励 ｜ activity_club_meeting（社团讨论）<br>卡牌效果 ｜ card_social_club_activity（社团活动）<br>卡牌效果 ｜ card_social_group_discussion（小组讨论） |
+| 兴趣 | 40 | 5 | 5 | 53 | 53 | 有 | 活动资产固定奖励 ｜ activity_club_planning（策划社团活动）<br>活动资产固定奖励 ｜ activity_park_flower_viewing（赏花观察）<br>卡牌效果 ｜ card_interest_competition（参加竞赛） |
+| 自信 | 45 | 8 | 9 | 67 | 70 | 有（纸面多 1 处不可达） | 阶段Boss通关奖励 ｜ boss_class_quiz（课堂小测）<br>阶段Boss通关奖励 ｜ boss_month_exam（月考）<br>阶段可用活动固定奖励 ｜ activity_final_review（综合复习） |
+| 自主性 | 35 | 5 | 5 | 50 | 50 | 有 | 阶段可用活动关联小游戏成功 ｜ activity_focus_timing_mini（专注计时）<br>活动资产固定奖励 ｜ activity_home_desk_plan（整理计划）<br>活动资产固定奖励 ｜ activity_club_planning（策划社团活动） |
 | 金钱 | 100 | 0 | 0 | 100 | 100 | **零来源** | — |
 
 > 不可达的来源明细（举例）：
@@ -168,7 +168,7 @@
 | 结局「自主选择」不可达 | ✅ 已报出 |
 | 结局「压力调整」不可达 | ✅ 已报出 |
 | 结局「家庭支持」不可达（亲子上界不足） | ✅ 已报出 |
-| 属性「英语」实机来源 ≤1 处（瓶颈） | ✅ 已报出 |
+| 属性「英语」实机来源 ≤1 处（瓶颈） | ❌ **未报出** |
 | 属性「金钱」实机零来源 | ✅ 已报出 |
 | 资源「AddMoney」零次出现（金钱无来源） | ✅ 已报出 |
 | 地点「学校」无任何已接线活动 | ✅ 已报出（实际 0 个） |

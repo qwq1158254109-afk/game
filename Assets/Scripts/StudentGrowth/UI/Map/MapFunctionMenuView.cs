@@ -49,12 +49,43 @@ namespace StudentGrowth
         {
             ResolveReferences();
             ApplyStyle();
-            Hide();
+            // 不在此 Hide：首次 Show() 激活时会同步触发 Awake，Hide 会吞掉这次显示。
+            // 初始不可见由场景序列化 inactive + 工厂 BuildDefaultLayout 末尾的 Hide() 保证。
         }
 
         private void OnEnable()
         {
             ApplyStyle();
+            EnsureCloseButtonBound();
+        }
+
+        /// <summary>
+        /// 修复（2026-10-16）：与 MapActivityResultView 同源问题——场景序列化实例
+        /// 从未经过 BuildDefaultLayout，closeButton.onClick 为空导致按钮点不动。
+        /// 每次显示时幂等补绑。
+        /// </summary>
+        private void EnsureCloseButtonBound()
+        {
+            if (closeButton == null && panelRoot != null)
+            {
+                Button[] buttons = panelRoot.GetComponentsInChildren<Button>(true);
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    if (buttons[i] != null && buttons[i].gameObject.name.Contains("Close"))
+                    {
+                        closeButton = buttons[i];
+                        break;
+                    }
+                }
+            }
+
+            if (closeButton == null)
+            {
+                return;
+            }
+
+            closeButton.onClick.RemoveListener(Hide);
+            closeButton.onClick.AddListener(Hide);
         }
 
         public void Configure(GameSessionState state, SceneTransitionController sceneTransition, FullscreenMapHudView hud)
@@ -359,48 +390,17 @@ namespace StudentGrowth
                 return;
             }
 
-            IReadOnlyList<ItemData> items = sessionState == null || sessionState.itemInventory == null
-                ? null
-                : sessionState.itemInventory.ownedItems;
-            if (items == null || items.Count == 0)
-            {
-                Text empty = CreateText("InventoryEmpty", inventoryListRoot, "没有可用道具。", 16, FontStyle.Normal, TextAnchor.MiddleCenter);
-                SetRect(empty.rectTransform, Vector2.zero, inventoryListRoot.sizeDelta, new Vector2(0f, 1f));
-                GameUiStyle.ApplyPixelText(empty, GameUiStyle.ResolveTheme(theme), GameUiTextStyle.Body);
-                return;
-            }
-
-            int count = Mathf.Min(items.Count, MaxVisibleListItems);
-            for (int i = 0; i < count; i++)
-            {
-                ItemData item = items[i];
-                Button button = CreateInventoryItemButton(item, i);
-                ApplyButton(button);
-            }
-
-            if (items.Count > count)
-            {
-                Text overflow = CreateText("InventoryOverflow", inventoryListRoot, "还有 " + (items.Count - count) + " 个道具未显示。", 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-                SetRect(overflow.rectTransform, new Vector2(0f, -count * (ListRowHeight + ListRowSpacing)), new Vector2(374f, 24f), new Vector2(0f, 1f));
-                GameUiStyle.ApplyPixelText(overflow, GameUiStyle.ResolveTheme(theme), GameUiTextStyle.SmallText);
-            }
-        }
-
-        private Button CreateInventoryItemButton(ItemData item, int index)
-        {
-            string itemName = item == null || string.IsNullOrEmpty(item.displayName) ? "未知道具" : item.displayName;
-            Button button = CreateButton(
-                "InventoryItem_" + index,
+            // 旧的道具列表已移除：背包统一由 InventoryPanelView 承载（网格 + 详情 + 使用/丢弃）。
+            // 这里只留一个入口，避免两处都能用道具导致状态不同步。
+            Button open = CreateButton(
+                "OpenInventory",
                 inventoryListRoot,
-                itemName,
-                new Vector2(0f, -index * (ListRowHeight + ListRowSpacing)),
+                "打开背包（6）",
+                Vector2.zero,
                 new Vector2(374f, ListRowHeight),
                 new Vector2(0f, 1f));
-            ConfigureListButton(button, itemName, GetInventoryItemStatus(item), BuildInventoryItemDetail(item), GetInventoryItemIcon(item), CanUseItemOnMap(item));
-            button.interactable = CanUseItemOnMap(item);
-            ItemData captured = item;
-            button.onClick.AddListener(() => UseInventoryItem(captured));
-            return button;
+            ApplyButton(open);
+            open.onClick.AddListener(() => InventoryPanelView.Ensure().Open(sessionState));
         }
 
         private void ConfigureListButton(Button button, string title, string status, string detail, Sprite icon, bool positiveStatus)

@@ -10,7 +10,7 @@ namespace StudentGrowth
     public sealed class GameApplicationRuntime : MonoBehaviour
     {
         public const string MainMenuPath="Assets/Scenes/StudentGrowth/MainMenuScene.unity";
-        public const string HomePath="Assets/Scenes/StudentGrowth/Maps/HomeMapScene.unity";
+        public const string HomePath="Assets/Scenes/StudentGrowth/Maps/HomeLivingRoomScene.unity";
         public GameSessionLifetime Lifetime { get; } = new GameSessionLifetime();
         public UnityGameSaveSource Source => source;
         public UnityGameFlowBackend Backend { get; private set; }
@@ -80,7 +80,7 @@ namespace StudentGrowth
                 new PostLoadPipeline(new IPostLoadHandler[] { new AchievementSyncService(null,new AchievementRule[0]) }),
                 () => settings.IsBusy || SceneTransitionManager.HasActiveTransition);
             Coordinator = new PauseMenuCoordinator(settings,SaveService,FlowService,() => SceneTransitionManager.HasActiveTransition,
-                SetPaused,settingsMenu.Open,settingsMenu.Close,Application.Quit,StartNewGameAsync);
+                SetPaused,settingsMenu.Open,settingsMenu.Close,GameQuit.Request,StartNewGameAsync);
             Coordinator.ReturnToMenu=ReturnToMenuAsync;
             Coordinator.ProgressDirty=() => Lifetime.IsActive && Lifetime.IsDirty(source.Capture());
             Coordinator.PrepareLeave=() => Lifetime.Leaving=true;

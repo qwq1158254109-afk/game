@@ -2,97 +2,47 @@ using UnityEngine;
 
 namespace StudentGrowth
 {
+    /// <summary>
+    /// 脚步音：按移动状态定时播放脚素材（走路 / 跑步两档节奏）。
+    /// 之前是循环播一个 Run.ogg，机械感很重；现在从 10 个脚步里随机挑 + 随机音高。
+    /// 音量走「设置 → 音效」通道（SfxPlayer 池内已挂 AudioChannelSource）。
+    /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(RpgPlayerController))]
     public sealed class PlayerMovementAudioController : MonoBehaviour
     {
         [SerializeField] private RpgPlayerController playerController;
-        [SerializeField] private AudioSource runAudioSource;
-        [SerializeField] private AudioChannelSource audioChannelSource;
-        [SerializeField] private AudioClip runClip;
-        [SerializeField, Range(0f, 1f)] private float runVolume = 0.275f;
+        [SerializeField, Range(0.05f, 1f)] private float stepIntervalWalk = 0.42f;
+        [SerializeField, Range(0.05f, 1f)] private float stepIntervalRun = 0.28f;
+
+        private float stepTimer;
 
         private void Awake()
-        {
-            EnsureComponents();
-            ApplyAudioSettings();
-        }
-
-        private void Update()
-        {
-            bool shouldPlay = playerController != null
-                && playerController.IsRunning
-                && runClip != null;
-
-            if (shouldPlay)
-            {
-                if (!runAudioSource.isPlaying)
-                {
-                    runAudioSource.Play();
-                }
-
-                return;
-            }
-
-            StopRunAudio();
-        }
-
-        private void OnDisable()
-        {
-            StopRunAudio();
-        }
-
-        public void Configure(AudioClip clip, float volume = 0.275f)
-        {
-            runClip = clip;
-            runVolume = Mathf.Clamp01(volume);
-            EnsureComponents();
-            ApplyAudioSettings();
-        }
-
-        private void EnsureComponents()
         {
             if (playerController == null)
             {
                 playerController = GetComponent<RpgPlayerController>();
             }
-
-            if (runAudioSource == null)
-            {
-                runAudioSource = gameObject.AddComponent<AudioSource>();
-            }
-
-            if (audioChannelSource == null)
-            {
-                audioChannelSource = GetComponent<AudioChannelSource>();
-            }
-
-            if (audioChannelSource == null)
-            {
-                audioChannelSource = gameObject.AddComponent<AudioChannelSource>();
-            }
         }
 
-        private void ApplyAudioSettings()
+        private void Update()
         {
-            if (runAudioSource == null)
+            if (playerController == null || !playerController.canMove || !playerController.IsMoving)
+            {
+                stepTimer = 0f;
+                return;
+            }
+
+            bool running = playerController.IsRunning;
+            float interval = running ? stepIntervalRun : stepIntervalWalk;
+            stepTimer -= Time.deltaTime;
+            if (stepTimer > 0f)
             {
                 return;
             }
 
-            runAudioSource.clip = runClip;
-            runAudioSource.playOnAwake = false;
-            runAudioSource.loop = true;
-            runAudioSource.spatialBlend = 0f;
-            audioChannelSource.Configure(runAudioSource, GameAudioChannel.Sfx, runVolume);
-        }
-
-        private void StopRunAudio()
-        {
-            if (runAudioSource != null && runAudioSource.isPlaying)
-            {
-                runAudioSource.Stop();
-            }
+            Sfx.World.Step(running);
+            stepTimer = interval;
         }
     }
 }

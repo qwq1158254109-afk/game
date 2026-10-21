@@ -38,19 +38,19 @@ namespace StudentGrowth
                     ResolveEventActivity(activityData, result);
                     break;
                 case ActivityType.CardBattle:
-                    result.message = "Card battle activity prepared.";
+                    result.message = "对战即将开始。";
                     break;
                 case ActivityType.MiniGame:
                     ResolveMiniGamePlaceholder(activityData, result);
                     break;
                 case ActivityType.Rest:
-                    result.message = "Rest activity resolved.";
+                    result.message = "休息已结束。";
                     break;
                 case ActivityType.Shop:
-                    result.message = "Shop activity resolved with configured rewards.";
+                    result.message = "购物已完成。";
                     break;
                 case ActivityType.Training:
-                    result.message = "Training activity resolved with configured rewards.";
+                    result.message = "训练已完成。";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("activityData.activityType", activityData.activityType, "Unsupported activity type.");
@@ -69,7 +69,7 @@ namespace StudentGrowth
         {
             if (activityData.linkedEvent == null)
             {
-                result.message = "Event activity has no linked event.";
+                result.message = "该活动没有绑定事件。";
                 return;
             }
 
@@ -87,19 +87,19 @@ namespace StudentGrowth
             }
 
             result.success = false;
-            result.message = "No available event choice.";
+            result.message = "当前没有满足条件的事件选项。";
         }
 
         private static void ResolveMiniGamePlaceholder(ActivityData activityData, ActivityResult result)
         {
             if (activityData.linkedMiniGame == null)
             {
-                result.message = "Mini game activity has no linked mini game.";
+                result.message = "该活动没有绑定小游戏。";
                 return;
             }
 
             AddRewards(result.rewards, activityData.linkedMiniGame.successRewards);
-            result.message = "Mini game placeholder resolved as success.";
+            result.message = "小游戏已完成。";
         }
 
         private static void AddRewards(List<RewardData> target, IEnumerable<RewardData> rewards)

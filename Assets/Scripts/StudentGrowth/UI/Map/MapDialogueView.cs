@@ -25,12 +25,43 @@ namespace StudentGrowth
         private void Awake()
         {
             ResolveReferences();
-            Hide();
+            // 不在此 Hide：首次 Show() 激活时会同步触发 Awake，Hide 会吞掉这次显示。
+            // 初始不可见由场景序列化 inactive + 工厂 BuildDefaultLayout 末尾的 Hide() 保证。
         }
 
         private void OnEnable()
         {
             ApplyStyle();
+            EnsureCloseButtonBound();
+        }
+
+        /// <summary>
+        /// 修复（2026-10-16）：与 MapActivityResultView 同源问题——场景序列化实例
+        /// 从未经过 BuildDefaultLayout，closeButton.onClick 为空导致按钮点不动。
+        /// 每次显示时幂等补绑。
+        /// </summary>
+        private void EnsureCloseButtonBound()
+        {
+            if (closeButton == null && panelRoot != null)
+            {
+                Button[] buttons = panelRoot.GetComponentsInChildren<Button>(true);
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    if (buttons[i] != null && buttons[i].gameObject.name.Contains("Close"))
+                    {
+                        closeButton = buttons[i];
+                        break;
+                    }
+                }
+            }
+
+            if (closeButton == null)
+            {
+                return;
+            }
+
+            closeButton.onClick.RemoveListener(Hide);
+            closeButton.onClick.AddListener(Hide);
         }
 
         public void BuildDefaultLayout(RectTransform parent)

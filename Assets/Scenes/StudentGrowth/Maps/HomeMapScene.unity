@@ -6345,6 +6345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapShopView
   theme: {fileID: 11400000, guid: 883290a33467c1d5cda07153de5d2c4d, type: 2}
   sessionState:
+    runId: 
+    tutorialSeen: 0
     playerState:
       chinese: 35
       math: 35
@@ -6359,6 +6361,10 @@ MonoBehaviour:
       confidence: 45
       autonomy: 35
       money: 100
+    timeActionState:
+      currentDay: 1
+      currentPeriod: 0
+      currentActionPoints: 3
     stageState:
       currentStage: {fileID: 0}
       remainingTime: 0
@@ -7402,6 +7408,8 @@ MonoBehaviour:
   debugOverlay: {fileID: 1722083022}
   sceneTransitionController: {fileID: 0}
   sessionState:
+    runId: 
+    tutorialSeen: 0
     playerState:
       chinese: 35
       math: 35
@@ -7416,6 +7424,10 @@ MonoBehaviour:
       confidence: 45
       autonomy: 35
       money: 100
+    timeActionState:
+      currentDay: 1
+      currentPeriod: 0
+      currentActionPoints: 3
     stageState:
       currentStage: {fileID: 0}
       remainingTime: 0
@@ -10860,6 +10872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.PlayerMovementAudioController
   playerController: {fileID: 689058015}
   runAudioSource: {fileID: 689058021}
+  audioChannelSource: {fileID: 0}
   runClip: {fileID: 8300000, guid: 5e6bea83d1aed0342ab9499cbad86864, type: 3}
   runVolume: 0.275
 --- !u!1 &696920331
@@ -12560,6 +12573,8 @@ MonoBehaviour:
   theme: {fileID: 11400000, guid: 883290a33467c1d5cda07153de5d2c4d, type: 2}
   hudView: {fileID: 0}
   sessionState:
+    runId: 
+    tutorialSeen: 0
     playerState:
       chinese: 35
       math: 35
@@ -12574,6 +12589,10 @@ MonoBehaviour:
       confidence: 45
       autonomy: 35
       money: 100
+    timeActionState:
+      currentDay: 1
+      currentPeriod: 0
+      currentActionPoints: 3
     stageState:
       currentStage: {fileID: 0}
       remainingTime: 0
@@ -27027,6 +27046,9 @@ MonoBehaviour:
   cameraController: {fileID: 1112086188}
   cameraBounds: {fileID: 343844655}
   hudView: {fileID: 1956937969}
+  timeActionHudView: {fileID: 0}
+  locationToastView: {fileID: 0}
+  hudTheme: {fileID: 0}
   promptView: {fileID: 1832432026}
   functionMenuView: {fileID: 809553558}
   confirmView: {fileID: 610692533}
@@ -27039,10 +27061,13 @@ MonoBehaviour:
   locationActionExecutor: {fileID: 0}
   gameBootstrapper: {fileID: 0}
   stageController: {fileID: 0}
+  timeActionController: {fileID: 0}
   activityController: {fileID: 0}
   challengeController: {fileID: 0}
   miniGameController: {fileID: 0}
   sessionState:
+    runId: 
+    tutorialSeen: 0
     playerState:
       chinese: 35
       math: 35
@@ -27057,6 +27082,10 @@ MonoBehaviour:
       confidence: 45
       autonomy: 35
       money: 100
+    timeActionState:
+      currentDay: 1
+      currentPeriod: 0
+      currentActionPoints: 3
     stageState:
       currentStage: {fileID: 0}
       remainingTime: 0
@@ -28782,6 +28811,7 @@ MonoBehaviour:
   showDefaultWhenIdle: 0
   debugVisible: 0
   applyStyleOnAwake: 1
+  usePixelFont: 1
 --- !u!114 &1832432027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30729,6 +30759,8 @@ MonoBehaviour:
   settingsButton: {fileID: 706541592}
   returnButton: {fileID: 694416}
   sessionState:
+    runId: 
+    tutorialSeen: 0
     playerState:
       chinese: 35
       math: 35
@@ -30743,6 +30775,10 @@ MonoBehaviour:
       confidence: 45
       autonomy: 35
       money: 100
+    timeActionState:
+      currentDay: 1
+      currentPeriod: 0
+      currentActionPoints: 3
     stageState:
       currentStage: {fileID: 0}
       remainingTime: 0
@@ -30776,6 +30812,13 @@ MonoBehaviour:
   showActionPanel: 0
   applyStyleOnEnable: 1
   refreshInterval: 0.2
+  useSchoolPresentation: 0
+  showSchoolStageObjective: 0
+  playerController: {fileID: 0}
+  playerStatusView: {fileID: 0}
+  resourceHudView: {fileID: 0}
+  stageObjectiveView: {fileID: 0}
+  actionHintBarView: {fileID: 0}
 --- !u!1 &1968213438
 GameObject:
   m_ObjectHideFlags: 0

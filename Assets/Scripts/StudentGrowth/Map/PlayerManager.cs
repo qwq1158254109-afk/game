@@ -78,6 +78,18 @@ namespace StudentGrowth
 
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded -= OnSceneLoadedHeal;
+            SceneManager.sceneLoaded += OnSceneLoadedHeal;
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoadedHeal;
+        }
+
+        private void OnSceneLoadedHeal(Scene scene, LoadSceneMode mode)
+        {
+            ResolvePlayerAfterSceneLoad();
         }
 
         public RpgPlayerController CaptureCurrentPlayer()

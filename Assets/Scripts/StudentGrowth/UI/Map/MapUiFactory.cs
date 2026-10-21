@@ -166,7 +166,7 @@ namespace StudentGrowth
             view.dateLogoBackground = CreateHudIcon("DateLogoBackground", rootRect);
             SetChildRect(view.dateLogoBackground, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), Vector2.zero, new Vector2(140f, 140f));
 
-            view.dayText = CreateText("DayText", rootRect, "第 1 天", 20, FontStyle.Bold, TextAnchor.MiddleCenter);
+            view.dayText = CreateText("DayText", rootRect, "-", 20, FontStyle.Bold, TextAnchor.MiddleCenter);
             SetChildRect(view.dayText, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(10f, -26f), new Vector2(106f, 28f));
 
             view.remainingDailyText = CreateText("RemainingDailyText", rootRect, "今日剩余 12/12", 13, FontStyle.Bold, TextAnchor.MiddleCenter);

@@ -902,3 +902,91 @@ V0.2 推荐顺序：
 - For 2D RPG systems, prefer modular controllers over one large runtime UI class.
 - For scene interaction systems, avoid hardcoding scene object names unless there is no alternative.
 - For pixel art assets, preserve import settings, Pixels Per Unit, Filter Mode, Compression, and Sprite Mode unless the task explicitly requires changes.
+
+---
+
+## 20. dsh（DeepSeek Harness）作业规程
+
+本节在 dsh 接入后生效，与上文并行；环境类事实以本节为准，其余仍按上文执行。
+
+### 20.1 开工
+
+- 先看工作区根目录最新的 `handoff-*.md`（截至 2026-10-19 尚无该文件；出现即必读）。
+- 再读本文件第 1–19 节的系统规范。
+- 设计依据取实际存在的文档：`CODEX_GAME_SPEC_STAGE_MVP.md`、`CODEX_GAME_SPEC_STAGE_V2_SCENE_OPTIMIZATION.md`、`Docs/`、`ScriptCodeDocs/`。清单里提到的 GDD html 与“卡牌系统设计方案”文件当前不在仓库中，不要假装读过。
+- dsh 工作区固定为 `E:\大创项目`，命令一律在此目录执行。
+
+### 20.2 三条硬性闸门
+
+1. 改码后必须 recompile，0 error 才允许进 Play。
+2. 用 Edit 补方法前先 grep 同名方法，防 CS0111 重复定义。
+3. 删脚本后先执行 `Assets/Refresh` 再 recompile，防 CS2001。
+
+### 20.3 纪律
+
+- 改任何文件前先备份到 `_backup_<事项>_<日期>\`（保留原目录结构）。
+- 先纸面方案、经用户确认，再动实现。
+- 不改用户原文件布局；产物落文件，不只口头描述。
+- 全部结论必须有证据（数值 / 截图 / 日志），真实不编造。
+
+### 20.4 环境事实
+
+- Unity 版本 6000.4.6f1（`ProjectSettings/ProjectVersion.txt`）。
+- mcp-unity 1.5.0，端口 8096（`ProjectSettings/McpUnitySettings.json`），桥接令牌 `Library/McpUnity/bridge-token`。
+- **recompile 必然把 MCP 打半残**（2026-10-19 三次复现）：任何一次 recompile（含保存脚本触发的域重载）都会让 mcp-unity 的 WebSocket 重绑失败，日志写 `Failed to start WebSocket server: Port 8096 is already in use`，表现为端口在听、握手超时。处理：关 Unity → 等端口彻底消失 → 重启 Unity。**不要反复重试 MCP**。
+- **僵尸端口**：强杀 Unity 会留下「pid 已不存在、netstat 仍显示 LISTENING」的 8096。此时新启动的 Unity 会静默失去 MCP 服务（NO_LISTENER），且不自动重试。必须等 `netstat -ano | findstr :8096` 完全为空再启动。
+- 因此：**一次性把代码改完再编译**，编译后统一「重启 Unity → 跑菜单 → 截图验证」，不要边改边验。
+- Game 视图在 1x 下会裁切房间，不能当判据；出对照图用菜单 `Tools/Student Growth/Dev/Capture Room Screenshot`（1600×900 离屏渲染、无 HUD，输出 `_room_shot.png`）。
+- 装饰落点约定：`DecorSpec(x, y)` = **底边中心**。2026-10-19 修过一次——Props sprite 的 pivot 是 (0.5,0.5)，旧代码按左下角算，导致每件装饰左移半个自身宽度（左右两把椅子实测中心 ±5.54，不是 ±4.6）。
+- Play 模式下 MCP 会“半残”（握手超时假象）；probe 验证脚本不依赖 MCP。
+- 删脚本后首次 recompile 报 CS2001 属清单缓存，`Assets/Refresh` 即解。
+- PlayMode `run_tests` 会卡死，禁用；EditMode 可用。
+- 输入测试用“等鼠标静默（45 帧）再注入”的干净注入法。
+
+### 20.5 UI / 地图修改入口
+
+- 颜色 / 贴图 / 边框：`Assets/Resources/StudentGrowth/UI/StudentGrowthPixelTheme.asset`
+- 提示栏位置字号：`Assets/Scripts/StudentGrowth/UI/Map/MapInteractionPromptView.cs` 顶部常量
+- 家四房间的摆件 / 墙体 / 门：`Assets/Editor/StudentGrowth/HomeRoomsBuilder.cs`——场景由它整体重建，**手改场景会被覆盖**
+- 家四房间的**地板 / 墙材质**（2026-10-20 新增）：改 `Tools/make_shell_tex.py` 生成材质砖 → 跑 `Tools/make_rooms.py` 出四张房间底图。**只动底图，不碰场景、不改 GUID**
+  - 材质来源：`Assets/Art/Pixel/Backgrounds/NewHomeSources/home_new_space.png`（1448×1086，权威空房间底图，61998 色）
+  - 材质砖落在 `Assets/Art/Pixel/Generated/HomeRooms/Materials/`（`floor_tile` / `wall_band_h` / `wall_band_v`，64 PPU + Point + 无压缩）
+  - 验证：`python Tools/verify_shell.py`（门洞锚点同位 + 色数门槛，输出 PASS/FAIL）
+  - 实机确认：MCP 跑 `Assets/Refresh` → `Tools/Student Growth/Dev/Capture Room Screenshot`，再与 `room_*.png` 比像素（对齐取景：PNG 裁 `y16..1040, x2..1822`）
+  - **三个踩过的坑**（都已写进脚本注释）：
+    1. 去光照梯度必须**逐通道**重新锚定。写成标量 `reg / bg * bg.mean()` 会把三通道拉成同一灰度值——实测 R−B 从 125 掉到 0.1，地板变灰。
+    2. 无缝化用**镜像半条**（`|左半 左半镜像|`），`np.roll` + 交叉淡化会留 26.7 的硬缝；镜像是 0.00。
+    3. 墙面材质要取**整段 195px 再压到 64px**，只截最亮的顶部会让墙发飘（实测顶部均值 166.4 / 整段 159.4）。
+  - **门洞与墙带必须同位**（2026-10-20 下午修）：四面墙带一律贴画布外沿、厚度统一 96，门洞也用同一口径（`door_hole_box()`）。旧版南墙带在 `y 928..1024` 而门洞在 `y 960..1056`，差 32px，洞口上方就露出墙面色（用户报的"门上方留空"，实测 y940..972 是奶白块）。**注意这个缺陷旧版就有，不是材质改造引入的**——旧版新旧两版在该区域逐像素相同。
+  - **地板光照纵深不能逐行照抄源图**：源图亮度里混着楼梯/隔墙/家具投影，照抄会留尖峰骤降（实测 y900 骤降 −22.7）。用 `floor_light_profile()` 拟合（多项式趋势 + 宽高斯），成品最大相邻跳变 7.9。
+  - **墙砖必须按像素挖洞，不能按整块跳过**（2026-10-20 傍晚修，最严重的一个 bug）：旧 `wall_band_h/v` 用「块起点是否落在门洞内」决定整块跳过。墙砖宽 240、南门洞 `(848,128)`，块 x=960 覆盖 960..1200 而起点落在洞里 → **整块 240px 被跳过，976..1199 露出地板**（用户报的"门旁边的空隙"）。改用 `_gap_runs()` 逐像素求补集。北墙当时没暴露纯属块对齐的巧合。定位脚本 `Tools/debug_south_wall.py`（逐步骤打印某点像素值，一跑就能看出是哪一步没写上去）。
+  - **四条墙带不能互相压盖**：地板只铺可走区（y 96..960 / x 96..1728）；北南墙带只铺 `x 0..CANVAS_W-W_SIDE`；侧墙带只铺 `y W_TOP..CANVAS_H-W_TOP`；东北/东南角用竖带补 96×96。可走区 = 地板区 = 25.5×13.5，与碰撞体一致。
+  - **门素材要连门楣一起取**：`crop(22, 0, 150, 125)` 再缩到洞高 96。只取门扇（旧 `crop(22,29,...)`）会让洞口上下露出墙面段。侧墙门用 `ROTATE_90/270`，不要用 `rotate(±90)`——后者会把踢脚线转到墙外侧。
+  - **墙加厚是连锁改动**（2026-10-20 第四轮，墙 1.5→2.0 单位）：俯视布局里**墙带的竖向高度就是墙厚**。改动清单（漏一处就不一致）：① `Tools/make_shell_tex.py` 的 `BAND_H` 与外沿/压边/墙面/踢脚线四段高；② `Tools/make_rooms.py` 的 `CANVAS_W/H`、`W_SIDE/W_TOP/W_BOTTOM`、`DOOR_HOLE`；③ `HomeRoomsBuilder.cs` 的 `RoomW/H`、`Ortho`、`WalkW/H`、`InnerHalfW/Top/Bottom`、`WallThick`、**全部 WallSpec**；④ **全部 DoorSpec 的位置与尺寸**（门原先贴在旧内沿，内沿一动门就会压进地板）；⑤ `RoomScreenshotCapture.cs` 的分辨率。用 `Tools/calc_walls.py` 算 WallSpec，别手算。
+  - **加厚必须同时抬 ortho**：ortho 8 只显示 16 单位高，画布加高到 17.5 后不动相机就裁掉 0.75/边，等于白加厚。
+  - **当前值（2026-10-21 第五轮，方案B 四墙等厚加厚后）**：画布 **31.109×18.5（1991×1184）**、墙 **2.5（160px，四墙等厚）**、门/门洞 **160×160**、可走区 **26.11×13.5**、ortho **9.25**、内沿 x±13.055 / y −6.75..6.75、墙中心 x±14.305 / y±8.0。取 1991 而非 2106 是因为 1991/64=31.109 与 ortho 9.25 在 16:9 下的可见宽严丝合缝（2106 会左右各留 0.89 单位空隙）。
+  - 该轮改动由 `Tools/apply_room_thickness.py` 完成（**逐条校验命中数，不符预期就整批中止不落盘**——这个闸门当场抓出三处计数错误：客厅/厨房共用南墙段、`±13.75f,0f,2.0f,RoomH` 的实际分布与推理相反）。共替换 48 处。
+  - **门素材含"奶油墙"像素，加厚门洞时必须抹掉**（2026-10-21 用户报"左右两扇门重叠"）：素材 x0..23 是奶油墙（RGB(183,132,85) 饱和 0.55），`crop(22,0,150,125)` 仍带左墙+底部墙色共 **7.8%**，放大到 160 后成左边缘+底边一圈；侧墙门 `ROTATE_90` 后这圈墙色**横躺在房间地板上**。`_neutralize_wall_pixels()` 用「饱和≥0.42 且 L≥110」判墙并换成门框深木 (91,48,21)，降到 2.54%。**窗玻璃饱和只有 0.40，所以必须用饱和度判、不能只用亮度**。判源脚本 `Tools/probe_door_sprite_bounds.py`。
+- **墙脚阴影（AO）必须补**（2026-10-20 晚）：`apply_ao()` / `ao_field()`。源图实测：北墙脚 −25%/70px、南墙脚 −53%/70px、侧墙脚 −21%/90px。**不要逐行采样源图剖面**——源图南端叠了门槛+地垫+台阶三层结构，逐行采样分不清"遮蔽"与"本来材质"，会连续踩三个坑（方向用 minimum.accumulate 压平 / 用区间最大值归一时贴墙亮边锁死 / 用远端归一时窗口末端落在阴影核心上又锁死）。最终用「深度 + 衰减长度」两个实测参数的指数式。南端深度取 0.40 而非实测 0.53（源图那部分含门洞内凹投影，我们没有内凹）。
+- 房间壳只占整图色数的一部分：只统计北墙一条带，是 **595 → 2046 色**；整图 5423 → 15535。**判断房间壳改善要看墙带条，不要看整图色数。**
+- `ProjectSettings.asset` 的 `activeInputHandler: 1`（只用新 Input System），但全工程 **9 个脚本**曾用旧 `UnityEngine.Input`。**2026-10-21 已修（方案 A）**：这 9 个文件现全部具备「抛一次就把 `legacyInputBlocked` 置上、之后只走新输入通道」的守卫。
+  - 修前刷屏主源是 `Inventory/InventoryController.cs:67`（`Update` 里 3 处裸调用、**完全无 try/catch**），`Editor.log` 累计 **335593 条** `InvalidOperationException`。
+  - 另两个文件（`UI/Battle/CardChoiceView.cs`、`UI/Map/MapInteractionConfirmView.cs`）原本只有 `try/catch`、**没有标志位**，而它们的 `Pressed` 是**静态方法**，所以标志必须写成 `static`——修前逐次重抛。
+  - 补方法时照抄既有模式：`if (!legacyInputBlocked) { try { if (Input.GetKeyDown(key)) return true; } catch (InvalidOperationException) { legacyInputBlocked = true; } }`，再回退 `ReadInputSystemKey(keyPropertyName, "wasPressedThisFrame")`（**反射**读 `Keyboard.current`，不直接引用 Unity.InputSystem 程序集）。
+  - 键名合法性可直接查 `Library/Bee/artifacts/*/Unity.InputSystem.dll`（`digit1Key`..`digit6Key`/`bKey`/`escapeKey`/`wasPressedThisFrame` 均在，按 ASCII 查）。**键名写错不报错、只静默失效**，必须查。详见 `Docs/InputLegacySpamFix-2026-10-21.md`。
+  - **不要为反射随手加 `using System;`**（2026-10-21 踩过，代价是 Play 直接进不去）：`InventoryController` 原有三处 `Object.FindAnyObjectByType<T>()`，加上 `using System;` 后 `Object` 在 `System.Object` / `UnityEngine.Object` 之间歧义 → **3 条 CS0104**。最终修法是**去掉 `using System;`、改全限定名**（`System.Type.GetType(...)`、`catch (System.InvalidOperationException)`），比逐个加别名更彻底。有 `Object.`/`Random.`/`Type.`/`Math.` 等用法的文件尤其注意。
+  - **Unity 只在窗口重获焦点时才扫描外部文件改动**：终端里改完代码，Unity 不会自己重编译（2026-10-21 实测：源文件 11:02 改完，到 11:10 `Assembly-CSharp.dll` 仍停在昨天）。所以「改完 → 等程序集时间戳变化」这个验证动作，**必须先让 Unity 窗口获得焦点或按 Ctrl+R**，否则等多久都没用。
+  - **编译错误明细只在 `Library/Bee/tundra.log.json`**：`Editor.log` 里只会写一句 `All compiler errors have to be fixed before you can enter playmode!`，不含文件名与行号。查错务必用 `python Tools/extract_compile_errors.py`（读 tundra），别只看 Editor.log——本次就是只看 Editor.log 才误判成"已 0 error"。
+- **进 Play 加载的是 Build Settings 第 0 个场景（`MainMenuScene`），不是编辑器里打开的场景**（2026-10-21 实测）。所以「打开房间场景 → Play」看到的仍是主菜单；要测房间必须**游戏内进入**，或让运行时探针自己 `SceneManager.LoadScene("HomeXxxScene")`。Build 顺序：MainMenu / School / StageHub / HomeMap / Shop / Library / Park / Club / SampleScene / 四间 Home 房（index 9..12）。
+- **运行时验证必须走落盘探针，不能依赖 MCP**：进 Play 的域重载**必然**把 MCP 打半残（2026-10-21 一次会话内复现 4 次，8096 出现大量 `CLOSE_WAIT`）。探针形态照 skill「运行时探针纪律」：`[RuntimeInitializeOnLoadMethod]` + `DontDestroyOnLoad` + 每 0.5s 写 `_xxx_probe.txt`；只读、不接管会话；**用后即删** `.cs`+`.meta`（空目录也要删，否则 Unity 报警告）→ `Assets/Refresh` → 确认 0 error。
+- **`PlayerFacingInteractor.targets` 在编辑器里显示为空数组是正常的**：由 `FullscreenMapSceneController.WireInteractionSystem()` 在**运行时**填充（`CollectInteractionTargets()`）。别据此判定"交互坏了"。
+- **客厅只有 2 个交互目标**（`FamilyNpcObject` + `ExitDoorObject`）：客厅家具（沙发/茶几/鞋柜/壁架等）都是纯装饰 `DecorSpec`，**没有交互**。可交互家具在卧室（`BedObject`/`WardrobeObject`）与书房（`DeskObject`/`ComputerStudyPoint`）。
+- 提示栏（`MapInteractionPromptView`）行为（2026-10-21 确定，探针实测）：靠近显示行动提示 → 按 E 进 `Confirming`（显示"确认执行：…"）→ 确认后进 `Completed`（显示结果）→ 约 2.2s 后**淡出**（`alpha=0`）→ 站在原地的 `Nearby` 状态**保持隐藏**，走开再回来才重新显示。抑制逻辑在 `MapInteractionFlowController` 的 `suppressPromptTarget`/`SuppressPromptFor()`/`ClearPromptSuppression()`。
+- 摆件核对三件套（都在 `Tools/Student Growth/` 下）：
+  - `Maps/Rebuild Living Room Only` — 只重建客厅
+  - `Dev/Dump Room Layout` — 导 `_layout_dump.txt`（每件东西的世界坐标 + 包围盒，用来算贴墙 / 避门 / 通道）
+  - `Dev/Capture Room Screenshot` — 导 `_room_shot.png`（无 HUD 对照图）
+- 会覆盖手改的菜单（执行前先备份）：
+  - `Tools/Student Growth/UI/Generate Map UI Prefabs`（对应 `Assets/Scripts/StudentGrowth/Editor/MapUiPrefabGeneratorEditorUtility.cs`）
+  - `Tools/Student Growth/Maps/Build Home Room Scenes`（四间一起重建）/ `Rebuild Living Room Only`（只客厅）
+  - `Tools/Student Growth/Maps/Rebuild Home RPG Map`（对应 `Assets/Scripts/StudentGrowth/Editor/HomeMapSceneBuilder.cs`）

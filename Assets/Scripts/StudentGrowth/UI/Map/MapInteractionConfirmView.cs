@@ -1,3 +1,5 @@
+using System;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -23,18 +25,35 @@ namespace StudentGrowth
         private Button battleButton;
         private Button strategyButton;
         private float basePanelHeight,baseBodyHeight;
+        private float fitBasePanelHeight, fitBaseBodyHeight;
+
+        // 键盘接管（2026-10-17 修「用按键确认时面板不消失」）：
+        // 面板自己读写按键，并把玩法输入闸门占住（GameplayInputGate.Acquire），
+        // 这样同一次 E / Enter 不会被玩家控制器再读一遍去重新打开确认面板。
+        private int shownFrame = -1;
+        private bool visible;
+
+        /// <summary>
+        /// 工程只启用新 Input System（activeInputHandler=1）时读旧 Input 会抛异常。
+        /// Pressed 是静态方法且每次按键都会走，标志必须是静态的，
+        /// 否则只启用新输入系统时会逐帧重抛、刷出大量报错。
+        /// </summary>
+        private static bool legacyInputBlocked;
         public void SetStrategyOption(UnityAction action)
         {
             if(strategyButton==null&&action!=null)
             {
                 basePanelHeight=(panelRoot.transform as RectTransform).sizeDelta.y;
                 baseBodyHeight=bodyText==null?140:bodyText.rectTransform.sizeDelta.y;
-                strategyButton=CreateButton("DeskStrategyBattle",panelRoot.transform as RectTransform,"策略练习 · 1 时间",out var icon);
+                strategyButton=CreateButton("DeskStrategyBattle",panelRoot.transform as RectTransform,"策略练习",out var icon);
                 SetRect(strategyButton.transform as RectTransform,new Vector2(28,66),new Vector2(260,36),Vector2.zero);
             }
             if(strategyButton==null)return;
             strategyButton.gameObject.SetActive(action!=null);strategyButton.onClick.RemoveAllListeners();
             if(action!=null)strategyButton.onClick.AddListener(action);
+            // 无策略选项时直接返回：不得套用「书桌会话」的尺寸补偿（+140/+96），
+            // 否则会把其它活动（如母亲对话）面板的正文区强行缩回书桌的缓存值——正文被截断。
+            if(action==null)return;
             var panel=panelRoot.transform as RectTransform;
             panel.sizeDelta=new Vector2(panel.sizeDelta.x,basePanelHeight+(action==null?0:140));
             if(bodyText!=null)bodyText.rectTransform.sizeDelta=new Vector2(bodyText.rectTransform.sizeDelta.x,baseBodyHeight+(action==null?0:96));
@@ -43,7 +62,7 @@ namespace StudentGrowth
         {
             if(battleButton==null && action!=null)
             {
-                battleButton=CreateButton("DeskBattle",panelRoot.transform as RectTransform,"习题挑战 · 1 时间",out var icon);
+                battleButton=CreateButton("DeskBattle",panelRoot.transform as RectTransform,"习题挑战",out var icon);
                 SetRect(battleButton.transform as RectTransform,new Vector2(28,24),new Vector2(260,36),Vector2.zero);
             }
             if(battleButton==null)return;
@@ -61,6 +80,107 @@ namespace StudentGrowth
         private void OnEnable()
         {
             ApplyStyle();
+        }
+
+        /// <summary>
+        /// 兜底释放输入闸门：面板被外部直接关掉（场景卸载 / SetActive(false)）而没走 Hide() 时，
+        /// 闸门不能一直占着，否则整个地图的键盘输入都会失效。
+        /// </summary>
+        private void OnDisable()
+        {
+            if (!visible)
+            {
+                return;
+            }
+
+            visible = false;
+            GameplayInputGate.Release(this, false);
+        }
+
+        /// <summary>
+        /// 面板可见时自己处理确认 / 取消按键。
+        /// 原来的按键判定只在 MapInteractionFlowController.Update 里，且受状态机与输入闸门影响；
+        /// 面板一旦因为状态已切走、闸门被占、或玩家控制器同帧再次读键而失去响应，
+        /// 就会出现「鼠标点确认能关、键盘确认关不掉（或关了又弹回来）」。
+        /// 面板自己持有时，只要它还显示着，按键就一定落到它身上。
+        /// </summary>
+        private void Update()
+        {
+            if (!visible)
+            {
+                return;
+            }
+
+            // 打开面板的那一次按键（E）不能在同一帧又当成「确认」。
+            if (Time.frameCount <= shownFrame)
+            {
+                return;
+            }
+
+            if (Pressed(KeyCode.Escape, "escapeKey"))
+            {
+                Invoke(cancelAction);
+            }
+            else if (Pressed(KeyCode.Return, "enterKey")
+                || Pressed(KeyCode.KeypadEnter, "numpadEnterKey")
+                || Pressed(KeyCode.E, "eKey"))
+            {
+                Invoke(confirmAction);
+            }
+        }
+
+        private static void Invoke(UnityAction action)
+        {
+            if (action != null)
+            {
+                action.Invoke();
+            }
+        }
+
+        private static bool Pressed(KeyCode legacyKey, string inputSystemKey)
+        {
+            if (!legacyInputBlocked)
+            {
+                try
+                {
+                    if (Input.GetKeyDown(legacyKey))
+                    {
+                        return true;
+                    }
+                }
+                catch (InvalidOperationException)
+                {
+                    // 工程若只启用新输入系统，Legacy Input 会抛异常；置标志后不再重试，
+                    // 直接落到下面的 Input System 通道。
+                    legacyInputBlocked = true;
+                }
+            }
+
+            return ReadInputSystemKey(inputSystemKey, "wasPressedThisFrame");
+        }
+
+        private static bool ReadInputSystemKey(string keyPropertyName, string statePropertyName)
+        {
+            Type keyboardType = Type.GetType("UnityEngine.InputSystem.Keyboard, Unity.InputSystem");
+            if (keyboardType == null)
+            {
+                return false;
+            }
+
+            object keyboard = keyboardType.GetProperty("current")?.GetValue(null, null);
+            if (keyboard == null)
+            {
+                return false;
+            }
+
+            object key = keyboardType.GetProperty(keyPropertyName)?.GetValue(keyboard, null);
+            if (key == null)
+            {
+                return false;
+            }
+
+            object value = key.GetType().GetProperty(statePropertyName)?.GetValue(key, null);
+            return value is bool pressed && pressed;
         }
 
         public void BuildDefaultLayout(RectTransform parent)
@@ -134,13 +254,55 @@ namespace StudentGrowth
             ResolveReferences();
             SetText(titleText, title);
             SetText(bodyText, body);
+            FitBodyHeight();
             SetVisible(true);
             ApplyStyle();
+
+            // 占住玩法输入：面板开着时不该再被玩家移动/交互读键。
+            visible = true;
+            shownFrame = Time.frameCount;
+            GameplayInputGate.Acquire(this);
+        }
+
+        /// <summary>
+        /// 正文区高度随文案自适应：原先固定 140px，行数多时（行动说明+消耗+预期结果+提示）
+        /// 下半截被 Truncate 裁掉。这里连同面板一起长高，底边位置不变。
+        /// 基线用独立字段记录（不碰 SetStrategyOption 的 base* 字段，避免两者互相覆盖）。
+        /// </summary>
+        private void FitBodyHeight()
+        {
+            if (bodyText == null || panelRoot == null)
+            {
+                return;
+            }
+
+            RectTransform panelRect = panelRoot.transform as RectTransform;
+            RectTransform bodyRect = bodyText.rectTransform;
+            if (panelRect == null || bodyRect == null)
+            {
+                return;
+            }
+
+            if (fitBasePanelHeight <= 0f)
+            {
+                fitBasePanelHeight = panelRect.sizeDelta.y;
+                fitBaseBodyHeight = bodyRect.sizeDelta.y;
+            }
+
+            float needed = Mathf.Max(fitBaseBodyHeight, bodyText.preferredHeight + 8f);
+            float delta = Mathf.Min(needed - fitBaseBodyHeight, 260f);
+            bodyRect.sizeDelta = new Vector2(bodyRect.sizeDelta.x, fitBaseBodyHeight + delta);
+            panelRect.sizeDelta = new Vector2(panelRect.sizeDelta.x, fitBasePanelHeight + delta);
         }
 
         public void Hide()
         {
+            bool wasVisible = visible;
+            visible = false;
             SetVisible(false);
+            // wasVisible 时才 consume：关面板的那次按键不再传给玩家控制器 / 流程，
+            // 避免同一次 E 既确认又触发一次交互、把面板立刻重新打开。
+            GameplayInputGate.Release(this, wasVisible);
         }
 
         public void ApplyStyle()

@@ -20,7 +20,7 @@ namespace StudentGrowth
             view.message=MenuUi.Label(panel,font,260,250,1400,220,32);
             view.retry=MenuUi.Button(panel,font,430,560,480,90,()=>app.StartCoroutine(app.Backend.ReturnToMenuAsync(r=>{ if(r.Success) app.Coordinator.EnterTitle(); })));
             view.retry.GetComponentInChildren<Text>().text="重试返回主菜单";
-            view.quit=MenuUi.Button(panel,font,1010,560,480,90,()=> { AudioSettingsController.Instance.Service.Display?.Quit(); Application.Quit(); });
+            view.quit=MenuUi.Button(panel,font,1010,560,480,90,()=> { AudioSettingsController.Instance.Service.Display?.Quit(); GameQuit.Request(); });
             view.quit.GetComponentInChildren<Text>().text="退出游戏"; view.Hide(); return view;
         }
     }

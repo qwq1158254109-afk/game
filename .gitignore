@@ -59,3 +59,38 @@ codex_tmp_*.png
 # 注意：Packages/mcp-unity/ 包本体是要提交的（见 packages-lock.json 中
 # com.gamelovers.mcp-unity 的 source=embedded），只有这份配置不提交。
 /ProjectSettings/McpUnitySettings.json
+
+# 本地 git 镜像缓存（2026-10-20 加）：UPM 从 GitHub 拉 git 包时网络间歇性被重置，
+# 用 `git clone --mirror` 在本地留一份，配合全局 url.<base>.insteadOf 兜底。
+# 体积约 174MB，换机器需按 Tools/install_git_mirrors.sh 重建。
+# 详见 Docs/Unity-Plugin-Install-2026-10-20.md
+/_gitcache/
+
+# 插件核验脚本的临时克隆目录（可随时删除，由 Tools/gh_repo_check*.py 重建）
+/_pkgcheck/
+
+# 改动前的本地备份目录（保留原目录结构，手动管理生命周期）
+/_backup_*/
+
+# ---------------------------------------------------------------------------
+# 本地临时产物（2026-10-21 加，提交前清理）
+# ---------------------------------------------------------------------------
+# Python 字节码缓存：Tools/ 下的脚本跑一次就会生成
+__pycache__/
+*.pyc
+
+# 探针 / 校验脚本的落盘输出（_layout_dump.txt、_room_shot.png、_xxx_probe.txt 等）
+# 这些是排查用的中间结果，不是项目资产
+/_layout_dump.txt
+/_room_shot.png
+/_*_probe.txt
+/_tmp_img/
+
+# 排查脚本的输入截图（如 probe_floor_provenance.py 用的模板匹配源图）
+/Tools/_*.png
+# 排查脚本的中间数据（npy 缓存等，可随时重算）
+/Tools/_*.npy
+
+# Unity 强杀后生成的崩溃恢复场景（不属于项目内容，且体积大）
+/Assets/_Recovery/
+

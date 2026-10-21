@@ -121,7 +121,10 @@ namespace StudentGrowth
             rect.anchorMin = new Vector2(0f, 1f);
             rect.anchorMax = new Vector2(0f, 1f);
             rect.pivot = new Vector2(0f, 1f);
-            rect.anchoredPosition = new Vector2(32f, -32f);
+            // 贴顶改回距顶 8px（2026-10-17 用户反馈「地图选取界面左上角溢出」）。
+            // 历史：2026-10-14 曾拍板「完全贴顶」把 y 设为 0，但贴顶后日期图标的描边/投影
+            // 会被屏幕边缘裁掉，看着像面板溢出去了；改回 8px 留白，x 维持 32。
+            rect.anchoredPosition = new Vector2(32f, -8f);
             rect.sizeDelta = new Vector2(340f, 116f);
 
             SetTopLeftRect(periodIconArea, Vector2.zero, new Vector2(116f, 116f));
@@ -292,7 +295,7 @@ namespace StudentGrowth
             TimeActionState state = ResolveState();
             if (state == null)
             {
-                SetText(dayText, "第 - 天");
+                SetText(dayText, "-");
                 SetText(periodText, "-");
                 SetText(actionPointText, "行动值 -/3");
                 SetText(remainingDailyText, "今日剩余 -/12");
@@ -310,7 +313,7 @@ namespace StudentGrowth
                 SetGraphicActive(dateLogoBackground, false);
             }
             ApplyPeriodVisual(state.currentPeriod);
-            SetText(dayText, "第 " + state.currentDay + " 天");
+            SetText(dayText, BuildStageProgressLabel());
             SetText(periodText, TimeActionRules.GetPeriodDisplayName(state.currentPeriod));
             SetText(actionPointText, "行动值 " + state.currentActionPoints + "/" + TimeActionState.ActionPointsPerPeriod);
             SetText(remainingDailyText, "今日剩余 " + state.RemainingDailyActionPoints + "/" + TimeActionState.MaxDailyActionPoints);
@@ -340,6 +343,37 @@ namespace StudentGrowth
                     : resolved.actionPointEmptyColor;
                 image.preserveAspect = true;
             }
+        }
+
+        /// <summary>
+        /// 宏观时钟标签。唯一权威来源是阶段剩余回合数（StageState.remainingTime）——
+        /// 日内时段/行动点只管幕内节奏，不参与日期（原因：一天 12 行动点，一天会跨 12 个阶段回合，
+        /// 显示「第 N 天」会与阶段进度矛盾）。
+        /// ★ 长度硬约束：dayText 槽位只有 80x32px（SetTopLeftLayout 设定）配 20px 粗体，
+        /// 最多容纳 4 个汉字；超长会折行并被裁切。所以回退文案刻意取短。
+        /// dateMilestones 长度为 timeLimit + 1 且该项非空时优先显示；空表是合法状态。
+        /// </summary>
+        private string BuildStageProgressLabel()
+        {
+            StageState stageState = sessionState == null ? null : sessionState.stageState;
+            StageData stage = stageState == null ? null : stageState.currentStage;
+            if (stage == null)
+            {
+                return "剩 - 次";
+            }
+
+            int remaining = Mathf.Max(0, stageState.remainingTime);
+            int index = Mathf.Clamp(stage.timeLimit - remaining, 0, Mathf.Max(0, stage.timeLimit));
+            string[] milestones = stage.dateMilestones;
+            if (milestones != null
+                && milestones.Length == stage.timeLimit + 1
+                && index < milestones.Length
+                && !string.IsNullOrEmpty(milestones[index]))
+            {
+                return milestones[index];
+            }
+
+            return remaining > 0 ? "剩 " + remaining + " 次" : "已走完";
         }
 
         private TimeActionState ResolveState()

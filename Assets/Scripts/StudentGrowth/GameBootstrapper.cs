@@ -34,7 +34,9 @@ namespace StudentGrowth
             }
 
             GameSessionState sessionState = new GameSessionState();
-            AddCards(sessionState, data.starterDeck);
+            // 批次 0（2026-10-17）：起始牌组优先读卡池资产（Resources/StudentGrowth/Battle/Pools/pool_starter），
+            // 池子没建或为空时回退到 bootstrapperData.starterDeck，行为与旧版一致。
+            AddCards(sessionState, ResolveStarterCards(data));
             AddItems(sessionState, data.starterItems);
 
             if (sessionState.deckState.masterDeck.Count == 0)
@@ -140,6 +142,21 @@ namespace StudentGrowth
 
             bootstrapperData = Resources.Load<GameBootstrapperData>(DefaultResourcePath);
             return bootstrapperData;
+        }
+
+        /// <summary>
+        /// 起始牌组来源：卡池资产优先，其次 bootstrapperData.starterDeck。
+        /// 卡池为空返回 null，让 AddCards 跳过、后续走 Factory 兜底。
+        /// </summary>
+        private static IEnumerable<CardData> ResolveStarterCards(GameBootstrapperData data)
+        {
+            List<CardData> fromPool = new List<CardData>();
+            if (CardPoolCatalog.TryGetStarterCards(fromPool))
+            {
+                return fromPool;
+            }
+
+            return data == null ? null : data.starterDeck;
         }
 
         private static void AddCards(GameSessionState sessionState, IEnumerable<CardData> cards)

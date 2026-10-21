@@ -125,7 +125,20 @@ namespace StudentGrowth
         }
         public IEnumerator ConfirmAsync()
         {
-            if (Blocked || Confirmation == PauseConfirmation.None) yield break;
+            if (Blocked || Confirmation == PauseConfirmation.None)
+            {
+                // 之前这里是静默 yield break：存档/过渡处于 busy 时，点「确认」什么都不发生
+                // （2026-10-20「退出游戏点不了」的一个候选原因）。现在关掉确认框并给出可见提示——
+                // 提示挂在主面板上，确认框不关会被它整块盖住。
+                if (Blocked)
+                {
+                    Confirmation = PauseConfirmation.None;
+                    Notice = "PAUSE_BUSY";
+                    Publish();
+                }
+
+                yield break;
+            }
             var kind = Confirmation;
             if(kind==PauseConfirmation.Unsaved) { yield return DiscardAndLeaveAsync(); yield break; }
             if((kind==PauseConfirmation.Load || kind==PauseConfirmation.ReturnToTitle || kind==PauseConfirmation.Quit) && !titleContext && ProgressDirty!=null) {

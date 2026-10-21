@@ -95,7 +95,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 3979495691028504416}
   textStyle: 6
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &1838815681780566329
 GameObject:
@@ -133,7 +133,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -8}
+  m_SizeDelta: {x: -20, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &227342002049844228
 CanvasRenderer:
@@ -192,7 +192,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 2211401865759939}
   textStyle: 2
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &2032693379169998986
 GameObject:

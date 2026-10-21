@@ -35,6 +35,28 @@ namespace StudentGrowth
             sessionState.stageState.bossUnlocked = false;
             sessionState.stageState.bossDefeated = false;
 
+            // 进入新阶段时重置日内状态（行动点回满、时段回早晨、天数归 1）。
+            // 目的：让「第 N 天」始终是「本阶段第 N 天」，不跨阶段累加成「第 90 天」。
+            // 注意：阶段回合数（remainingTime）才是宏观时钟，日期标签由它派生，与天数无关。
+            if (sessionState.timeActionState == null)
+            {
+                sessionState.timeActionState = new TimeActionState();
+            }
+            else
+            {
+                sessionState.timeActionState.ResetToDefaults();
+            }
+
+            // GDD §5.2：活动可用次数必须按阶段重置。
+            // actionUseCount 若跨阶段累计，会让「做过一次的活动永久失效」——
+            // 与日内状态一起清空，使 maxUsesPerStage 成为一个每阶段的独立预算。
+            if (sessionState.locationState == null)
+            {
+                sessionState.locationState = new LocationState();
+            }
+
+            sessionState.locationState.actionUseCount.Clear();
+
             GameArtBindingUtility.ApplyKnownArtPath(stageData);
             rewardResolver.ApplyRewards(stageData.enterStageRewards, sessionState);
         }

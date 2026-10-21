@@ -377,7 +377,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 8972816791326552707}
   textStyle: 2
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &741551225666539242
 GameObject:
@@ -739,7 +739,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 7185126475611310776}
   textStyle: 4
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &1401127729222930633
 GameObject:
@@ -836,7 +836,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 6043454664501943954}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &1444749068858923482
 GameObject:
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 2904853088753023913}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &1895296356363067324
 GameObject:
@@ -2281,7 +2281,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 5457719520457264270}
   textStyle: 6
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &2939050168437241348
 GameObject:
@@ -2756,7 +2756,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 7279890998381459798}
   textStyle: 2
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &3439862467862796038
 GameObject:
@@ -3228,7 +3228,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 5144679788602662438}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &3974075246087222757
 GameObject:
@@ -3663,7 +3663,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 5848486607249102037}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &4734361060901698660
 GameObject:
@@ -3986,7 +3986,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 5247806649589228466}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &5081059732095803416
 GameObject:
@@ -4693,7 +4693,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 1766098441559993174}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &5763244741605057247
 GameObject:
@@ -4903,7 +4903,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 1502028859902247614}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &6033388849677927381
 GameObject:
@@ -5189,7 +5189,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 3426844610887729603}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &6283963175093125917
 GameObject:
@@ -6071,7 +6071,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 5756285896701245915}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &7023962642341022635
 GameObject:
@@ -6470,7 +6470,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 8038948890389342819}
   textStyle: 4
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &7251144217734359322
 GameObject:
@@ -6720,7 +6720,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 6101777339326561794}
   textStyle: 6
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &7376171932693302127
 GameObject:
@@ -7100,7 +7100,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 1151528239628921357}
   textStyle: 4
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &7575492641800657572
 GameObject:
@@ -7855,7 +7855,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5730\u70B9"
+  m_Text: "\u5BB6\u91CC"
 --- !u!114 &5744247143060793843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7871,7 +7871,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 4806443318721960036}
   textStyle: 2
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &8296891189449314032
 GameObject:
@@ -8194,7 +8194,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 2400640853036802521}
   textStyle: 4
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &8439787181172647898
 GameObject:
@@ -8291,7 +8291,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 5789733808629048973}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &8441773220534174128
 GameObject:
@@ -8463,7 +8463,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 7102942889526331175}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &8606859391688880988
 GameObject:
@@ -8860,7 +8860,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 8838575639119059932}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &9046369891982210385
 GameObject:
@@ -9033,7 +9033,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 9118956431033703592}
   textStyle: 1
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1 &9113520758298316939
 GameObject:
@@ -9130,7 +9130,7 @@ MonoBehaviour:
   theme: {fileID: 0}
   target: {fileID: 1087459775174433724}
   textStyle: 6
-  inverse: 0
+  inverse: 1
   applyOnAwake: 1
 --- !u!1001 &209473597918874937
 PrefabInstance:
@@ -9366,6 +9366,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5547576164235098574, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
       propertyPath: fallbackDisplayName
+      value: "\u5B66\u6821"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211401865759939, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
+      propertyPath: m_Text
       value: "\u5B66\u6821"
       objectReference: {fileID: 0}
     - target: {fileID: 8189128982059263669, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
@@ -9633,6 +9637,10 @@ PrefabInstance:
       propertyPath: fallbackDisplayName
       value: "\u516C\u56ED"
       objectReference: {fileID: 0}
+    - target: {fileID: 2211401865759939, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
+      propertyPath: m_Text
+      value: "\u516C\u56ED"
+      objectReference: {fileID: 0}
     - target: {fileID: 8189128982059263669, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
       propertyPath: locationId
       value: location_park
@@ -9896,6 +9904,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5547576164235098574, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
       propertyPath: fallbackDisplayName
+      value: "\u56FE\u4E66\u9986"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211401865759939, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
+      propertyPath: m_Text
       value: "\u56FE\u4E66\u9986"
       objectReference: {fileID: 0}
     - target: {fileID: 8189128982059263669, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
@@ -10163,6 +10175,10 @@ PrefabInstance:
       propertyPath: fallbackDisplayName
       value: "\u5546\u5E97"
       objectReference: {fileID: 0}
+    - target: {fileID: 2211401865759939, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
+      propertyPath: m_Text
+      value: "\u5546\u5E97"
+      objectReference: {fileID: 0}
     - target: {fileID: 8189128982059263669, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
       propertyPath: locationId
       value: location_shop
@@ -10406,6 +10422,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5547576164235098574, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
       propertyPath: fallbackDisplayName
+      value: "\u5BB6\u91CC"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211401865759939, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
+      propertyPath: m_Text
       value: "\u5BB6\u91CC"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10663,6 +10683,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5547576164235098574, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
       propertyPath: fallbackDisplayName
+      value: "\u793E\u56E2\u6D3B\u52A8\u5BA4"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211401865759939, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
+      propertyPath: m_Text
       value: "\u793E\u56E2\u6D3B\u52A8\u5BA4"
       objectReference: {fileID: 0}
     - target: {fileID: 8189128982059263669, guid: 52b2ebd06df099b408405d37ae1d0ad5, type: 3}
