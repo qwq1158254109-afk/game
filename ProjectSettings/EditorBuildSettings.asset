@@ -32,5 +32,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/StudentGrowth/Maps/HomeLivingRoomScene.unity
+    guid: 35b7df6c62eb1354cbdb763c0fa4b823
+  - enabled: 1
+    path: Assets/Scenes/StudentGrowth/Maps/HomeBedroomScene.unity
+    guid: 0adfd35a4b34bd5458e4d44a5b363667
+  - enabled: 1
+    path: Assets/Scenes/StudentGrowth/Maps/HomeStudyRoomScene.unity
+    guid: 985e4f6302af7d641889620983f83a3c
+  - enabled: 1
+    path: Assets/Scenes/StudentGrowth/Maps/HomeKitchenScene.unity
+    guid: 0ba4313723aaec74f9a7674cc3255650
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
