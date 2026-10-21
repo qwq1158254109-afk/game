@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc64f56fd8b8b6418886aa27cd607e1, type: 3}
+  m_Name: card_rare_parent_letter
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.BattleCardAsset
+  effectSchemaVersion: 1
+  requireSupportedBattleContent: 1
+  cardId: card_rare_parent_letter
+  displayName: "\u5BB6\u957F\u7684\u4E00\u5C01\u4FE1"
+  cardType: 3
+  rarity: 2
+  cost: 1
+  description: "\u683C\u6321 18\uFF1B\u538B\u529B -10\uFF1B\u6D88\u8017\u3002"
+  cardSprite: {fileID: 21300000, guid: ebbcfc66978200e418fbf23becec9027, type: 3}
+  icon: {fileID: 0}
+  imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_rare_parent_letter.png
+  targetType: 2
+  damage: 0
+  block: 0
+  drawCount: 0
+  discardCount: 0
+  exhaust: 1
+  ethereal: 0
+  retain: 0
+  effects:
+  - effectType: 14
+    targetStat: 0
+    value: 18
+    tag: 
+    durationTurns: 1
+  - effectType: 7
+    targetStat: 0
+    value: 10
+    tag: 
+    durationTurns: 1
+  tags: []
+  exhaustAfterUse: 0
+  isUpgradeable: 0
+  upgradedVersion: {fileID: 0}

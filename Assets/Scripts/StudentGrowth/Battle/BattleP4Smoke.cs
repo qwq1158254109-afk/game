@@ -105,9 +105,43 @@ namespace StudentGrowth
             Check(engine.Snapshot().Statuses.Count==0&&flow.Result.Consumption==BattleResultConsumption.Applied,"statuses removed and fixed result committed");
             Check(session.playerState.math==math+2&&session.stageState.clearedStageCount==0,"strategy reward once without stage advancement");
             bool blocked=false;try{app.Source.Capture();}catch(InvalidOperationException){blocked=true;}Check(blocked,"result window retains save gate");
-            yield return Shot("strategy-result");Click(Named("Return"));yield return Frames();
+            // 批次 1：胜利后先出「选一张卡加入牌组」，选完/跳过才出现返回。
+            var deckBefore=session.deckState.masterDeck.ToArray();
+            Check(Object.FindObjectsByType<Button>().Any(b=>b.name=="CardChoice"),"victory panel offers card choice");
+            yield return Shot("strategy-result");
+            Click(Named("CardChoice"));yield return Frames();
+            var choice=Object.FindAnyObjectByType<CardChoiceView>();
+            Check(choice!=null,"card choice panel opens");
+            var offerField=typeof(CardChoiceView).GetField("offer",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance);
+            var offer=(List<CardData>)offerField.GetValue(choice);
+            var slots=Object.FindObjectsByType<RectTransform>().Where(r=>r.parent!=null&&r.parent.name=="CardChoicePanel"&&r.name.StartsWith("Card_")).OrderBy(r=>r.name).ToArray();
+            Check(slots.Length==3&&offer.Count==3,"three candidate slots from a three-card offer");
+            Check(offer.Select(c=>c.cardId).Distinct().Count()==3,"candidates are distinct within one popup");
+            var permanentIds=new HashSet<string>(deckBefore.Select(c=>c.cardId));
+            Check(offer.All(c=>permanentIds.Contains(c.cardId)),"candidates come from the player's own deck");
+            Check(Object.FindObjectsByType<Text>().Any(t=>t.name=="Title"&&t.text.Contains("选择一张卡加入牌组")),"panel title matches the design");
+            yield return Shot("card-choice-panel");
+            Click(slots[0].GetComponent<Button>());yield return Frames();
+            Check(Object.FindObjectsByType<Button>().Any(b=>b.name=="Confirm"),"confirm button present");
+            Click(Named("Confirm"));yield return Frames(2);
+            var deckAfter=session.deckState.masterDeck.ToArray();
+            Check(deckAfter.Length==deckBefore.Length+1,"confirm adds exactly one card");
+            Check(deckAfter[deckAfter.Length-1].cardId==offer[0].cardId,"added card matches the confirmed candidate");
+            Check(Object.FindAnyObjectByType<CardChoiceView>()==null,"panel closes after confirm");
+            yield return Frames();
+            Check(Object.FindObjectsByType<Button>().Any(b=>b.name=="Return"),"return button appears only after choosing");
+            // 跳过路径：直接开面板验证「跳过不加卡」
+            int skipDeckCount=session.deckState.masterDeck.Count;bool skipped=false;
+            CardChoiceView.Open(CardChoiceService.BuildOffer(session.deckState,3),c=>skipped=false,()=>skipped=true);
+            yield return Frames();
+            Click(Named("Skip"));yield return Frames(2);
+            Check(skipped&&Object.FindAnyObjectByType<CardChoiceView>()==null,"skip closes without picking");
+            Check(session.deckState.masterDeck.Count==skipDeckCount,"skip adds no card");
+            Click(Named("Return"));yield return Frames();
             Check(!flow.BlocksSave&&Vector2.Distance(position,map.playerController.transform.position)<.01f,"return restores original map position");
-            Check(session.deckState.masterDeck.SequenceEqual(permanent),"loan cards never enter permanent deck after result");
+            // 批次 1 之后牌组会因「三选一」+1，故按「前缀不变 + 末尾恰为所选卡」判定练习牌未混入。
+            var deckFinal=session.deckState.masterDeck;
+            Check(deckFinal.Count==permanent.Length+1&&deckFinal.Take(permanent.Length).SequenceEqual(permanent),"loan cards never enter permanent deck; only the chosen card is appended");
             Check(app.Source.Capture()!=null,"save permitted after return");
             Check(!Directory.Exists(Path.Combine(storage,"Slot01"))&&app.SaveService.GetSlotSummaries()[1].IsEmpty,"save slot empty before first write");
             SaveOperationResult saved=null;yield return app.SaveService.SaveAsync(new SaveSlotId(1),r=>saved=r);Check(saved?.Success==true,"post-strategy map save succeeds");

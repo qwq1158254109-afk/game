@@ -87,12 +87,31 @@ namespace StudentGrowth
                 +"\n"+string.Join("  ·  ",result.Plan?.Rewards??Array.Empty<string>()):flow.Failure??"正在结算……";
             Label("ResultTitle",panel,title,new Vector2(0,120),new Vector2(1150,55),32,ink);
             Label("ResultDetail",panel,detail,new Vector2(0,30),new Vector2(1170,110),23,ink);
-            if(applied)Button("Return","继续 / 返回地图",panel,new Vector2(0,-110),new Vector2(330,65),()=>{flow.TryReturn();Refresh();});
+            if(applied)
+            {
+                // 批次 1：胜利且挑战配了 victoryCardChoice 时，先给「选一张卡」，选完/跳过才出现返回。
+                bool offerChoice=result.Success&&result.Challenge!=null&&result.Challenge.victoryCardChoice&&!cardChoiceDone;
+                if(offerChoice)
+                    Button("CardChoice","选一张卡加入牌组",panel,new Vector2(0,-110),new Vector2(420,65),()=>OpenCardChoice(result.Challenge));
+                else
+                    Button("Return","继续 / 返回地图",panel,new Vector2(0,-110),new Vector2(330,65),()=>{flow.TryReturn();Refresh();});
+            }
             else
             {
                 Button("RetrySettlement","重试结算",panel,new Vector2(-210,-110),new Vector2(300,65),()=>{flow.RetrySettlement();Refresh();});
                 Button("ExitFault","放弃未提交结果并返回",panel,new Vector2(200,-110),new Vector2(370,65),()=>{flow.ExitFault();Refresh();});
             }
+        }
+        private bool cardChoiceDone;
+        private void OpenCardChoice(ChallengeData challenge)
+        {
+            var session=controller?.sessionState;
+            int count=Mathf.Max(1,challenge!=null?challenge.victoryCardChoiceCount:3);
+            List<CardData> offer=CardChoiceService.BuildOffer(session?.deckState,count);
+            if(offer.Count==0){cardChoiceDone=true;Refresh();return;}
+            CardChoiceView.Open(offer,
+                picked=>{CardChoiceService.Commit(session,picked);cardChoiceDone=true;Refresh();},
+                ()=>{cardChoiceDone=true;Refresh();});
         }
         private void CreateCard(RectTransform parent,HandLayoutController layout,CardData art,BattleCardPreview binding)
         {

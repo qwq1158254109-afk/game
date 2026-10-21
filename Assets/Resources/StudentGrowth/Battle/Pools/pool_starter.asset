@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcbcfb4714b01354ab1b9deb75aab910, type: 3}
+  m_Name: pool_starter
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.CardPoolData
+  poolId: pool_starter
+  displayName: "\u8D77\u59CB\u724C\u7EC4"
+  isStarterPool: 1
+  cards:
+  - {fileID: 11400000, guid: a00d45a4cb5a7054780900e905e212fc, type: 2}
+  - {fileID: 11400000, guid: 08b9cd5ee2382bf408a9118284acb706, type: 2}
+  - {fileID: 11400000, guid: c19c7e13e9d52304ba21c9ffeda366b6, type: 2}
+  - {fileID: 11400000, guid: 0d9b34a84c1bb1a4ea85f33dbdf31bb8, type: 2}
+  - {fileID: 11400000, guid: 98d17b54a7693dc46a8dc6dd06680cbf, type: 2}
+  - {fileID: 11400000, guid: bf114972b8092d14cb6fdc9bffca0b88, type: 2}

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc64f56fd8b8b6418886aa27cd607e1, type: 3}
+  m_Name: card_study_deep_review
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.BattleCardAsset
+  effectSchemaVersion: 1
+  requireSupportedBattleContent: 1
+  cardId: card_study_deep_review
+  displayName: "\u6DF1\u5EA6\u590D\u76D8"
+  cardType: 0
+  rarity: 1
+  cost: 2
+  description: "\u63A8\u8FDB 18\uFF1B\u81EA\u4F24 3\u3002"
+  cardSprite: {fileID: 21300000, guid: ba2201e651ac19147b983b5fa55e9302, type: 3}
+  icon: {fileID: 0}
+  imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_study_deep_review.png
+  targetType: 2
+  damage: 0
+  block: 0
+  drawCount: 0
+  discardCount: 0
+  exhaust: 0
+  ethereal: 0
+  retain: 0
+  effects:
+  - effectType: 0
+    targetStat: 0
+    value: 18
+    tag: 
+    durationTurns: 1
+  - effectType: 16
+    targetStat: 0
+    value: 3
+    tag: 
+    durationTurns: 1
+  tags: []
+  exhaustAfterUse: 0
+  isUpgradeable: 0
+  upgradedVersion: {fileID: 0}
