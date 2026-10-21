@@ -167,6 +167,10 @@ tests are currently unreliable in this environment).
 ## Contributing
 
 Issues and PRs are welcome. Since the project is early-stage, the most useful contributions
-right now are bug reports with reproduction steps and feedback on the core loop. If you are
-changing room layout or scene structure, read `AGENTS.md` first — several parts of the
-scenes are code-generated and will be overwritten.
+right now are bug reports with reproduction steps and feedback on the core loop.
+
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — how to report bugs, propose features, and submit
+  PRs; code conventions and the things to avoid.
+- **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)** — community standards.
+- If you are changing room layout or scene structure, read [`AGENTS.md`](AGENTS.md) first —
+  several parts of the scenes are code-generated and will be overwritten.
