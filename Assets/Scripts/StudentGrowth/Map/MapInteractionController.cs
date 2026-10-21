@@ -36,6 +36,24 @@ namespace StudentGrowth
                 return Fail("InvalidInteractionPoint", "互动对象没有绑定执行点。");
             }
 
+            // 房间门（HomeLivingRoom ↔ 卧室/书房/厨房）走自己的路由：
+            // 不耗时间、不走地点解锁判定，直接交给 RoomDoor 播开门动画再切场景。
+            // 放在其它分支之前，因为房间门也标成 LocationAction，会被下面的
+            // ExecuteLocationAction 当成普通活动去查 ActivityData（查不到就报错）。
+            RoomDoor roomDoor = target.GetComponent<RoomDoor>();
+            if (roomDoor != null)
+            {
+                roomDoor.Enter();
+                LocationActionExecutionResult doorResult = new LocationActionExecutionResult
+                {
+                    success = true,
+                    source = LocationActionSource.Map,
+                    message = "开门中……"
+                };
+                InteractionCompleted?.Invoke(doorResult);
+                return doorResult;
+            }
+
             LocationActionExecutionResult result;
             if (target.interactionPoint.interactionType == MapInteractionType.ReturnToMainUi || target.isExitPortal)
             {

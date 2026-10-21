@@ -53,8 +53,22 @@ namespace StudentGrowth
         private readonly List<string> completedInteractionKeys = new List<string>();
         private MapInteractionTarget currentTarget;
         private MapInteractionTarget pendingTarget;
-        private MapInteractionTarget feedbackTarget;
-        private float feedbackHoldUntil;
+        private float promptHoldUntil;
+        // 「本阶段已完成」提示的保持期。
+        private MapInteractionTarget completedHoldTarget;
+        private float completedHoldUntil;
+        /// <summary>
+        /// 刚交互过的目标 + 抑制截止时刻。
+        ///
+        /// 2026-10-21（用户第二次报"交互之后提示栏一直存在"）：
+        ///   只藏 2.2 秒是不够的 —— 交互后目标进入 Nearby（可重复交互的点位
+        ///   `IsCompleted` 恒为 false），下一帧 `ShowTarget()` 就把行动提示**又**显示出来，
+        ///   于是看起来"提示栏一直在"。
+        ///   现在改成：交互过的目标，在玩家**离开它之前**提示栏保持隐藏；
+        ///   走开再回来才重新显示。这才是"交互后跟着淡化消失"的语义。
+        /// </summary>
+        private MapInteractionTarget suppressPromptTarget;
+        private bool promptSuppressed;
         private bool legacyInputBlocked;
         private int confirmStartedFrame = -1;
 
@@ -118,11 +132,15 @@ namespace StudentGrowth
             if (target == null)
             {
                 SetState(debugVisible ? MapInteractionFlowState.Debug : MapInteractionFlowState.Idle);
-                if (promptView != null)
+                // 临时提示保持期内不覆盖（“次数已用完/执行结果”等消息需要 2 秒可读窗口，
+                // 而本方法由玩家控制器每帧调用，不设保持期会把消息一帧冲掉）。
+                if (promptView != null && Time.unscaledTime >= promptHoldUntil)
                 {
                     promptView.ShowDefault();
                 }
 
+                // 玩家已离开交互物 → 解除抑制，下次靠近重新显示提示。
+                ClearPromptSuppression();
                 ApplyVisuals();
                 return;
             }
@@ -130,22 +148,66 @@ namespace StudentGrowth
             if (IsCompleted(target) && BattleMapBridge.GetDeskActivity(target)==null)
             {
                 SetState(MapInteractionFlowState.Completed);
-                if (feedbackTarget != target || Time.unscaledTime >= feedbackHoldUntil)
+
+                if (completedHoldTarget == target && Time.unscaledTime >= completedHoldUntil)
                 {
-                    ShowPrompt("已完成：" + ResolveDisplayName(target) + "。");
+                    // 保持期已过且仍在原地 → 隐藏（保持期本身不重置，因此只淡出一次）。
+                    SuppressPromptFor(target);
+                    ApplyVisuals();
+                    return;
                 }
+
+                if (Time.unscaledTime >= promptHoldUntil && completedHoldTarget != target)
+                {
+                    completedHoldTarget = target;
+                    completedHoldUntil = Time.unscaledTime + 2.2f;
+                    ShowPrompt("本阶段已完成：" + ResolveDisplayName(target) + "。");
+                }
+
+                ApplyVisuals();
+                return;
             }
-            else
+
+            // 换了目标 / 走开 / 它又能交互了 → 重置「已完成」保持期，下次靠近还能看到一次提醒。
+            completedHoldTarget = null;
+            SetState(debugVisible ? MapInteractionFlowState.Debug : MapInteractionFlowState.Nearby);
+
+            // 刚交互过、人还没走 → 提示栏保持隐藏（只淡出一次，之后每帧提前返回）。
+            if (suppressPromptTarget == target)
             {
-                feedbackTarget = null;
-                SetState(debugVisible ? MapInteractionFlowState.Debug : MapInteractionFlowState.Nearby);
-                if (promptView != null)
-                {
-                    promptView.ShowTarget(target);
-                }
+                SuppressPromptFor(target);
+                ApplyVisuals();
+                return;
+            }
+
+            if (promptView != null && Time.unscaledTime >= promptHoldUntil)
+            {
+                promptView.ShowTarget(target);
             }
 
             ApplyVisuals();
+        }
+
+        /// <summary>把提示栏藏起来（清空文案 → SetVisible(false) → BeginHide 淡出）。只做一次。</summary>
+        private void SuppressPromptFor(MapInteractionTarget target)
+        {
+            if (promptSuppressed && suppressPromptTarget == target)
+            {
+                return;
+            }
+
+            suppressPromptTarget = target;
+            promptSuppressed = true;
+            if (promptView != null)
+            {
+                promptView.ShowMessage(string.Empty);
+            }
+        }
+
+        private void ClearPromptSuppression()
+        {
+            suppressPromptTarget = null;
+            promptSuppressed = false;
         }
 
         public bool TryBeginInteraction(MapInteractionTarget target)
@@ -169,7 +231,22 @@ namespace StudentGrowth
             if (IsCompleted(target) && BattleMapBridge.GetDeskActivity(target)==null)
             {
                 SetState(MapInteractionFlowState.Completed);
-                ShowPrompt("已完成：" + ResolveDisplayName(target) + "。");
+
+                if (completedHoldTarget == target && Time.unscaledTime >= completedHoldUntil)
+                {
+                    // 保持期已过且仍在原地 → 隐藏。
+                    SuppressPromptFor(target);
+                    ApplyVisuals();
+                    return true;
+                }
+
+                if (Time.unscaledTime >= promptHoldUntil && completedHoldTarget != target)
+                {
+                    completedHoldTarget = target;
+                    completedHoldUntil = Time.unscaledTime + 2.2f;
+                    ShowPrompt("本阶段已完成：" + ResolveDisplayName(target) + "。");
+                }
+
                 ApplyVisuals();
                 return true;
             }
@@ -205,6 +282,8 @@ namespace StudentGrowth
             pendingTarget = null;
             HideConfirm();
             SetState(currentTarget == null ? MapInteractionFlowState.Idle : MapInteractionFlowState.Nearby);
+            // 取消 = 放弃这次确认，提示栏要恢复（ShowConfirm 里为了收起它做过抑制）。
+            ClearPromptSuppression();
             if (currentTarget != null && promptView != null)
             {
                 promptView.ShowTarget(currentTarget);
@@ -245,13 +324,34 @@ namespace StudentGrowth
             confirmStartedFrame = Time.frameCount;
             SetState(MapInteractionFlowState.Confirming);
             CreateConfirmUiIfNeeded();
+            // 互斥：打开确认面板时收起「行动完成」结果面板，避免两层面板同屏叠加（2026-10-14 用户截图：书桌+行动完成同屏）。
+            if (resultView != null)
+            {
+                resultView.Hide();
+            }
             if (confirmView != null)
             {
                 confirmView.Show(ResolveDisplayName(target), BuildConfirmBody(target));
                 var battleOption=BattleMapBridge.GetDeskActivity(target);
                 var battleRequestId=Guid.NewGuid().ToString("N");
                 var battleSessionId=GameApplicationRuntime.CurrentRuntimeSessionId;
-                if(confirmView.confirmButton!=null)confirmView.confirmButton.interactable=!IsCompleted(target);
+                // 「确认」不再按次数禁用：用完时保持可点，由 ExecutePending 弹提示
+                // （原先禁用会让按钮静默失效——「点了没反应」的主要来源）；此处显式恢复可点，
+                // 防止上一次打开留下的禁用态残留。
+                if(confirmView.confirmButton!=null)confirmView.confirmButton.interactable=true;
+                var strategyOption=BattleMapBridge.GetStrategyActivity(target);
+                var strategyRequestId=Guid.NewGuid().ToString("N");
+                if(strategyOption!=null)
+                {
+                    var original=ResolveActivity(target);
+                    string cost=MapInteractionPromptFormatter.FormatTimeCost(ResolveTimeCost(target.locationAction,original));
+                    string rewards=ResolveRewardPreview(target.locationAction,original);
+                    // 文案重设放在选项按钮布局之前；正文用主题默认正文色（深棕）——
+                    // 原先的 <color=#F4E9D0> 是为深色底设计的，浅纸面板下「浅底浅字」看不清。
+                    confirmView.Show("书桌 · 选择行动","确认：整理计划\n"+cost+"；获得："+rewards
+                        +"\n\n策略练习：借用 10 张练习牌（6 种）\n消耗 1 时间；胜利数学 +2。练习牌不带出。"
+                        +"\n\n习题挑战：使用当前永久牌组\n消耗 1 时间；胜利数学 +2。");
+                }
                 confirmView.SetBattleOption(battleOption==null?null:()=>
                 {
                     if(battleSessionId!=GameApplicationRuntime.CurrentRuntimeSessionId)return;
@@ -261,8 +361,8 @@ namespace StudentGrowth
                     var result=interactionController.locationActionExecutor.TryExecute(request);
                     ShowPrompt(result.message);
                 });
-                var strategyOption=BattleMapBridge.GetStrategyActivity(target);
-                var strategyRequestId=Guid.NewGuid().ToString("N");
+                // SetStrategyOption 放到最后：它对面板/正文做按钮区（+140/+96）的高度补偿，
+                // 若之后再有 Show（内部 FitBodyHeight）会覆盖补偿，导致正文压住按钮。
                 confirmView.SetStrategyOption(strategyOption==null?null:()=>
                 {
                     if(battleSessionId!=GameApplicationRuntime.CurrentRuntimeSessionId)return;
@@ -272,15 +372,6 @@ namespace StudentGrowth
                     var result=interactionController.locationActionExecutor.TryExecute(request);
                     ShowPrompt(result.message);
                 });
-                if(strategyOption!=null)
-                {
-                    var original=ResolveActivity(target);
-                    string cost=MapInteractionPromptFormatter.FormatTimeCost(ResolveTimeCost(target.locationAction,original));
-                    string rewards=ResolveRewardPreview(target.locationAction,original);
-                    confirmView.Show("书桌 · 选择行动","<color=#F4E9D0>确认：整理计划\n"+cost+"；获得："+rewards
-                        +"\n\n策略练习：借用 10 张练习牌（6 种）\n消耗 1 时间；胜利数学 +2。练习牌不带出。"
-                        +"\n\n习题挑战：使用当前永久牌组\n消耗 1 时间；胜利数学 +2。</color>");
-                }
             }
             else
             {
@@ -301,7 +392,12 @@ namespace StudentGrowth
             }
 
             ApplyConfirmStyle();
-            ShowPrompt("确认执行：" + ResolveDisplayName(target) + "。");
+            // 2026-10-21 用户报「交互之后底部的提示栏还在」：
+            //   原先这里写 ShowPrompt("确认执行：…")，等于把提示栏**重新点亮**。
+            //   而确认面板自己已经把「确认执行：xxx」写在面板正文里了（见 confirmView.Show），
+            //   底部再来一条是重复信息，还会一直挂到玩家确认/取消为止。
+            //   现在：确认面板打开 = 提示栏收起，信息只在面板里出现。
+            SuppressPromptFor(target);
             ApplyVisuals();
         }
 
@@ -314,8 +410,14 @@ namespace StudentGrowth
             }
 
             // The desk can reopen for its repeatable battle option. Keyboard confirmation must
-            // still respect the original planning activity's one-use restriction.
-            if(IsCompleted(pendingTarget)){CancelPending();ShowPrompt("该活动已完成，请选择其他行动。");return;}
+            // still respect the original planning activity's per-stage use limit (GDD §5.2).
+            if(IsCompleted(pendingTarget))
+            {
+                promptHoldUntil = Time.unscaledTime + 2.2f;
+                CancelPending();
+                ShowPrompt("该活动本阶段次数已用完，请选择其他行动。");
+                return;
+            }
 
             MapInteractionTarget target = pendingTarget;
             pendingTarget = null;
@@ -387,11 +489,18 @@ namespace StudentGrowth
                 if (!exit && !result.shouldOpenBattle)
                 {
                     MarkCompleted(target);
-                    feedbackTarget = target;
-                    feedbackHoldUntil = Time.unscaledTime + 2.25f;
+                    // 交互过的目标：结果提示淡出后**保持隐藏**，直到玩家离开它。
+                    // （可重复交互的点位 IsCompleted 恒为 false，不抑制的话下一帧就会
+                    //  重新显示行动提示，表现为"提示栏一直在"。）
+                    suppressPromptTarget = target;
+                    promptSuppressed = false;
                 }
 
                 SetState(exit ? MapInteractionFlowState.Idle : MapInteractionFlowState.Completed);
+                // 执行结果提示给 2.2 秒保持期，不被下一帧的面向刷新覆盖。
+                // 注意：抑制（suppress）只影响**下一帧起**的显示，这句结果提示必须照常出现，
+                // 否则玩家看不到"做了什么/得到什么"。
+                promptHoldUntil = Time.unscaledTime + 2.2f;
                 ShowPrompt(result.message);
                 RefreshHudIfNeeded(result);
                 ShowShopIfNeeded(result);
@@ -434,6 +543,11 @@ namespace StudentGrowth
             state.locationState.actionUseCount[key]++;
         }
 
+        /// <summary>
+        /// 本阶段是否已用尽次数（= 不可再执行）。GDD §5.2：执行门禁看「本阶段次数」——
+        /// 计数由 StageController.StartStage 在进阶段时清空，上限取 maxUsesPerStage
+        /// （负数 = 不限次数，如睡觉）。
+        /// </summary>
         private bool IsCompleted(MapInteractionTarget target)
         {
             if (!ShouldTrackCompletion(target))
@@ -447,16 +561,45 @@ namespace StudentGrowth
                 return false;
             }
 
-            if (completedInteractionKeys.Contains(key))
+            int maxUses = ResolveMaxUsesPerStage(target);
+            if (maxUses < 0)
             {
-                return true;
+                return false;
             }
 
             GameSessionState state = ResolveSessionState();
-            return state != null
+            if (state != null
                 && state.locationState != null
-                && state.locationState.actionUseCount.TryGetValue(key, out int count)
-                && count > 0;
+                && state.locationState.actionUseCount.TryGetValue(key, out int count))
+            {
+                return count >= maxUses;
+            }
+
+            // 计数不可用（sessionState 未挂载）时的兜底：本次运行内记录过即视为完成。
+            return completedInteractionKeys.Contains(key);
+        }
+
+        /// <summary>
+        /// 读取该互动的每阶段次数上限：优先 LocationActionData（GDD §5.2 指定），
+        /// 其次 ActivityData。0 按 1 处理（旧资产兼容）；负数 = 不限次数。
+        /// </summary>
+        private static int ResolveMaxUsesPerStage(MapInteractionTarget target)
+        {
+            int configured = 0;
+            if (target != null && target.locationAction != null)
+            {
+                configured = target.locationAction.maxUsesPerStage;
+            }
+            else
+            {
+                ActivityData activity = ResolveActivity(target);
+                if (activity != null)
+                {
+                    configured = activity.maxUsesPerStage;
+                }
+            }
+
+            return configured == 0 ? 1 : configured;
         }
 
         private static bool ShouldTrackCompletion(MapInteractionTarget target)
@@ -889,6 +1032,13 @@ namespace StudentGrowth
 
         private static bool IsActivityTarget(MapInteractionTarget target)
         {
+            // 房间门虽然也标成 LocationAction（这样能进统一交互系统），但它不是"活动"：
+            // 不耗时间、没有次数限制、不需要确认面板。按 E 直接开门。
+            if (target != null && target.GetComponent<RoomDoor>() != null)
+            {
+                return false;
+            }
+
             return target != null
                 && !target.isExitPortal
                 && (target.fallbackActivity != null
