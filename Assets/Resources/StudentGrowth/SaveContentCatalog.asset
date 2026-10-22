@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: SaveContentCatalog
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.SaveContentCatalog
   entries:
-  - {fileID: 11400000, guid: 0c7a0531f5fbfe849ab1929e44c93c17, type: 2}
-  - {fileID: 11400000, guid: 88c2b735df774ba44a898f0a5f4e209a, type: 2}
-  - {fileID: 11400000, guid: aec96e2894ad87f4088ce0412984b9d5, type: 2}
   - {fileID: 11400000, guid: 7a1c4b6455db76945b441e8c40b9a082, type: 2}
   - {fileID: 11400000, guid: 7082110054c1f8340a96df65f7269eb7, type: 2}
   - {fileID: 11400000, guid: 75319d03977f54143835a049378f8a7d, type: 2}
@@ -31,9 +28,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a77bd9e4afc49214785aacad8a3778a4, type: 2}
   - {fileID: 11400000, guid: f4f5ac50512b8ba418024d5008896686, type: 2}
   saveKeys:
-  - asset:0c7a0531f5fbfe849ab1929e44c93c17
-  - asset:88c2b735df774ba44a898f0a5f4e209a
-  - asset:aec96e2894ad87f4088ce0412984b9d5
   - asset:7a1c4b6455db76945b441e8c40b9a082
   - asset:7082110054c1f8340a96df65f7269eb7
   - asset:75319d03977f54143835a049378f8a7d

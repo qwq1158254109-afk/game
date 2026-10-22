@@ -47,7 +47,20 @@ namespace StudentGrowth
             if (catalog != null)
             {
                 if (catalog.entries.Count != catalog.saveKeys.Count) throw new InvalidOperationException("SAVE_CATALOG_REBUILD_REQUIRED");
-                for (int i=0;i<catalog.entries.Count;i++) resolver.RegisterAsset(catalog.entries[i],catalog.saveKeys[i]);
+                for (int i=0;i<catalog.entries.Count;i++)
+                {
+                    // 指向已删除资产的条目会解析成 null。一条陈旧引用不该让整条启动链挂掉：
+                    // 跳过并告警，其余内容照常可用。
+                    // 2026-10-22 踩过：3 个旧活动资产被删、目录没同步 → RegisterAsset 抛
+                    // SAVE_CATALOG_INVALID → GameApplicationRuntime.Awake 中断 → 主菜单按钮全成空引用。
+                    if (catalog.entries[i] == null || string.IsNullOrWhiteSpace(catalog.saveKeys[i]))
+                    {
+                        Debug.LogWarning("SAVE_CATALOG_STALE_ENTRY index=" + i + " key=" + catalog.saveKeys[i]
+                            + "（资产已被删除或移动，请同步清理 Resources/StudentGrowth/SaveContentCatalog）");
+                        continue;
+                    }
+                    resolver.RegisterAsset(catalog.entries[i],catalog.saveKeys[i]);
+                }
             }
             // Existing sample content is generated rather than stored as assets. Generate it once
             // per resolver, then hold references so ID-based saves also survive process restarts.
