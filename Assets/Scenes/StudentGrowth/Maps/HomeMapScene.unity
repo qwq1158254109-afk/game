@@ -2498,6 +2498,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 115022730}
   isExitPortal: 0
   consumeTimeOnInteraction: 1
+  unlimitedUses: 0
   requireFacing: 0
   interactionRange: 1.9250001
   priority: 11
@@ -3965,6 +3966,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 220611097}
   isExitPortal: 0
   consumeTimeOnInteraction: 1
+  unlimitedUses: 0
   requireFacing: 0
   interactionRange: 1.98
   priority: 12
@@ -9671,6 +9673,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 633086927}
   isExitPortal: 0
   consumeTimeOnInteraction: 0
+  unlimitedUses: 0
   requireFacing: 0
   interactionRange: 1.7600001
   priority: 5
@@ -10871,10 +10874,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.PlayerMovementAudioController
   playerController: {fileID: 689058015}
-  runAudioSource: {fileID: 689058021}
-  audioChannelSource: {fileID: 0}
-  runClip: {fileID: 8300000, guid: 5e6bea83d1aed0342ab9499cbad86864, type: 3}
-  runVolume: 0.275
+  stepIntervalWalk: 0.42
+  stepIntervalRun: 0.28
 --- !u!1 &696920331
 GameObject:
   m_ObjectHideFlags: 0
@@ -22377,6 +22378,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 1418763300}
   isExitPortal: 0
   consumeTimeOnInteraction: 1
+  unlimitedUses: 0
   requireFacing: 0
   interactionRange: 1.4
   priority: 9
@@ -23427,6 +23429,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 1502954659}
   isExitPortal: 0
   consumeTimeOnInteraction: 1
+  unlimitedUses: 0
   requireFacing: 0
   interactionRange: 1.265
   priority: 13
@@ -23589,6 +23592,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 1503461032}
   isExitPortal: 1
   consumeTimeOnInteraction: 0
+  unlimitedUses: 0
   requireFacing: 0
   interactionRange: 1.45
   priority: 20

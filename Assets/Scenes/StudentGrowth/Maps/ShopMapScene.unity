@@ -875,6 +875,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 214300104}
   isExitPortal: 0
   consumeTimeOnInteraction: 0
+  unlimitedUses: 0
   requireFacing: 0
   interactionRange: 2.2
   priority: 16
@@ -1582,6 +1583,9 @@ MonoBehaviour:
   cameraController: {fileID: 2101582465}
   cameraBounds: {fileID: 2116615014}
   hudView: {fileID: 417712190}
+  timeActionHudView: {fileID: 0}
+  locationToastView: {fileID: 0}
+  hudTheme: {fileID: 0}
   promptView: {fileID: 417712189}
   functionMenuView: {fileID: 417712188}
   confirmView: {fileID: 270399053}
@@ -1594,10 +1598,13 @@ MonoBehaviour:
   locationActionExecutor: {fileID: 0}
   gameBootstrapper: {fileID: 0}
   stageController: {fileID: 0}
+  timeActionController: {fileID: 0}
   activityController: {fileID: 0}
   challengeController: {fileID: 0}
   miniGameController: {fileID: 0}
   sessionState:
+    runId: 
+    tutorialSeen: 0
     playerState:
       chinese: 35
       math: 35
@@ -1612,6 +1619,10 @@ MonoBehaviour:
       confidence: 45
       autonomy: 35
       money: 100
+    timeActionState:
+      currentDay: 1
+      currentPeriod: 0
+      currentActionPoints: 3
     stageState:
       currentStage: {fileID: 0}
       remainingTime: 0
@@ -2443,9 +2454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.PlayerMovementAudioController
   playerController: {fileID: 743810811}
-  runAudioSource: {fileID: 743810817}
-  runClip: {fileID: 8300000, guid: 5e6bea83d1aed0342ab9499cbad86864, type: 3}
-  runVolume: 0.275
+  stepIntervalWalk: 0.42
+  stepIntervalRun: 0.28
 --- !u!1 &762172982
 GameObject:
   m_ObjectHideFlags: 0
@@ -11541,6 +11551,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 1862207820}
   isExitPortal: 1
   consumeTimeOnInteraction: 0
+  unlimitedUses: 0
   requireFacing: 0
   interactionRange: 1.45
   priority: 20
@@ -13433,6 +13444,8 @@ MonoBehaviour:
   debugOverlay: {fileID: 391263536}
   sceneTransitionController: {fileID: 0}
   sessionState:
+    runId: 
+    tutorialSeen: 0
     playerState:
       chinese: 35
       math: 35
@@ -13447,6 +13460,10 @@ MonoBehaviour:
       confidence: 45
       autonomy: 35
       money: 100
+    timeActionState:
+      currentDay: 1
+      currentPeriod: 0
+      currentActionPoints: 3
     stageState:
       currentStage: {fileID: 0}
       remainingTime: 0
