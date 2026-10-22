@@ -873,6 +873,13 @@ namespace StudentGrowth.Editor
                         case RewardType.IncreaseMaxEnergy:
                             Accumulate(ownerId, PlayerStatKey.MaxEnergy, reward.value, origin);
                             break;
+                        // 2026-10-22 补：AddMoney 运行时走的是
+                        // RewardResolver.cs:37 → playerState.AddStat(PlayerStatKey.Money, value)，
+                        // 但这里漏了这个分支，导致「金钱」属性一直被报成「零来源」，
+                        // 与「资源 AddMoney 有 N 处」自相矛盾。
+                        case RewardType.AddMoney:
+                            Accumulate(ownerId, PlayerStatKey.Money, reward.value, origin);
+                            break;
                     }
                 }
             }
