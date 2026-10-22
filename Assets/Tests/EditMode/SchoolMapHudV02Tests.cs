@@ -83,10 +83,10 @@ namespace StudentGrowth.Tests
             Assert.That(view.dateLogoBackground.gameObject.activeSelf, Is.False);
             Assert.That(view.periodBackground.gameObject.activeSelf, Is.False);
             Assert.That((view.transform as RectTransform).sizeDelta, Is.EqualTo(new Vector2(330f, 76f)));
-            Assert.That(view.actionPointText.text, Is.EqualTo("行动值 3/3"));
+            Assert.That(view.actionPointText.text, Is.EqualTo("今天 3 次"));
 
             Assert.That(controller.TryConsumeAction(1, out _), Is.True);
-            Assert.That(view.actionPointText.text, Is.EqualTo("行动值 2/3"));
+            Assert.That(view.actionPointText.text, Is.EqualTo("今天 2 次"));
         }
 
         [Test]

@@ -121,12 +121,20 @@ namespace StudentGrowth
                 return Fail(result, ErrorActivityUnavailable, "当前条件不满足，无法进行该活动。");
             }
 
-            if (!CanSpendActivityTime(activity))
+            // 睡觉是换日结算，不占阶段预算，也不占当天行动格；但只能在夜晚进行，
+            // 否则「睡一觉回精力」会被当成免费补给反复刷（白天小睡同样会回精力）。
+            bool isSleepActivity = IsHomeSleepActivity(activity);
+            if (isSleepActivity && timeActionController != null
+                && timeActionController.State.currentPeriod != TimePeriod.Night)
+            {
+                return Fail(result, ErrorActivityUnavailable, "白天睡不着，先把今天的事做完。");
+            }
+
+            if (!isSleepActivity && !CanSpendActivityTime(activity))
             {
                 return Fail(result, ErrorInsufficientTime, "时间不足，无法进行该行动。");
             }
 
-            bool isSleepActivity = IsHomeSleepActivity(activity);
             TimeActionPreview actionPreview = null;
             if (!isSleepActivity && timeActionController != null)
             {
@@ -165,7 +173,7 @@ namespace StudentGrowth
                 return Fail(result, ErrorInsufficientActionPoints, actionPreview.message);
             }
 
-            stageController.CompleteActivity(activity, activityResult);
+            stageController.CompleteActivity(activity, activityResult, !isSleepActivity);
             result.remainingTimeAfter = GetRemainingTime();
             CaptureDailyTimeAfter(result);
             result.activityResult = activityResult;

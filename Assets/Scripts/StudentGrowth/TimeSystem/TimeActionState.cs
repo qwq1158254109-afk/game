@@ -19,9 +19,13 @@ namespace StudentGrowth
     [Serializable]
     public sealed class TimeActionState
     {
-        public const int ActionPointsPerPeriod = 3;
+        // 2026-10-22 每日循环：一天 3 次行动（早晨 / 下午 / 傍晚），夜晚只做结算、不产出行动。
+        // 原值是一天 4 段 × 3 点 = 12 点，而一个阶段只要 6/6/8 次行动 —— 玩家不睡觉就能把阶段做完，
+        // currentDay 永远停在 1，「一天」在实机里不存在。详见 Docs/DayLoop-Design-2026-10-22.md。
+        public const int ActionPointsPerPeriod = 1;
         public const int PeriodCount = 4;
-        public const int MaxDailyActionPoints = ActionPointsPerPeriod * PeriodCount;
+        public const int UsablePeriodCount = 3;
+        public const int MaxDailyActionPoints = ActionPointsPerPeriod * UsablePeriodCount;
 
         public int currentDay = 1;
         public TimePeriod currentPeriod = TimePeriod.Morning;
@@ -31,8 +35,14 @@ namespace StudentGrowth
         {
             get
             {
-                return currentActionPoints
-                    + ActionPointsPerPeriod * ((int)TimePeriod.Night - (int)currentPeriod);
+                if (currentPeriod >= TimePeriod.Night)
+                {
+                    return 0;
+                }
+
+                // 本段剩余 + 之后还有几个可用时段（夜晚不算）
+                int periodsAfterCurrent = (int)TimePeriod.Night - (int)currentPeriod - 1;
+                return currentActionPoints + periodsAfterCurrent * ActionPointsPerPeriod;
             }
         }
 
@@ -40,6 +50,14 @@ namespace StudentGrowth
         {
             get { return currentPeriod == TimePeriod.Night && currentActionPoints <= 0; }
         }
+
+        /// <summary>一个阶段按「每天 MaxDailyActionPoints 次」折算需要几天（阶段 6/6/8 → 2/2/3 天）。</summary>
+        public static int DaysForStage(int timeLimit)
+        {
+            int limit = Math.Max(0, timeLimit);
+            return Math.Max(1, (limit + MaxDailyActionPoints - 1) / MaxDailyActionPoints);
+        }
+
 
         public void ResetToDefaults()
         {
@@ -54,6 +72,11 @@ namespace StudentGrowth
             int periodValue = Math.Max(0, Math.Min((int)TimePeriod.Night, (int)currentPeriod));
             currentPeriod = (TimePeriod)periodValue;
             currentActionPoints = Math.Max(0, Math.Min(ActionPointsPerPeriod, currentActionPoints));
+            if (currentPeriod == TimePeriod.Night)
+            {
+                // 夜晚是结算时段：不保留行动点，否则会留出「第 4 次行动」的口子。
+                currentActionPoints = 0;
+            }
         }
     }
 
@@ -111,9 +134,15 @@ namespace StudentGrowth
                 return preview;
             }
 
+            if (resolved.currentPeriod == TimePeriod.Night)
+            {
+                preview.message = "夜里做不了事了，回卧室睡觉吧。";
+                return preview;
+            }
+
             if (cost > preview.remainingBefore)
             {
-                preview.message = "今日剩余行动值不足。";
+                preview.message = "今天的行动次数用完了，回卧室睡觉开始下一天。";
                 return preview;
             }
 
@@ -158,29 +187,16 @@ namespace StudentGrowth
         private static void ResolveRemaining(int remaining, out TimePeriod period, out int actionPoints)
         {
             int clamped = Math.Max(0, Math.Min(TimeActionState.MaxDailyActionPoints, remaining));
-            if (clamped >= 10)
+            if (clamped <= 0)
             {
-                period = TimePeriod.Morning;
-                actionPoints = clamped - 9;
+                period = TimePeriod.Night;
+                actionPoints = 0;
                 return;
             }
 
-            if (clamped >= 7)
-            {
-                period = TimePeriod.Afternoon;
-                actionPoints = clamped - 6;
-                return;
-            }
-
-            if (clamped >= 4)
-            {
-                period = TimePeriod.Evening;
-                actionPoints = clamped - 3;
-                return;
-            }
-
-            period = TimePeriod.Night;
-            actionPoints = clamped;
+            // 每天 3 格：3 → 早晨，2 → 下午，1 → 傍晚。夜晚不参与行动分配。
+            period = (TimePeriod)((int)TimePeriod.Night - clamped);
+            actionPoints = TimeActionState.ActionPointsPerPeriod;
         }
     }
 }

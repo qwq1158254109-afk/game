@@ -169,7 +169,7 @@ namespace StudentGrowth
             view.dayText = CreateText("DayText", rootRect, "-", 20, FontStyle.Bold, TextAnchor.MiddleCenter);
             SetChildRect(view.dayText, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(10f, -26f), new Vector2(106f, 28f));
 
-            view.remainingDailyText = CreateText("RemainingDailyText", rootRect, "今日剩余 12/12", 13, FontStyle.Bold, TextAnchor.MiddleCenter);
+            view.remainingDailyText = CreateText("RemainingDailyText", rootRect, "阶段剩 6 次", 13, FontStyle.Bold, TextAnchor.MiddleCenter);
             SetChildRect(view.remainingDailyText, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(8f, -64f), new Vector2(112f, 22f));
 
             view.periodBackground = CreateHudIcon("PeriodBackground", rootRect);
@@ -181,10 +181,11 @@ namespace StudentGrowth
             view.periodText = CreateText("PeriodText", rootRect, "早晨", 16, FontStyle.Bold, TextAnchor.MiddleCenter);
             SetChildRect(view.periodText, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(132f, -112f), new Vector2(104f, 24f));
 
-            view.actionPointText = CreateText("ActionPointText", rootRect, "行动值 3/3", 16, FontStyle.Bold, TextAnchor.MiddleLeft);
+            view.actionPointText = CreateText("ActionPointText", rootRect, "今天 3 次", 16, FontStyle.Bold, TextAnchor.MiddleLeft);
             SetChildRect(view.actionPointText, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(252f, -10f), new Vector2(124f, 24f));
 
-            view.actionPointIcons = new Image[TimeActionState.ActionPointsPerPeriod];
+            // 每天 3 格：图标数量跟「每天行动格」走，而不是每时段点数（现在是 1）。
+            view.actionPointIcons = new Image[TimeActionState.MaxDailyActionPoints];
             for (int i = 0; i < view.actionPointIcons.Length; i++)
             {
                 Image point = CreateHudIcon("ActionPoint_" + i, rootRect);

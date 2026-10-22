@@ -80,7 +80,7 @@ namespace StudentGrowth.Editor
             Text actionText = GetText(FindDeep(host, "ActionPointText")) ?? GetText(FindDeep(host, "Text_CurrentLocation"));
             dayText = PrepareExistingText(dayText, "DayText", dayRow, "第 1 天", 18, TextAnchor.MiddleLeft);
             periodText = PrepareExistingText(periodText, "PeriodText", dayRow, "早晨", 18, TextAnchor.MiddleLeft);
-            actionText = PrepareExistingText(actionText, "ActionPointText", actionRow, "行动值 3/3", 16, TextAnchor.MiddleLeft);
+            actionText = PrepareExistingText(actionText, "ActionPointText", actionRow, "今天 3 次", 16, TextAnchor.MiddleLeft);
 
             Image dateLogo = GetOrCreateImage(iconArea, "DateLogoBackground");
             Image periodBackground = GetOrCreateImage(iconArea, "PeriodBackground");
@@ -89,7 +89,7 @@ namespace StudentGrowth.Editor
             periodBackground.transform.SetSiblingIndex(1);
             periodIcon.transform.SetSiblingIndex(2);
 
-            Image[] points = new Image[TimeActionState.ActionPointsPerPeriod];
+            Image[] points = new Image[TimeActionState.MaxDailyActionPoints];
             for (int i = 0; i < points.Length; i++)
             {
                 points[i] = GetOrCreateImage(actionRow, "ActionPoint_" + i);
@@ -98,7 +98,7 @@ namespace StudentGrowth.Editor
             Text remaining = GetText(FindDeep(host, "RemainingDailyText"));
             if (remaining == null)
             {
-                remaining = CloneText(dayText, infoArea, "RemainingDailyText", "今日剩余 12/12", 12, TextAnchor.MiddleLeft);
+                remaining = CloneText(dayText, infoArea, "RemainingDailyText", "阶段剩 6 次", 12, TextAnchor.MiddleLeft);
             }
             remaining.gameObject.SetActive(false);
 

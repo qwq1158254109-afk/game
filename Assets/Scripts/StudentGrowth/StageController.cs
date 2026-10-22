@@ -86,7 +86,11 @@ namespace StudentGrowth
             return availableActivitiesBuffer;
         }
 
-        public void CompleteActivity(ActivityData activityData, ActivityResult result)
+        /// <summary>
+        /// 结算一次活动。consumeStageTime=false 用于「夜晚睡觉」——它是换日结算，不是一次行动，
+        /// 不该吃掉阶段预算（否则阶段 6 次会变成 5 次行动 + 1 次睡觉）。
+        /// </summary>
+        public void CompleteActivity(ActivityData activityData, ActivityResult result, bool consumeStageTime = true)
         {
             if (activityData == null)
             {
@@ -100,6 +104,11 @@ namespace StudentGrowth
             else
             {
                 rewardResolver.ApplyRewards(activityData.fixedRewards, sessionState);
+            }
+
+            if (!consumeStageTime)
+            {
+                return;
             }
 
             int timeCost = Mathf.Max(0, activityData.timeCost);

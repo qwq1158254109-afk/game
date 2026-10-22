@@ -109,7 +109,10 @@ namespace StudentGrowth
                 state.currentPeriod = (TimePeriod)((int)periodBefore + 1);
             }
 
-            state.currentActionPoints = TimeActionState.ActionPointsPerPeriod;
+            // 夜晚是结算段：不给行动点，避免出现「第 4 次行动」。
+            state.currentActionPoints = state.currentPeriod == TimePeriod.Night
+                ? 0
+                : TimeActionState.ActionPointsPerPeriod;
             int moodChange = 0;
             if (location == SleepLocation.BusStop && sessionState.playerState != null)
             {

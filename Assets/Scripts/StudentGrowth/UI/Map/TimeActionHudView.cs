@@ -297,8 +297,8 @@ namespace StudentGrowth
             {
                 SetText(dayText, "-");
                 SetText(periodText, "-");
-                SetText(actionPointText, "行动值 -/3");
-                SetText(remainingDailyText, "今日剩余 -/12");
+                SetText(actionPointText, "今天 - 次");
+                SetText(remainingDailyText, "阶段剩 - 次");
                 SetText(sleepWarningText, string.Empty);
                 return;
             }
@@ -313,12 +313,12 @@ namespace StudentGrowth
                 SetGraphicActive(dateLogoBackground, false);
             }
             ApplyPeriodVisual(state.currentPeriod);
-            SetText(dayText, BuildStageProgressLabel());
+            SetText(dayText, BuildDayLabel(state));
             SetText(periodText, TimeActionRules.GetPeriodDisplayName(state.currentPeriod));
-            SetText(actionPointText, "行动值 " + state.currentActionPoints + "/" + TimeActionState.ActionPointsPerPeriod);
-            SetText(remainingDailyText, "今日剩余 " + state.RemainingDailyActionPoints + "/" + TimeActionState.MaxDailyActionPoints);
-            SetText(sleepWarningText, state.RequiresSleep ? "行动已用完，请回家睡觉" : string.Empty);
-            bool depleted = state.currentActionPoints <= 0;
+            SetText(actionPointText, "今天 " + state.RemainingDailyActionPoints + " 次");
+            SetText(remainingDailyText, BuildStageRemainingLabel());
+            SetText(sleepWarningText, state.RequiresSleep ? "今天做完了，回卧室睡觉" : string.Empty);
+            bool depleted = state.RemainingDailyActionPoints <= 0;
             if (actionPointText != null)
             {
                 UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
@@ -335,10 +335,10 @@ namespace StudentGrowth
                     continue;
                 }
 
-                image.sprite = i < state.currentActionPoints ? actionPointFilled : actionPointEmpty;
+                image.sprite = i < state.RemainingDailyActionPoints ? actionPointFilled : actionPointEmpty;
                 image.enabled = image.sprite != null;
                 UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
-                image.color = i < state.currentActionPoints
+                image.color = i < state.RemainingDailyActionPoints
                     ? resolved.actionPointFilledColor
                     : resolved.actionPointEmptyColor;
                 image.preserveAspect = true;
@@ -346,34 +346,35 @@ namespace StudentGrowth
         }
 
         /// <summary>
-        /// 宏观时钟标签。唯一权威来源是阶段剩余回合数（StageState.remainingTime）——
-        /// 日内时段/行动点只管幕内节奏，不参与日期（原因：一天 12 行动点，一天会跨 12 个阶段回合，
-        /// 显示「第 N 天」会与阶段进度矛盾）。
-        /// ★ 长度硬约束：dayText 槽位只有 80x32px（SetTopLeftLayout 设定）配 20px 粗体，
-        /// 最多容纳 4 个汉字；超长会折行并被裁切。所以回退文案刻意取短。
-        /// dateMilestones 长度为 timeLimit + 1 且该项非空时优先显示；空表是合法状态。
+        /// 阶段内第几天。天数 = ceil(阶段预算 / 每天行动格数)，阶段 6/6/8 → 2/2/3 天。
+        /// ★ 长度硬约束：dayText 槽位在紧凑布局下只有 80x32px，所以写成「1/2天」而不是「第 1 天 / 共 2 天」。
         /// </summary>
-        private string BuildStageProgressLabel()
+        private string BuildDayLabel(TimeActionState state)
         {
             StageState stageState = sessionState == null ? null : sessionState.stageState;
             StageData stage = stageState == null ? null : stageState.currentStage;
-            if (stage == null)
+            if (stage == null || state == null)
             {
-                return "剩 - 次";
+                return "-/-天";
+            }
+
+            int days = TimeActionState.DaysForStage(stage.timeLimit);
+            int day = Mathf.Clamp(state.currentDay, 1, days);
+            // 槽位只有 106px，22px 像素字体下「第2/3天」会顶到边，所以省掉「第」。
+            return day + "/" + days + "天";
+        }
+
+        /// <summary>本阶段还剩几次行动（宏观时钟，决定 Boss 何时解锁）。</summary>
+        private string BuildStageRemainingLabel()
+        {
+            StageState stageState = sessionState == null ? null : sessionState.stageState;
+            if (stageState == null || stageState.currentStage == null)
+            {
+                return "阶段剩 - 次";
             }
 
             int remaining = Mathf.Max(0, stageState.remainingTime);
-            int index = Mathf.Clamp(stage.timeLimit - remaining, 0, Mathf.Max(0, stage.timeLimit));
-            string[] milestones = stage.dateMilestones;
-            if (milestones != null
-                && milestones.Length == stage.timeLimit + 1
-                && index < milestones.Length
-                && !string.IsNullOrEmpty(milestones[index]))
-            {
-                return milestones[index];
-            }
-
-            return remaining > 0 ? "剩 " + remaining + " 次" : "已走完";
+            return remaining > 0 ? "阶段剩 " + remaining + " 次" : "阶段已走完";
         }
 
         private TimeActionState ResolveState()
