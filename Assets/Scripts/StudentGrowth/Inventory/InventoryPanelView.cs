@@ -5,40 +5,67 @@ using UnityEngine.UI;
 namespace StudentGrowth
 {
     /// <summary>
-    /// 背包面板：5×4 网格 + 右侧详情 + 使用/丢弃。
-    /// 全部用代码搭建（不依赖预制体），主题色沿用地图 UI 的深棕底 + 米色字。
+    /// 背包面板：5×4 网格（20 格/页）+ 翻页 + 右侧详情 + 使用 / 丢弃。
+    ///
+    /// 2026-10-22 第二版：
+    /// ① 视觉统一走 UIThemeConfig —— PixelPanel 底板与描边、PixelButton 按钮、PixelText 字体，
+    ///    不再用内置 LegacyRuntime.ttf + 手写色值。
+    /// ② 网格支持翻页（每页 20 格），页脚显示「第 n / m 页」。
+    /// ③ 打开面板时占用 GameplayInputGate：旧版只拦按键不拦移动，
+    ///    面板开着时角色仍会在后面走（RpgPlayerController 只认闸门）。
+    /// ④ 丢弃改二次确认（2.5 秒内再点一次才真丢），避免误点。
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class InventoryPanelView : MonoBehaviour
     {
         private const int Columns = 5;
         private const int Rows = 4;
-        private const int SlotSize = 96;
-        private const int SlotGap = 10;
-        private const string GridTitle = "背包";
+        private const int PageSize = Columns * Rows;
 
-        private static readonly Color PanelColor = new Color(0.16f, 0.11f, 0.07f, 0.96f);
-        private static readonly Color SlotColor = new Color(0.28f, 0.19f, 0.12f, 1f);
-        private static readonly Color SlotSelected = new Color(0.45f, 0.32f, 0.18f, 1f);
-        private static readonly Color TextColor = new Color(0.93f, 0.89f, 0.80f, 1f);
+        private const float SlotSize = 92f;
+        private const float SlotGap = 10f;
+        private const float PanelWidth = 800f;
+        private const float PanelHeight = 560f;
+        private const float GridLeft = 28f;
+        private const float GridTop = 76f;
+        private const float DetailLeft = 548f;
+        private const float DetailWidth = 224f;
+        private const float DetailHeight = 398f;
+        private const float FooterTop = 500f;
+        private const float DropConfirmSeconds = 2.5f;
 
         private static InventoryPanelView instance;
 
         private GameSessionState session;
+        private UIThemeConfig theme;
+
         private GameObject root;
         private readonly List<Button> slots = new List<Button>();
+        private readonly List<Image> slotBackgrounds = new List<Image>();
         private readonly List<Image> slotIcons = new List<Image>();
         private readonly List<Text> slotCounts = new List<Text>();
+
+        private Text pageLabel;
         private Text detailName;
+        private Text detailMeta;
         private Text detailInfo;
+        private Text feedback;
         private Text emptyHint;
+        private Button prevButton;
+        private Button nextButton;
         private Button useButton;
         private Button dropButton;
-        private ItemData selected;
+        private Text dropLabel;
 
-        public bool IsOpen => root != null && root.activeSelf;
+        private ItemData selected;
+        private ItemData dropArmedItem;
+        private float dropArmedUntil;
+        private int page;
+        private bool ownsGate;
 
         public static InventoryPanelView Instance => instance;
+
+        public bool IsOpen => root != null && root.activeSelf;
 
         public static InventoryPanelView Ensure()
         {
@@ -61,7 +88,11 @@ namespace StudentGrowth
                 root.SetActive(true);
             }
 
+            page = 0;
             selected = null;
+            ClearDropArm();
+            ClearFeedback();
+            AcquireGate();
             Refresh();
         }
 
@@ -71,6 +102,9 @@ namespace StudentGrowth
             {
                 root.SetActive(false);
             }
+
+            ClearDropArm();
+            ReleaseGate();
         }
 
         public void Toggle(GameSessionState state)
@@ -85,131 +119,223 @@ namespace StudentGrowth
             }
         }
 
+        private void Update()
+        {
+            if (root == null || !root.activeSelf || dropArmedItem == null)
+            {
+                return;
+            }
+
+            if (Time.unscaledTime > dropArmedUntil)
+            {
+                ClearDropArm();
+                UpdateDropLabel();
+            }
+        }
+
+        private void OnDisable()
+        {
+            ReleaseGate();
+        }
+
         private void OnDestroy()
         {
             InventoryModel.Changed -= Refresh;
+            ReleaseGate();
             if (instance == this)
             {
                 instance = null;
             }
         }
 
+        // ── 构建 ────────────────────────────────────────────────
+
         private void Build()
         {
+            theme = GameUiStyle.ResolveTheme(null);
+
             Canvas canvas = gameObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = 200;
+
             CanvasScaler scaler = gameObject.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1280f, 720f);
             scaler.matchWidthOrHeight = 0.5f;
+
             gameObject.AddComponent<GraphicRaycaster>();
 
-            root = CreateRect("Window", transform, new Vector2(720f, 520f), Vector2.zero).gameObject;
-            Image bg = root.AddComponent<Image>();
-            bg.color = PanelColor;
+            RectTransform rootRect = CreateRect("InventoryRoot", transform, Vector2.zero, Vector2.zero);
+            Stretch(rootRect);
+            root = rootRect.gameObject;
 
-            CreateText("Title", root.transform, GridTitle, 26, new Vector2(0f, 226f), new Vector2(680f, 36f), TextAnchor.MiddleLeft);
+            // 遮罩：挡住 HUD 点击，同时压暗背景；点空白处关闭
+            RectTransform backdrop = CreateRect("Backdrop", root.transform, Vector2.zero, Vector2.zero);
+            Stretch(backdrop);
+            Image backdropImage = backdrop.gameObject.AddComponent<Image>();
+            backdropImage.color = new Color(0f, 0f, 0f, 0.55f);
+            Button backdropButton = backdrop.gameObject.AddComponent<Button>();
+            backdropButton.transition = Selectable.Transition.None;
+            backdropButton.onClick.AddListener(Close);
 
-            GameObject grid = CreateRect("Grid", root.transform, new Vector2(Columns * (SlotSize + SlotGap), Rows * (SlotSize + SlotGap)), new Vector2(-120f, 24f)).gameObject;
-            for (int i = 0; i < Columns * Rows; i++)
-            {
-                int index = i;
-                int col = i % Columns;
-                int row = i / Columns;
-                Vector2 pos = new Vector2(
-                    col * (SlotSize + SlotGap) - (Columns - 1) * (SlotSize + SlotGap) * 0.5f,
-                    -(row * (SlotSize + SlotGap) - (Rows - 1) * (SlotSize + SlotGap) * 0.5f));
-                CreateSlot(grid.transform, pos, index);
-            }
+            RectTransform panel = CreateRect("Window", root.transform, new Vector2(PanelWidth, PanelHeight), Vector2.zero);
+            Image background = panel.gameObject.AddComponent<Image>();
+            PixelPanel panelStyle = panel.gameObject.AddComponent<PixelPanel>();
+            panelStyle.theme = theme;
+            panelStyle.background = background;
+            panelStyle.variant = GameUiPanelVariant.Standard;
+            panelStyle.createBorder = true;
+            panelStyle.ApplyStyle();
+            ApplyInventoryPanelSprite(background);
 
-            // 右侧详情
-            GameObject detail = CreateRect("Detail", root.transform, new Vector2(250f, 380f), new Vector2(220f, 30f)).gameObject;
-            CreateTextOn(detail.transform, "占位", string.Empty, 18, new Vector2(0f, 170f), new Vector2(240f, 60f), TextAnchor.UpperLeft, out detailName);
-            CreateTextOn(detail.transform, "Info", string.Empty, 15, new Vector2(0f, 40f), new Vector2(240f, 200f), TextAnchor.UpperLeft, out detailInfo);
-
-            useButton = CreateButton("使用", root.transform, new Vector2(220f, -170f), new Vector2(110f, 40f), OnUse);
-            dropButton = CreateButton("丢弃", root.transform, new Vector2(220f, -220f), new Vector2(110f, 40f), OnDrop);
-            CreateButton("关闭", root.transform, new Vector2(0f, -226f), new Vector2(120f, 40f), Close);
-
-            CreateTextOn(root.transform, "Empty", "背包是空的。", 18, new Vector2(-120f, 0f), new Vector2(520f, 40f), TextAnchor.MiddleCenter, out emptyHint);
+            BuildHeader(panel);
+            BuildGrid(panel);
+            BuildDetail(panel);
+            BuildFooter(panel);
 
             root.SetActive(false);
             InventoryModel.Changed += Refresh;
         }
 
-        private void CreateSlot(Transform parent, Vector2 pos, int index)
+        private void BuildHeader(RectTransform panel)
         {
-            GameObject slot = CreateRect("Slot" + index, parent, new Vector2(SlotSize, SlotSize), pos).gameObject;
-            Image image = slot.AddComponent<Image>();
-            image.color = SlotColor;
-            Button button = slot.AddComponent<Button>();
-            button.targetGraphic = image;
-            button.onClick.AddListener(() => SelectSlot(index));
+            Image icon = CreateImage("InventoryIcon", panel);
+            Place(icon.rectTransform, TopLeft, TopLeft, new Vector2(GridLeft, -20f), new Vector2(26f, 26f));
+            icon.sprite = theme.inventoryIcon;
+            icon.enabled = theme.inventoryIcon != null;
+            icon.raycastTarget = false;
 
-            GameObject iconGo = CreateRect("Icon", slot.transform, new Vector2(SlotSize - 24f, SlotSize - 24f), Vector2.zero).gameObject;
-            Image icon = iconGo.AddComponent<Image>();
-            icon.enabled = false;
+            Text title = CreateLabel(panel, "Title", "背包", GameUiTextStyle.Subtitle, false, TextAnchor.MiddleLeft);
+            Place(title.rectTransform, TopLeft, TopLeft, new Vector2(GridLeft + 36f, -16f), new Vector2(220f, 34f));
 
-            CreateTextOn(slot.transform, "Count", string.Empty, 14, new Vector2(SlotSize * 0.5f - 16f, -SlotSize * 0.5f + 12f), new Vector2(48f, 20f), TextAnchor.MiddleRight, out Text count);
-
-            slots.Add(button);
-            slotIcons.Add(icon);
-            slotCounts.Add(count);
+            Button close = CreateButton(panel, "Close", "关闭", new Vector2(-24f, -18f), new Vector2(76f, 32f), Close);
+            Place(close.transform as RectTransform, TopRight, TopRight, new Vector2(-24f, -18f), new Vector2(76f, 32f));
         }
+
+        private void BuildGrid(RectTransform panel)
+        {
+            float gridWidth = Columns * SlotSize + (Columns - 1) * SlotGap;
+            float gridHeight = Rows * SlotSize + (Rows - 1) * SlotGap;
+
+            RectTransform grid = CreateRect("Grid", panel, new Vector2(gridWidth, gridHeight), Vector2.zero);
+            Place(grid, TopLeft, TopLeft, new Vector2(GridLeft, -GridTop), new Vector2(gridWidth, gridHeight));
+
+            for (int i = 0; i < PageSize; i++)
+            {
+                int index = i;
+                int col = i % Columns;
+                int row = i / Columns;
+
+                RectTransform slot = CreateRect("Slot" + i, grid, new Vector2(SlotSize, SlotSize), Vector2.zero);
+                Place(slot, TopLeft, TopLeft,
+                    new Vector2(col * (SlotSize + SlotGap), -row * (SlotSize + SlotGap)),
+                    new Vector2(SlotSize, SlotSize));
+
+                Image image = slot.gameObject.AddComponent<Image>();
+                image.color = theme.panelDarkBackground;
+
+                Button button = slot.gameObject.AddComponent<Button>();
+                button.targetGraphic = image;
+                button.transition = Selectable.Transition.None;
+                button.onClick.AddListener(() => SelectSlot(index));
+
+                Image slotIcon = CreateImage("Icon", slot);
+                Place(slotIcon.rectTransform, Center, Center, Vector2.zero, new Vector2(SlotSize - 30f, SlotSize - 30f));
+                slotIcon.enabled = false;
+                slotIcon.raycastTarget = false;
+                slotIcon.preserveAspect = true;
+
+                Text count = CreateLabel(slot, "Count", string.Empty, GameUiTextStyle.SmallText, true, TextAnchor.LowerRight);
+                Place(count.rectTransform, BottomRight, BottomRight, new Vector2(-6f, 4f), new Vector2(48f, 20f));
+
+                slots.Add(button);
+                slotBackgrounds.Add(image);
+                slotIcons.Add(slotIcon);
+                slotCounts.Add(count);
+            }
+
+            emptyHint = CreateLabel(grid, "Empty", "背包是空的。", GameUiTextStyle.Body, false, TextAnchor.MiddleCenter);
+            Place(emptyHint.rectTransform, Center, Center, Vector2.zero, new Vector2(gridWidth - 40f, 40f));
+        }
+
+        private void BuildDetail(RectTransform panel)
+        {
+            RectTransform detail = CreateRect("Detail", panel, new Vector2(DetailWidth, DetailHeight), Vector2.zero);
+            Place(detail, TopLeft, TopLeft, new Vector2(DetailLeft, -GridTop), new Vector2(DetailWidth, DetailHeight));
+
+            Image background = detail.gameObject.AddComponent<Image>();
+            GameUiStyle.ApplyPanelSprite(background, null, new Color(0f, 0f, 0f, 0.26f));
+            background.raycastTarget = false;
+
+            detailName = CreateLabel(detail, "Name", "未选择", GameUiTextStyle.Subtitle, true, TextAnchor.UpperLeft);
+            Place(detailName.rectTransform, TopLeft, TopLeft, new Vector2(12f, -10f), new Vector2(DetailWidth - 24f, 32f));
+
+            detailMeta = CreateLabel(detail, "Meta", string.Empty, GameUiTextStyle.SmallText, true, TextAnchor.UpperLeft);
+            Place(detailMeta.rectTransform, TopLeft, TopLeft, new Vector2(12f, -48f), new Vector2(DetailWidth - 24f, 62f));
+
+            detailInfo = CreateLabel(detail, "Info", "点上面的格子查看道具。", GameUiTextStyle.SmallText, true, TextAnchor.UpperLeft);
+            Place(detailInfo.rectTransform, TopLeft, TopLeft, new Vector2(12f, -118f), new Vector2(DetailWidth - 24f, 150f));
+
+            feedback = CreateLabel(detail, "Feedback", string.Empty, GameUiTextStyle.SmallText, true, TextAnchor.UpperLeft);
+            Place(feedback.rectTransform, TopLeft, TopLeft, new Vector2(12f, -272f), new Vector2(DetailWidth - 24f, 30f));
+
+            useButton = CreateButton(detail, "Use", "使用", Vector2.zero, new Vector2(96f, 38f), OnUse);
+            Place(useButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(12f, -320f), new Vector2(96f, 38f));
+
+            dropButton = CreateButton(detail, "Drop", "丢弃", Vector2.zero, new Vector2(100f, 38f), OnDrop);
+            Place(dropButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(112f, -320f), new Vector2(100f, 38f));
+            dropLabel = dropButton.GetComponentInChildren<Text>(true);
+        }
+
+        private void BuildFooter(RectTransform panel)
+        {
+            prevButton = CreateButton(panel, "PrevPage", "‹", Vector2.zero, new Vector2(40f, 32f), () => ChangePage(-1));
+            Place(prevButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(GridLeft, -FooterTop), new Vector2(40f, 32f));
+
+            pageLabel = CreateLabel(panel, "PageLabel", "第 1 / 1 页", GameUiTextStyle.SmallText, false, TextAnchor.MiddleCenter);
+            Place(pageLabel.rectTransform, TopLeft, TopLeft, new Vector2(GridLeft + 48f, -FooterTop), new Vector2(120f, 32f));
+
+            nextButton = CreateButton(panel, "NextPage", "›", Vector2.zero, new Vector2(40f, 32f), () => ChangePage(1));
+            Place(nextButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(GridLeft + 176f, -FooterTop), new Vector2(40f, 32f));
+
+            Text hint = CreateLabel(panel, "FooterHint", "6 / B 开关 · Esc 关闭 · 1~5 快捷使用", GameUiTextStyle.SmallText, false, TextAnchor.MiddleRight);
+            Place(hint.rectTransform, TopRight, TopRight, new Vector2(-24f, -FooterTop), new Vector2(420f, 32f));
+        }
+
+        // ── 交互 ────────────────────────────────────────────────
 
         private void SelectSlot(int index)
         {
             IReadOnlyList<InventoryEntry> entries = InventoryModel.Entries(session);
-            selected = index >= 0 && index < entries.Count ? entries[index].item : null;
-            Refresh();
-        }
-
-        private void Refresh()
-        {
-            if (root == null)
+            int global = page * PageSize + index;
+            if (global < 0 || global >= entries.Count)
             {
                 return;
             }
 
-            IReadOnlyList<InventoryEntry> entries = InventoryModel.Entries(session);
-            if (selected != null && InventoryModel.CountOf(session, selected) == 0)
-            {
-                selected = null;
-            }
-
-            if (selected == null && entries.Count > 0)
-            {
-                selected = entries[0].item;
-            }
-
-            for (int i = 0; i < slots.Count; i++)
-            {
-                bool used = i < entries.Count;
-                InventoryEntry entry = used ? entries[i] : default;
-                Sprite icon = used ? ResolveIcon(entry.item) : null;
-
-                slotIcons[i].enabled = icon != null;
-                slotIcons[i].sprite = icon;
-                slotCounts[i].text = used && entry.count > 1 ? entry.count.ToString() : string.Empty;
-                slots[i].image.color = used && entry.item == selected ? SlotSelected : SlotColor;
-                slots[i].interactable = used;
-            }
-
-            emptyHint.enabled = entries.Count == 0;
-
-            bool hasSelection = selected != null;
-            detailName.text = hasSelection ? DisplayName(selected) : "未选择";
-            detailInfo.text = hasSelection ? BuildDetail(selected) : "点上面的格子查看道具。";
-            useButton.interactable = hasSelection && CanUseOnMap(selected);
-            dropButton.interactable = hasSelection;
+            selected = entries[global].item;
+            ClearDropArm();
+            ClearFeedback();
+            Sfx.Ui.Click();
+            Refresh();
         }
 
-        private string BuildDetail(ItemData item)
+        private void ChangePage(int delta)
         {
-            string desc = string.IsNullOrEmpty(item.description) ? "（无描述）" : item.description;
-            int count = InventoryModel.CountOf(session, item);
-            return string.Format("{0}\n\n数量：{1}\n价格：{2}", desc, count, item.price);
+            IReadOnlyList<InventoryEntry> entries = InventoryModel.Entries(session);
+            int pageCount = Mathf.Max(1, (entries.Count + PageSize - 1) / PageSize);
+            int next = Mathf.Clamp(page + delta, 0, pageCount - 1);
+            if (next == page)
+            {
+                return;
+            }
+
+            page = next;
+            selected = FirstEntryOnPage(entries, page);
+            ClearDropArm();
+            ClearFeedback();
+            Sfx.World.PageFlip();
+            Refresh();
         }
 
         private void OnUse()
@@ -219,9 +345,7 @@ namespace StudentGrowth
                 return;
             }
 
-            string message;
-            bool ok = InventoryModel.TryUse(session, selected, out message);
-            detailInfo.text = message;
+            bool ok = InventoryModel.TryUse(session, selected, out string message);
             if (ok)
             {
                 Sfx.Ui.Confirm();
@@ -231,6 +355,7 @@ namespace StudentGrowth
                 Sfx.Ui.Error();
             }
 
+            ShowFeedback(message);
             Refresh();
         }
 
@@ -241,20 +366,174 @@ namespace StudentGrowth
                 return;
             }
 
-            InventoryModel.Drop(session, selected);
-            Sfx.Ui.Back();
-            Refresh();
+            if (dropArmedItem == selected && Time.unscaledTime <= dropArmedUntil)
+            {
+                bool removed = InventoryModel.Drop(session, selected);
+                Sfx.Ui.Back();
+                ClearDropArm();
+                if (removed)
+                {
+                    selected = null;
+                }
+
+                ShowFeedback(removed ? "已丢弃一件。" : "丢弃失败。");
+                Refresh();
+                return;
+            }
+
+            dropArmedItem = selected;
+            dropArmedUntil = Time.unscaledTime + DropConfirmSeconds;
+            UpdateDropLabel();
+            Sfx.Ui.Click();
         }
 
-        // ── 小工具 ────────────────────────────────────────────────
+        private void UpdateDropLabel()
+        {
+            if (dropLabel != null)
+            {
+                dropLabel.text = dropArmedItem != null ? "确认丢弃" : "丢弃";
+            }
+        }
+
+        private void ClearDropArm()
+        {
+            dropArmedItem = null;
+            dropArmedUntil = 0f;
+            UpdateDropLabel();
+        }
+
+        private void ShowFeedback(string message)
+        {
+            if (feedback != null)
+            {
+                feedback.text = message ?? string.Empty;
+            }
+        }
+
+        private void ClearFeedback()
+        {
+            ShowFeedback(string.Empty);
+        }
+
+        // ── 刷新 ────────────────────────────────────────────────
+
+        private void Refresh()
+        {
+            if (root == null || !root.activeSelf)
+            {
+                return;
+            }
+
+            IReadOnlyList<InventoryEntry> entries = InventoryModel.Entries(session);
+            int pageCount = Mathf.Max(1, (entries.Count + PageSize - 1) / PageSize);
+            page = Mathf.Clamp(page, 0, pageCount - 1);
+
+            if (selected != null && InventoryModel.CountOf(session, selected) == 0)
+            {
+                selected = null;
+            }
+
+            if (selected == null && entries.Count > 0)
+            {
+                selected = FirstEntryOnPage(entries, page);
+                if (selected == null)
+                {
+                    selected = entries[0].item;
+                }
+            }
+
+            for (int i = 0; i < PageSize; i++)
+            {
+                int global = page * PageSize + i;
+                bool hasItem = global < entries.Count;
+                InventoryEntry entry = hasItem ? entries[global] : default;
+                Sprite icon = hasItem ? entry.item.icon : null;
+
+                slotIcons[i].enabled = icon != null;
+                slotIcons[i].sprite = icon;
+                slotCounts[i].text = hasItem && entry.count > 1 ? entry.count.ToString() : string.Empty;
+                slots[i].interactable = hasItem;
+                ApplySlotVisual(i, hasItem, hasItem && entry.item == selected);
+            }
+
+            emptyHint.enabled = entries.Count == 0;
+            pageLabel.text = "第 " + (page + 1) + " / " + pageCount + " 页";
+            prevButton.interactable = page > 0;
+            nextButton.interactable = page < pageCount - 1;
+
+            bool hasSelection = selected != null;
+            detailName.text = hasSelection ? DisplayName(selected) : "未选择";
+            detailMeta.text = hasSelection ? BuildMeta(selected) : string.Empty;
+            detailInfo.text = hasSelection ? BuildDetail(selected) : "点上面的格子查看道具。";
+            useButton.interactable = hasSelection && CanUseOnMap(selected);
+            dropButton.interactable = hasSelection;
+        }
+
+        private static ItemData FirstEntryOnPage(IReadOnlyList<InventoryEntry> entries, int pageIndex)
+        {
+            int start = Mathf.Max(0, pageIndex) * PageSize;
+            int end = Mathf.Min(entries.Count, start + PageSize);
+            for (int i = start; i < end; i++)
+            {
+                if (entries[i].IsValid)
+                {
+                    return entries[i].item;
+                }
+            }
+
+            return null;
+        }
+
+        private void ApplySlotVisual(int index, bool hasItem, bool isSelected)
+        {
+            Image background = slotBackgrounds[index];
+            if (theme.quickbarSlotSprite != null)
+            {
+                background.sprite = theme.quickbarSlotSprite;
+                background.type = Image.Type.Sliced;
+                background.color = isSelected
+                    ? theme.buttonHover
+                    : hasItem ? Color.white : new Color(1f, 1f, 1f, 0.55f);
+            }
+            else
+            {
+                background.sprite = GameUiStyle.GetSolidSprite();
+                background.type = Image.Type.Simple;
+                background.color = isSelected
+                    ? theme.buttonSelected
+                    : hasItem ? theme.panelDarkBackground : new Color(0f, 0f, 0f, 0.35f);
+            }
+        }
+
+        private string BuildMeta(ItemData item)
+        {
+            int count = InventoryModel.CountOf(session, item);
+            return "类型：" + TypeName(item.itemType) + "\n数量：" + count + "\n价格：" + item.price;
+        }
+
+        private string BuildDetail(ItemData item)
+        {
+            return string.IsNullOrEmpty(item.description) ? "（无描述）" : item.description;
+        }
+
+        private static string TypeName(ItemType type)
+        {
+            switch (type)
+            {
+                case ItemType.Consumable:
+                    return "消耗品";
+                case ItemType.Passive:
+                    return "被动";
+                case ItemType.StageOnly:
+                    return "阶段限定";
+                default:
+                    return type.ToString();
+            }
+        }
+
         private static bool CanUseOnMap(ItemData item)
         {
             return item != null && (item.itemType == ItemType.Consumable || item.canUseInStageScreen);
-        }
-
-        private static Sprite ResolveIcon(ItemData item)
-        {
-            return item != null ? item.icon : null;
         }
 
         private static string DisplayName(ItemData item)
@@ -267,49 +546,118 @@ namespace StudentGrowth
             return string.IsNullOrEmpty(item.displayName) ? item.itemId : item.displayName;
         }
 
-        private static Font UiFont => Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        private void AcquireGate()
+        {
+            if (ownsGate)
+            {
+                return;
+            }
+
+            ownsGate = true;
+            GameplayInputGate.Acquire(this);
+        }
+
+        private void ReleaseGate()
+        {
+            if (!ownsGate)
+            {
+                return;
+            }
+
+            ownsGate = false;
+            GameplayInputGate.Release(this, true);
+        }
+
+        private void ApplyInventoryPanelSprite(Image background)
+        {
+            Sprite sprite = theme.inventoryPanelSprite != null ? theme.inventoryPanelSprite : theme.panelSprite;
+            GameUiStyle.ApplyPanelSprite(background, sprite, theme.panelBackground);
+        }
+
+        // ── 小工具 ────────────────────────────────────────────────
+
+        private static readonly Vector2 TopLeft = new Vector2(0f, 1f);
+        private static readonly Vector2 TopRight = new Vector2(1f, 1f);
+        private static readonly Vector2 Center = new Vector2(0.5f, 0.5f);
+        private static readonly Vector2 BottomRight = new Vector2(1f, 0f);
+
+        private Text CreateLabel(Transform parent, string name, string content, GameUiTextStyle style, bool inverse, TextAnchor alignment)
+        {
+            RectTransform rect = CreateRect(name, parent, Vector2.zero, Vector2.zero);
+            Text text = rect.gameObject.AddComponent<Text>();
+            text.text = content;
+            text.alignment = alignment;
+            text.raycastTarget = false;
+            GameUiStyle.ApplyPixelText(text, theme, style, inverse);
+            return text;
+        }
+
+        private static Image CreateImage(string name, Transform parent)
+        {
+            RectTransform rect = CreateRect(name, parent, Vector2.zero, Vector2.zero);
+            return rect.gameObject.AddComponent<Image>();
+        }
+
+        private Button CreateButton(Transform parent, string name, string label, Vector2 pos, Vector2 size, UnityEngine.Events.UnityAction onClick)
+        {
+            RectTransform rect = CreateRect(name, parent, size, pos);
+            Image image = rect.gameObject.AddComponent<Image>();
+
+            Button button = rect.gameObject.AddComponent<Button>();
+            button.targetGraphic = image;
+
+            Text text = CreateLabel(rect, "Label", label, GameUiTextStyle.ButtonText, true, TextAnchor.MiddleCenter);
+            Stretch(text.rectTransform);
+
+            PixelButton pixel = rect.gameObject.AddComponent<PixelButton>();
+            pixel.theme = theme;
+            pixel.background = image;
+            pixel.labelText = text;
+            pixel.ApplyStyle();
+
+            button.onClick.AddListener(onClick);
+            return button;
+        }
 
         private static RectTransform CreateRect(string name, Transform parent, Vector2 size, Vector2 pos)
         {
             GameObject go = new GameObject(name, typeof(RectTransform));
-            RectTransform rect = go.GetComponent<RectTransform>();
+            RectTransform rect = go.transform as RectTransform;
             rect.SetParent(parent, false);
+            rect.anchorMin = Center;
+            rect.anchorMax = Center;
+            rect.pivot = Center;
             rect.sizeDelta = size;
             rect.anchoredPosition = pos;
             return rect;
         }
 
-        private static Text CreateText(string name, Transform parent, string content, int size, Vector2 pos, Vector2 rectSize, TextAnchor anchor)
+        private static void Place(RectTransform rect, Vector2 anchor, Vector2 pivot, Vector2 pos, Vector2 size)
         {
-            Text text;
-            CreateTextOn(parent, name, content, size, pos, rectSize, anchor, out text);
-            return text;
+            if (rect == null)
+            {
+                return;
+            }
+
+            rect.anchorMin = anchor;
+            rect.anchorMax = anchor;
+            rect.pivot = pivot;
+            rect.anchoredPosition = pos;
+            rect.sizeDelta = size;
         }
 
-        private static void CreateTextOn(Transform parent, string name, string content, int size, Vector2 pos, Vector2 rectSize, TextAnchor anchor, out Text text)
+        private static void Stretch(RectTransform rect)
         {
-            RectTransform rect = CreateRect(name, parent, rectSize, pos);
-            text = rect.gameObject.AddComponent<Text>();
-            text.font = UiFont;
-            text.text = content;
-            text.fontSize = size;
-            text.color = TextColor;
-            text.alignment = anchor;
-            text.horizontalOverflow = HorizontalWrapMode.Wrap;
-            text.verticalOverflow = VerticalWrapMode.Overflow;
-        }
+            if (rect == null)
+            {
+                return;
+            }
 
-        private Button CreateButton(string label, Transform parent, Vector2 pos, Vector2 size, UnityEngine.Events.UnityAction onClick)
-        {
-            RectTransform rect = CreateRect("Btn_" + label, parent, size, pos);
-            Image image = rect.gameObject.AddComponent<Image>();
-            image.color = SlotColor;
-            Button button = rect.gameObject.AddComponent<Button>();
-            button.targetGraphic = image;
-            button.onClick.AddListener(onClick);
-            Text text;
-            CreateTextOn(rect, "Label", label, 18, Vector2.zero, size, TextAnchor.MiddleCenter, out text);
-            return button;
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+            rect.pivot = Center;
         }
     }
 }

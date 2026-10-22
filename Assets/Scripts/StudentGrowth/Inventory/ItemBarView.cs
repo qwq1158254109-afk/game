@@ -6,7 +6,8 @@ namespace StudentGrowth
 {
     /// <summary>
     /// 道具栏：右下角 5 格，按 1~5 直接使用；图标 + 数量 + 键位提示。
-    /// 自动取背包里前 5 种道具（v1 不做手动摆放）。
+    /// 自动取背包里前 5 种道具（手动摆放是后续待办）。
+    /// 2026-10-22：配色/字体改走 UIThemeConfig，与背包面板、地图 HUD 统一。
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class ItemBarView : MonoBehaviour
@@ -17,13 +18,11 @@ namespace StudentGrowth
         private const float BottomOffset = 96f;
         private const float RightOffset = 24f;
 
-        private static readonly Color SlotColor = new Color(0.16f, 0.11f, 0.07f, 0.88f);
-        private static readonly Color SlotEmpty = new Color(0.16f, 0.11f, 0.07f, 0.45f);
-        private static readonly Color TextColor = new Color(0.93f, 0.89f, 0.80f, 1f);
-
         private static ItemBarView instance;
 
+        private UIThemeConfig theme;
         private GameSessionState session;
+        private readonly List<Image> backgrounds = new List<Image>();
         private readonly List<Image> icons = new List<Image>();
         private readonly List<Text> counts = new List<Text>();
         private readonly List<ItemData> bound = new List<ItemData>();
@@ -63,9 +62,12 @@ namespace StudentGrowth
 
         private void Build()
         {
+            theme = GameUiStyle.ResolveTheme(null);
+
             Canvas canvas = gameObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = 150;
+
             CanvasScaler scaler = gameObject.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1280f, 720f);
@@ -82,20 +84,24 @@ namespace StudentGrowth
                 slot.anchoredPosition = new Vector2(x + SlotSize, BottomOffset);
 
                 Image slotImage = slot.gameObject.AddComponent<Image>();
-                slotImage.color = SlotEmpty;
+                ApplySlotSprite(slotImage, false);
 
                 int index = i;
                 Button button = slot.gameObject.AddComponent<Button>();
                 button.targetGraphic = slotImage;
+                button.transition = Selectable.Transition.None;
                 button.onClick.AddListener(() => InventoryController.UseSlot(index));
 
                 RectTransform iconRect = CreateRect("Icon", slot, new Vector2(SlotSize - 14f, SlotSize - 14f));
                 Image icon = iconRect.gameObject.AddComponent<Image>();
                 icon.enabled = false;
+                icon.raycastTarget = false;
+                icon.preserveAspect = true;
 
-                Text key = CreateText("Key", slot, (i + 1).ToString(), 13, new Vector2(-SlotSize * 0.5f + 9f, SlotSize * 0.5f - 10f), TextAnchor.MiddleCenter);
-                Text count = CreateText("Count", slot, string.Empty, 13, new Vector2(SlotSize * 0.5f - 9f, -SlotSize * 0.5f + 10f), TextAnchor.MiddleCenter);
+                Text key = CreateText("Key", slot, (i + 1).ToString(), new Vector2(-SlotSize * 0.5f + 9f, SlotSize * 0.5f - 10f));
+                Text count = CreateText("Count", slot, string.Empty, new Vector2(SlotSize * 0.5f - 9f, -SlotSize * 0.5f + 10f));
 
+                backgrounds.Add(slotImage);
                 icons.Add(icon);
                 counts.Add(count);
                 _ = key;
@@ -115,11 +121,11 @@ namespace StudentGrowth
 
             for (int i = 0; i < SlotCount; i++)
             {
-                bool used = i < bound.Count;
-                icons[i].enabled = used && bound[i] != null && bound[i].icon != null;
-                icons[i].sprite = used && bound[i] != null ? bound[i].icon : null;
-                counts[i].text = used ? string.Empty : string.Empty;
-                transform.GetChild(i).GetComponent<Image>().color = used ? SlotColor : SlotEmpty;
+                bool used = i < bound.Count && bound[i] != null;
+                icons[i].enabled = used && bound[i].icon != null;
+                icons[i].sprite = used ? bound[i].icon : null;
+                counts[i].text = string.Empty;
+                ApplySlotSprite(backgrounds[i], used);
             }
 
             // 数量只在同款 >1 时显示
@@ -130,31 +136,44 @@ namespace StudentGrowth
             }
         }
 
-        private static Font UiFont => Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        private void ApplySlotSprite(Image target, bool used)
+        {
+            if (theme.quickbarSlotSprite != null)
+            {
+                GameUiStyle.ApplyPanelSprite(target, theme.quickbarSlotSprite, theme.panelDarkBackground);
+                target.color = used ? Color.white : new Color(1f, 1f, 1f, 0.45f);
+                return;
+            }
+
+            GameUiStyle.ApplyPanelSprite(target, null, theme.panelDarkBackground);
+            target.color = used
+                ? theme.panelDarkBackground
+                : new Color(theme.panelDarkBackground.r, theme.panelDarkBackground.g, theme.panelDarkBackground.b, 0.45f);
+        }
+
+        private Text CreateText(string name, Transform parent, string content, Vector2 pos)
+        {
+            RectTransform rect = CreateRect(name, parent, new Vector2(28f, 18f));
+            rect.anchoredPosition = pos;
+
+            Text text = rect.gameObject.AddComponent<Text>();
+            text.text = content;
+            text.alignment = TextAnchor.MiddleCenter;
+            text.raycastTarget = false;
+            GameUiStyle.ApplyPixelText(text, theme, GameUiTextStyle.SmallText, true);
+            return text;
+        }
 
         private static RectTransform CreateRect(string name, Transform parent, Vector2 size)
         {
             GameObject go = new GameObject(name, typeof(RectTransform));
-            RectTransform rect = go.GetComponent<RectTransform>();
+            RectTransform rect = go.transform as RectTransform;
             rect.SetParent(parent, false);
             rect.sizeDelta = size;
             rect.anchorMin = new Vector2(0.5f, 0.5f);
             rect.anchorMax = new Vector2(0.5f, 0.5f);
             rect.anchoredPosition = Vector2.zero;
             return rect;
-        }
-
-        private static Text CreateText(string name, Transform parent, string content, int size, Vector2 pos, TextAnchor anchor)
-        {
-            RectTransform rect = CreateRect(name, parent, new Vector2(28f, 18f));
-            rect.anchoredPosition = pos;
-            Text text = rect.gameObject.AddComponent<Text>();
-            text.font = UiFont;
-            text.text = content;
-            text.fontSize = size;
-            text.color = TextColor;
-            text.alignment = anchor;
-            return text;
         }
     }
 }
