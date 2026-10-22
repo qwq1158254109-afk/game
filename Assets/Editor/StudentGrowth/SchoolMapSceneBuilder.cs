@@ -360,10 +360,13 @@ namespace StudentGrowthEditor
                 for (int column = 0; column < columns.Length; column++)
                 {
                     string suffix = $"R{row + 1:00}_C{column + 1:00}";
+                    // 课桌椅的碰撞体要矮一档，否则两排之间的净空只有 0.80，而玩家胶囊高 0.72：
+                    // 余量 8cm，实际操作中转不过弯，座位区等于走不进去（2026-10-22 报的"路被挡住"）。
+                    // 现值让三处净空变成 1.10 / 1.15 / 1.16，玩家脚印 0.45×0.72 带余量也能过。
                     CreateFurniture("StudentDesk_" + suffix, furnitureRoot.transform, sprites["StudentDesk"],
-                        columns[column], deskRows[row], 0.88f, true);
+                        columns[column], deskRows[row], 0.88f, true, 0.335f, 0.2864f, 0.3f);
                     CreateFurniture("StudentChair_" + suffix, furnitureRoot.transform, sprites["StudentChair"],
-                        columns[column], chairRows[row], 0.84f, true);
+                        columns[column], chairRows[row], 0.84f, true, 0.2396f, 0.2068f, 0.2f);
                 }
             }
 
@@ -442,7 +445,10 @@ namespace StudentGrowthEditor
             float pixelX,
             float pixelY,
             float scale,
-            bool addCollider)
+            bool addCollider,
+            float colliderHeightFactor = 0.43f,
+            float colliderOffsetFactor = 0.25f,
+            float colliderMinHeight = 0.34f)
         {
             GameObject target = CreateSpriteObject(name, parent, sprite, PixelToWorld(pixelX, pixelY),
                 new Vector3(scale, scale, 1f), 1000, true);
@@ -460,8 +466,8 @@ namespace StudentGrowthEditor
             {
                 BoxCollider2D collider = target.AddComponent<BoxCollider2D>();
                 Vector2 size = renderer.sprite.bounds.size;
-                collider.size = new Vector2(size.x * 0.8f, Mathf.Max(0.34f, size.y * 0.43f));
-                collider.offset = new Vector2(0f, -size.y * 0.25f);
+                collider.size = new Vector2(size.x * 0.8f, Mathf.Max(colliderMinHeight, size.y * colliderHeightFactor));
+                collider.offset = new Vector2(0f, -size.y * colliderOffsetFactor);
             }
 
             return target;
