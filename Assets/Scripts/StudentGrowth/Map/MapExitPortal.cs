@@ -28,6 +28,7 @@ namespace StudentGrowth
 
             target.isExitPortal = true;
             target.consumeTimeOnInteraction = false;
+            target.unlimitedUses = true;
             if (string.IsNullOrEmpty(target.promptText))
             {
                 target.promptText = promptText;

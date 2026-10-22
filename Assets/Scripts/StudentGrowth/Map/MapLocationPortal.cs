@@ -64,6 +64,8 @@ namespace StudentGrowth
                 target.interactionId = string.IsNullOrEmpty(target.interactionId) ? locationId : target.interactionId;
                 target.displayName = string.IsNullOrEmpty(target.displayName) ? displayName : target.displayName;
                 target.consumeTimeOnInteraction = false;
+                // 地点入口同理：同一阶段里可以反复进出，不该被「每阶段一次」卡住。
+                target.unlimitedUses = true;
                 target.interactionPoint = point;
             }
         }

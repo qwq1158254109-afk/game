@@ -12,6 +12,12 @@ namespace StudentGrowth
         public MapInteractionPoint interactionPoint;
         public bool isExitPortal;
         public bool consumeTimeOnInteraction = true;
+        /// <summary>
+        /// 不限次数、不计完成：门 / 传送点这类「走过去」的交互。
+        /// 置 true 后不写入 actionUseCount，也就不会被 maxUsesPerStage 卡住，
+        /// 提示栏不会出现「本阶段已完成」。（2026-10-22：房间门原本每阶段只能用一次）
+        /// </summary>
+        public bool unlimitedUses;
         public bool requireFacing = true;
         public float interactionRange = 0.75f;
         public int priority;

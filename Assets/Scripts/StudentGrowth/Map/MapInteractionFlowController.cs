@@ -483,7 +483,7 @@ namespace StudentGrowth
 
             SetState(MapInteractionFlowState.Executing);
             LocationActionExecutionResult result = interactionController.TryInteract(target);
-            bool exit = target != null && (target.isExitPortal || IsExitPoint(target));
+            bool exit = target != null && (target.isExitPortal || target.unlimitedUses || IsExitPoint(target));
             if (result != null && result.success)
             {
                 if (!exit && !result.shouldOpenBattle)
@@ -585,6 +585,12 @@ namespace StudentGrowth
         /// </summary>
         private static int ResolveMaxUsesPerStage(MapInteractionTarget target)
         {
+            // 门 / 传送点：不限次数（不写计数，也就谈不上用完）。
+            if (target != null && target.unlimitedUses)
+            {
+                return -1;
+            }
+
             int configured = 0;
             if (target != null && target.locationAction != null)
             {
@@ -604,7 +610,7 @@ namespace StudentGrowth
 
         private static bool ShouldTrackCompletion(MapInteractionTarget target)
         {
-            if (target == null || target.isExitPortal || IsExitPoint(target))
+            if (target == null || target.isExitPortal || target.unlimitedUses || IsExitPoint(target))
             {
                 return false;
             }

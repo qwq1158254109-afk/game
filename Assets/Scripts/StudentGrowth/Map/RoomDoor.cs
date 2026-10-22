@@ -69,6 +69,9 @@ namespace StudentGrowth
                 target.promptText = "按 E：" + ResolvePromptSuffix() + "｜不消耗时间";
                 target.interactionPoint = point;
                 target.consumeTimeOnInteraction = false;
+                // 门是「走过去」的交互：不限次数、不计完成、不消耗行动点。
+                // 不设这一条就会被当成普通活动按 maxUsesPerStage=1 记账，每阶段只能开一次。
+                target.unlimitedUses = true;
                 // 门在墙上，玩家是走到门前按 E —— 不该再要求「面朝门」才给提示，
                 // 否则从侧面走过来站在门口会看不到提示。
                 target.requireFacing = false;
