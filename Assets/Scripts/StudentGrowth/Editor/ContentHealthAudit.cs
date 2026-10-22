@@ -321,6 +321,10 @@ namespace StudentGrowth.Editor
                 int wired = 0;
                 int scannedScenes = 0;
                 int skippedScenes = 0;
+                // 场景 → 该场景能通过房间门直达的场景（RoomDoor.targetSceneName）。
+                var doorEdges = new Dictionary<string, List<string>>();
+                // 引用了活动资产的场景。用于把「场景归不到地点」这类盲区显式暴露出来。
+                var wiredScenePaths = new HashSet<string>();
                 string[] sceneFiles = Directory.GetFiles(MapSceneRoot, "*.unity", SearchOption.AllDirectories);
                 foreach (string sceneFile in sceneFiles)
                 {
@@ -336,6 +340,9 @@ namespace StudentGrowth.Editor
                     string text;
                     try { text = File.ReadAllText(sceneFile); }
                     catch { continue; }
+
+                    // 顺手收一遍房间门的跳转边：家四房间靠它接回所属地点。
+                    CollectRoomDoorEdges(normalized, text, doorEdges);
 
                     // 按 YAML 文档块切开，只认含 MapInteractionTarget 的块——
                     // 避免"资产 guid 恰好出现在别处"造成的误判
@@ -355,14 +362,128 @@ namespace StudentGrowth.Editor
                                 ActivityScenes[pair.Key] = scenes;
                             }
                             if (!scenes.Contains(normalized)) scenes.Add(normalized);
+                            wiredScenePaths.Add(normalized);
                             wired++;
                         }
                     }
                 }
 
+                // 2b) 房间门 → 子场景继承所属地点。
+                //     家四房间（卧室/书房/厨房）靠 RoomDoor 切场景进入，不登记在阶段地图里；
+                //     不补这层映射，房间里的活动就会被判成"没有任何场景引用"。
+                ExpandLocationsThroughRoomDoors(doorEdges);
+
+                // 2c) 有引用、却归不到地点的场景必须显式写出来，
+                //     否则会静默伪装成"未接线"，把内容缺口和工具盲区混为一谈。
+                ReportUnresolvedActivityScenes(wiredScenePaths);
+
                 DataSourceNotes.Add("场景接线索引：扫描地图场景 " + scannedScenes + " 个"
                     + (skippedScenes > 0 ? "（另跳过 Backups/_Recovery 下的 " + skippedScenes + " 个）" : "")
                     + "，找到 " + ActivityScenes.Count + " 个活动资产被 MapInteractionTarget 引用（合计 " + wired + " 处引用）");
+            }
+
+            // ---- 0.1) 房间门：场景 → 子场景 ----
+            //
+            // 家四房间是**独立场景**，靠 RoomDoor 按 E 切换，不登记在阶段地图里。
+            // 只按阶段地图建「场景 → 地点」表，这四个场景就没有地点归属，
+            // 房间里的活动一律被算成"没有任何场景引用"——2026-10-22 报告里
+            // 那 3 条"未接线"（电脑学习 / 整理计划 / 早点休息）就是这么误报的。
+            //
+            // 只认 RoomDoor。出口传送门（isExitPortal / ExitDoorObject）跨地点，
+            // 让它参与继承会把阶段地图之类的场景误并进当前地点。
+            private static void CollectRoomDoorEdges(string scenePath, string text, Dictionary<string, List<string>> edges)
+            {
+                if (edges == null || string.IsNullOrEmpty(text)) return;
+
+                string[] blocks = text.Split(new[] { "--- " }, StringSplitOptions.None);
+                foreach (string block in blocks)
+                {
+                    if (block.IndexOf("StudentGrowth.RoomDoor", StringComparison.Ordinal) < 0) continue;
+
+                    string target = ReadYamlScalar(block, "targetSceneName:");
+                    if (string.IsNullOrEmpty(target)) continue;
+
+                    string targetPath = NormalizeScenePath(target);
+                    List<string> list;
+                    if (!edges.TryGetValue(scenePath, out list))
+                    {
+                        list = new List<string>();
+                        edges[scenePath] = list;
+                    }
+                    if (!list.Contains(targetPath)) list.Add(targetPath);
+                }
+            }
+
+            /// <summary>读 YAML 块里某个标量字段的值（`key: value` 同一行）。</summary>
+            private static string ReadYamlScalar(string block, string key)
+            {
+                int index = block.IndexOf(key, StringComparison.Ordinal);
+                if (index < 0) return null;
+
+                int start = index + key.Length;
+                int end = block.IndexOf('\n', start);
+                string raw = end < 0 ? block.Substring(start) : block.Substring(start, end - start);
+                return raw.Trim();
+            }
+
+            /// <summary>
+            /// 把房间子场景并入所属地点：从阶段地图已登记的「场景 → 地点」出发，
+            /// 沿 RoomDoor 边做广度优先扩散。已登记的场景不覆盖（阶段地图是权威口径）。
+            /// </summary>
+            private void ExpandLocationsThroughRoomDoors(Dictionary<string, List<string>> doorEdges)
+            {
+                if (doorEdges == null || doorEdges.Count == 0) return;
+
+                var queue = new Queue<KeyValuePair<string, string>>();
+                foreach (KeyValuePair<string, string> pair in SceneToLocation)
+                {
+                    queue.Enqueue(pair);
+                }
+
+                int added = 0;
+                while (queue.Count > 0)
+                {
+                    KeyValuePair<string, string> current = queue.Dequeue();
+
+                    List<string> targets;
+                    if (!doorEdges.TryGetValue(current.Key, out targets)) continue;
+
+                    foreach (string target in targets)
+                    {
+                        if (SceneToLocation.ContainsKey(target)) continue;
+                        SceneToLocation[target] = current.Value;
+                        added++;
+                        queue.Enqueue(new KeyValuePair<string, string>(target, current.Value));
+                    }
+                }
+
+                if (added > 0)
+                {
+                    DataSourceNotes.Add("房间门映射：经 RoomDoor 把 " + added + " 个子场景并入所属地点");
+                }
+            }
+
+            /// <summary>
+            /// 有活动引用、但场景既没登记进阶段地图、也接不到任何房间门的，列出来。
+            /// 这些活动只能按「未接线」计，但原因在工具的映射覆盖不到，不在内容缺失。
+            /// </summary>
+            private void ReportUnresolvedActivityScenes(HashSet<string> wiredScenePaths)
+            {
+                if (wiredScenePaths == null || wiredScenePaths.Count == 0) return;
+
+                List<string> unresolved = null;
+                foreach (string scene in wiredScenePaths)
+                {
+                    if (SceneToLocation.ContainsKey(scene)) continue;
+                    if (unresolved == null) unresolved = new List<string>();
+                    unresolved.Add(scene.Replace(MapSceneRoot + "/", string.Empty));
+                }
+
+                if (unresolved == null) return;
+
+                unresolved.Sort(StringComparer.Ordinal);
+                DataSourceNotes.Add("⚠ 以下场景引用了活动资产，却归不到任何地点（阶段地图未登记、也没有房间门连过去），"
+                    + "其中活动只能按「未接线」处理：" + string.Join("、", unresolved.ToArray()));
             }
 
             /// <summary>把阶段地图里的 sceneName 统一成 Assets 下的完整场景路径。</summary>
@@ -1747,6 +1868,8 @@ namespace StudentGrowth.Editor
                 sb.AppendLine();
                 sb.AppendLine("判定方法：活动资产必须被某个地图场景的 `MapInteractionTarget` 引用（= 接线），"
                     + "且它所在的地点在实机里可达，玩家才可能看到这个活动。");
+                sb.AppendLine("场景 → 地点的映射以阶段地图配置为准，并沿 `RoomDoor.targetSceneName` 向下继承"
+                    + "（家卧室/书房/厨房这类子场景不登记在阶段地图里，靠门接回所属地点）。");
                 sb.AppendLine("交互的真实机制走的是场景里的 `MapInteractionTarget.fallbackActivity` ——"
                     + "`LocationActionData`（`locationAction` 字段）在本项目里全是空的，实际没参与任何交互。");
                 sb.AppendLine();
@@ -1761,7 +1884,8 @@ namespace StudentGrowth.Editor
                         + (activity.Notes.Count == 0 ? "—" : string.Join("<br>", activity.Notes)) + " |");
                 }
                 sb.AppendLine();
-                sb.AppendLine("> 同上：地点栏为空 = 没有任何场景引用它；资产路径见下表。");
+                sb.AppendLine("> 同上：地点栏为空 = 没有任何场景引用它，或引用它的场景归不到任何地点"
+                    + "（后者会在第 1 节「数据源清点」里以 ⚠ 行列出）；资产路径见下表。");
                 sb.AppendLine();
                 sb.AppendLine("| 活动 ID | 资产路径 |");
                 sb.AppendLine("| --- | --- |");
@@ -1778,27 +1902,32 @@ namespace StudentGrowth.Editor
                 sb.AppendLine();
 
                 // 附录 A
-                sb.AppendLine("## 附录 A：已知答案对照（工具自检）");
+                sb.AppendLine("## 附录 A：回归基线（工具自检）");
                 sb.AppendLine();
-                sb.AppendLine("工具每次运行都必须能报出以下已知问题。**报不出即说明工具写错，而不是内容没问题。**");
-                sb.AppendLine("（这些问题是在第一轮人工核查里确定的答案；工具升级或内容修复后，本表要同步更新。）");
+                sb.AppendLine("下表是两轮人工核查确认过的**历史缺陷**（2026-09-23、2026-10-22）。"
+                    + "它们应已修复：**仍存在 = 回归，或者工具又写错了**。");
+                sb.AppendLine("内容被合法修改后结论会变，届时请同步更新本表——变了不一定是工具错，但必须有人解释为什么变。");
                 sb.AppendLine();
-                sb.AppendLine("| 已知问题 | 是否报出 |");
+                sb.AppendLine("| 历史缺陷 | 当前 | 判定 |");
+                sb.AppendLine("| --- | --- | --- |");
+                sb.AppendLine(EndingDefectRow("结局「稳定升学」不可达（三科均值上界不足）", "stable_admission"));
+                sb.AppendLine(EndingDefectRow("结局「兴趣成长」不可达", "interest_growth"));
+                sb.AppendLine(EndingDefectRow("结局「自主选择」不可达", "self_driven"));
+                sb.AppendLine(EndingDefectRow("结局「压力调整」不可达", "pressure_recovery"));
+                sb.AppendLine(EndingDefectRow("结局「家庭支持」不可达（亲子上界不足）", "family_support"));
+                sb.AppendLine(DefectRow("属性「英语」实机来源 ≤1 处（瓶颈）", FindStatWeak(PlayerStatKey.English), "—"));
+                sb.AppendLine(DefectRow("属性「金钱」实机零来源", FindStatZero(PlayerStatKey.Money), "—"));
+                sb.AppendLine(DefectRow("资源「AddMoney」零次出现（金钱无来源）", FindRewardType(RewardType.AddMoney), "—"));
+                sb.AppendLine(DefectRow("地点「学校」无任何已接线活动", WiredCountOf("location_school") == 0,
+                    WiredCountOf("location_school") + " 个已接线活动"));
+                sb.AppendLine(DefectRow("存在未接线的活动资产（写完没挂进场景）", UnwiredActivityCount > 0,
+                    UnwiredActivityCount + " 个"));
+                sb.AppendLine();
+                sb.AppendLine("**应保持的事实**（数字变了要有人解释，不一定是工具错）：");
+                sb.AppendLine();
+                sb.AppendLine("| 事实 | 当前 |");
                 sb.AppendLine("| --- | --- |");
-                sb.AppendLine("| 结局「稳定升学」不可达（三科均值上界不足） | " + Yes(FindEnding("stable_admission")) + " |");
-                sb.AppendLine("| 结局「兴趣成长」不可达 | " + Yes(FindEnding("interest_growth")) + " |");
-                sb.AppendLine("| 结局「自主选择」不可达 | " + Yes(FindEnding("self_driven")) + " |");
-                sb.AppendLine("| 结局「压力调整」不可达 | " + Yes(FindEnding("pressure_recovery")) + " |");
-                sb.AppendLine("| 结局「家庭支持」不可达（亲子上界不足） | " + Yes(FindEnding("family_support")) + " |");
-                sb.AppendLine("| 属性「英语」实机来源 ≤1 处（瓶颈） | " + Yes(FindStatWeak(PlayerStatKey.English)) + " |");
-                sb.AppendLine("| 属性「金钱」实机零来源 | " + Yes(FindStatZero(PlayerStatKey.Money)) + " |");
-                sb.AppendLine("| 资源「AddMoney」零次出现（金钱无来源） | " + Yes(FindRewardType(RewardType.AddMoney)) + " |");
-                sb.AppendLine("| 地点「学校」无任何已接线活动 | " + Yes(WiredCountOf("location_school") == 0)
-                    + "（实际 " + WiredCountOf("location_school") + " 个） |");
-                sb.AppendLine("| 地点「图书馆」有且仅有 1 个已接线活动 | " + Yes(WiredCountOf("location_library") == 1)
-                    + "（实际 " + WiredCountOf("location_library") + " 个） |");
-                sb.AppendLine("| 存在未接线的活动资产（写完没挂进场景） | " + Yes(UnwiredActivityCount > 0)
-                    + "（" + UnwiredActivityCount + " 个） |");
+                sb.AppendLine("| 地点「图书馆」已接线活动数 | " + WiredCountOf("location_library") + " 个（基线 1） |");
                 sb.AppendLine();
                 sb.AppendLine("**— 以下为 2026-09-23 修复后应成立的状态（修复前是反例）—**");
                 sb.AppendLine();
@@ -1829,9 +1958,10 @@ namespace StudentGrowth.Editor
                 sb.AppendLine("3. **「瓶颈属性」= 实机只有 1 处来源。** 这类属性是单点依赖：那处来源一旦被删或被解锁条件卡住，该属性就再也不涨。零来源是\"完全不可达\"，仅 1 处来源是\"极脆弱\"，两者都值得处理。");
                 sb.AppendLine("4. **属性上限取自 `ValueClampUtility`**：常规属性 0–100，精力上限按 `maxEnergy`，金钱 0–9999。");
                 sb.AppendLine("5. **地点标记检查**是启发式：扫描 `StageMapLocationAvailabilityService` 里 `locationFlags.TryGetValue(\"...\")` 的字面量，再数该字符串在 `Assets` 下 `.cs` 文件中的出现文件数；只有读取点、没有写入点即判「该分支恒为假」。");
-                sb.AppendLine("6. **可达性口径（本版新增）**：一个来源算「实机可达」需同时满足 —— ① 它所在的资产被地图场景的 `MapInteractionTarget` 引用过；② 该场景对应的地点在不动点迭代里被点亮。");
+                sb.AppendLine("6. **可达性口径（本版新增）**：一个来源算「实机可达」需同时满足 —— ① 它所在的资产被地图场景的 `MapInteractionTarget` 引用过；② 该场景能归到某个地点，且该地点在不动点迭代里被点亮。");
+                sb.AppendLine("   - 「场景 → 地点」以阶段地图配置为准，并沿 `RoomDoor.targetSceneName` 向下继承一层：家卧室/书房/厨房是独立场景、靠按 E 进门切换，不登记在阶段地图里。不继承就会把这些房间里的活动误判成「未接线」（2026-10-22 的 3 条误报即此因）。出口传送门（`isExitPortal`）跨地点，不参与继承。");
+                sb.AppendLine("   - 归不到任何地点的场景会写进第 1 节的 ⚠ 行，不会静默算成「未接线」。这类场景要么补进阶段地图配置，要么补一条房间门，别让它悬空。");
                 sb.AppendLine("   - 「地点可达」的迭代方式：起点只算全局来源（阶段活动、卡牌、道具、阶段奖励）与默认解锁地点内的来源，然后反复「能开就开、重算边界」，最多 8 轮。这样能捕获**门槛属性只在锁死地点内有来源**的自锁。");
-                sb.AppendLine("   - 已知保守处：若活动接到了一个不在阶段地图配置里的场景，会被判为「地点无法解析 → 不可达」。这属于宁可漏报也不虚报；发现这种情况请把该场景补进 `MvpSampleDataFactory.CreateDefaultStageMapData`。");
                 sb.AppendLine("7. **场景扫描范围**：`" + MapSceneRoot + "` 下全部 `.unity`，**排除** `Backups/` 与 `_Recovery/`——那里的引用不代表内容已经上线。");
                 sb.AppendLine("8. **本工具不修改任何内容。** 只读资产、场景与源码，唯一的写操作是导出本报告。");
                 sb.AppendLine();
@@ -1895,6 +2025,19 @@ namespace StudentGrowth.Editor
             private static string Yes(bool value)
             {
                 return value ? "✅ 已报出" : "❌ **未报出**";
+            }
+
+            /// <summary>回归基线的一行：stillPresent 为 true 说明历史缺陷又出现了。</summary>
+            private static string DefectRow(string defect, bool stillPresent, string current)
+            {
+                return "| " + defect + " | " + (string.IsNullOrEmpty(current) ? "—" : current) + " | "
+                    + (stillPresent ? "⚠ **仍存在（回归）**" : "✅ 已消失") + " |";
+            }
+
+            private string EndingDefectRow(string defect, string endingId)
+            {
+                bool stillPresent = FindEnding(endingId);
+                return DefectRow(defect, stillPresent, stillPresent ? "不可达" : "可达（上界）");
             }
         }
 
