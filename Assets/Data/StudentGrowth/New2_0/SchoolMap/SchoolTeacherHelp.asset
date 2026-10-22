@@ -20,11 +20,14 @@ MonoBehaviour:
   icon: {fileID: 0}
   imagePath: 
   timeCost: 1
+  maxUsesPerStage: 1
+  battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
   linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}
   fixedRewards:
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 10
     value: 3
     card: {fileID: 0}
@@ -32,7 +35,8 @@ MonoBehaviour:
     activity: {fileID: 0}
     stage: {fileID: 0}
     description: "\u81EA\u4FE1 +3"
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 1
     value: 3
     card: {fileID: 0}

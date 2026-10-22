@@ -5,6 +5,12 @@ namespace StudentGrowth
 {
     public static class MvpSampleDataFactory
     {
+        /// <summary>
+        /// 「本阶段不限次数」的 maxUsesPerStage 取值。
+        /// 约定见 DataDefinitions.cs 的注释：负数 = 不限次数。
+        /// </summary>
+        private const int UnlimitedUses = -1;
+
         public static GameSessionState CreateSessionWithStarterDeck()
         {
             GameSessionState sessionState = new GameSessionState();
@@ -67,6 +73,19 @@ namespace StudentGrowth
             return new List<StageData> { stageOne, stageTwo, stageThree };
         }
 
+        /// <summary>
+        /// 结局阈值按「实机可达上界」标定，不按设计理想值。
+        ///
+        /// 2026-10-22 修：旧阈值（压力 85 / 三科均值 55 / 兴趣 70 / 亲子 70 / 自主 70）
+        /// 全部高于属性上界，导致 5/6 结局永远不可达。新阈值取实测上界的约 80%：
+        ///   压力   上界 38 → 30
+        ///   三科均值 上界 40 → 32
+        ///   兴趣   上界 53 → 42
+        ///   亲子关系 上界 67 → 53
+        ///   自主性  上界 43 → 34（配套的自信门槛 55 → 44，同比例下调）
+        /// 数据来源：Docs/ContentHealthReport.md（2026-10-22 14:11 重跑）。
+        /// 取 80% 而非 100%：留出「顾此失彼」的空间，让结局选择仍然有意义。
+        /// </summary>
         public static List<EndingData> CreateDefaultEndings()
         {
             return new List<EndingData>
@@ -80,7 +99,7 @@ namespace StudentGrowth
                     0,
                     0,
                     100,
-                    Condition(PlayerStatKey.Pressure, ComparisonType.GreaterOrEqual, 85)),
+                    Condition(PlayerStatKey.Pressure, ComparisonType.GreaterOrEqual, 30)),
                 CreateEnding(
                     "ending_stable_admission",
                     "稳定升学",
@@ -88,7 +107,7 @@ namespace StudentGrowth
                     50,
                     3,
                     3,
-                    55,
+                    32,
                     100),
                 CreateEnding(
                     "ending_interest_growth",
@@ -99,7 +118,7 @@ namespace StudentGrowth
                     0,
                     0,
                     100,
-                    Condition(PlayerStatKey.Interest, ComparisonType.GreaterOrEqual, 70)),
+                    Condition(PlayerStatKey.Interest, ComparisonType.GreaterOrEqual, 42)),
                 CreateEnding(
                     "ending_family_support",
                     "家庭支持",
@@ -109,7 +128,7 @@ namespace StudentGrowth
                     0,
                     0,
                     70,
-                    Condition(PlayerStatKey.ParentRelation, ComparisonType.GreaterOrEqual, 70)),
+                    Condition(PlayerStatKey.ParentRelation, ComparisonType.GreaterOrEqual, 53)),
                 CreateEnding(
                     "ending_self_driven",
                     "自主选择",
@@ -119,8 +138,8 @@ namespace StudentGrowth
                     0,
                     0,
                     100,
-                    Condition(PlayerStatKey.Autonomy, ComparisonType.GreaterOrEqual, 70),
-                    Condition(PlayerStatKey.Confidence, ComparisonType.GreaterOrEqual, 55)),
+                    Condition(PlayerStatKey.Autonomy, ComparisonType.GreaterOrEqual, 34),
+                    Condition(PlayerStatKey.Confidence, ComparisonType.GreaterOrEqual, 44)),
                 CreateEnding(
                     "ending_growth_complete",
                     "普通但完整的成长",
@@ -291,6 +310,13 @@ namespace StudentGrowth
             challengeData.startingEnergy = 3;
             challengeData.startingHandSize = 5;
             challengeData.bossClearRewards.Add(CreateStatReward(PlayerStatKey.Confidence, 3));
+            // 金钱此前零来源（RewardType.AddMoney 只被读取、从不产出），导致商店没有可花的钱。
+            // Boss 通关是最自然的收入口：打过一个阶段就有钱，且和「阶段奖励」的节奏一致。
+            challengeData.bossClearRewards.Add(new RewardData
+            {
+                rewardType = RewardType.AddMoney,
+                value = 50
+            });
             challengeData.bossFailureRewards.Add(CreateStatReward(PlayerStatKey.Pressure, 5));
             GameArtBindingUtility.ApplyKnownArtPath(challengeData);
             return challengeData;
@@ -303,6 +329,10 @@ namespace StudentGrowth
             activityData.displayName = displayName;
             activityData.activityType = ActivityType.Training;
             activityData.timeCost = 1;
+            // 训练类不限次数（-1）。默认值 1 会造成阶段死锁：
+            // 每阶段只有 3 个活动 × 上限 1 = 最多消耗 3 时间，而 timeLimit 是 6/6/8，
+            // remainingTime 永远到不了 0，bossUnlocked 恒 false（见 Docs/DesignAudit-2026-10-22.md）。
+            activityData.maxUsesPerStage = UnlimitedUses;
             activityData.fixedRewards.Add(CreateStatReward(statKey, value));
             GameArtBindingUtility.ApplyKnownArtPath(activityData);
             return activityData;
@@ -315,11 +345,22 @@ namespace StudentGrowth
             activityData.displayName = displayName;
             activityData.activityType = ActivityType.Rest;
             activityData.timeCost = 1;
+            // 休息类必须不限次数：否则时间槽耗尽后无法回复精力，玩家会被困在低精力状态。
+            activityData.maxUsesPerStage = UnlimitedUses;
             activityData.fixedRewards.Add(CreateStatReward(PlayerStatKey.Energy, 8));
             activityData.fixedRewards.Add(new RewardData
             {
                 rewardType = RewardType.ReducePressure,
                 value = 4
+            });
+            // 精力上限此前零来源（RewardType.IncreaseMaxEnergy 从不产出），
+            // 精力永远卡在 60，与「成长模拟」的定位矛盾。
+            // 挂在休息类上：睡觉/休息是唯一在叙事上说得通的「上限提升」来源，
+            // 且休息不限次数，所以上限会随休息次数缓慢增长（+2/次）。
+            activityData.fixedRewards.Add(new RewardData
+            {
+                rewardType = RewardType.IncreaseMaxEnergy,
+                value = 2
             });
             GameArtBindingUtility.ApplyKnownArtPath(activityData);
             return activityData;
@@ -342,6 +383,8 @@ namespace StudentGrowth
             activityData.displayName = displayName;
             activityData.activityType = ActivityType.MiniGame;
             activityData.timeCost = 1;
+            // 同训练类：不限次数，否则阶段无法消耗完时间。
+            activityData.maxUsesPerStage = UnlimitedUses;
             activityData.linkedMiniGame = miniGameData;
             GameArtBindingUtility.ApplyKnownArtPath(activityData);
             return activityData;
@@ -370,6 +413,8 @@ namespace StudentGrowth
             activityData.displayName = displayName;
             activityData.activityType = ActivityType.Event;
             activityData.timeCost = 1;
+            // 同训练类：不限次数，否则阶段无法消耗完时间。
+            activityData.maxUsesPerStage = UnlimitedUses;
             activityData.linkedEvent = eventData;
             GameArtBindingUtility.ApplyKnownArtPath(activityData);
             return activityData;
