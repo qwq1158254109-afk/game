@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34b0e1627e7a8f4fa62d84389ed15a7, type: 3}
+  m_Name: LibraryLibrarianEvent
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.GameEventData
+  eventId: event_library_librarian_talk
+  title: 图书管理员
+  description: 管理员从书堆后抬头：「找资料？先把要找的东西说清楚，比在书架之间乱转快得多。自习区在靠窗那排，安静。」
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: 
+  choices:
+  - choiceText: 管理员看你脸色不太好，让你先在窗边坐一会儿
+    requirements:
+    - statKey: 5
+      comparison: 0
+      value: 50
+    rewards:
+    - rewardType: 6
+      value: 2
+      card: {fileID: 0}
+      item: {fileID: 0}
+      activity: {fileID: 0}
+      stage: {fileID: 0}
+      description: 压力 -2
+    - rewardType: 3
+      targetStat: 6
+      value: 1
+      card: {fileID: 0}
+      item: {fileID: 0}
+      activity: {fileID: 0}
+      stage: {fileID: 0}
+      description: 心情 +1
+  - choiceText: 熟客了，管理员顺手递来一本参考书
+    requirements:
+    - statKey: 9
+      comparison: 0
+      value: 45
+    rewards:
+    - rewardType: 3
+      targetStat: 9
+      value: 1
+      card: {fileID: 0}
+      item: {fileID: 0}
+      activity: {fileID: 0}
+      stage: {fileID: 0}
+      description: 兴趣 +1
+    - rewardType: 3
+      targetStat: 6
+      value: 1
+      card: {fileID: 0}
+      item: {fileID: 0}
+      activity: {fileID: 0}
+      stage: {fileID: 0}
+      description: 心情 +1
+  - choiceText: 记下自习区的位置，道谢离开
+    requirements: []
+    rewards:
+    - rewardType: 3
+      targetStat: 6
+      value: 1
+      card: {fileID: 0}
+      item: {fileID: 0}
+      activity: {fileID: 0}
+      stage: {fileID: 0}
+      description: 心情 +1
+  - choiceText: 问问这次考试的范围
+    requirements: []
+    rewards:
+    - rewardType: 3
+      targetStat: 10
+      value: 1
+      card: {fileID: 0}
+      item: {fileID: 0}
+      activity: {fileID: 0}
+      stage: {fileID: 0}
+      description: 自信 +1
+  appearConditions: []

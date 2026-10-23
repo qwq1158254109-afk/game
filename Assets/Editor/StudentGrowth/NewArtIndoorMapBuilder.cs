@@ -609,7 +609,7 @@ namespace StudentGrowth.Editor
                 "location_home",
                 assets.restActivity.activityId,
                 "早点休息",
-                "按 E：早点休息｜消耗 1 时间｜精力 +20｜压力 -5",
+                "按 E：早点休息｜进入下一天｜精力 +20｜压力 -5",
                 assets.restActivity,
                 false,
                 10,

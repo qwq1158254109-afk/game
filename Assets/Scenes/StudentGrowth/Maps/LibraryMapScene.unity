@@ -810,7 +810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapInteractionTarget
   interactionId: library_librarian
   displayName: "\u56FE\u4E66\u7BA1\u7406\u5458"
-  promptText: "\u6309 E\uFF1A\u8BE2\u95EE\u56FE\u4E66\u7BA1\u7406\u5458"
+  promptText: "\u6309 E\uFF1A\u8BE2\u95EE\u56FE\u4E66\u7BA1\u7406\u5458\uFF5C\u6D88\u8017 1 \u65F6\u95F4"
   locationAction: {fileID: 0}
   fallbackActivity: {fileID: 11400000, guid: 80d3adfee4d9e474898542887454c1f6, type: 2}
   interactionPoint: {fileID: 348535361}

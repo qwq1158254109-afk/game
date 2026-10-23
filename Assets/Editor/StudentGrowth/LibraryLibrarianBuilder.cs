@@ -22,6 +22,7 @@ namespace StudentGrowthEditor
         private const string ControllerPath = AnimationRoot + "/LibraryLibrarian.controller";
         private const string DataRoot = "Assets/Data/StudentGrowth/New2_0/LibraryMap";
         private const string ActivityPath = DataRoot + "/LibraryLibrarianTalkData.asset";
+        private const string EventPath = DataRoot + "/LibraryLibrarianEvent.asset";
         private const string MarkerSpritePath = "Assets/Art/New2_0/Tilesets/Sliced/new20_interaction_marker_00.png";
         private const int FrameSize = 32;
         private const int PixelsPerUnit = 16;
@@ -226,7 +227,16 @@ namespace StudentGrowthEditor
             activity.displayName = "询问图书管理员";
             activity.description = "图书管理员提醒你保持安静，并建议先整理复习目标，再去对应书架查找资料。";
             activity.activityType = ActivityType.Event;
-            activity.timeCost = 0;
+            // 2026-10-22：原来 timeCost=0、次数默认 1 且没有挂事件 ——
+            // 点一次只弹一行"完成活动"，第二次就被「本阶段已完成」挡住。
+            // 现在改成：耗 1 次行动、可反复询问、挂一个对话事件。
+            activity.timeCost = 1;
+            activity.maxUsesPerStage = -1;
+            activity.linkedEvent = AssetDatabase.LoadAssetAtPath<GameEventData>(EventPath);
+            if (activity.linkedEvent == null)
+            {
+                Debug.LogWarning("[LibraryLibrarian] 缺少对话事件资产：" + EventPath);
+            }
             activity.fixedRewards.Clear();
             activity.possibleRewards.Clear();
             activity.appearConditions.Clear();
@@ -274,7 +284,7 @@ namespace StudentGrowthEditor
             MapInteractionTarget target = librarian.AddComponent<MapInteractionTarget>();
             target.interactionId = "library_librarian";
             target.displayName = "图书管理员";
-            target.promptText = "按 E：询问图书管理员";
+            target.promptText = "按 E：询问图书管理员｜消耗 1 时间";
             target.fallbackActivity = assets.activity;
             target.interactionPoint = point;
             target.consumeTimeOnInteraction = false;

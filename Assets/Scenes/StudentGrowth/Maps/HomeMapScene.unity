@@ -3959,8 +3959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapInteractionTarget
   interactionId: activity_home_rest_early_sleep
   displayName: "\u65E9\u70B9\u4F11\u606F"
-  promptText: "\u6309 E\uFF1A\u65E9\u70B9\u4F11\u606F\uFF5C\u6D88\u8017 1 \u65F6\u95F4\uFF5C\u7CBE\u529B
-    +20\uFF5C\u538B\u529B -5"
+  promptText: "\u6309 E\uFF1A\u65E9\u70B9\u4F11\u606F\uFF5C\u8FDB\u5165\u4E0B\u4E00\u5929\uFF5C\u7CBE\u529B +20\uFF5C\u538B\u529B -5"
   locationAction: {fileID: 0}
   fallbackActivity: {fileID: 11400000, guid: f64c4e518d9222346b023e4c99455f1b, type: 2}
   interactionPoint: {fileID: 220611097}
@@ -9667,9 +9666,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapInteractionTarget
   interactionId: WardrobeObject
   displayName: "\u6574\u7406\u8863\u67DC"
-  promptText: "\u8863\u67DC\u5DF2\u7ECF\u6574\u7406\u597D\u4E86\u3002"
+  promptText: "\u6309 E\uFF1A\u6574\u7406\u8863\u67DC\uFF5C\u6D88\u8017 1 \u65F6\u95F4\uFF5C\u5FC3\u60C5 +3\uFF5C\u7CBE\u529B\u4E0A\u9650 +1"
   locationAction: {fileID: 0}
-  fallbackActivity: {fileID: 0}
+  fallbackActivity: {fileID: 11400000, guid: b645a9015bc94574ab174482b903ec23, type: 2}
   interactionPoint: {fileID: 633086927}
   isExitPortal: 0
   consumeTimeOnInteraction: 0
