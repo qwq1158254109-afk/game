@@ -32,6 +32,8 @@ namespace StudentGrowth
         public MapDialogueView dialogueView;
         /// <summary>剧情对话播放器。为 null 时自动在场景里找。</summary>
         public DialogueRunner dialogueRunner;
+        /// <summary>阶段成长报告。首次需要时运行时创建。</summary>
+        public StageReportView stageReportView;
         public MapShopView shopView;
         public MapInteractionConfirmView confirmView;
         public MapActivityResultView resultView;
@@ -93,10 +95,53 @@ namespace StudentGrowth
             HideConfirm();
             ApplyConfirmStyle();
             ApplyVisuals();
+            ShowStageReportIfPending();
+        }
+
+        /// <summary>
+        /// 打完阶段 Boss 回地图后弹成长报告。
+        /// 放在 Update 而不是只在 Start：战斗返回不一定重载地图场景，
+        /// 只靠 Start 会漏掉「不重载」的那条路径。
+        /// </summary>
+        private void ShowStageReportIfPending()
+        {
+            if (!StageReportQueue.HasPending)
+            {
+                return;
+            }
+
+            StageData stage = StageReportQueue.Consume();
+            if (stage == null)
+            {
+                return;
+            }
+
+            if (stageReportView == null)
+            {
+                RectTransform canvasRect = ResolveCanvasRect();
+                if (canvasRect == null)
+                {
+                    // 画布还没就绪，放回队列等下一帧。
+                    StageReportQueue.Enqueue(stage);
+                    return;
+                }
+
+                GameObject reportObject = new GameObject("StageReportView", typeof(RectTransform));
+                reportObject.transform.SetParent(canvasRect, false);
+                stageReportView = reportObject.AddComponent<StageReportView>();
+                stageReportView.theme = theme;
+                stageReportView.BuildDefaultLayout(canvasRect);
+            }
+
+            stageReportView.theme = theme;
+            stageReportView.ApplyStyle();
+            stageReportView.Show(stage, ResolveSessionState());
         }
 
         private void Update()
         {
+            ShowStageReportIfPending();
+
             if (GameplayInputGate.IsBlocked)
             {
                 return;

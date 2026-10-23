@@ -174,6 +174,11 @@ namespace StudentGrowth
                     && !session.defeatedBossIds.Contains(stage.bossChallenge.challengeId)) session.defeatedBossIds.Add(stage.bossChallenge.challengeId);
                 rewards.ApplyRewards(stage.clearStageRewards, session);
                 completedStages.Add(StageKey(stage));
+                // 阶段通关后回地图弹成长报告。最终阶段不弹——那边有结局界面，两份全屏 UI 会打架。
+                if (!stage.isFinalStage)
+                {
+                    StageReportQueue.Enqueue(stage);
+                }
             }
             if (stage.isFinalStage) session.endingReached = true;
         }
