@@ -687,6 +687,21 @@ namespace StudentGrowth.EditorTools
                         {
                             go.transform.localScale = new Vector3(p.scale, p.scale, 1f);
                         }
+
+                        // 2026-10-23：床原来只有底图烘死的碰撞（下半截），上半截能穿过去。
+                        // 这里给床补一个覆盖整体的静态碰撞盒（贴图 3.06x4.30，锚点在底边中心）。
+                        if (p.name == "BedObject")
+                        {
+                            BoxCollider2D bedBox = go.GetComponent<BoxCollider2D>();
+                            if (bedBox == null)
+                            {
+                                bedBox = go.AddComponent<BoxCollider2D>();
+                            }
+
+                            bedBox.isTrigger = false;
+                            bedBox.size = new Vector2(2.9f, 4.1f);
+                            bedBox.offset = new Vector2(0f, 2.05f);
+                        }
                     }
                     else
                     {
