@@ -152,11 +152,28 @@ namespace StudentGrowth
         {
             if (!showDefaultWhenIdle)
             {
-                SetVisible(false);
+                Hide();
                 return;
             }
 
             ShowMessage(MapInteractionPromptFormatter.BuildDefaultPrompt(debugVisible));
+        }
+
+        /// <summary>
+        /// 隐藏提示，并清掉「当前显示内容」缓存。
+        ///
+        /// 只调 SetVisible(false) 不清缓存会连锁出两个故障（2026-10-23 实测）：
+        /// 1) visibleState 仍为 true → <see cref="FinishHide"/> 开头就 return，
+        ///    面板淡出后不会被 SetActive(false)，留一条 alpha=0 的隐形横条；
+        /// 2) lastMessage 还是上一个目标 → 再靠近同一目标时 <see cref="ShowMessage"/>
+        ///    的幂等判断命中，直接 return，既不更新文字也不重新显示。
+        /// 两者叠加，表现就是「离开后再靠近，提示再也不弹」。
+        /// </summary>
+        public void Hide()
+        {
+            hasState = false;
+            lastMessage = null;
+            SetVisible(false);
         }
 
         public void ShowTarget(MapInteractionTarget target)
@@ -253,6 +270,10 @@ namespace StudentGrowth
 
         private void SetVisible(bool visible)
         {
+            // 状态维护收敛到这里：FinishHide 靠 visibleState 判断「淡出途中是否又被显示」，
+            // ShowMessage 的幂等判断也读它。谁调 SetVisible 谁就不必再自己记一遍。
+            visibleState = visible;
+
             if (canvasGroup != null)
             {
                 canvasGroup.interactable = false;
