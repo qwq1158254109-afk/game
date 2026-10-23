@@ -30,6 +30,8 @@ namespace StudentGrowth
         public SceneTransitionController sceneTransitionController;
         public GameSessionState sessionState;
         public MapDialogueView dialogueView;
+        /// <summary>剧情对话播放器。为 null 时自动在场景里找。</summary>
+        public DialogueRunner dialogueRunner;
         public MapShopView shopView;
         public MapInteractionConfirmView confirmView;
         public MapActivityResultView resultView;
@@ -227,6 +229,14 @@ namespace StudentGrowth
 
             if (CurrentState == MapInteractionFlowState.Confirming)
             {
+                return true;
+            }
+
+            // 剧情对话优先于一切：不消耗时间、不计次数、不弹确认面板。
+            // 剧情组往 target.dialogue 里填资产即可，不用碰这里的流程。
+            if (target.dialogue != null)
+            {
+                BeginDialogue(target);
                 return true;
             }
 
@@ -499,8 +509,36 @@ namespace StudentGrowth
             ApplyVisuals();
         }
 
-        private void ExecutePending()
+        /// <summary>
+        /// 播放交互点绑定的剧情对话。对话不改时间、不计次数，
+        /// 结束后玩家仍可再点（剧情通常需要复听）。
+        /// </summary>
+        private void BeginDialogue(MapInteractionTarget target)
         {
+            if (target == null || target.dialogue == null)
+            {
+                return;
+            }
+
+            if (dialogueRunner == null)
+            {
+                dialogueRunner = FindObjectOfType<DialogueRunner>();
+            }
+
+            if (dialogueRunner == null)
+            {
+                ShowPrompt("对话组件缺失，暂时无法交谈。");
+                return;
+            }
+
+            SuppressPromptFor(target);
+            dialogueRunner.sessionState = ResolveSessionState();
+            dialogueRunner.Play(target.dialogue);
+            SetState(MapInteractionFlowState.Completed);
+            ApplyVisuals();
+        }
+
+        private void ExecutePending()        {
             if (pendingTarget == null)
             {
                 CancelPending();

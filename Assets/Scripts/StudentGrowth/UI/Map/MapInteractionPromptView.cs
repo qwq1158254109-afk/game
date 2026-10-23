@@ -247,6 +247,13 @@ namespace StudentGrowth
                 return MapInteractionPromptFormatter.BuildExitPrompt();
             }
 
+            // 剧情对话优先：不消耗时间，提示里也不该出现「消耗 N 小时」。
+            if (target.dialogue != null)
+            {
+                string npcName = string.IsNullOrEmpty(target.displayName) ? "对方" : target.displayName;
+                return "按 E：与 " + npcName + " 交谈";
+            }
+
             ActivityData activity = ResolveActivity(target);
             if (activity != null)
             {

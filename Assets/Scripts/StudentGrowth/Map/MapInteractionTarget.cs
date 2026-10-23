@@ -9,6 +9,11 @@ namespace StudentGrowth
         public string promptText;
         public LocationActionData locationAction;
         public ActivityData fallbackActivity;
+        /// <summary>
+        /// 剧情对话。非空时优先于活动：按 E 直接开对话框，不消耗时间、不计次数。
+        /// 剧情组只填 DialogueData 资产，不需要改场景逻辑。
+        /// </summary>
+        public DialogueData dialogue;
         public MapInteractionPoint interactionPoint;
         public bool isExitPortal;
         public bool consumeTimeOnInteraction = true;
