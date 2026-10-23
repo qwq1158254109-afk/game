@@ -200,7 +200,18 @@ namespace StudentGrowth
 
             GameObject host = new GameObject("[UI] EventSystem");
             host.AddComponent<EventSystem>();
-            host.AddComponent<StandaloneInputModule>();
+            // 工程 activeInputHandler=1（只用新 Input System）：StandaloneInputModule 读旧 Input，
+            // 每帧抛 InvalidOperationException。优先反射挂新输入模块，写法与 SettingsMenuController 的 fallback 一致。
+            System.Type moduleType = System.Type.GetType("UnityEngine.InputSystem.UI.InputSystemUIInputModule, Unity.InputSystem");
+            if (moduleType != null)
+            {
+                Component module = host.AddComponent(moduleType);
+                moduleType.GetMethod("AssignDefaultActions")?.Invoke(module, null);
+            }
+            else
+            {
+                host.AddComponent<StandaloneInputModule>();
+            }
         }
     }
 }
