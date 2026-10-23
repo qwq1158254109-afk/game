@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.DialogueData
   dialogueId: dialogue_library_librarian
   speakerName: 图书管理员
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 6a14497307011ec42957abe871157b7d, type: 3}
   lines:
   - text: 管理员放下手里的书：「有事吗？借书、聊天，还是想买点什么？」
     speakerOverride: 
@@ -24,21 +24,11 @@ MonoBehaviour:
       rewards: []
       nextDialogueId: dialogue_library_greet
       requirements: []
-    - text: 赠送礼物（-8 金钱）
-      rewards:
-      - rewardType: 4
-        targetStat: 12
-        value: 8
-        card: {fileID: 0}
-        item: {fileID: 0}
-        activity: {fileID: 0}
-        stage: {fileID: 0}
-        description: 金钱 -8
+    - text: 赠送礼物（从背包选择）
+      rewards: []
       nextDialogueId: dialogue_library_gift
-      requirements:
-      - statKey: 12
-        comparison: 0
-        value: 8
+      chooseItemAsGift: 1
+      requirements: []
     - text: 购买参考书（-15 金钱）
       rewards:
       - rewardType: 4

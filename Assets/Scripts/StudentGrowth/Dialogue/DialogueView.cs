@@ -23,8 +23,10 @@ namespace StudentGrowth
         private const float PanelHeight = 340f;
         private const float PanelBottom = 60f;
         private const float PortraitSize = 200f;
-        private const float OptionHeight = 46f;
-        private const float OptionSpacing = 6f;
+        private const float OptionHeight = 92f;
+        private const float OptionSpacing = 12f;
+        private const float OptionCardWidth = 820f;
+        private const float OptionCardPadding = 16f;
         private const float TypewriterCharsPerSecond = 45f;
 
         public UIThemeConfig theme;
@@ -93,10 +95,21 @@ namespace StudentGrowth
             bodyText.lineSpacing = 1.15f;
             SetRect(bodyText.rectTransform, new Vector2(260f, -76f), new Vector2(900f, 100f), new Vector2(0f, 1f));
 
+            // 选项不再塞在对话框里，而是屏幕正中一块独立卡片：
+            // 对话时三项选择更醒目，也不会把正文挤掉。
             GameObject optionsObject = new GameObject("Options", typeof(RectTransform));
             optionsRoot = optionsObject.transform as RectTransform;
-            optionsRoot.SetParent(rootRect, false);
-            SetRect(optionsRoot, new Vector2(260f, -186f), new Vector2(900f, 138f), new Vector2(0f, 1f));
+            optionsRoot.SetParent(parent, false);
+            optionsRoot.anchorMin = new Vector2(0.5f, 0.5f);
+            optionsRoot.anchorMax = new Vector2(0.5f, 0.5f);
+            optionsRoot.pivot = new Vector2(0.5f, 0.5f);
+            optionsRoot.anchoredPosition = Vector2.zero;
+            optionsRoot.sizeDelta = new Vector2(OptionCardWidth, 3f * (OptionHeight + OptionSpacing) + OptionCardPadding);
+
+            Image optionsBackdrop = optionsObject.AddComponent<Image>();
+            optionsBackdrop.color = new Color(0f, 0f, 0f, 0.8f);
+            optionsBackdrop.raycastTarget = true;
+            optionsObject.SetActive(false);
 
             continueHint = CreateText("ContinueHint", rootRect, "▼", 22, FontStyle.Bold, TextAnchor.MiddleRight);
             SetRect(continueHint.rectTransform, new Vector2(1000f, -296f), new Vector2(160f, 30f), new Vector2(0f, 1f));
@@ -125,6 +138,8 @@ namespace StudentGrowth
         public void Hide()
         {
             StopTypewriter();
+            // 选项卡片已经搬到屏幕中央，不在对话框里，收起时必须一起清掉。
+            ClearOptions();
             SetVisible(false);
             currentDialogue = null;
             onCompleted = null;
@@ -275,6 +290,12 @@ namespace StudentGrowth
             }
 
             int visible = Mathf.Min(line.options.Count, 3);
+            if (visible > 0 && optionsRoot != null)
+            {
+                optionsRoot.sizeDelta = new Vector2(OptionCardWidth,
+                    visible * (OptionHeight + OptionSpacing) + OptionCardPadding);
+                optionsRoot.gameObject.SetActive(true);
+            }
             for (int i = 0; i < visible; i++)
             {
                 DialogueOption option = line.options[i];
@@ -293,14 +314,19 @@ namespace StudentGrowth
             GameObject buttonObject = new GameObject("Option_" + index, typeof(RectTransform));
             RectTransform rect = buttonObject.transform as RectTransform;
             rect.SetParent(optionsRoot, false);
-            SetRect(rect, new Vector2(0f, -index * (OptionHeight + OptionSpacing)), new Vector2(900f, OptionHeight), new Vector2(0f, 1f));
+            rect.SetParent(optionsRoot, false);
+            rect.anchorMin = new Vector2(0.5f, 1f);
+            rect.anchorMax = new Vector2(0.5f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.anchoredPosition = new Vector2(0f, -(OptionCardPadding * 0.5f) - index * (OptionHeight + OptionSpacing));
+            rect.sizeDelta = new Vector2(OptionCardWidth - OptionCardPadding * 2f, OptionHeight);
 
             Image background = buttonObject.AddComponent<Image>();
             Button button = buttonObject.AddComponent<Button>();
             button.targetGraphic = background;
 
             Text label = CreateText("Text", rect, string.IsNullOrEmpty(option.text) ? "（未命名选项）" : option.text,
-                22, FontStyle.Normal, TextAnchor.MiddleLeft);
+                26, FontStyle.Normal, TextAnchor.MiddleLeft);
             label.rectTransform.anchorMin = Vector2.zero;
             label.rectTransform.anchorMax = Vector2.one;
             label.rectTransform.offsetMin = new Vector2(18f, 0f);
@@ -402,6 +428,8 @@ namespace StudentGrowth
                 child.SetParent(null, false);
                 Destroy(child.gameObject);
             }
+
+            optionsRoot.gameObject.SetActive(false);
         }
 
         private void ApplyPortrait(Sprite sprite)

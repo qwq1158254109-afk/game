@@ -74,6 +74,9 @@ namespace StudentGrowth
         [Tooltip("选中后跳转到的对话 ID。留空表示这段对话到此结束。")]
         public string nextDialogueId;
 
+        [Tooltip("勾选后不直接发奖励，而是打开背包让玩家挑一件道具送出去。")]
+        public bool chooseItemAsGift;
+
         [Tooltip("不满足条件的选项会置灰。留空表示永远可选。")]
         public List<EventConditionData> requirements = new List<EventConditionData>();
     }

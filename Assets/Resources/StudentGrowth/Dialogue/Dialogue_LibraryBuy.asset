@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.DialogueData
   dialogueId: dialogue_library_buy
   speakerName: 图书管理员
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 6a14497307011ec42957abe871157b7d, type: 3}
   lines:
   - text: 「这本参考书是旧版，你先拿去用。别在上面写答案。」
     speakerOverride: 

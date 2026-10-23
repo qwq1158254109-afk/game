@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -134,7 +135,18 @@ namespace StudentGrowth
 
         private void HandleOptionChosen(DialogueOption option)
         {
-            if (option == null || option.rewards == null || option.rewards.Count == 0)
+            if (option == null)
+            {
+                return;
+            }
+
+            if (option.chooseItemAsGift)
+            {
+                StartCoroutine(OpenGiftPickerNextFrame());
+                return;
+            }
+
+            if (option.rewards == null || option.rewards.Count == 0)
             {
                 return;
             }
@@ -148,13 +160,40 @@ namespace StudentGrowth
             rewardResolver.ApplyRewards(option.rewards, sessionState);
         }
 
+        /// <summary>
+        /// 「赠送礼物」：等对话框收起一帧，再打开背包的选择模式。
+        /// 选中道具后从背包移除，并按价值回一点心情（不给道具本身的使用效果）。
+        /// </summary>
+        private IEnumerator OpenGiftPickerNextFrame()
+        {
+            yield return null;
+
+            if (sessionState == null || sessionState.playerState == null)
+            {
+                yield break;
+            }
+
+            InventoryPanelView panel = InventoryPanelView.Ensure();
+            panel.OpenForSelection(sessionState, item =>
+            {
+                if (item == null)
+                {
+                    return;
+                }
+
+                InventoryModel.Drop(sessionState, item);
+                int bonus = Mathf.Clamp(2 + item.price / 8, 2, 8);
+                sessionState.playerState.AddStat(PlayerStatKey.Mood, bonus);
+                Sfx.Ui.Confirm();
+            });
+        }
+
         private void HandleJumpRequested(string nextDialogueId)
         {
-            // 跳转不触发「播放结束」回调：整条链路（含跳转后的对话）播完才算完。
-            if (PlayById(nextDialogueId, pendingComplete))
-            {
-                pendingComplete = null;
-            }
+            // PlayById 内部会把 pendingComplete 重新登记给下一段对话。
+            // 这里千万不能再把它清空 —— 清了之后整条链路播完不会触发结束回调，
+            // 输入闸门永远不释放，表现就是「选完选项后人物不能动」。
+            PlayById(nextDialogueId, pendingComplete);
         }
 
         private void HandleFinished()
