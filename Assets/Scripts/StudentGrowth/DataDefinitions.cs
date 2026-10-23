@@ -71,6 +71,8 @@ namespace StudentGrowth
         public CardType cardType;
         public CardRarity rarity;
         public int cost;
+        [Tooltip("商店售价。<=0 时按稀有度兜底（Common 50 / Uncommon 90 / Rare 150），见 ShopPurchaseService.ResolveCardPrice。")]
+        public int price;
         public string description;
         public Sprite cardSprite;
         public Sprite icon;

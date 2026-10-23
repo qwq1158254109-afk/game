@@ -14,6 +14,13 @@ namespace StudentGrowth
         private const float StockRowSpacing = 8f;
         private const int MaxVisibleStockItems = 3;
 
+        // 卡牌区在道具区下方。面板原高 424 放不下第二块列表，扩到 660；
+        // 场景里已序列化的实例不会重跑 BuildDefaultLayout，靠 EnsureLayoutExpanded 幂等修正。
+        private const float ShopPanelHeight = 660f;
+        private const float CardSectionTitleTop = -362f;
+        private const float CardListTop = -386f;
+        private const float CardListHeight = 198f;
+
         public UIThemeConfig theme;
         public GameSessionState sessionState;
         public FullscreenMapHudView hudView;
@@ -29,6 +36,9 @@ namespace StudentGrowth
         public RectTransform stockListRoot;
         public Button closeButton;
         public List<ItemData> stockItems = new List<ItemData>();
+        public List<CardData> shopCards = new List<CardData>();
+        public RectTransform cardListRoot;
+        public Text cardSectionTitle;
 
         private readonly ShopPurchaseService purchaseService = new ShopPurchaseService();
 
@@ -121,7 +131,7 @@ namespace StudentGrowth
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
             panelRect.anchoredPosition = Vector2.zero;
-            panelRect.sizeDelta = new Vector2(620f, 424f);
+            panelRect.sizeDelta = new Vector2(620f, ShopPanelHeight);
 
             Image background = panelRoot.GetComponent<Image>();
             if (background == null)
@@ -165,6 +175,14 @@ namespace StudentGrowth
             stockListRoot.SetParent(panelRect, false);
             SetRect(stockListRoot, new Vector2(24f, -132f), new Vector2(572f, 226f), new Vector2(0f, 1f));
 
+            cardSectionTitle = CreateText("CardSectionTitle", panelRect, "卡牌", 18, FontStyle.Bold, TextAnchor.MiddleLeft);
+            SetRect(cardSectionTitle.rectTransform, new Vector2(24f, CardSectionTitleTop), new Vector2(572f, 22f), new Vector2(0f, 1f));
+
+            GameObject cardListObject = new GameObject("CardList", typeof(RectTransform));
+            cardListRoot = cardListObject.transform as RectTransform;
+            cardListRoot.SetParent(panelRect, false);
+            SetRect(cardListRoot, new Vector2(24f, CardListTop), new Vector2(572f, CardListHeight), new Vector2(0f, 1f));
+
             feedbackText = CreateText("Feedback", panelRect, string.Empty, 17, FontStyle.Bold, TextAnchor.MiddleLeft);
             feedbackText.supportRichText = true;
             SetRect(feedbackText.rectTransform, new Vector2(24f, 22f), new Vector2(572f, 34f), Vector2.zero);
@@ -176,6 +194,7 @@ namespace StudentGrowth
         public void Show()
         {
             ResolveReferences();
+            EnsureLayoutExpanded();
             EnsureDefaultStock();
             SetVisible(true);
             Refresh();
@@ -200,6 +219,7 @@ namespace StudentGrowth
             ApplyIcon(shopIcon, resolved.inventoryIcon, resolved.bodyText);
             ApplyIcon(moneyIcon, resolved.moneyIcon, resolved.gold);
             RefreshStockList();
+            RefreshCardList();
             ApplyStyle();
         }
 
@@ -287,6 +307,222 @@ namespace StudentGrowth
             statusText.color = affordable ? resolved.success : resolved.danger;
         }
 
+        private void RefreshCardList()
+        {
+            ClearCardList();
+            if (cardListRoot == null)
+            {
+                return;
+            }
+
+            EnsureDefaultStock();
+            if (shopCards.Count == 0)
+            {
+                Text emptyText = CreateText("CardEmpty", cardListRoot, "今日暂无卡牌出售。", 16, FontStyle.Normal, TextAnchor.UpperLeft);
+                SetRect(emptyText.rectTransform, Vector2.zero, new Vector2(560f, 28f), new Vector2(0f, 1f));
+                GameUiStyle.ApplyPixelText(emptyText, theme, GameUiTextStyle.Body);
+                return;
+            }
+
+            int count = Mathf.Min(shopCards.Count, MaxVisibleStockItems);
+            for (int i = 0; i < count; i++)
+            {
+                Button cardButton = CreateCardButton(shopCards[i], i);
+                RectTransform rect = cardButton.transform as RectTransform;
+                SetRect(rect, new Vector2(0f, -i * (StockRowHeight + StockRowSpacing)), new Vector2(572f, StockRowHeight), new Vector2(0f, 1f));
+            }
+
+            if (shopCards.Count > count)
+            {
+                Text overflow = CreateText("CardOverflow", cardListRoot, "还有 " + (shopCards.Count - count) + " 张卡牌未显示。", 14, FontStyle.Normal, TextAnchor.MiddleLeft);
+                SetRect(overflow.rectTransform, new Vector2(0f, -count * (StockRowHeight + StockRowSpacing)), new Vector2(560f, 24f), new Vector2(0f, 1f));
+                GameUiStyle.ApplyPixelText(overflow, theme, GameUiTextStyle.SmallText);
+            }
+        }
+
+        private Button CreateCardButton(CardData card, int index)
+        {
+            Button button = CreateButton("ShopCard_" + index, cardListRoot, ResolveCardName(card), Vector2.zero, new Vector2(572f, StockRowHeight), new Vector2(0f, 1f));
+            button.interactable = CanAffordCard(card);
+            CardData captured = card;
+            button.onClick.AddListener(() => PurchaseCard(captured));
+            ConfigureCardButton(button, card);
+            return button;
+        }
+
+        private void ConfigureCardButton(Button button, CardData card)
+        {
+            if (button == null)
+            {
+                return;
+            }
+
+            RectTransform rect = button.transform as RectTransform;
+            if (rect == null)
+            {
+                return;
+            }
+
+            UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
+            Text label = button.GetComponentInChildren<Text>(true);
+            if (label != null)
+            {
+                label.text = ResolveCardName(card);
+                label.alignment = TextAnchor.MiddleLeft;
+                SetRect(label.rectTransform, new Vector2(54f, -8f), new Vector2(220f, 20f), new Vector2(0f, 1f));
+                GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
+            }
+
+            Sprite cardSprite = card == null ? null : card.icon;
+            CreateStockIcon("CardIcon", rect, cardSprite == null ? resolved.inventoryIcon : cardSprite, new Vector2(14f, -14f), new Vector2(30f, 30f), resolved.inverseText);
+
+            Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolveCardPrice(card), 15, FontStyle.Bold, TextAnchor.MiddleRight);
+            SetRect(priceText.rectTransform, new Vector2(452f, -8f), new Vector2(84f, 20f), new Vector2(0f, 1f));
+            GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
+            priceText.color = resolved.gold;
+
+            Text detailText = CreateText("Detail", rect, BuildCardDetail(card), 14, FontStyle.Normal, TextAnchor.MiddleLeft);
+            SetRect(detailText.rectTransform, new Vector2(54f, -32f), new Vector2(360f, 18f), new Vector2(0f, 1f));
+            GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
+
+            bool affordable = CanAffordCard(card);
+            Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
+            SetRect(statusText.rectTransform, new Vector2(434f, -32f), new Vector2(102f, 18f), new Vector2(0f, 1f));
+            GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
+            statusText.color = affordable ? resolved.success : resolved.danger;
+        }
+
+        private void PurchaseCard(CardData card)
+        {
+            ShopCardPurchaseResult result = purchaseService.TryPurchaseCard(card, sessionState);
+            SetCardFeedback(result);
+            if (result.success && hudView != null)
+            {
+                hudView.Refresh();
+            }
+
+            Refresh();
+        }
+
+        private void SetCardFeedback(ShopCardPurchaseResult result)
+        {
+            if (feedbackText == null)
+            {
+                return;
+            }
+
+            UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
+            Color color = result != null && result.success ? resolved.success : resolved.danger;
+            string hex = ColorUtility.ToHtmlStringRGB(color);
+            string message = result == null || string.IsNullOrEmpty(result.message) ? "购买处理失败。" : result.message;
+            feedbackText.text = "<color=#" + hex + ">" + message + "</color>";
+        }
+
+        private bool CanAffordCard(CardData card)
+        {
+            if (sessionState == null || sessionState.playerState == null)
+            {
+                return false;
+            }
+
+            return sessionState.playerState.money >= ShopPurchaseService.ResolveCardPrice(card);
+        }
+
+        private static string ResolveCardName(CardData card)
+        {
+            if (card == null)
+            {
+                return "未命名卡牌";
+            }
+
+            if (!string.IsNullOrEmpty(card.displayName))
+            {
+                return card.displayName;
+            }
+
+            return string.IsNullOrEmpty(card.cardId) ? "未命名卡牌" : card.cardId;
+        }
+
+        private static string BuildCardDetail(CardData card)
+        {
+            if (card == null)
+            {
+                return "卡牌数据缺失";
+            }
+
+            string rarity = GetRarityLabel(card.rarity);
+            string description = string.IsNullOrEmpty(card.description) ? "暂无说明" : card.description;
+            return rarity + " · 费用 " + card.cost + " · " + Truncate(description, 22);
+        }
+
+        private static string GetRarityLabel(CardRarity rarity)
+        {
+            switch (rarity)
+            {
+                case CardRarity.Rare:
+                    return "稀有";
+                case CardRarity.Uncommon:
+                    return "罕见";
+                default:
+                    return "普通";
+            }
+        }
+
+        private void ClearCardList()
+        {
+            if (cardListRoot == null)
+            {
+                return;
+            }
+
+            for (int i = cardListRoot.childCount - 1; i >= 0; i--)
+            {
+                Transform child = cardListRoot.GetChild(i);
+                child.SetParent(null, false);
+                if (Application.isPlaying)
+                {
+                    Destroy(child.gameObject);
+                }
+                else
+                {
+                    DestroyImmediate(child.gameObject);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 幂等把面板撑到含卡牌区的高度，并补齐缺失的卡牌列表节点。
+        /// 场景里已序列化的 MapShopView 实例不会再走 BuildDefaultLayout，
+        /// 没有这一步就会出现「加了卡牌但界面上看不到」。
+        /// </summary>
+        private void EnsureLayoutExpanded()
+        {
+            if (panelRoot == null)
+            {
+                return;
+            }
+
+            RectTransform panelRect = panelRoot.transform as RectTransform;
+            if (panelRect != null && panelRect.sizeDelta.y < ShopPanelHeight)
+            {
+                panelRect.sizeDelta = new Vector2(panelRect.sizeDelta.x, ShopPanelHeight);
+            }
+
+            if (cardSectionTitle == null && panelRect != null)
+            {
+                cardSectionTitle = CreateText("CardSectionTitle", panelRect, "卡牌", 18, FontStyle.Bold, TextAnchor.MiddleLeft);
+                SetRect(cardSectionTitle.rectTransform, new Vector2(24f, CardSectionTitleTop), new Vector2(572f, 22f), new Vector2(0f, 1f));
+            }
+
+            if (cardListRoot == null && panelRect != null)
+            {
+                GameObject cardListObject = new GameObject("CardList", typeof(RectTransform));
+                cardListRoot = cardListObject.transform as RectTransform;
+                cardListRoot.SetParent(panelRect, false);
+                SetRect(cardListRoot, new Vector2(24f, CardListTop), new Vector2(572f, CardListHeight), new Vector2(0f, 1f));
+            }
+        }
+
         private void Purchase(ItemData item)
         {
             ShopPurchaseResult result = purchaseService.TryPurchase(item, sessionState);
@@ -319,6 +555,11 @@ namespace StudentGrowth
             {
                 stockItems.AddRange(MvpSampleDataFactory.CreateDefaultShopItems());
             }
+
+            if (shopCards.Count == 0)
+            {
+                shopCards.AddRange(MvpSampleDataFactory.CreateDefaultShopCards());
+            }
         }
 
         private bool CanAfford(ItemData item)
@@ -339,8 +580,8 @@ namespace StudentGrowth
 
         private string BuildDescriptionText()
         {
-            return Section("购买道具")
-                + Row("说明", "商品会直接进入背包。消耗品可在背包中使用，被动道具会在对应战斗时机生效。");
+            return Section("购买道具与卡牌")
+                + Row("说明", "道具进背包，卡牌进主卡组。消耗品在背包中使用，被动道具在战斗时生效。");
         }
 
         private static string ResolveItemName(ItemData item)
@@ -394,6 +635,7 @@ namespace StudentGrowth
             }
 
             GameUiStyle.ApplyPixelText(titleText, resolved, GameUiTextStyle.Subtitle);
+            GameUiStyle.ApplyPixelText(cardSectionTitle, resolved, GameUiTextStyle.Subtitle);
             GameUiStyle.ApplyPixelText(moneyText, resolved, GameUiTextStyle.StatText);
             GameUiStyle.ApplyPixelText(descriptionText, resolved, GameUiTextStyle.Body);
             GameUiStyle.ApplyPixelText(feedbackText, resolved, GameUiTextStyle.Body);
@@ -405,6 +647,15 @@ namespace StudentGrowth
                 for (int i = 0; i < buttons.Length; i++)
                 {
                     ApplyButton(buttons[i]);
+                }
+            }
+
+            if (cardListRoot != null)
+            {
+                Button[] cardButtons = cardListRoot.GetComponentsInChildren<Button>(true);
+                for (int i = 0; i < cardButtons.Length; i++)
+                {
+                    ApplyButton(cardButtons[i]);
                 }
             }
         }

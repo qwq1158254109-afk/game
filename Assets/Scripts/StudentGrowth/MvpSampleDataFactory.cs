@@ -11,6 +11,9 @@ namespace StudentGrowth
         /// </summary>
         private const int UnlimitedUses = -1;
 
+        /// <summary>商店货架最多摆几张卡。与 MapShopView 的可见行数对齐，避免加了看不到。</summary>
+        private const int ShopCardShelfSize = 4;
+
         public static GameSessionState CreateSessionWithStarterDeck()
         {
             GameSessionState sessionState = new GameSessionState();
@@ -43,6 +46,61 @@ namespace StudentGrowth
                 CreateWrongBook(),
                 CreateLuckyPen()
             };
+        }
+
+        /// <summary>
+        /// 商店货架上的卡牌。优先取 Resources 下真实卡池（pool_starter / pool_reward）里的卡，
+        /// 卡池缺失时才退回本文件自建的兜底卡，保证商店在任何数据状态下都有卡可卖。
+        /// </summary>
+        public static List<CardData> CreateDefaultShopCards()
+        {
+            List<CardData> result = new List<CardData>();
+            HashSet<string> seen = new HashSet<string>();
+
+            CardPoolData[] pools = CardPoolCatalog.All();
+            for (int p = 0; p < pools.Length; p++)
+            {
+                CardPoolData pool = pools[p];
+                if (pool == null || pool.cards == null)
+                {
+                    continue;
+                }
+
+                for (int i = 0; i < pool.cards.Count; i++)
+                {
+                    CardData card = pool.cards[i];
+                    if (card == null)
+                    {
+                        continue;
+                    }
+
+                    string key = string.IsNullOrEmpty(card.cardId) ? card.name : card.cardId;
+                    if (!seen.Add(key))
+                    {
+                        continue;
+                    }
+
+                    result.Add(card);
+                }
+            }
+
+            if (result.Count == 0)
+            {
+                CardData review = CreateProgressCard("card_shop_wrong_review", "错题重做", 12);
+                review.rarity = CardRarity.Uncommon;
+                result.Add(review);
+
+                CardData breath = CreateRestCard("card_shop_deep_breath", "深呼吸");
+                breath.rarity = CardRarity.Common;
+                result.Add(breath);
+            }
+
+            if (result.Count > ShopCardShelfSize)
+            {
+                result.RemoveRange(ShopCardShelfSize, result.Count - ShopCardShelfSize);
+            }
+
+            return result;
         }
 
         public static List<StageData> CreateThreeStageSequence()
