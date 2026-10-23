@@ -1,6 +1,6 @@
 # dsh × mcp-unity 接入说明
 
-记录日期：2026-10-19 ｜ 工程 `E:\大创项目` ｜ Unity 6000.4.6f1 ｜ mcp-unity 1.5.0 ｜ MCP 端口 8096
+记录日期：2026-10-19 ｜ 工程 `E:\大创项目` ｜ Unity 6000.4.6f1 ｜ mcp-unity 1.5.0 ｜ MCP 端口 8095
 
 这份文档解决一件事：**让 dsh（DeepSeek Harness）能直接操作 Unity 编辑器**。装好后的能力见第四节。
 
@@ -14,8 +14,9 @@
 | 注册方式 | `- insert:` 列表里挂一条 `@deepseek-ai/dsh-mcp-client` |
 | 服务器名 | `unity`（工具会显示成 `mcp__unity__*`） |
 | 桥接进程 | `node Packages/mcp-unity/Server~/build/index.js`（stdio） |
-| 连 Unity 的端口 | 8096，来自 `ProjectSettings/McpUnitySettings.json` |
+| 连 Unity 的端口 | 8095，来自 `ProjectSettings/McpUnitySettings.json`（2026-10-23 核对；本文早期版本写的 8096 是旧值） |
 | 鉴权令牌 | `Library/McpUnity/bridge-token`（由 Unity 生成，勿提交、勿手改） |
+| 同一桥接的另一个客户端 | WorkBuddy：`C:\Users\cyl\.workbuddy-ai\mcp.json`（标准 `mcpServers` 格式，服务名 `mcp-unity`）。两份配置指向同一桥接脚本与同一令牌，各起一个 node 进程；同一时间只建议一个客户端连着用。 |
 | 生效方式 | dsh 会**原地重载**配置项，不需要重启（2026-10-19 实测：改完当轮 `unity` 就出现在可用 MCP 列表里） |
 
 ## 二、为什么是这个写法（两个坑，都踩过）
@@ -55,7 +56,7 @@
 
 应返回 `serverInfo: { name: "MCP Unity Server", version: "1.5.0" }`。
 
-2. **Unity 有没有在听 8096**：`Get-NetTCPConnection -State Listen | Where-Object LocalPort -eq 8096`
+2. **Unity 有没有在听 8095**：`Get-NetTCPConnection -State Listen | Where-Object LocalPort -eq 8095`
 3. **dsh 有没有拿到这个服务器**：让 dsh 调 `list_mcp_resources(server="unity")`，能列出 `unity://menu-items`、`unity://logs/...` 等 13 个资源即成功。
 
 ## 四、能用它做什么

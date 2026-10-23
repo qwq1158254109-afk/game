@@ -958,7 +958,7 @@ V0.2 推荐顺序：
 ### 20.4 环境事实
 
 - Unity 版本 6000.4.6f1（`ProjectSettings/ProjectVersion.txt`）。
-- mcp-unity 1.5.0，端口 8096（`ProjectSettings/McpUnitySettings.json`），桥接令牌 `Library/McpUnity/bridge-token`。
+- mcp-unity 1.5.0，端口 **8095**（`ProjectSettings/McpUnitySettings.json`，2026-10-23 核对；早期文档与日志里写的 8096 是旧值，以本行为准），桥接令牌 `Library/McpUnity/bridge-token`。WorkBuddy 客户端配置在 `C:\Users\cyl\.workbuddy-ai\mcp.json`，dsh 的配置在 `C:\Users\cyl\.dsh\profiles\desktop\cordis.patch.yml`，两者各起一个 node 桥接进程，同一时间只建议一个客户端连。
 - **recompile 必然把 MCP 打半残**（2026-10-19 三次复现）：任何一次 recompile（含保存脚本触发的域重载）都会让 mcp-unity 的 WebSocket 重绑失败，日志写 `Failed to start WebSocket server: Port 8096 is already in use`，表现为端口在听、握手超时。处理：关 Unity → 等端口彻底消失 → 重启 Unity。**不要反复重试 MCP**。
 - **僵尸端口**：强杀 Unity 会留下「pid 已不存在、netstat 仍显示 LISTENING」的 8096。此时新启动的 Unity 会静默失去 MCP 服务（NO_LISTENER），且不自动重试。必须等 `netstat -ano | findstr :8096` 完全为空再启动。
 - 因此：**一次性把代码改完再编译**，编译后统一「重启 Unity → 跑菜单 → 截图验证」，不要边改边验。
