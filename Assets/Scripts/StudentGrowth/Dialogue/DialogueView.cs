@@ -329,7 +329,7 @@ namespace StudentGrowth
                 26, FontStyle.Normal, TextAnchor.MiddleLeft);
             label.rectTransform.anchorMin = Vector2.zero;
             label.rectTransform.anchorMax = Vector2.one;
-            label.rectTransform.offsetMin = new Vector2(18f, 0f);
+            label.rectTransform.offsetMin = new Vector2(44f, 0f);
             label.rectTransform.offsetMax = new Vector2(-18f, 0f);
 
             PixelButton pixelButton = buttonObject.AddComponent<PixelButton>();
