@@ -396,6 +396,11 @@ namespace StudentGrowth
         {
             ShopCardPurchaseResult result = purchaseService.TryPurchaseCard(card, sessionState);
             SetCardFeedback(result);
+            if (result.success)
+            {
+                Sfx.World.Coin();
+            }
+
             if (result.success && hudView != null)
             {
                 hudView.Refresh();
@@ -534,6 +539,11 @@ namespace StudentGrowth
         {
             ShopPurchaseResult result = purchaseService.TryPurchase(item, sessionState);
             SetFeedback(result);
+            if (result.success)
+            {
+                Sfx.World.Coin();
+            }
+
             if (result.success && hudView != null)
             {
                 hudView.Refresh();

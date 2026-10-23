@@ -119,6 +119,7 @@ namespace StudentGrowth
             lineIndex = -1;
             ShowLine(0);
             SetVisible(true);
+            Sfx.Ui.Open();
         }
 
         public void Hide()
@@ -170,6 +171,7 @@ namespace StudentGrowth
 
             lineIndex = index;
             DialogueLine line = currentDialogue.lines[index];
+            Sfx.World.PageFlip();
 
             if (speakerText != null)
             {
@@ -335,6 +337,7 @@ namespace StudentGrowth
             }
 
             // 奖励发放交给外部（DialogueRunner），这里只负责回调，避免 UI 直接改存档。
+            Sfx.Ui.Confirm();
             onOptionChosen?.Invoke(option);
 
             if (!string.IsNullOrEmpty(option.nextDialogueId))

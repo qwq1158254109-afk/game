@@ -118,11 +118,13 @@ namespace StudentGrowth
             }
 
             SetVisible(true);
+            Sfx.Ui.Open();
         }
 
         public void Close()
         {
             SetVisible(false);
+            Sfx.Ui.Close();
             Action callback = onClosed;
             onClosed = null;
             callback?.Invoke();

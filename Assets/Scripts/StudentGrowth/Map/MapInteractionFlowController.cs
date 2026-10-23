@@ -669,6 +669,11 @@ namespace StudentGrowth
             bool exit = target != null && (target.isExitPortal || target.unlimitedUses || IsExitPoint(target));
             if (result != null && result.success)
             {
+                // 行动完成的听觉反馈。开门/传送有自己的门声，这里不重复。
+                if (!exit)
+                {
+                    Sfx.Ui.Confirm();
+                }
                 if (!exit && !result.shouldOpenBattle)
                 {
                     MarkCompleted(target);
