@@ -44,7 +44,6 @@ namespace StudentGrowth
             }
 
             InventoryPanelView.Ensure();
-            ItemBarView.Ensure();
         }
 
         private void Start()
@@ -55,12 +54,6 @@ namespace StudentGrowth
             {
                 FullscreenMapSceneController map = Object.FindAnyObjectByType<FullscreenMapSceneController>();
                 session = map != null ? map.sessionState : null;
-            }
-
-            ItemBarView bar = ItemBarView.Ensure();
-            if (bar != null)
-            {
-                bar.Bind(session);
             }
         }
 
@@ -97,15 +90,6 @@ namespace StudentGrowth
                 }
 
                 return;
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                if (IsKeyPressed(KeyCode.Alpha1 + i, "digit" + (i + 1) + "Key"))
-                {
-                    UseSlot(i);
-                    return;
-                }
             }
         }
 
@@ -156,39 +140,6 @@ namespace StudentGrowth
 
             object value = key.GetType().GetProperty(statePropertyName)?.GetValue(key, null);
             return value is bool pressed && pressed;
-        }
-
-        /// <summary>使用道具栏第 index 格（0 起）。鼠标点格子也走这里。</summary>
-        public static void UseSlot(int index)
-        {
-            if (instance == null)
-            {
-                return;
-            }
-
-            ItemBarView bar = ItemBarView.Ensure();
-            ItemData item = bar != null ? bar.ItemAt(index) : null;
-            if (item == null)
-            {
-                return;
-            }
-
-            string message;
-            bool ok = InventoryModel.TryUse(instance.session, item, out message);
-            if (ok)
-            {
-                Sfx.Ui.Confirm();
-            }
-            else
-            {
-                Sfx.Ui.Error();
-            }
-
-            InventoryPanelView panel = InventoryPanelView.Instance;
-            if (panel != null && panel.IsOpen)
-            {
-                panel.Open(instance.session);
-            }
         }
 
         private static void EnsureEventSystem()
