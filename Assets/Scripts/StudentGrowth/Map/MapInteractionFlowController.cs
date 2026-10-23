@@ -716,6 +716,13 @@ namespace StudentGrowth
             }
 
             ActivityData activity = ResolveActivity(target);
+            if (activity == null && target.locationAction == null)
+            {
+                // 既没有活动也没有 LocationAction 的目标只是占位（例如早期未做完的家具）。
+                // 不计数，避免「点一次就提示本阶段已完成」。
+                return false;
+            }
+
             return activity == null || activity.activityType != ActivityType.Shop;
         }
 
