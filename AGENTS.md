@@ -959,8 +959,8 @@ V0.2 推荐顺序：
 
 - Unity 版本 6000.4.6f1（`ProjectSettings/ProjectVersion.txt`）。
 - mcp-unity 1.5.0，端口 **8095**（`ProjectSettings/McpUnitySettings.json`，2026-10-23 核对；早期文档与日志里写的 8096 是旧值，以本行为准），桥接令牌 `Library/McpUnity/bridge-token`。WorkBuddy 客户端配置在 `C:\Users\cyl\.workbuddy-ai\mcp.json`，dsh 的配置在 `C:\Users\cyl\.dsh\profiles\desktop\cordis.patch.yml`，两者各起一个 node 桥接进程，同一时间只建议一个客户端连。
-- **recompile 必然把 MCP 打半残**（2026-10-19 三次复现）：任何一次 recompile（含保存脚本触发的域重载）都会让 mcp-unity 的 WebSocket 重绑失败，日志写 `Failed to start WebSocket server: Port 8096 is already in use`，表现为端口在听、握手超时。处理：关 Unity → 等端口彻底消失 → 重启 Unity。**不要反复重试 MCP**。
-- **僵尸端口**：强杀 Unity 会留下「pid 已不存在、netstat 仍显示 LISTENING」的 8096。此时新启动的 Unity 会静默失去 MCP 服务（NO_LISTENER），且不自动重试。必须等 `netstat -ano | findstr :8096` 完全为空再启动。
+- **recompile 必然把 MCP 打半残**（2026-10-19 三次复现）：任何一次 recompile（含保存脚本触发的域重载）都会让 mcp-unity 的 WebSocket 重绑失败，日志写 `Failed to start WebSocket server: Port 8095 is already in use`，表现为端口在听、握手超时。处理：关 Unity → 等端口彻底消失 → 重启 Unity。**不要反复重试 MCP**。
+- **僵尸端口**：强杀 Unity 会留下「pid 已不存在、netstat 仍显示 LISTENING」的 8095。此时新启动的 Unity 会静默失去 MCP 服务（NO_LISTENER），且不自动重试。必须等 `netstat -ano | findstr :8095` 完全为空再启动。
 - 因此：**一次性把代码改完再编译**，编译后统一「重启 Unity → 跑菜单 → 截图验证」，不要边改边验。
 - Game 视图在 1x 下会裁切房间，不能当判据；出对照图用菜单 `Tools/Student Growth/Dev/Capture Room Screenshot`（1600×900 离屏渲染、无 HUD，输出 `_room_shot.png`）。
 - 装饰落点约定：`DecorSpec(x, y)` = **底边中心**。2026-10-19 修过一次——Props sprite 的 pivot 是 (0.5,0.5)，旧代码按左下角算，导致每件装饰左移半个自身宽度（左右两把椅子实测中心 ±5.54，不是 ±4.6）。
@@ -1004,7 +1004,7 @@ V0.2 推荐顺序：
   - **Unity 只在窗口重获焦点时才扫描外部文件改动**：终端里改完代码，Unity 不会自己重编译（2026-10-21 实测：源文件 11:02 改完，到 11:10 `Assembly-CSharp.dll` 仍停在昨天）。所以「改完 → 等程序集时间戳变化」这个验证动作，**必须先让 Unity 窗口获得焦点或按 Ctrl+R**，否则等多久都没用。
   - **编译错误明细只在 `Library/Bee/tundra.log.json`**：`Editor.log` 里只会写一句 `All compiler errors have to be fixed before you can enter playmode!`，不含文件名与行号。查错务必用 `python Tools/extract_compile_errors.py`（读 tundra），别只看 Editor.log——本次就是只看 Editor.log 才误判成"已 0 error"。
 - **进 Play 加载的是 Build Settings 第 0 个场景（`MainMenuScene`），不是编辑器里打开的场景**（2026-10-21 实测）。所以「打开房间场景 → Play」看到的仍是主菜单；要测房间必须**游戏内进入**，或让运行时探针自己 `SceneManager.LoadScene("HomeXxxScene")`。Build 顺序：MainMenu / School / StageHub / HomeMap / Shop / Library / Park / Club / SampleScene / 四间 Home 房（index 9..12）。
-- **运行时验证必须走落盘探针，不能依赖 MCP**：进 Play 的域重载**必然**把 MCP 打半残（2026-10-21 一次会话内复现 4 次，8096 出现大量 `CLOSE_WAIT`）。探针形态照 skill「运行时探针纪律」：`[RuntimeInitializeOnLoadMethod]` + `DontDestroyOnLoad` + 每 0.5s 写 `_xxx_probe.txt`；只读、不接管会话；**用后即删** `.cs`+`.meta`（空目录也要删，否则 Unity 报警告）→ `Assets/Refresh` → 确认 0 error。
+- **运行时验证必须走落盘探针，不能依赖 MCP**：进 Play 的域重载**必然**把 MCP 打半残（2026-10-21 一次会话内复现 4 次，8095 出现大量 `CLOSE_WAIT`）。探针形态照 skill「运行时探针纪律」：`[RuntimeInitializeOnLoadMethod]` + `DontDestroyOnLoad` + 每 0.5s 写 `_xxx_probe.txt`；只读、不接管会话；**用后即删** `.cs`+`.meta`（空目录也要删，否则 Unity 报警告）→ `Assets/Refresh` → 确认 0 error。
 - **`PlayerFacingInteractor.targets` 在编辑器里显示为空数组是正常的**：由 `FullscreenMapSceneController.WireInteractionSystem()` 在**运行时**填充（`CollectInteractionTargets()`）。别据此判定"交互坏了"。
 - **客厅只有 2 个交互目标**（`FamilyNpcObject` + `ExitDoorObject`）：客厅家具（沙发/茶几/鞋柜/壁架等）都是纯装饰 `DecorSpec`，**没有交互**。可交互家具在卧室（`BedObject`/`WardrobeObject`）与书房（`DeskObject`/`ComputerStudyPoint`）。
 - 提示栏（`MapInteractionPromptView`）行为（2026-10-21 确定，探针实测）：靠近显示行动提示 → 按 E 进 `Confirming`（显示"确认执行：…"）→ 确认后进 `Completed`（显示结果）→ 约 2.2s 后**淡出**（`alpha=0`）→ 站在原地的 `Nearby` 状态**保持隐藏**，走开再回来才重新显示。抑制逻辑在 `MapInteractionFlowController` 的 `suppressPromptTarget`/`SuppressPromptFor()`/`ClearPromptSuppression()`。
