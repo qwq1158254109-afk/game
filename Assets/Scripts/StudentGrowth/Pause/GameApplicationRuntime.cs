@@ -53,6 +53,8 @@ namespace StudentGrowth
         private int pendingDay;
         private string automaticNotice;
         private UnityEngine.UI.Text toast;
+        /// <summary>存档反馈的提示栏容器（深色横条 + 亮色加粗文字）。控制显隐用它，不直接控制文字。</summary>
+        private GameObject saveFeedbackPanel;
         private float toastUntil;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetRuntimeInstance() { instance = null; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] private static void Ensure() { _ = Instance; }
@@ -93,7 +95,30 @@ namespace StudentGrowth
             var toastRoot=new GameObject("SaveFeedback",typeof(RectTransform),typeof(Canvas),typeof(UnityEngine.UI.CanvasScaler)); toastRoot.transform.SetParent(transform,false);
             toastRoot.GetComponent<Canvas>().renderMode=RenderMode.ScreenSpaceOverlay; toastRoot.GetComponent<Canvas>().sortingOrder=11000;
             var toastScale=toastRoot.GetComponent<UnityEngine.UI.CanvasScaler>(); toastScale.uiScaleMode=UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize; toastScale.referenceResolution=new Vector2(1920,1080);
-            toast=MenuUi.Label((RectTransform)toastRoot.transform,font,200,880,1520,150,25); toast.gameObject.SetActive(false);
+            // 存档反馈做成提示栏：原来是一行纯文字直接飘在画面上，无底无色块，
+            // 在明亮地图里几乎看不见（用户反馈「自动存档要足够醒目」）。
+            saveFeedbackPanel=new GameObject("SaveFeedbackPanel",typeof(RectTransform));
+            var saveFeedbackRect=(RectTransform)saveFeedbackPanel.transform;
+            saveFeedbackRect.SetParent(toastRoot.transform,false);
+            MenuUi.Place(saveFeedbackRect,460,806,1000,112);
+
+            var saveFeedbackBg=new GameObject("Backdrop",typeof(RectTransform),typeof(UnityEngine.UI.Image));
+            var saveFeedbackBgRect=(RectTransform)saveFeedbackBg.transform;
+            saveFeedbackBgRect.SetParent(saveFeedbackRect,false);
+            MenuUi.Place(saveFeedbackBgRect,0,0,1000,112);
+            saveFeedbackBg.GetComponent<UnityEngine.UI.Image>().color=new Color(0.09f,0.07f,0.05f,0.94f);
+
+            // 左侧亮色竖条：在深色地图背景上也有一眼能认出的锚点。
+            var saveFeedbackAccent=new GameObject("Accent",typeof(RectTransform),typeof(UnityEngine.UI.Image));
+            var saveFeedbackAccentRect=(RectTransform)saveFeedbackAccent.transform;
+            saveFeedbackAccentRect.SetParent(saveFeedbackRect,false);
+            MenuUi.Place(saveFeedbackAccentRect,0,0,8,112);
+            saveFeedbackAccent.GetComponent<UnityEngine.UI.Image>().color=new Color(0.96f,0.78f,0.35f,1f);
+
+            toast=MenuUi.Label(saveFeedbackRect,font,0,0,1000,112,34);
+            toast.fontStyle=FontStyle.Bold;
+            toast.color=new Color(1f,0.96f,0.86f,1f);
+            saveFeedbackPanel.SetActive(false);
             PauseView.ContinueRequested += ContinueGame;
             PauseView.SaveRequested += OpenSave; PauseView.LoadRequested += OpenLoad; PauseView.SettingsRequested += OpenSettings;
             PauseView.TitleRequested += RequestTitle; PauseView.QuitRequested += RequestQuit;
@@ -150,15 +175,17 @@ namespace StudentGrowth
         private void Update()
         {
             if (Coordinator == null) return;
-            if(toast!=null && toast.gameObject.activeSelf && Time.realtimeSinceStartup>toastUntil) toast.gameObject.SetActive(false);
+            if(saveFeedbackPanel!=null && saveFeedbackPanel.activeSelf && Time.realtimeSinceStartup>toastUntil) saveFeedbackPanel.SetActive(false);
             if (Lifetime.IsActive && Coordinator.State == PauseMenuState.Gameplay && !settingsMenu.IsOpen && !GameplayInputGate.IsBlocked && Time.timeScale > 0)
                 source.PlayedSeconds += Time.unscaledDeltaTime;
             if(autoSavePending && UnityGameSaveSource.CurrentSession()?.BattleFlow.BlocksSave==true)
             {autoSavePending=false;pendingSnapshot=null;StartCoroutine(CaptureDay(Lifetime.RuntimeSessionId,pendingDay));}
             if (autoSavePending && Lifetime.IsActive && !Lifetime.Leaving && Coordinator.State == PauseMenuState.Gameplay && !SaveService.IsBusy && !settings.IsBusy && !SceneTransitionManager.HasActiveTransition)
             { autoSavePending = false; StartCoroutine(SaveService.SaveSnapshotAsync(pendingSnapshot,pendingSession,r => {
-                automaticNotice=r.Success ? null : r.ErrorCode; toast.text=TextService.Notice(r.Success ? "SAVE_SUCCESS" : r.ErrorCode);
-                toast.gameObject.SetActive(true); toastUntil=Time.realtimeSinceStartup+7;
+                // 这条只服务自动存档，不走通用 SAVE_SUCCESS（那是「保存成功。」，太含糊）。
+                automaticNotice=r.Success ? null : r.ErrorCode;
+                toast.text=r.Success ? "自动存档已完成" : TextService.Notice(r.ErrorCode);
+                if(saveFeedbackPanel!=null) saveFeedbackPanel.SetActive(true); toastUntil=Time.realtimeSinceStartup+4;
             })); }
         }
         private void OnSceneLoaded(Scene scene,LoadSceneMode mode) => StartCoroutine(BindDayEvents());

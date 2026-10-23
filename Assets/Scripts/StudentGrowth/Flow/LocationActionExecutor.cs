@@ -38,6 +38,11 @@ namespace StudentGrowth
         public bool shouldOpenDialogue;
         public bool shouldOpenShop;
         public bool shouldReturnToMap;
+        /// <summary>
+        /// 本次执行的是「回家睡觉」。睡觉自带换日过场（SleepTransitionView），
+        /// 再叠一个「行动完成」面板会撞在过场上面，调用方据此跳过结果面板。
+        /// </summary>
+        public bool isSleepActivity;
         public int remainingTimeBefore;
         public int remainingTimeAfter;
         public int remainingDailyActionPointsBefore;
@@ -126,6 +131,7 @@ namespace StudentGrowth
             // 睡觉是换日结算，不占阶段预算，也不占当天行动格；但只能在夜晚进行，
             // 否则「睡一觉回精力」会被当成免费补给反复刷（白天小睡同样会回精力）。
             bool isSleepActivity = IsHomeSleepActivity(activity);
+            result.isSleepActivity = isSleepActivity;
             if (isSleepActivity && timeActionController != null
                 && timeActionController.State.currentPeriod != TimePeriod.Night)
             {

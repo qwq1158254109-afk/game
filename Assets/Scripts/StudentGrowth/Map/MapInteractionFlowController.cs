@@ -929,6 +929,7 @@ namespace StudentGrowth
             if (result == null
                 || exit
                 || result.activity == null
+                || result.isSleepActivity
                 || result.shouldOpenShop
                 || result.shouldOpenDialogue
                 || result.shouldOpenBattle)
