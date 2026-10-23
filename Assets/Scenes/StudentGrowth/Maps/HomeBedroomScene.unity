@@ -5935,7 +5935,6 @@ MonoBehaviour:
   - {fileID: 220611094}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 633086924}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -7955,10 +7954,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 633086923}
-  - component: {fileID: 633086927}
-  - component: {fileID: 633086926}
   - component: {fileID: 633086925}
-  - component: {fileID: 633086924}
   m_Layer: 0
   m_Name: WardrobeObject
   m_TagString: Untagged
@@ -7986,27 +7982,6 @@ Transform:
   - {fileID: 1779567259}
   m_Father: {fileID: 1131278402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &633086924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633086922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e4fe4cc8df6c90489e4bf54e06bd7f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapInteractionStateVisual
-  target: {fileID: 633086926}
-  nearbyIndicator: {fileID: 557600052}
-  debugRange: {fileID: 1779567257}
-  tintRenderers:
-  - {fileID: 1714063320}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  nearbyColor: {r: 1, g: 0.92, b: 0.35, a: 1}
-  completedColor: {r: 0.65, g: 0.9, b: 0.7, a: 1}
-  lockedColor: {r: 0.55, g: 0.55, b: 0.55, a: 1}
 --- !u!114 &633086925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8025,47 +8000,6 @@ MonoBehaviour:
   orderScale: 100
   sortYOffset: 0
   useRendererCenterAsSortY: 0
---- !u!114 &633086926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633086922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6393ef35f854d73a79a49e84dd63a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapInteractionTarget
-  interactionId: WardrobeObject
-  displayName: "\u6574\u7406\u8863\u67DC"
-  promptText: "\u6309 E\uFF1A\u6574\u7406\u8863\u67DC\uFF5C\u6D88\u8017 1 \u65F6\u95F4\uFF5C\u5FC3\u60C5 +3\uFF5C\u7CBE\u529B\u4E0A\u9650 +1"
-  locationAction: {fileID: 0}
-  fallbackActivity: {fileID: 11400000, guid: b645a9015bc94574ab174482b903ec23, type: 2}
-  interactionPoint: {fileID: 633086927}
-  isExitPortal: 0
-  consumeTimeOnInteraction: 0
-  requireFacing: 0
-  interactionRange: 1.7600001
-  priority: 5
---- !u!114 &633086927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633086922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b771bbf720bb1438302bd2bd376521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapInteractionPoint
-  locationId: location_home
-  actionId: 
-  interactionType: 0
-  displayName: "\u6574\u7406\u8863\u67DC"
-  description: "\u8863\u67DC\u5DF2\u7ECF\u6574\u7406\u597D\u4E86\u3002"
-  requiresUnlockedLocation: 0
 --- !u!1 &638384134
 GameObject:
   m_ObjectHideFlags: 0

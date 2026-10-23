@@ -262,16 +262,6 @@ namespace StudentGrowth.Editor
                 ActivityType.Event,
                 Reward(PlayerStatKey.ParentRelation, 5, "亲子 +5"),
                 Reward(PlayerStatKey.Mood, 5, "心情 +5"));
-            // 2026-10-22：衣柜此前只是占位（promptText「衣柜已经整理好了」+ 空活动），
-            // 按 E 会报「活动数据不存在」。给它一条真实的休息类活动。
-            assets.wardrobeActivity = CreateActivity(
-                "New20_HomeWardrobeTidy.asset",
-                "activity_home_wardrobe_tidy",
-                "整理衣柜",
-                "把换季衣服叠好收进柜子，房间清爽了，心情也跟着好一点。",
-                ActivityType.Rest,
-                Reward(PlayerStatKey.Mood, 3, "心情 +3"),
-                Reward(PlayerStatKey.MaxEnergy, 1, "精力上限 +1"));
 
             assets.playerSprite = AssetDatabase.LoadAssetAtPath<Sprite>(PlayerSpritePath);
             assets.playerAnimator = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(PlayerAnimatorPath);
@@ -476,7 +466,7 @@ namespace StudentGrowth.Editor
                 assets.markerSprite,
                 true);
 
-            CreateInteractionObject(
+            GameObject wardrobeProp = CreateInteractionObject(
                 "WardrobeObject",
                 assets.wardrobeSprite,
                 parent,
@@ -489,10 +479,18 @@ namespace StudentGrowth.Editor
                 string.Empty,
                 "整理衣柜",
                 "按 E：整理衣柜｜消耗 1 时间｜心情 +3｜精力上限 +1",
-                assets.wardrobeActivity,
+                null,
                 false,
                 5,
                 assets.markerSprite);
+
+            // 2026-10-23：按用户要求彻底移除「整理衣柜」交互，衣柜只保留为装饰道具。
+            if (wardrobeProp != null)
+            {
+                UnityEngine.Object.DestroyImmediate(wardrobeProp.GetComponent<MapInteractionTarget>());
+                UnityEngine.Object.DestroyImmediate(wardrobeProp.GetComponent<MapInteractionPoint>());
+                UnityEngine.Object.DestroyImmediate(wardrobeProp.GetComponent<MapInteractionStateVisual>());
+            }
 
             GameObject exitDoor = CreateInteractionObject(
                 "ExitDoorObject",
@@ -1581,7 +1579,6 @@ namespace StudentGrowth.Editor
             public ActivityData planActivity;
             public ActivityData computerActivity;
             public ActivityData familyDinnerActivity;
-            public ActivityData wardrobeActivity;
             public string sceneBackupPath;
         }
     }
