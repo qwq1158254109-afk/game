@@ -284,8 +284,11 @@ namespace StudentGrowthEditor
             MapInteractionTarget target = librarian.AddComponent<MapInteractionTarget>();
             target.interactionId = "library_librarian";
             target.displayName = "图书管理员";
-            target.promptText = "按 E：询问图书管理员｜消耗 1 时间";
+            target.promptText = "按 E：和图书管理员交谈";
             target.fallbackActivity = assets.activity;
+            // 对话优先于活动：交互后直接进入「打招呼 / 赠送礼物 / 购买」菜单。
+            target.dialogue = AssetDatabase.LoadAssetAtPath<DialogueData>(
+                "Assets/Resources/StudentGrowth/Dialogue/Dialogue_LibraryLibrarian.asset");
             target.interactionPoint = point;
             target.consumeTimeOnInteraction = false;
             target.requireFacing = false;

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2df4f93f6c89b94a8702bcd33f7d0c0, type: 3}
+  m_Name: Dialogue_LibraryGift
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.DialogueData
+  dialogueId: dialogue_library_gift
+  speakerName: 图书管理员
+  portrait: {fileID: 0}
+  lines:
+  - text: 管理员愣了一下，还是收下了：「……谢谢。我会好好放着的。」
+    speakerOverride: 
+    portraitOverride: {fileID: 0}
+    options: []
