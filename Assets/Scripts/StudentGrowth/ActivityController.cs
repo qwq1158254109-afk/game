@@ -15,6 +15,15 @@ namespace StudentGrowth
 
         public ActivityResult ResolveActivity(ActivityData activityData)
         {
+            return ResolveActivity(activityData, null);
+        }
+
+        /// <summary>
+        /// 结算活动。selectedChoice 非空且条件满足时优先采用它（选项对话 UI 会先让玩家选），
+        /// 否则回退到「取第一个满足条件的选项」的旧行为。
+        /// </summary>
+        public ActivityResult ResolveActivity(ActivityData activityData, EventChoiceData selectedChoice)
+        {
             if (activityData == null)
             {
                 throw new ArgumentNullException("activityData");
@@ -35,7 +44,7 @@ namespace StudentGrowth
             switch (activityData.activityType)
             {
                 case ActivityType.Event:
-                    ResolveEventActivity(activityData, result);
+                    ResolveEventActivity(activityData, result, selectedChoice);
                     break;
                 case ActivityType.CardBattle:
                     result.message = "对战即将开始。";
@@ -65,11 +74,18 @@ namespace StudentGrowth
                 && EventConditionResolver.AreConditionsMet(activityData.appearConditions, sessionState.playerState);
         }
 
-        private void ResolveEventActivity(ActivityData activityData, ActivityResult result)
+        private void ResolveEventActivity(ActivityData activityData, ActivityResult result, EventChoiceData selectedChoice)
         {
             if (activityData.linkedEvent == null)
             {
                 result.message = "该活动没有绑定事件。";
+                return;
+            }
+
+            if (selectedChoice != null
+                && EventConditionResolver.AreConditionsMet(selectedChoice.requirements, sessionState.playerState))
+            {
+                ApplyEventChoice(result, selectedChoice);
                 return;
             }
 
@@ -80,14 +96,19 @@ namespace StudentGrowth
                     continue;
                 }
 
-                result.selectedChoice = choice;
-                AddRewards(result.rewards, choice.rewards);
-                result.message = choice.choiceText;
+                ApplyEventChoice(result, choice);
                 return;
             }
 
             result.success = false;
             result.message = "当前没有满足条件的事件选项。";
+        }
+
+        private static void ApplyEventChoice(ActivityResult result, EventChoiceData choice)
+        {
+            result.selectedChoice = choice;
+            AddRewards(result.rewards, choice.rewards);
+            result.message = choice.choiceText;
         }
 
         private static void ResolveMiniGamePlaceholder(ActivityData activityData, ActivityResult result)

@@ -21,6 +21,8 @@ namespace StudentGrowth
         public LocationData location;
         public LocationActionData locationAction;
         public ActivityData activity;
+        /// <summary>事件活动由选项面板预先选定的分支；为空时回退到「第一个满足条件的选项」。</summary>
+        public EventChoiceData choice;
         public string requestId;
     }
 
@@ -162,7 +164,7 @@ namespace StudentGrowth
                 }
                 catch(Exception ex){return Fail(result,"BattleStartFailed",ex.Message);}
             }
-            ActivityResult activityResult = ResolveActivityForCompletion(activity);
+            ActivityResult activityResult = ResolveActivityForCompletion(activity, request.choice);
             if (isSleepActivity && timeActionController != null)
             {
                 timeActionController.Sleep(SleepLocation.Home);
@@ -346,7 +348,7 @@ namespace StudentGrowth
                 && activity.activityId.IndexOf("sleep", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
-        private ActivityResult ResolveActivityForCompletion(ActivityData activity)
+        private ActivityResult ResolveActivityForCompletion(ActivityData activity, EventChoiceData choice)
         {
             if (activity.activityType == ActivityType.MiniGame
                 && activity.linkedMiniGame != null
@@ -368,7 +370,7 @@ namespace StudentGrowth
                 };
             }
 
-            return activityController.ResolveActivity(activity);
+            return activityController.ResolveActivity(activity, choice);
         }
 
         private static LocationActionExecutionResult CreateResult(LocationActionExecutionRequest request)

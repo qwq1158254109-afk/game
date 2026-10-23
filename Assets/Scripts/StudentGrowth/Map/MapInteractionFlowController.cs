@@ -71,6 +71,8 @@ namespace StudentGrowth
         private bool promptSuppressed;
         private bool legacyInputBlocked;
         private int confirmStartedFrame = -1;
+        /// <summary>选项面板里选中的分支；执行完立即清空，避免影响下一次交互。</summary>
+        private EventChoiceData pendingChoice;
 
         private void Awake()
         {
@@ -257,6 +259,12 @@ namespace StudentGrowth
                 return true;
             }
 
+            // 事件类活动且可选项 ≥2 时，先弹选项面板；单选事件仍走原来的确认/执行。
+            if (TryBeginEventChoice(target))
+            {
+                return true;
+            }
+
             if (requireConfirmForActivities && IsActivityTarget(target))
             {
                 ShowConfirm(target);
@@ -280,6 +288,11 @@ namespace StudentGrowth
         public void CancelPending()
         {
             pendingTarget = null;
+            pendingChoice = null;
+            if (MapEventChoiceView.Instance != null && MapEventChoiceView.Instance.IsOpen)
+            {
+                MapEventChoiceView.Instance.Close();
+            }
             HideConfirm();
             SetState(currentTarget == null ? MapInteractionFlowState.Idle : MapInteractionFlowState.Nearby);
             // 取消 = 放弃这次确认，提示栏要恢复（ShowConfirm 里为了收起它做过抑制）。
@@ -316,6 +329,91 @@ namespace StudentGrowth
             }
 
             ApplyVisuals();
+        }
+
+        /// <summary>
+        /// 事件活动如果有 2 个以上满足条件的选项，先弹选项面板让玩家选。
+        /// 返回 true 表示已经接管这次交互（面板已打开）。
+        /// </summary>
+        private bool TryBeginEventChoice(MapInteractionTarget target)
+        {
+            ActivityData activity = ResolveActivity(target);
+            if (activity == null || activity.activityType != ActivityType.Event || activity.linkedEvent == null)
+            {
+                return false;
+            }
+
+            GameSessionState state = ResolveSessionState();
+            if (state == null || state.playerState == null)
+            {
+                return false;
+            }
+
+            List<EventChoiceData> eligible = new List<EventChoiceData>();
+            foreach (EventChoiceData choice in activity.linkedEvent.choices)
+            {
+                if (choice != null
+                    && EventConditionResolver.AreConditionsMet(choice.requirements, state.playerState))
+                {
+                    eligible.Add(choice);
+                }
+            }
+
+            if (eligible.Count < 2)
+            {
+                return false;
+            }
+
+            pendingTarget = target;
+            confirmStartedFrame = Time.frameCount;
+            SetState(MapInteractionFlowState.Confirming);
+            if (resultView != null)
+            {
+                resultView.Hide();
+            }
+
+            // 面板带全屏遮罩，底部行动提示栏必须收起，否则「按 E：询问图书管理员」会从遮罩下透出来。
+            SuppressPromptFor(target);
+
+            // 面板本身替代了确认框，所以「消耗多少行动」得写进面板，不然玩家是盲选。
+            string body = activity.linkedEvent.description;
+            string costText = MapInteractionPromptFormatter.FormatTimeCost(
+                ResolveTimeCost(target.locationAction, activity));
+            if (!string.IsNullOrEmpty(costText))
+            {
+                body = string.IsNullOrEmpty(body) ? costText : body + "\n" + costText;
+            }
+
+            MapEventChoiceView view = MapEventChoiceView.Ensure();
+            view.Open(ResolveDisplayName(target), body, eligible,
+                OnEventChoicePicked, CancelPending);
+            return true;
+        }
+
+        private void OnEventChoicePicked(EventChoiceData choice)
+        {
+            MapInteractionTarget target = pendingTarget;
+            pendingTarget = null;
+            if (target == null)
+            {
+                pendingChoice = null;
+                CancelPending();
+                return;
+            }
+
+            // 与 ExecutePending 走同一道门禁：面板打开期间次数可能已被别的入口用掉，
+            // 不能等玩家选完分支才发现「本阶段已用完」。
+            if (IsCompleted(target))
+            {
+                pendingChoice = null;
+                promptHoldUntil = Time.unscaledTime + 2.2f;
+                CancelPending();
+                ShowPrompt("该活动本阶段次数已用完，请选择其他行动。");
+                return;
+            }
+
+            pendingChoice = choice;
+            ExecuteTarget(target);
         }
 
         private void ShowConfirm(MapInteractionTarget target)
@@ -475,6 +573,7 @@ namespace StudentGrowth
         {
             if (interactionController == null)
             {
+                pendingChoice = null;
                 ShowPrompt("互动控制器未初始化。");
                 SetState(MapInteractionFlowState.Locked);
                 ApplyVisuals();
@@ -482,7 +581,8 @@ namespace StudentGrowth
             }
 
             SetState(MapInteractionFlowState.Executing);
-            LocationActionExecutionResult result = interactionController.TryInteract(target);
+            LocationActionExecutionResult result = interactionController.TryInteract(target, pendingChoice);
+            pendingChoice = null;
             bool exit = target != null && (target.isExitPortal || target.unlimitedUses || IsExitPoint(target));
             if (result != null && result.success)
             {

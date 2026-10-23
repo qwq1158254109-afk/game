@@ -25,6 +25,12 @@ namespace StudentGrowth
 
         public LocationActionExecutionResult TryInteract(MapInteractionTarget target)
         {
+            return TryInteract(target, null);
+        }
+
+        /// <summary>choice 非空 = 玩家已在选项面板里选好分支，直接按该分支结算。</summary>
+        public LocationActionExecutionResult TryInteract(MapInteractionTarget target, EventChoiceData choice)
+        {
             if(UnityGameSaveSource.CurrentSession()?.BattleFlow.BlocksSave==true)return Fail("BattleBusy","请先结束战斗并返回地图。");
             if (target == null)
             {
@@ -65,7 +71,7 @@ namespace StudentGrowth
             }
             else if (target.interactionPoint.interactionType == MapInteractionType.LocationAction)
             {
-                result = ExecuteLocationAction(target);
+                result = ExecuteLocationAction(target, choice);
             }
             else
             {
@@ -116,7 +122,7 @@ namespace StudentGrowth
             return locationActionExecutor.TryExecute(point.CreateExecutionRequest(LocationActionSource.Map));
         }
 
-        private LocationActionExecutionResult ExecuteLocationAction(MapInteractionTarget target)
+        private LocationActionExecutionResult ExecuteLocationAction(MapInteractionTarget target, EventChoiceData choice)
         {
             if (locationActionExecutor == null)
             {
@@ -124,6 +130,10 @@ namespace StudentGrowth
             }
 
             LocationActionExecutionRequest request = target.interactionPoint.CreateExecutionRequest(LocationActionSource.Map);
+            if (choice != null)
+            {
+                request.choice = choice;
+            }
             if (target.locationAction != null)
             {
                 request.locationAction = target.locationAction;
