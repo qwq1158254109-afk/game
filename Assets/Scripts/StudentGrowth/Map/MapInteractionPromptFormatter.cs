@@ -7,24 +7,43 @@ namespace StudentGrowth
     {
         public static string BuildDefaultPrompt(bool debugVisible)
         {
-            return debugVisible
-                ? "靠近可互动位置后按 E 交互｜调试范围已显示"
-                : "靠近可互动位置后按 E 交互";
+            // 统一成「按 E：动作｜代价｜效果」的句式，默认提示也带句号收尾。
+            const string body = "靠近可互动位置后按 E 交互。";
+            return debugVisible ? body + "｜调试范围已显示" : body;
         }
 
         public static string BuildExitPrompt()
         {
-            return "按 E 返回阶段地图";
+            return "按 E：返回阶段地图｜" + FormatTimeCost(0);
         }
 
         public static string BuildUnavailablePrompt(string displayName)
         {
-            return NormalizeName(displayName) + " 当前没有可执行行动";
+            return "按 E：" + NormalizeName(displayName) + "｜当前没有可执行行动";
         }
 
+        /// <summary>
+        /// 活动提示。原实现只回「按 E 与 X 交互」，把 timeCost 与 rewardPreview 两个参数丢掉了，
+        /// 玩家在提示栏看不到这次行动要花多少时间、给什么收益——等于盲选。
+        /// 这里补全拼接：按 E：名称｜消耗 N 小时｜奖励预览。
+        /// </summary>
         public static string BuildActivityPrompt(string displayName, int timeCost, string rewardPreview)
         {
-            return "按 E 与 " + NormalizeName(displayName) + " 交互";
+            string prompt = "按 E：" + NormalizeName(displayName) + "｜" + FormatTimeCost(timeCost);
+            string preview = CompactRewardPreview(rewardPreview);
+            if (!string.IsNullOrEmpty(preview))
+            {
+                // 调用方传的是「精力 +2，压力 -1」这类裸列表，补上标签才看得懂是收益还是代价。
+                // 已经自带标签的（如资产里写的完整描述）不重复加。
+                if (!preview.StartsWith("效果："))
+                {
+                    preview = "效果：" + preview;
+                }
+
+                prompt += "｜" + preview;
+            }
+
+            return prompt;
         }
 
         public static string FormatTimeCost(int timeCost)
