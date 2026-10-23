@@ -447,10 +447,13 @@ namespace StudentGrowth
                 int global = page * PageSize + i;
                 bool hasItem = global < entries.Count;
                 InventoryEntry entry = hasItem ? entries[global] : default;
-                Sprite icon = hasItem ? entry.item.icon : null;
+                ItemData entryItem = hasItem ? entry.item : null;
+                Sprite icon = ResolveIcon(entryItem);
+                bool fallback = entryItem != null && entryItem.icon == null;
 
                 slotIcons[i].enabled = icon != null;
                 slotIcons[i].sprite = icon;
+                slotIcons[i].color = fallback ? TintFor(entryItem) : Color.white;
                 slotCounts[i].text = hasItem && entry.count > 1 ? entry.count.ToString() : string.Empty;
                 slots[i].interactable = hasItem;
                 ApplySlotVisual(i, hasItem, hasItem && entry.item == selected);
@@ -529,6 +532,44 @@ namespace StudentGrowth
                 default:
                     return type.ToString();
             }
+        }
+
+        /// <summary>
+        /// 运行时生成的道具（商店默认 4 件）没有 icon 资产，只有 imagePath。
+        /// 不兜底的话背包格子全是空的 —— 这里按类型借主题图标，再用稳定色相区分同款。
+        /// </summary>
+        private Sprite ResolveIcon(ItemData item)
+        {
+            if (item == null)
+            {
+                return null;
+            }
+
+            if (item.icon != null)
+            {
+                return item.icon;
+            }
+
+            return item.itemType == ItemType.Passive ? theme.cardsIcon : theme.inventoryIcon;
+        }
+
+        /// <summary>同一道具永远得到同一个颜色，让共用的兜底图标也能一眼区分。</summary>
+        private static Color TintFor(ItemData item)
+        {
+            if (item == null || string.IsNullOrEmpty(item.itemId))
+            {
+                return Color.white;
+            }
+
+            int hash = 0;
+            string key = item.itemId;
+            for (int i = 0; i < key.Length; i++)
+            {
+                hash = unchecked(hash * 31 + key[i]);
+            }
+
+            float hue = Mathf.Abs(hash % 360) / 360f;
+            return Color.HSVToRGB(hue, 0.45f, 0.95f);
         }
 
         private static bool CanUseOnMap(ItemData item)
