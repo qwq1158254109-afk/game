@@ -75,8 +75,19 @@ namespace StudentGrowth
         private bool promptSuppressed;
         private bool legacyInputBlocked;
         private int confirmStartedFrame = -1;
+        /// <summary>对话是否占着输入闸门（对话结束/对象销毁时必须释放）。</summary>
+        private bool dialogueGateHeld;
         /// <summary>选项面板里选中的分支；执行完立即清空，避免影响下一次交互。</summary>
         private EventChoiceData pendingChoice;
+
+        private void OnDestroy()
+        {
+            if (dialogueGateHeld)
+            {
+                dialogueGateHeld = false;
+                GameplayInputGate.Release(this, true);
+            }
+        }
 
         private void Awake()
         {
@@ -572,14 +583,92 @@ namespace StudentGrowth
 
             if (dialogueRunner == null)
             {
-                ShowPrompt("对话组件缺失，暂时无法交谈。");
-                return;
+                // 场景里没人挂 DialogueRunner（10/23 的对话系统只做了 View 和 Data）。
+                // 这里补一个宿主：Awake 里会自己 Find 场景中的 DialogueView。
+                GameObject host = new GameObject("[Game] DialogueRunner");
+                dialogueRunner = host.AddComponent<DialogueRunner>();
             }
 
             SuppressPromptFor(target);
             dialogueRunner.sessionState = ResolveSessionState();
-            dialogueRunner.Play(target.dialogue);
+            if (dialogueRunner.view == null)
+            {
+                dialogueRunner.view = EnsureDialogueView();
+            }
+
+            bool started = dialogueRunner.Play(target.dialogue, () => EndDialogue(target));
+            if (!started)
+            {
+                ShowPrompt("对话播放失败：缺少对话界面。");
+                return;
+            }
+
+            // 对话期间锁住玩法输入：否则玩家能一边看对话一边走开，
+            // 结束回调回来时目标已换，提示栏和交互状态就"卡住不恢复"。
+            GameplayInputGate.Acquire(this);
+            dialogueGateHeld = true;
             SetState(MapInteractionFlowState.Completed);
+            ApplyVisuals();
+        }
+
+        /// <summary>
+        /// 场景里原本没有 DialogueView（10/23 的对话系统只提交了脚本，没放进任何场景/预制体）。
+        /// 这里按 DialogueView.BuildDefaultLayout 现场搭一套，保证第一次按 E 就能说话。
+        /// </summary>
+        private DialogueView EnsureDialogueView()
+        {
+            DialogueView existing = FindFirstObjectByType<DialogueView>(FindObjectsInactive.Include);
+            if (existing != null)
+            {
+                return existing;
+            }
+
+            GameObject canvasObject = new GameObject("[UI] DialogueCanvas", typeof(RectTransform));
+            Canvas canvas = canvasObject.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 215;
+
+            CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
+            scaler.matchWidthOrHeight = 0.5f;
+            canvasObject.AddComponent<GraphicRaycaster>();
+
+            GameObject host = new GameObject("DialogueHost", typeof(RectTransform));
+            RectTransform rect = host.transform as RectTransform;
+            rect.SetParent(canvasObject.transform, false);
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+
+            DialogueView view = host.AddComponent<DialogueView>();
+            // Awake 里的 ResolveReferences 会把 panelRoot 兜底成自身，先清空才建得出默认布局。
+            view.panelRoot = null;
+            view.theme = theme;
+            view.BuildDefaultLayout(rect);
+            return view;
+        }
+
+        /// <summary>对话结束：放开输入、恢复提示栏与交互状态。</summary>
+        private void EndDialogue(MapInteractionTarget target)
+        {
+            if (dialogueGateHeld)
+            {
+                dialogueGateHeld = false;
+                GameplayInputGate.Release(this, true);
+            }
+
+            if (target != null && currentTarget == target)
+            {
+                ClearPromptSuppression();
+                if (promptView != null)
+                {
+                    promptView.ShowTarget(target);
+                }
+            }
+
+            SetState(currentTarget == null ? MapInteractionFlowState.Idle : MapInteractionFlowState.Nearby);
             ApplyVisuals();
         }
 

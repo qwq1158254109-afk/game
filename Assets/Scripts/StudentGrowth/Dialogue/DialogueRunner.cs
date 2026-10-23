@@ -22,6 +22,9 @@ namespace StudentGrowth
         private void Awake()
         {
             BindView();
+            // 约定：对话资产放 Resources/StudentGrowth/Dialogue，启动时全部登记，
+            // 这样 DialogueOption.nextDialogueId 才能按 ID 跳转（否则只会警告"未登记"）。
+            RegisterFromResources();
         }
 
         private void OnDestroy()
