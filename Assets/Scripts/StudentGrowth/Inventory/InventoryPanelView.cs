@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,6 +63,7 @@ namespace StudentGrowth
         private float dropArmedUntil;
         private int page;
         private bool ownsGate;
+        private Action<ItemData> selectionCallback;
 
         public static InventoryPanelView Instance => instance;
 
@@ -96,6 +98,16 @@ namespace StudentGrowth
             Refresh();
         }
 
+        /// <summary>
+        /// 选择模式：点任意格子把道具交给回调，而不是「使用」。
+        /// 用于对话里的「赠送礼物」——不消耗道具的使用效果，只把物品本身送出去。
+        /// </summary>
+        public void OpenForSelection(GameSessionState state, Action<ItemData> onPick)
+        {
+            Open(state);
+            selectionCallback = onPick;
+        }
+
         public void Close()
         {
             if (root != null)
@@ -104,6 +116,7 @@ namespace StudentGrowth
             }
 
             ClearDropArm();
+            selectionCallback = null;
             ReleaseGate();
         }
 
@@ -298,7 +311,7 @@ namespace StudentGrowth
             nextButton = CreateButton(panel, "NextPage", "›", Vector2.zero, new Vector2(40f, 32f), () => ChangePage(1));
             Place(nextButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(GridLeft + 176f, -FooterTop), new Vector2(40f, 32f));
 
-            Text hint = CreateLabel(panel, "FooterHint", "6 / B 开关 · Esc 关闭 · 1~5 快捷使用", GameUiTextStyle.SmallText, false, TextAnchor.MiddleRight);
+            Text hint = CreateLabel(panel, "FooterHint", "点击道具使用 · 6 / B 开关 · Esc 关闭", GameUiTextStyle.SmallText, false, TextAnchor.MiddleRight);
             Place(hint.rectTransform, TopRight, TopRight, new Vector2(-24f, -FooterTop), new Vector2(420f, 32f));
         }
 
@@ -310,6 +323,16 @@ namespace StudentGrowth
             int global = page * PageSize + index;
             if (global < 0 || global >= entries.Count)
             {
+                return;
+            }
+
+            if (selectionCallback != null)
+            {
+                Action<ItemData> callback = selectionCallback;
+                selectionCallback = null;
+                ItemData picked = entries[global].item;
+                Close();
+                callback?.Invoke(picked);
                 return;
             }
 
