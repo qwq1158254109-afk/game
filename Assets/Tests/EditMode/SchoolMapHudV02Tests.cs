@@ -82,7 +82,10 @@ namespace StudentGrowth.Tests
             Assert.That(view.useEventOnlyRefresh, Is.True);
             Assert.That(view.dateLogoBackground.gameObject.activeSelf, Is.False);
             Assert.That(view.periodBackground.gameObject.activeSelf, Is.False);
-            Assert.That((view.transform as RectTransform).sizeDelta, Is.EqualTo(new Vector2(330f, 76f)));
+            Assert.That((view.transform as RectTransform).sizeDelta, Is.EqualTo(new Vector2(330f, 84f)));
+            // 76 → 84：紧凑布局也要露出「阶段剩 N 次」，否则玩家看到「今天还有次数」
+            // 却被告知时间不足，无从判断（2026-10-23）。
+            Assert.That(view.remainingDailyText.gameObject.activeSelf, Is.True);
             Assert.That(view.actionPointText.text, Is.EqualTo("今天 3 次"));
 
             Assert.That(controller.TryConsumeAction(1, out _), Is.True);

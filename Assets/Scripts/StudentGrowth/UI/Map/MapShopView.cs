@@ -521,6 +521,13 @@ namespace StudentGrowth
                 cardListRoot.SetParent(panelRect, false);
                 SetRect(cardListRoot, new Vector2(24f, CardListTop), new Vector2(572f, CardListHeight), new Vector2(0f, 1f));
             }
+
+            // 关闭按钮也归位：场景里序列化的是旧版小尺寸，右边缘会被面板裁掉一半。
+            if (closeButton != null)
+            {
+                RectTransform closeRect = closeButton.transform as RectTransform;
+                SetRect(closeRect, new Vector2(516f, -20f), new Vector2(80f, 34f), new Vector2(0f, 1f));
+            }
         }
 
         private void Purchase(ItemData item)
@@ -640,6 +647,8 @@ namespace StudentGrowth
             GameUiStyle.ApplyPixelText(descriptionText, resolved, GameUiTextStyle.Body);
             GameUiStyle.ApplyPixelText(feedbackText, resolved, GameUiTextStyle.Body);
             ApplyButton(closeButton);
+            // 关闭按钮同样走纯色底：贴图版在浅色面板上只剩细边，用户反馈「关闭按钮不明显」。
+            EnsureRowReadable(closeButton);
 
             if (stockListRoot != null)
             {
@@ -647,6 +656,7 @@ namespace StudentGrowth
                 for (int i = 0; i < buttons.Length; i++)
                 {
                     ApplyButton(buttons[i]);
+                    EnsureRowReadable(buttons[i]);
                 }
             }
 
@@ -656,7 +666,39 @@ namespace StudentGrowth
                 for (int i = 0; i < cardButtons.Length; i++)
                 {
                     ApplyButton(cardButtons[i]);
+                    EnsureRowReadable(cardButtons[i]);
                 }
+            }
+        }
+
+        /// <summary>
+        /// 商品行按钮的可读性兜底。
+        ///
+        /// 2026-10-23 用户截图反馈「商品没有图标和名字」。原因：按钮贴图在浅色面板上
+        /// Sliced 之后只剩一条细边，而行标题用的是 ButtonText + inverse 的浅色字，
+        /// 落在浅底上几乎不可见。这里把行按钮换成纯色底 + 高对比前景，不再依赖贴图。
+        /// </summary>
+        private void EnsureRowReadable(Button button)
+        {
+            if (button == null)
+            {
+                return;
+            }
+
+            UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
+
+            Image background = button.targetGraphic as Image;
+            if (background != null)
+            {
+                background.sprite = null;
+                background.type = Image.Type.Simple;
+                background.color = resolved.buttonNormal;
+            }
+
+            Text label = button.GetComponentInChildren<Text>(true);
+            if (label != null)
+            {
+                label.color = resolved.inverseText;
             }
         }
 
@@ -763,10 +805,23 @@ namespace StudentGrowth
 
             Image image = iconObject.AddComponent<Image>();
             image.sprite = sprite;
-            image.color = sprite == null ? Color.clear : color;
             image.preserveAspect = true;
             image.raycastTarget = false;
-            image.enabled = sprite != null;
+
+            if (sprite == null)
+            {
+                // 商品没有 icon 资源时，原实现直接 Color.clear + enabled=false，
+                // 整行看起来像「没有图标」（2026-10-23 用户截图反馈）。
+                // 改成半透明占位块：既保留排版位置，也让玩家看出这里本该有个图标。
+                image.color = new Color(1f, 1f, 1f, 0.22f);
+                image.enabled = true;
+            }
+            else
+            {
+                image.color = color;
+                image.enabled = true;
+            }
+
             return image;
         }
 

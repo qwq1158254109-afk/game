@@ -125,7 +125,9 @@ namespace StudentGrowth
             // 历史：2026-10-14 曾拍板「完全贴顶」把 y 设为 0，但贴顶后日期图标的描边/投影
             // 会被屏幕边缘裁掉，看着像面板溢出去了；改回 8px 留白，x 维持 32。
             rect.anchoredPosition = new Vector2(32f, -8f);
-            rect.sizeDelta = new Vector2(340f, 116f);
+            // 116 → 136：给「阶段剩 N 次」腾一行。这行以前被主动隐藏，玩家只看得到
+            // 「今天 X 次」，于是遇到「今天还有次数、阶段预算却不够」时完全无从判断。
+            rect.sizeDelta = new Vector2(340f, 136f);
 
             SetTopLeftRect(periodIconArea, Vector2.zero, new Vector2(116f, 116f));
             SetTopLeftRect(timeInfoArea, new Vector2(116f, 0f), new Vector2(224f, 116f));
@@ -138,7 +140,9 @@ namespace StudentGrowth
             SetTopLeftRect(dayText == null ? null : dayText.rectTransform, Vector2.zero, new Vector2(80f, 32f));
             SetTopLeftRect(periodText == null ? null : periodText.rectTransform, new Vector2(82f, 0f), new Vector2(112f, 32f));
             SetTopLeftRect(actionPointText == null ? null : actionPointText.rectTransform, Vector2.zero, new Vector2(104f, 36f));
-            SetTopLeftRect(sleepWarningText == null ? null : sleepWarningText.rectTransform, new Vector2(12f, -92f), new Vector2(200f, 20f));
+            // 「阶段剩 N 次」是真正的硬约束（Boss 解锁看它），必须可见。
+            SetTopLeftRect(remainingDailyText == null ? null : remainingDailyText.rectTransform, new Vector2(12f, -76f), new Vector2(200f, 20f));
+            SetTopLeftRect(sleepWarningText == null ? null : sleepWarningText.rectTransform, new Vector2(12f, -100f), new Vector2(200f, 20f));
 
             if (actionPointText != null)
             {
@@ -158,7 +162,9 @@ namespace StudentGrowth
 
             if (remainingDailyText != null)
             {
-                remainingDailyText.gameObject.SetActive(false);
+                // 不再隐藏：这是阶段预算，和「今天 X 次」是两个时钟，藏起来玩家没法判断
+                // 为什么明明还有行动次数却提示「时间不足」。
+                remainingDailyText.gameObject.SetActive(true);
             }
 
             if (dateLogoBackground != null)
@@ -200,11 +206,12 @@ namespace StudentGrowth
             EnsureCompactPanel(resolved);
             RectTransform rect = transform as RectTransform;
             SetRect(rect, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(1f, 1f),
-                new Vector2(-18f, -18f), new Vector2(330f, 76f));
+                new Vector2(-18f, -18f), new Vector2(330f, 84f));
 
             SetGraphicActive(dateLogoBackground, false);
             SetGraphicActive(periodBackground, false);
-            SetGraphicActive(remainingDailyText, false);
+            // 「阶段剩 N 次」是硬约束，紧凑布局下也要显示，不再隐藏。
+            SetGraphicActive(remainingDailyText, true);
             SetGraphicActive(dayText, true);
             SetGraphicActive(periodIcon, true);
             SetGraphicActive(periodText, true);
@@ -226,6 +233,9 @@ namespace StudentGrowth
             SetRect(sleepWarningText == null ? null : sleepWarningText.rectTransform,
                 new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f),
                 new Vector2(228f, -10f), new Vector2(88f, 50f));
+            SetRect(remainingDailyText == null ? null : remainingDailyText.rectTransform,
+                new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f),
+                new Vector2(14f, -62f), new Vector2(200f, 16f));
 
             for (int i = 0; i < actionPointIcons.Length; i++)
             {
@@ -239,6 +249,7 @@ namespace StudentGrowth
             ApplyTextStyle(dayText, resolved, GameUiTextStyle.ButtonText, TextAnchor.MiddleLeft, resolved.inverseText, 16);
             ApplyTextStyle(periodText, resolved, GameUiTextStyle.SmallText, TextAnchor.MiddleLeft, resolved.gold, 14);
             ApplyTextStyle(actionPointText, resolved, GameUiTextStyle.SmallText, TextAnchor.MiddleLeft, resolved.inverseText, 13);
+            ApplyTextStyle(remainingDailyText, resolved, GameUiTextStyle.SmallText, TextAnchor.MiddleLeft, resolved.gold, 11);
             ApplyTextStyle(sleepWarningText, resolved, GameUiTextStyle.SmallText, TextAnchor.UpperLeft, resolved.danger, 11);
         }
 

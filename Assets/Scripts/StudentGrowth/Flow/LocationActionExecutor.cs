@@ -134,7 +134,14 @@ namespace StudentGrowth
 
             if (!isSleepActivity && !CanSpendActivityTime(activity))
             {
-                return Fail(result, ErrorInsufficientTime, "时间不足，无法进行该行动。");
+                // 原文案只写「时间不足」，玩家看到 HUD 上「今天还有 N 次」会以为判定错了。
+                // 这里是**阶段预算**不够，和「今天的行动次数」是两个时钟，必须写清楚。
+                int stageLeft = sessionState == null || sessionState.stageState == null
+                    ? 0
+                    : Mathf.Max(0, sessionState.stageState.remainingTime);
+                int need = activity == null ? 0 : Mathf.Max(0, activity.timeCost);
+                return Fail(result, ErrorInsufficientTime,
+                    "本阶段剩余时间不足（阶段剩 " + stageLeft + " 次，本次需要 " + need + " 次）。");
             }
 
             TimeActionPreview actionPreview = null;
