@@ -133,7 +133,7 @@ namespace StudentGrowth
             return true;
         }
 
-        public bool PlayById(string dialogueId, Action onComplete = null)
+        public bool PlayById(string dialogueId, Action onComplete = null, NpcData npc = null)
         {
             if (string.IsNullOrEmpty(dialogueId))
             {
@@ -147,7 +147,7 @@ namespace StudentGrowth
                 return false;
             }
 
-            return Play(dialogue, onComplete);
+            return Play(dialogue, onComplete, npc);
         }
 
         public bool IsPlaying => view != null && view.gameObject.activeSelf;
@@ -297,7 +297,8 @@ namespace StudentGrowth
             // PlayById 内部会把 pendingComplete 重新登记给下一段对话。
             // 这里千万不能再把它清空 —— 清了之后整条链路播完不会触发结束回调，
             // 输入闸门永远不释放，表现就是「选完选项后人物不能动」。
-            PlayById(nextDialogueId, pendingComplete);
+            // NPC 上下文也要一路带下去，否则子对话里好感度小心心会消失。
+            PlayById(nextDialogueId, pendingComplete, currentNpc);
         }
 
         private void HandleFinished()
