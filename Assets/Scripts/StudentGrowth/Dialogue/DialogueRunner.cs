@@ -49,7 +49,17 @@ namespace StudentGrowth
         {
             pendingOpenShop = false;
             pendingFallbackActivity = false;
+            pendingGiftOption = null;
+            if (view != null)
+            {
+                view.suppressAdvance = false;
+            }
         }
+
+        /// <summary>送礼等待中的选项（含收礼对话 nextDialogueId）。背包关闭后由 ResumeAfterGift 消费。</summary>
+        private DialogueOption pendingGiftOption;
+        /// <summary>送礼选项所在的那段对话（通常是菜单），取消送礼时回到它重选。</summary>
+        private DialogueData currentDialogueData;
 
         private readonly RewardResolver rewardResolver = new RewardResolver();
         private readonly Dictionary<string, DialogueData> registry = new Dictionary<string, DialogueData>();
@@ -116,6 +126,7 @@ namespace StudentGrowth
             }
 
             pendingComplete = onComplete;
+            currentDialogueData = dialogue;
             view.sessionState = sessionState;
             view.currentNpc = currentNpc;
             view.Show(dialogue, HandleFinished);
@@ -189,6 +200,12 @@ namespace StudentGrowth
 
             if (option.chooseItemAsGift)
             {
+                pendingGiftOption = option;
+                if (view != null)
+                {
+                    view.suppressAdvance = true;
+                }
+
                 StartCoroutine(OpenGiftPickerNextFrame());
                 return;
             }
@@ -209,7 +226,9 @@ namespace StudentGrowth
 
         /// <summary>
         /// 「赠送礼物」：等对话框收起一帧，再打开背包的选择模式。
-        /// 选中道具后从背包移除，并按价值回一点心情（不给道具本身的使用效果）。
+        /// 2026-10-24 修复顺序：先挑道具、选中并发放效果后才播收礼对话（nextDialogueId）；
+        /// 取消则回到送礼前的那段对话（通常是菜单）重选。旧行为是点选项的瞬间就播
+        /// 「收下了礼物」，玩家还没送出去 NPC 就先道谢了。
         /// </summary>
         private IEnumerator OpenGiftPickerNextFrame()
         {
@@ -217,6 +236,7 @@ namespace StudentGrowth
 
             if (sessionState == null || sessionState.playerState == null)
             {
+                ResumeAfterGift(false);
                 yield break;
             }
 
@@ -225,13 +245,14 @@ namespace StudentGrowth
             {
                 if (item == null)
                 {
+                    ResumeAfterGift(false);
                     return;
                 }
 
                 InventoryModel.Drop(sessionState, item);
                 int bonus = Mathf.Clamp(2 + item.price / 8, 2, 8);
                 sessionState.playerState.AddStat(PlayerStatKey.Mood, bonus);
-                // 2026-10-24：送礼同时积累 NPC 好感，曲线与心情一致（价格越贵加得越多）。
+                // 送礼同时积累 NPC 好感，曲线与心情一致（价格越贵加得越多）。
                 if (currentNpc != null && !string.IsNullOrEmpty(currentNpc.npcId))
                 {
                     sessionState.npcRelationships.Add(currentNpc.npcId, bonus);
@@ -242,7 +263,33 @@ namespace StudentGrowth
                     }
                 }
                 Sfx.Ui.Confirm();
+                ResumeAfterGift(true);
             });
+        }
+
+        /// <summary>背包关闭后的收尾：送出了播收礼对话，取消了回菜单，都没有则按结束处理。</summary>
+        private void ResumeAfterGift(bool giftGiven)
+        {
+            DialogueOption giftOption = pendingGiftOption;
+            pendingGiftOption = null;
+            if (view != null)
+            {
+                view.suppressAdvance = false;
+            }
+
+            if (giftGiven && giftOption != null && !string.IsNullOrEmpty(giftOption.nextDialogueId))
+            {
+                PlayById(giftOption.nextDialogueId, pendingComplete);
+                return;
+            }
+
+            if (currentDialogueData != null)
+            {
+                Play(currentDialogueData, pendingComplete, currentNpc);
+                return;
+            }
+
+            HandleFinished();
         }
 
         private void HandleJumpRequested(string nextDialogueId)

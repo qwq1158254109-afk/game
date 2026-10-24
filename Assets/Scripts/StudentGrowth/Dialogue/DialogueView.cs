@@ -36,6 +36,12 @@ namespace StudentGrowth
 
         /// <summary>当前对话归属的 NPC（由 DialogueRunner 在 Play 时写入），好感度小心心按它显示。</summary>
         public NpcData currentNpc;
+
+        /// <summary>
+        /// 送礼流程中置 true：背包选择器开着，对话面板不能再被点击推进
+        /// （否则会把菜单点结束，等玩家挑完道具回来时流程已经散了）。
+        /// </summary>
+        public bool suppressAdvance;
         public GameObject panelRoot;
         public PixelPanel panelStyle;
         public CanvasGroup canvasGroup;
@@ -158,7 +164,7 @@ namespace StudentGrowth
         /// <summary>点击/按键推进。正在打字时先补全当前句，不跳句。</summary>
         public void Advance()
         {
-            if (currentDialogue == null)
+            if (currentDialogue == null || suppressAdvance)
             {
                 return;
             }
@@ -388,6 +394,15 @@ namespace StudentGrowth
             // 奖励发放交给外部（DialogueRunner），这里只负责回调，避免 UI 直接改存档。
             Sfx.Ui.Confirm();
             onOptionChosen?.Invoke(option);
+
+            if (option.chooseItemAsGift)
+            {
+                // 2026-10-24 修复：不能现在就跳 nextDialogueId——那会变成
+                // 「还没送出就先道谢」。先清掉选项等背包，选中后由 Runner 播收礼对话，
+                // 取消则回到本菜单。
+                ClearOptions();
+                return;
+            }
 
             if (!string.IsNullOrEmpty(option.nextDialogueId))
             {
