@@ -623,6 +623,26 @@ namespace StudentGrowth
                 return existing;
             }
 
+            // 优先用预制体（Tools → Student Growth → UI → 生成对话预制体 产出），
+            // 这样布局可以直接在 Unity 里改；没有预制体才回退到代码搭建。
+            GameObject prefab = Resources.Load<GameObject>("StudentGrowth/UI/DialogueView");
+            if (prefab != null)
+            {
+                GameObject instance = Instantiate(prefab);
+                DialogueView instantiated = instance.GetComponentInChildren<DialogueView>(true);
+                if (instantiated != null)
+                {
+                    if (instantiated.theme == null)
+                    {
+                        instantiated.theme = theme;
+                    }
+
+                    return instantiated;
+                }
+
+                Destroy(instance);
+            }
+
             GameObject canvasObject = new GameObject("[UI] DialogueCanvas", typeof(RectTransform));
             Canvas canvas = canvasObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
