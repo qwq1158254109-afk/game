@@ -10479,6 +10479,7 @@ MonoBehaviour:
   locationAction: {fileID: 0}
   fallbackActivity: {fileID: 11400000, guid: 80d3adfee4d9e474898542887454c1f6, type: 2}
   dialogue: {fileID: 11400000, guid: ae45a9343d91418493fe8e7ded31fd28, type: 2}
+  npc: {fileID: 11400000, guid: ca8c4cf0aa1fc764abb3faad62812318, type: 2}
   interactionPoint: {fileID: 1393740596}
   isExitPortal: 0
   consumeTimeOnInteraction: 0
