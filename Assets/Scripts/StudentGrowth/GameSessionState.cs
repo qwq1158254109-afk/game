@@ -12,6 +12,8 @@ namespace StudentGrowth
         public BattleSessionFlow BattleFlow => battleFlow ?? (battleFlow = new BattleSessionFlow(this));
         public string runId;
         public bool tutorialSeen;
+        /// <summary>扭蛋首抽保底是否已用掉（每局一次，进存档）。</summary>
+        public bool capsulePityUsed;
         public PlayerState playerState = new PlayerState();
         public TimeActionState timeActionState = new TimeActionState();
         public StageState stageState = new StageState();

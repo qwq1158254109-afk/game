@@ -35,6 +35,8 @@ namespace StudentGrowth
         /// <summary>阶段成长报告。首次需要时运行时创建。</summary>
         public StageReportView stageReportView;
         public MapShopView shopView;
+        /// <summary>扭蛋抽奖界面。首次需要时运行时创建。</summary>
+        public CapsuleView capsuleView;
         public MapInteractionConfirmView confirmView;
         public MapActivityResultView resultView;
         public bool requireConfirmForActivities = true;
@@ -834,6 +836,7 @@ namespace StudentGrowth
                 ShowPrompt(result.message);
                 RefreshHudIfNeeded(result);
                 ShowShopIfNeeded(result);
+                ShowCapsuleIfNeeded(result);
                 ShowDialogueIfNeeded(result);
                 ShowActivityResultIfNeeded(result, exit);
             }
@@ -1164,6 +1167,46 @@ namespace StudentGrowth
                 shopView.Configure(ResolveSessionState(), FindObjectOfType<FullscreenMapHudView>());
                 shopView.Show();
             }
+        }
+
+        /// <summary>
+        /// 扭蛋机交互的落点（ActivityType.Capsule → shouldOpenCapsule）。
+        /// 卡包配置与奖励卡池都按约定路径加载，缺资产时明确提示而不是静默失败。
+        /// </summary>
+        private void ShowCapsuleIfNeeded(LocationActionExecutionResult result)
+        {
+            if (result == null || !result.shouldOpenCapsule)
+            {
+                return;
+            }
+
+            CapsulePackData pack = Resources.Load<CapsulePackData>("StudentGrowth/NPC/capsule_pack_default");
+            if (pack == null)
+            {
+                Debug.LogWarning("[Capsule] 缺少卡包配置 Resources/StudentGrowth/NPC/capsule_pack_default");
+                return;
+            }
+
+            CardPoolData poolData = CardPoolCatalog.Find("pool_reward");
+            if (poolData == null || poolData.cards == null || poolData.cards.Count == 0)
+            {
+                Debug.LogWarning("[Capsule] 缺少奖励卡池 pool_reward");
+                return;
+            }
+
+            RectTransform canvasRect = ResolveCanvasRect();
+            if (canvasRect == null)
+            {
+                return;
+            }
+
+            if (capsuleView == null)
+            {
+                capsuleView = CapsuleView.Ensure(canvasRect);
+                capsuleView.theme = theme;
+            }
+
+            capsuleView.Open(ResolveSessionState(), pack, poolData.cards);
         }
 
         private void ShowActivityResultIfNeeded(LocationActionExecutionResult result, bool exit)

@@ -19,7 +19,7 @@ namespace StudentGrowth
             if (state == null) throw new InvalidOperationException("SAVE_NO_SESSION");
             var stage = state.stageState;
             var record = new SaveGameRecord {
-                runId = state.runId, tutorialSeen = state.tutorialSeen, scenePath = scene, hasPlayerPosition = position.HasValue, playerX = position?.x ?? 0, playerY = position?.y ?? 0,
+                runId = state.runId, tutorialSeen = state.tutorialSeen, capsulePityUsed = state.capsulePityUsed, scenePath = scene, hasPlayerPosition = position.HasValue, playerX = position?.x ?? 0, playerY = position?.y ?? 0,
                 facingX = facing.x, facingY = facing.y, playedSeconds = seconds,
                 player = Copy(state.playerState), time = Copy(state.timeActionState), location = Copy(state.locationState),
                 currentStageId = stage.currentStage == null ? null : RequiredId(stage.currentStage),
@@ -46,7 +46,7 @@ namespace StudentGrowth
             var root = JObject.Parse(json,new JsonLoadSettings { DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Error });
             if (root.Value<int?>("version") != 1 && root.Value<int?>("version") != 2) throw new InvalidOperationException("SAVE_UNSUPPORTED_VERSION");
             var r = root.ToObject<SaveGameRecord>(JsonSerializer.Create(Options)); Validate(r);
-            var state = new GameSessionState { runId = r.runId, tutorialSeen = r.tutorialSeen, playerState = r.player, timeActionState = r.time, locationState = r.location,
+            var state = new GameSessionState { runId = r.runId, tutorialSeen = r.tutorialSeen, capsulePityUsed = r.capsulePityUsed, playerState = r.player, timeActionState = r.time, locationState = r.location,
                 currentEnding = content.Resolve<EndingData>(r.endingId), endingReached = r.endingReached,
                 clearedStageIds = r.clearedStageIds, defeatedBossIds = r.defeatedBossIds,
                 unlockedActivityIds = r.unlockedActivityIds, unlockedLocationIds = r.unlockedLocationIds };

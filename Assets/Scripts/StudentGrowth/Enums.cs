@@ -24,7 +24,9 @@ namespace StudentGrowth
         MiniGame,
         Rest,
         Shop,
-        Training
+        Training,
+        // 2026-10-24 追加（扭蛋抽卡）：只允许加在末尾——存量资产按序号序列化。
+        Capsule
     }
 
     public enum CardType

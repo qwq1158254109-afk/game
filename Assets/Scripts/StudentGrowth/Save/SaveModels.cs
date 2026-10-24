@@ -46,6 +46,8 @@ namespace StudentGrowth
         public long saveSequence;
         public string savedAtUtc;
         public bool tutorialSeen;
+        // 扭蛋首抽保底（2026-10-24）。旧档缺字段 = false = 保底可用。
+        public bool capsulePityUsed;
         public string scenePath;
         public bool hasPlayerPosition;
         public float playerX, playerY, facingX, facingY = -1;
