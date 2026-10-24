@@ -19887,11 +19887,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapInteractionTarget
   interactionId: activity_home_family_dinner
   displayName: "\u5BB6\u5EAD\u665A\u996D\u804A\u5929"
-  promptText: "\u6309 E\uFF1A\u5BB6\u5EAD\u665A\u996D\u804A\u5929\uFF5C\u6D88\u8017
-    1 \u65F6\u95F4\uFF5C\u4EB2\u5B50 +5\uFF5C\u5FC3\u60C5 +5"
+  promptText: "\u6309 E\uFF1A\u548C\u5988\u5988\u804A\u804A\u5929"
   locationAction: {fileID: 0}
   fallbackActivity: {fileID: 11400000, guid: b893f3714304ab34ca77ac7d7c4acbd0, type: 2}
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 4955913199167184b9e5c903cdb60d13, type: 2}
+  npc: {fileID: 11400000, guid: 5917b9a3e07ead5429de4ff2dc58fb04, type: 2}
   interactionPoint: {fileID: 1418763300}
   isExitPortal: 0
   consumeTimeOnInteraction: 1

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2df4f93f6c89b94a8702bcd33f7d0c0, type: 3}
+  m_Name: Dialogue_npc_shop_owner_Menu
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.DialogueData
+  dialogueId: dialogue_npc_shop_owner_menu
+  speakerName: "\u552E\u8D27\u5458"
+  portrait: {fileID: 0}
+  lines:
+  - text: "\u8981\u548C\u552E\u8D27\u5458\u804A\u70B9\u4EC0\u4E48\uFF1F"
+    speakerOverride: 
+    portraitOverride: {fileID: 0}
+    options:
+    - text: "\u6253\u62DB\u547C"
+      rewards:
+      - battleTiming: 4
+        rewardType: 13
+        targetStat: 0
+        value: 1
+        card: {fileID: 0}
+        item: {fileID: 0}
+        activity: {fileID: 0}
+        stage: {fileID: 0}
+        npcId: npc_shop_owner
+        description: 
+      nextDialogueId: dialogue_npc_shop_owner_greet
+      chooseItemAsGift: 0
+      openShop: 0
+      useFallbackActivity: 0
+      requirements: []
+    - text: "\u8D60\u9001\u793C\u7269\uFF08\u4ECE\u80CC\u5305\u9009\u62E9\uFF09"
+      rewards: []
+      nextDialogueId: dialogue_npc_shop_owner_gift
+      chooseItemAsGift: 1
+      openShop: 0
+      useFallbackActivity: 0
+      requirements: []
+    - text: "\u770B\u770B\u8D27\u67B6\uFF08\u6253\u5F00\u5546\u5E97\uFF09"
+      rewards: []
+      nextDialogueId: 
+      chooseItemAsGift: 0
+      openShop: 1
+      useFallbackActivity: 0
+      requirements: []
+    - text: "\u544A\u8F9E"
+      rewards: []
+      nextDialogueId: 
+      chooseItemAsGift: 0
+      openShop: 0
+      useFallbackActivity: 0
+      requirements: []

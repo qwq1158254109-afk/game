@@ -22,6 +22,35 @@ namespace StudentGrowth
         /// </summary>
         public NpcData currentNpc { get; private set; }
 
+        /// <summary>对话结束后的待办动作（由选项触发，交互流程在 EndDialogue 里消费）。</summary>
+        public bool pendingOpenShop { get; private set; }
+        public bool pendingFallbackActivity { get; private set; }
+
+        public bool ConsumePendingOpenShop()
+        {
+            bool value = pendingOpenShop;
+            pendingOpenShop = false;
+            return value;
+        }
+
+        public bool ConsumePendingFallbackActivity()
+        {
+            bool value = pendingFallbackActivity;
+            pendingFallbackActivity = false;
+            return value;
+        }
+
+        /// <summary>
+        /// 每次玩家重新打开对话前清空待办动作。
+        /// 注意不能在 Play 里清——菜单选项跳转子对话（HandleJumpRequested → Play）会再次进 Play，
+        /// 那样选项刚设置的标志会被自己吃掉。
+        /// </summary>
+        public void ClearPendingActions()
+        {
+            pendingOpenShop = false;
+            pendingFallbackActivity = false;
+        }
+
         private readonly RewardResolver rewardResolver = new RewardResolver();
         private readonly Dictionary<string, DialogueData> registry = new Dictionary<string, DialogueData>();
         private Action pendingComplete;
@@ -146,6 +175,16 @@ namespace StudentGrowth
             if (option == null)
             {
                 return;
+            }
+
+            if (option.openShop)
+            {
+                pendingOpenShop = true;
+            }
+
+            if (option.useFallbackActivity)
+            {
+                pendingFallbackActivity = true;
             }
 
             if (option.chooseItemAsGift)

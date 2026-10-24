@@ -869,9 +869,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.MapInteractionTarget
   interactionId: action_shop_browse_goods
   displayName: "\u5546\u5E97\u8001\u677F"
-  promptText: "\u6309 E\uFF1A\u548C\u5E97\u957F\u8D2D\u4E70\u5546\u54C1\uFF5C\u4E0D\u6D88\u8017\u65F6\u95F4"
+  promptText: "\u6309 E\uFF1A\u548C\u552E\u8D27\u5458\u804A\u804A\u5929"
   locationAction: {fileID: 11400000, guid: bad1e746818564d40b5d4bec8d1e3b5e, type: 2}
   fallbackActivity: {fileID: 11400000, guid: f4f5ac50512b8ba418024d5008896686, type: 2}
+  dialogue: {fileID: 11400000, guid: f134aa7cca33d1946aae8c9cfef1332e, type: 2}
+  npc: {fileID: 11400000, guid: 1297ec43d2c06b24db669c13d8c3bf2d, type: 2}
   interactionPoint: {fileID: 214300104}
   isExitPortal: 0
   consumeTimeOnInteraction: 0

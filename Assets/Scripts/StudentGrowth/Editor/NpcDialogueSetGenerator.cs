@@ -55,7 +55,28 @@ namespace StudentGrowth.Editor
             Debug.Log("[NpcSet] 图书管理员 NpcData → " + path + "（guid=" + AssetDatabase.AssetPathToGUID(path) + "）");
         }
 
-        internal static void CreateNpcDialogueSet(string id, string name)
+        /// <summary>
+        /// 一次性生成（批处理入口）：母亲（客厅）与售货员（商店）两个 NPC 套件。
+        /// 它们的交互点原本挂着活动（家庭晚饭 / 商店浏览），菜单第 4 个选项负责回落：
+        /// 母亲选「一起吃晚饭」走原活动（含时间消耗），售货员选「看看货架」打开商店。
+        /// 生成后还需把场景交互点的 dialogue / npc 指到 Menu 与 NpcData 资产。
+        /// </summary>
+        [MenuItem("Tools/Student Growth/Content/Create Preset Sets - Mother & Shopkeeper (one-shot)")]
+        public static void CreatePresetSetsBatch()
+        {
+            CreateNpcDialogueSet("npc_mother", "妈妈", new DialogueOption
+            {
+                text = "一起吃晚饭（消耗时间）",
+                useFallbackActivity = true
+            });
+            CreateNpcDialogueSet("npc_shop_owner", "售货员", new DialogueOption
+            {
+                text = "看看货架（打开商店）",
+                openShop = true
+            });
+        }
+
+        internal static void CreateNpcDialogueSet(string id, string name, DialogueOption extraMenuOption = null)
         {
             NpcData npc = CreateNpcData(id, name);
 
@@ -85,6 +106,7 @@ namespace StudentGrowth.Editor
                             nextDialogueId = "dialogue_" + id + "_gift",
                             chooseItemAsGift = true
                         },
+                        extraMenuOption,
                         new DialogueOption { text = "告辞" }
                     }
                 }

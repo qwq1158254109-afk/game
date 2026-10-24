@@ -272,6 +272,16 @@ namespace StudentGrowth
 
         public bool TryBeginInteraction(MapInteractionTarget target)
         {
+            return TryBeginInteraction(target, false);
+        }
+
+        /// <summary>
+        /// skipDialogue = true：跳过剧情对话分支，直接走活动/事件流程。
+        /// 用于 NPC 菜单里「一起吃晚饭」这类选项——对话结束后回落执行交互点上原定的活动，
+        /// 时间消耗与次数上限和直接交互完全一致。
+        /// </summary>
+        private bool TryBeginInteraction(MapInteractionTarget target, bool skipDialogue)
+        {
             ResolveReferences();
             if (target == null)
             {
@@ -290,7 +300,7 @@ namespace StudentGrowth
 
             // 剧情对话优先于一切：不消耗时间、不计次数、不弹确认面板。
             // 剧情组往 target.dialogue 里填资产即可，不用碰这里的流程。
-            if (target.dialogue != null)
+            if (!skipDialogue && target.dialogue != null)
             {
                 BeginDialogue(target);
                 return true;
@@ -591,6 +601,7 @@ namespace StudentGrowth
 
             SuppressPromptFor(target);
             dialogueRunner.sessionState = ResolveSessionState();
+            dialogueRunner.ClearPendingActions();
             if (dialogueRunner.view == null)
             {
                 dialogueRunner.view = EnsureDialogueView();
@@ -673,10 +684,32 @@ namespace StudentGrowth
         /// <summary>对话结束：放开输入、恢复提示栏与交互状态。</summary>
         private void EndDialogue(MapInteractionTarget target)
         {
+            // 对话选项可以携带「结束后动作」：打开商店 / 回落执行交互点原定的活动。
+            // 必须在释放输入闸门前取走，且 fallback 重入会在流程里自己管理状态。
+            bool openShop = dialogueRunner != null && dialogueRunner.ConsumePendingOpenShop();
+            bool fallbackActivity = dialogueRunner != null
+                && dialogueRunner.ConsumePendingFallbackActivity()
+                && target != null
+                && target.fallbackActivity != null;
+
             if (dialogueGateHeld)
             {
                 dialogueGateHeld = false;
                 GameplayInputGate.Release(this, true);
+            }
+
+            if (openShop)
+            {
+                OpenShopAfterDialogue();
+                SetState(MapInteractionFlowState.Idle);
+                ApplyVisuals();
+                return;
+            }
+
+            if (fallbackActivity)
+            {
+                TryBeginInteraction(target, true);
+                return;
             }
 
             if (target != null && currentTarget == target)
@@ -1112,6 +1145,18 @@ namespace StudentGrowth
                 return;
             }
 
+            CreateShopUiIfNeeded();
+            if (shopView != null)
+            {
+                shopView.theme = theme;
+                shopView.Configure(ResolveSessionState(), FindObjectOfType<FullscreenMapHudView>());
+                shopView.Show();
+            }
+        }
+
+        /// <summary>对话选项 openShop 的落点：与 ShowShopIfNeeded 同一套打开逻辑，只是不经过活动执行。</summary>
+        private void OpenShopAfterDialogue()
+        {
             CreateShopUiIfNeeded();
             if (shopView != null)
             {
