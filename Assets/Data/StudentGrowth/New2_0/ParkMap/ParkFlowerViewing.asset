@@ -16,15 +16,18 @@ MonoBehaviour:
   displayName: "\u8D4F\u82B1\u89C2\u5BDF"
   description: "\u89C2\u5BDF\u82B1\u575B\u91CC\u7684\u690D\u7269\uFF0C\u83B7\u5F97\u4E00\u70B9\u7075\u611F\u548C\u597D\u5FC3\u60C5\u3002"
   activityType: 0
-  backgroundSprite: {fileID: 21300000, guid: 723eeca5f559a6f42ad28f303553000e, type: 3}
-  icon: {fileID: 0}
-  imagePath: 
+  backgroundSprite: {fileID: 6397069402581240290, guid: f6e7451fd1adbfb4c920235120ce2ab0, type: 3}
+  icon: {fileID: -6075400843478778027, guid: 2a1ea2b2605ef834e8f7064a385a82f5, type: 3}
+  imagePath: Assets/Art/Pixel/Backgrounds/bg_home_dining_room.png
   timeCost: 1
+  maxUsesPerStage: 1
+  battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
   linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}
   fixedRewards:
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 9
     value: 2
     card: {fileID: 0}
@@ -32,7 +35,8 @@ MonoBehaviour:
     activity: {fileID: 0}
     stage: {fileID: 0}
     description: "\u5174\u8DA3 +2"
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 6
     value: 3
     card: {fileID: 0}
@@ -40,7 +44,8 @@ MonoBehaviour:
     activity: {fileID: 0}
     stage: {fileID: 0}
     description: "\u5FC3\u60C5 +3"
-  - rewardType: 6
+  - battleTiming: 4
+    rewardType: 6
     targetStat: 5
     value: 2
     card: {fileID: 0}

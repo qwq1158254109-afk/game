@@ -16,16 +16,18 @@ MonoBehaviour:
   displayName: "\u6574\u7406\u8BA1\u5212"
   description: "\u5728\u4E66\u684C\u6574\u7406\u660E\u65E5\u8BA1\u5212\u3002"
   activityType: 5
-  backgroundSprite: {fileID: 0}
-  icon: {fileID: 0}
-  imagePath: 
+  backgroundSprite: {fileID: -2351607977772436645, guid: 2396f43a1769412f80e3fa5f6ae10c80, type: 3}
+  icon: {fileID: -6658530935391381806, guid: 89590953175440b428773173b595e281, type: 3}
+  imagePath: Assets/Art/Pixel/Backgrounds/bg_room_study_desk_rpg_map.png
   timeCost: 1
   maxUsesPerStage: -1
+  battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
   linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}
   fixedRewards:
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 11
     value: 5
     card: {fileID: 0}
@@ -33,7 +35,8 @@ MonoBehaviour:
     activity: {fileID: 0}
     stage: {fileID: 0}
     description: "\u81EA\u4E3B +5"
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 6
     value: 2
     card: {fileID: 0}

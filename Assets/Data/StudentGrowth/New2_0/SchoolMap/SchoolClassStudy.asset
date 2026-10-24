@@ -16,9 +16,9 @@ MonoBehaviour:
   displayName: "\u8BFE\u5802\u5B66\u4E60"
   description: "\u8BA4\u771F\u5B8C\u6210\u4E00\u8282\u8BFE\u5802\u5B66\u4E60\u3002"
   activityType: 5
-  backgroundSprite: {fileID: 0}
-  icon: {fileID: 0}
-  imagePath: 
+  backgroundSprite: {fileID: -2351607977772436645, guid: 2396f43a1769412f80e3fa5f6ae10c80, type: 3}
+  icon: {fileID: -6658530935391381806, guid: 89590953175440b428773173b595e281, type: 3}
+  imagePath: Assets/Art/Pixel/Backgrounds/bg_room_study_desk_rpg_map.png
   timeCost: 1
   maxUsesPerStage: 1
   battleRewardTiming: 0

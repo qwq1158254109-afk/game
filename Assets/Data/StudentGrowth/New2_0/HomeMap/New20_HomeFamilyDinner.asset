@@ -16,16 +16,18 @@ MonoBehaviour:
   displayName: "\u5BB6\u5EAD\u665A\u996D\u804A\u5929"
   description: "\u548C\u5BB6\u4EBA\u8FB9\u5403\u665A\u996D\u8FB9\u804A\u804A\u8FD1\u51B5\u3002"
   activityType: 0
-  backgroundSprite: {fileID: 0}
-  icon: {fileID: 0}
-  imagePath: 
+  backgroundSprite: {fileID: 6397069402581240290, guid: f6e7451fd1adbfb4c920235120ce2ab0, type: 3}
+  icon: {fileID: -6075400843478778027, guid: 2a1ea2b2605ef834e8f7064a385a82f5, type: 3}
+  imagePath: Assets/Art/Pixel/Backgrounds/bg_home_dining_room.png
   timeCost: 1
   maxUsesPerStage: -1
+  battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
   linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}
   fixedRewards:
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 7
     value: 5
     card: {fileID: 0}
@@ -33,7 +35,8 @@ MonoBehaviour:
     activity: {fileID: 0}
     stage: {fileID: 0}
     description: "\u4EB2\u5B50 +5"
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 6
     value: 5
     card: {fileID: 0}

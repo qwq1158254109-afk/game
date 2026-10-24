@@ -16,15 +16,18 @@ MonoBehaviour:
   displayName: "\u7535\u8111\u5B66\u4E60"
   description: "\u4F7F\u7528\u7535\u8111\u5B8C\u6210\u5728\u7EBF\u7EC3\u4E60\uFF0C\u63D0\u5347\u6570\u5B66\u5E76\u7565\u5FAE\u589E\u52A0\u538B\u529B\u3002"
   activityType: 5
-  backgroundSprite: {fileID: 0}
-  icon: {fileID: 0}
-  imagePath: 
+  backgroundSprite: {fileID: -2351607977772436645, guid: 2396f43a1769412f80e3fa5f6ae10c80, type: 3}
+  icon: {fileID: -6658530935391381806, guid: 89590953175440b428773173b595e281, type: 3}
+  imagePath: Assets/Art/Pixel/Backgrounds/bg_room_study_desk_rpg_map.png
   timeCost: 1
+  maxUsesPerStage: 1
+  battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
   linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}
   fixedRewards:
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 1
     value: 6
     card: {fileID: 0}
@@ -32,7 +35,8 @@ MonoBehaviour:
     activity: {fileID: 0}
     stage: {fileID: 0}
     description: "\u6570\u5B66 +6"
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 11
     value: 2
     card: {fileID: 0}
@@ -40,7 +44,8 @@ MonoBehaviour:
     activity: {fileID: 0}
     stage: {fileID: 0}
     description: "\u81EA\u4E3B +2"
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 5
     value: 3
     card: {fileID: 0}

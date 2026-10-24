@@ -19,9 +19,10 @@ MonoBehaviour:
   cardType: 1
   rarity: 0
   cost: 1
+  price: 0
   description: "\u683C\u6321 5\uFF1B\u538B\u529B -3\u3002"
   cardSprite: {fileID: 21300000, guid: 6ccbdbd45ba05b24faf697e394bb38c8, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6ccbdbd45ba05b24faf697e394bb38c8, type: 3}
   imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_rest_daydream.png
   targetType: 1
   damage: 0

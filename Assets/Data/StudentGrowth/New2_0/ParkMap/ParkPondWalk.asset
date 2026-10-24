@@ -16,15 +16,18 @@ MonoBehaviour:
   displayName: "\u6C60\u8FB9\u6563\u6B65"
   description: "\u6CBF\u6C60\u5858\u6162\u6162\u6563\u6B65\uFF0C\u8BA9\u7D27\u7EF7\u7684\u60C5\u7EEA\u5E73\u9759\u4E0B\u6765\u3002"
   activityType: 3
-  backgroundSprite: {fileID: 21300000, guid: 723eeca5f559a6f42ad28f303553000e, type: 3}
-  icon: {fileID: 0}
-  imagePath: 
+  backgroundSprite: {fileID: -2351607977772436645, guid: c0041a9ec8a04bf3971ca03fb75718d8, type: 3}
+  icon: {fileID: -401558087089407696, guid: 82f567b1d5aaa974f9ca49058c4d2c7a, type: 3}
+  imagePath: Assets/Art/Pixel/Backgrounds/bg_room_student_bedroom_rpg_map.png
   timeCost: 1
+  maxUsesPerStage: 1
+  battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
   linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}
   fixedRewards:
-  - rewardType: 6
+  - battleTiming: 4
+    rewardType: 6
     targetStat: 5
     value: 5
     card: {fileID: 0}
@@ -32,7 +35,8 @@ MonoBehaviour:
     activity: {fileID: 0}
     stage: {fileID: 0}
     description: "\u538B\u529B -5"
-  - rewardType: 3
+  - battleTiming: 4
+    rewardType: 3
     targetStat: 6
     value: 3
     card: {fileID: 0}

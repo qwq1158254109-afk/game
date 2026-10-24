@@ -19,9 +19,10 @@ MonoBehaviour:
   cardType: 3
   rarity: 0
   cost: 1
+  price: 0
   description: "\u63A8\u8FDB 4\uFF1B\u81EA\u4E3B +2\u3002"
   cardSprite: {fileID: 21300000, guid: 4b1461afbf158124a9bbb9c7649aa00d, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4b1461afbf158124a9bbb9c7649aa00d, type: 3}
   imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_family_do_housework.png
   targetType: 2
   damage: 0

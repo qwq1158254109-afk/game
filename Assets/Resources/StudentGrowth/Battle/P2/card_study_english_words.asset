@@ -19,9 +19,10 @@ MonoBehaviour:
   cardType: 0
   rarity: 0
   cost: 1
+  price: 0
   description: "\u63A8\u8FDB 7\u3002"
   cardSprite: {fileID: 21300000, guid: 9bc7bc5e3d2cc0d44981ffa8790ab593, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9bc7bc5e3d2cc0d44981ffa8790ab593, type: 3}
   imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_study_english_words.png
   targetType: 2
   damage: 0

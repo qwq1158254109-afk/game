@@ -19,9 +19,10 @@ MonoBehaviour:
   cardType: 0
   rarity: 0
   cost: 1
+  price: 0
   description: "\u63A8\u8FDB 6\u3002"
   cardSprite: {fileID: 21300000, guid: 57f9efeec0493e349884d14bf126bc28, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 57f9efeec0493e349884d14bf126bc28, type: 3}
   imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_study_class_focus.png
   targetType: 2
   damage: 0
