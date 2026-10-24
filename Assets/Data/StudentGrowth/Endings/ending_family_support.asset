@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfddec227d692b4b8bb7f96ed67fef7, type: 3}
+  m_Name: ending_family_support
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.EndingData
+  endingId: ending_family_support
+  displayName: "\u5BB6\u5EAD\u652F\u6301"
+  description: "\u6C9F\u901A\u8BA9\u5BB6\u5EAD\u6210\u4E3A\u4E86\u4F60\u7684\u652F\u6301\u8D44\u6E90\uFF0C\u800C\u4E0D\u662F\u989D\u5916\u538B\u529B\u3002"
+  illustrationSprite: {fileID: 0}
+  imagePath: 
+  conditions:
+  - statKey: 7
+    comparison: 0
+    value: 53
+  minimumClearedStages: 0
+  minimumDefeatedBosses: 0
+  minimumSubjectAverage: 0
+  maximumPressure: 70
+  requireEndingReached: 1
+  priority: 40

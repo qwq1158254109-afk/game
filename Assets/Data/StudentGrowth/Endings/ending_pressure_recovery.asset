@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfddec227d692b4b8bb7f96ed67fef7, type: 3}
+  m_Name: ending_pressure_recovery
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.EndingData
+  endingId: ending_pressure_recovery
+  displayName: "\u538B\u529B\u8C03\u6574"
+  description: "\u4F60\u7ECF\u5386\u4E86\u9AD8\u538B\u7684\u4E00\u8F6E\u6210\u957F\uFF0C\u6700\u7EC8\u5B66\u4F1A\u5148\u7167\u987E\u72B6\u6001\uFF0C\u518D\u7EE7\u7EED\u524D\u8FDB\u3002"
+  illustrationSprite: {fileID: 0}
+  imagePath: 
+  conditions:
+  - statKey: 5
+    comparison: 0
+    value: 30
+  minimumClearedStages: 0
+  minimumDefeatedBosses: 0
+  minimumSubjectAverage: 0
+  maximumPressure: 100
+  requireEndingReached: 1
+  priority: 60
