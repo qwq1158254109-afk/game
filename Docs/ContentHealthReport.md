@@ -1,7 +1,7 @@
 # 内容体检报告
 
 > 由 `ContentHealthAudit` 生成（工具位于 `Assets/Scripts/StudentGrowth/Editor/ContentHealthAudit.cs`）
-> 生成时间：2026-10-24 21:55:13
+> 生成时间：2026-10-24 22:32:03
 
 > **口径分两套，并排给出，不静默替换。**
 > 「纸面上界」= 把扫描到的所有来源都算上（含未接线资产、锁死地点内的内容），首版口径，系统性偏乐观。
@@ -33,7 +33,7 @@
 - 房间门映射：经 RoomDoor 把 3 个子场景并入所属地点
 - ⚠ 以下场景引用了活动资产，却归不到任何地点（阶段地图未登记、也没有房间门连过去），其中活动只能按「未接线」处理：HomeMapScene.unity
 - 场景接线索引：扫描地图场景 11 个（另跳过 Backups/_Recovery 下的 30 个），找到 14 个活动资产被 MapInteractionTarget 引用（合计 22 处引用）
-- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 80 个，其中活动 14 个
+- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 88 个，其中活动 14 个
 - 地点可达性不动点：迭代 1 轮后收敛，可达地点 6 / 6
 
 ## 2. 结局可达性

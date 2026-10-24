@@ -289,6 +289,14 @@ namespace StudentGrowthEditor
             // 对话优先于活动：交互后直接进入「打招呼 / 赠送礼物 / 购买」菜单。
             target.dialogue = AssetDatabase.LoadAssetAtPath<DialogueData>(
                 "Assets/Resources/StudentGrowth/Dialogue/Dialogue_LibraryLibrarian.asset");
+            // 2026-10-24：NPC 实体（好感度记账 ID）。缺失只告警不阻断——
+            // 送礼好感会退回旧行为（只加心情），对话菜单不受影响。
+            target.npc = AssetDatabase.LoadAssetAtPath<NpcData>(
+                "Assets/Resources/StudentGrowth/NPC/npc_librarian.asset");
+            if (target.npc == null)
+            {
+                Debug.LogWarning("[LibraryLibrarianBuilder] npc_librarian.asset 未找到，好感度接线缺失。");
+            }
             target.interactionPoint = point;
             target.consumeTimeOnInteraction = false;
             target.requireFacing = false;

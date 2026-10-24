@@ -57,6 +57,11 @@ public static class LibraryMapSceneBuilder
         }
 
         mapRoot.name = "LibraryMapRpgRoot";
+
+        // 2026-10-24：LibraryLibrarian 是 10-23 手工接线的（Animator / 交互组件 / 对话与 NPC
+        // 引用都不在本构建器数据里）。重建前先摘出去、建完再挂回来——否则每次重建都会
+        // 静默删掉她，图书馆的对话链和好感度接线全部丢失。
+        GameObject librarian = DetachForRebuild(mapRoot);
         for (int i = mapRoot.childCount - 1; i >= 0; i--)
         {
             Object.DestroyImmediate(mapRoot.GetChild(i).gameObject);
@@ -105,6 +110,7 @@ public static class LibraryMapSceneBuilder
 
         GameObject interactions = CreateChild("InteractableObjects", mapRoot);
         MapInteractionTarget exitTarget = CreateExit(interactions.transform);
+        ReattachAfterRebuild(librarian, interactions.transform);
 
         player.transform.position = new Vector3(0f, -5.35f, 0f);
         RpgPlayerController playerController = player.GetComponent<RpgPlayerController>();
@@ -161,7 +167,32 @@ public static class LibraryMapSceneBuilder
         Debug.Log($"Created LibraryMapScene with exact reference composite and {collisionRoot.transform.childCount} collision objects.");
     }
 
-    private static MapInteractionTarget CreateExit(Transform parent)
+        /// <summary>把手工接线、不在构建器数据里的对象摘到场景根暂存，躲过重建销毁。</summary>
+        private static GameObject DetachForRebuild(Transform mapRoot)
+        {
+            Transform interactables = mapRoot.Find("InteractableObjects");
+            Transform survivor = interactables == null ? null : interactables.Find("LibraryLibrarian");
+            if (survivor == null)
+            {
+                return null;
+            }
+
+            survivor.SetParent(mapRoot.parent, false);
+            return survivor.gameObject;
+        }
+
+        private static void ReattachAfterRebuild(GameObject survivor, Transform interactionsParent)
+        {
+            if (survivor == null)
+            {
+                return;
+            }
+
+            survivor.transform.SetParent(interactionsParent, false);
+            survivor.transform.localPosition = new Vector3(0f, 5.25f, -0.08f);
+        }
+
+        private static MapInteractionTarget CreateExit(Transform parent)
     {
         GameObject exit = CreateChild("LibraryExit", parent);
         exit.transform.position = new Vector3(0f, -6.05f, 0f);
