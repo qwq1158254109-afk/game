@@ -88,6 +88,7 @@ namespace StudentGrowth
 
             pendingComplete = onComplete;
             view.sessionState = sessionState;
+            view.currentNpc = currentNpc;
             view.Show(dialogue, HandleFinished);
             return true;
         }
@@ -195,6 +196,11 @@ namespace StudentGrowth
                 if (currentNpc != null && !string.IsNullOrEmpty(currentNpc.npcId))
                 {
                     sessionState.npcRelationships.Add(currentNpc.npcId, bonus);
+                    // 送礼当场涨好感，对话框里的小心心要同步点亮。
+                    if (view != null)
+                    {
+                        view.RefreshNpcHearts();
+                    }
                 }
                 Sfx.Ui.Confirm();
             });

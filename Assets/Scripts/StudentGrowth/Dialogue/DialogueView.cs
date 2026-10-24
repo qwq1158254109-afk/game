@@ -33,6 +33,9 @@ namespace StudentGrowth
 
         public UIThemeConfig theme;
         public GameSessionState sessionState;
+
+        /// <summary>当前对话归属的 NPC（由 DialogueRunner 在 Play 时写入），好感度小心心按它显示。</summary>
+        public NpcData currentNpc;
         public GameObject panelRoot;
         public PixelPanel panelStyle;
         public CanvasGroup canvasGroup;
@@ -50,6 +53,8 @@ namespace StudentGrowth
         private bool typing;
         private Coroutine typeRoutine;
         private readonly List<Button> optionButtons = new List<Button>();
+        private Image[] heartImages;
+        private RectTransform heartsRoot;
 
         private void Awake()
         {
@@ -117,6 +122,7 @@ namespace StudentGrowth
             SetRect(continueHint.rectTransform, new Vector2(1000f, -296f), new Vector2(160f, 30f), new Vector2(0f, 1f));
 
             ApplyStyle();
+            EnsureHeartsRow();
             SetVisible(false);
         }
 
@@ -134,6 +140,7 @@ namespace StudentGrowth
             lineIndex = -1;
             ShowLine(0);
             SetVisible(true);
+            RefreshNpcHearts();
             Sfx.Ui.Open();
         }
 
@@ -189,6 +196,7 @@ namespace StudentGrowth
             lineIndex = index;
             DialogueLine line = currentDialogue.lines[index];
             Sfx.World.PageFlip();
+            RefreshNpcHearts();
 
             if (speakerText != null)
             {
@@ -481,6 +489,123 @@ namespace StudentGrowth
             }
 
             optionsRoot.gameObject.SetActive(false);
+        }
+
+        // ------------------------------------------------------------------
+        // 好感度小心心（2026-10-24）：头像下方一行 5 颗，每 20 点点亮一颗。
+        // 心形是程序生成的 7×6 像素图，不依赖字体字形和美术资源；
+        // 对话 UI 预制体与代码构建两条路径都靠 EnsureHeartsRow 兜底。
+        // ------------------------------------------------------------------
+        private static Sprite heartSprite;
+        private static readonly string[] HeartPattern =
+        {
+            ".##.##.",
+            "#######",
+            "#######",
+            ".#####.",
+            "..###..",
+            "...#..."
+        };
+
+        public void RefreshNpcHearts()
+        {
+            if (heartImages == null || heartImages.Length == 0)
+            {
+                return;
+            }
+
+            bool show = currentNpc != null
+                && !string.IsNullOrEmpty(currentNpc.npcId)
+                && sessionState != null;
+            if (heartsRoot != null)
+            {
+                heartsRoot.gameObject.SetActive(show);
+            }
+
+            if (!show)
+            {
+                return;
+            }
+
+            EnsureHeartsRow();
+            int value = sessionState.npcRelationships.Get(currentNpc.npcId);
+            int filled = Mathf.Clamp(value / 20, 0, heartImages.Length);
+            for (int i = 0; i < heartImages.Length; i++)
+            {
+                heartImages[i].color = i < filled
+                    ? new Color(0.91f, 0.33f, 0.33f, 1f)
+                    : new Color(0f, 0f, 0f, 0.35f);
+            }
+        }
+
+        private void EnsureHeartsRow()
+        {
+            if (heartImages != null && heartImages.Length > 0)
+            {
+                return;
+            }
+
+            RectTransform parent = panelRoot != null
+                ? panelRoot.transform as RectTransform
+                : transform as RectTransform;
+            if (parent == null)
+            {
+                return;
+            }
+
+            GameObject rowObject = new GameObject("NpcHearts", typeof(RectTransform));
+            heartsRoot = rowObject.transform as RectTransform;
+            heartsRoot.SetParent(parent, false);
+            heartsRoot.anchorMin = heartsRoot.anchorMax = new Vector2(0f, 1f);
+            heartsRoot.pivot = new Vector2(0f, 1f);
+            heartsRoot.anchoredPosition = new Vector2(28f, -236f);
+            heartsRoot.sizeDelta = new Vector2(125f, 18f);
+
+            Sprite heart = EnsureHeartSprite();
+            heartImages = new Image[5];
+            for (int i = 0; i < heartImages.Length; i++)
+            {
+                GameObject heartObject = new GameObject("Heart_" + i, typeof(RectTransform));
+                RectTransform rect = heartObject.transform as RectTransform;
+                rect.SetParent(heartsRoot, false);
+                rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
+                rect.pivot = new Vector2(0f, 1f);
+                rect.anchoredPosition = new Vector2(i * 25f, 0f);
+                rect.sizeDelta = new Vector2(21f, 18f);
+                Image image = heartObject.AddComponent<Image>();
+                image.sprite = heart;
+                image.raycastTarget = false;
+                heartImages[i] = image;
+            }
+
+            heartsRoot.gameObject.SetActive(false);
+        }
+
+        private static Sprite EnsureHeartSprite()
+        {
+            if (heartSprite != null)
+            {
+                return heartSprite;
+            }
+
+            int width = HeartPattern[0].Length;
+            int height = HeartPattern.Length;
+            Texture2D texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    texture.SetPixel(x, height - 1 - y, HeartPattern[y][x] == '#' ? Color.white : Color.clear);
+                }
+            }
+
+            texture.Apply();
+            heartSprite = Sprite.Create(texture, new Rect(0f, 0f, width, height), new Vector2(0.5f, 0.5f), width);
+            return heartSprite;
         }
 
         private void ApplyPortrait(Sprite sprite)
