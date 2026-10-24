@@ -113,10 +113,13 @@ namespace StudentGrowth
             GameObject optionsObject = new GameObject("Options", typeof(RectTransform));
             optionsRoot = optionsObject.transform as RectTransform;
             optionsRoot.SetParent(parent, false);
-            optionsRoot.anchorMin = new Vector2(0.5f, 0.5f);
-            optionsRoot.anchorMax = new Vector2(0.5f, 0.5f);
-            optionsRoot.pivot = new Vector2(0.5f, 0.5f);
-            optionsRoot.anchoredPosition = Vector2.zero;
+            // 底部锚定：卡片底边固定在「对话框顶部 + 24px」，选项多时向上生长。
+            // 不能用居中+读父 rect 算偏移——视图创建的同一帧 rect 还没布局（读到 0），
+            // 会把卡片甩到屏幕顶端（2026-10-24 实测：第一次对话置顶、第二次才恢复）。
+            optionsRoot.anchorMin = new Vector2(0.5f, 0f);
+            optionsRoot.anchorMax = new Vector2(0.5f, 0f);
+            optionsRoot.pivot = new Vector2(0.5f, 0f);
+            optionsRoot.anchoredPosition = new Vector2(0f, PanelBottom + PanelHeight + 24f);
             optionsRoot.sizeDelta = new Vector2(OptionCardWidth, MaxVisibleOptions * (OptionHeight + OptionSpacing) + OptionCardPadding);
 
             Image optionsBackdrop = optionsObject.AddComponent<Image>();
@@ -311,15 +314,13 @@ namespace StudentGrowth
                 float height = visible * (OptionHeight + OptionSpacing) + OptionCardPadding;
                 optionsRoot.sizeDelta = new Vector2(OptionCardWidth, height);
 
-                // 2026-10-24：卡片默认屏幕居中，选项一多底边会压进底部对话框
-                // （4 选项高 432px，盖住说话人并蹭到正文）。约束：底边最多
-                // 下探到「对话框顶部 + 24px」，需要时整体上移补足。
-                RectTransform canvasRect = optionsRoot.parent as RectTransform;
-                float halfHeight = canvasRect != null ? canvasRect.rect.height * 0.5f : 540f;
-                float centeredBottom = halfHeight - height * 0.5f;
-                float minBottom = PanelBottom + PanelHeight + 24f;
-                float lift = Mathf.Max(0f, minBottom - centeredBottom);
-                optionsRoot.anchoredPosition = new Vector2(0f, lift);
+                // 每次显示都重设锚点与位置（幂等）：底部锚定、底边固定在对话框顶部
+                // 上方 24px。必须在这里设——预制体实例可能带着旧的居中锚点，
+                // 而且不能依赖父 rect（首帧未布局，读出来是错的）。
+                optionsRoot.anchorMin = new Vector2(0.5f, 0f);
+                optionsRoot.anchorMax = new Vector2(0.5f, 0f);
+                optionsRoot.pivot = new Vector2(0.5f, 0f);
+                optionsRoot.anchoredPosition = new Vector2(0f, PanelBottom + PanelHeight + 24f);
 
                 optionsRoot.gameObject.SetActive(true);
             }
