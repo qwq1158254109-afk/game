@@ -308,8 +308,19 @@ namespace StudentGrowth
             int visible = Mathf.Min(line.options.Count, MaxVisibleOptions);
             if (visible > 0 && optionsRoot != null)
             {
-                optionsRoot.sizeDelta = new Vector2(OptionCardWidth,
-                    visible * (OptionHeight + OptionSpacing) + OptionCardPadding);
+                float height = visible * (OptionHeight + OptionSpacing) + OptionCardPadding;
+                optionsRoot.sizeDelta = new Vector2(OptionCardWidth, height);
+
+                // 2026-10-24：卡片默认屏幕居中，选项一多底边会压进底部对话框
+                // （4 选项高 432px，盖住说话人并蹭到正文）。约束：底边最多
+                // 下探到「对话框顶部 + 24px」，需要时整体上移补足。
+                RectTransform canvasRect = optionsRoot.parent as RectTransform;
+                float halfHeight = canvasRect != null ? canvasRect.rect.height * 0.5f : 540f;
+                float centeredBottom = halfHeight - height * 0.5f;
+                float minBottom = PanelBottom + PanelHeight + 24f;
+                float lift = Mathf.Max(0f, minBottom - centeredBottom);
+                optionsRoot.anchoredPosition = new Vector2(0f, lift);
+
                 optionsRoot.gameObject.SetActive(true);
             }
             if (visible < line.options.Count)
