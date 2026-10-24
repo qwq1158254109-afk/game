@@ -135,7 +135,20 @@ namespace StudentGrowth
         RemoveItem,
         UnlockActivity,
         UnlockStage,
-        AddStageTime
+        AddStageTime,
+        // 2026-10-24 新增：只允许追加在末尾——存量资产按序号序列化 RewardType，
+        // 插中间会把已有奖励的类型整体错位。
+        AddRelationship
+    }
+
+    /// <summary>
+    /// 条件判定对象（2026-10-24）。默认 PlayerStat = 判玩家属性（旧行为，存量资产不受影响）；
+    /// NpcRelationship = 判与某 NPC 的好感度（npcId 字段指明是谁）。
+    /// </summary>
+    public enum ConditionSubject
+    {
+        PlayerStat,
+        NpcRelationship
     }
 
     public enum ComparisonType

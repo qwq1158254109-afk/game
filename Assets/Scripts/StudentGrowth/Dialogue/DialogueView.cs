@@ -23,6 +23,8 @@ namespace StudentGrowth
         private const float PanelHeight = 340f;
         private const float PanelBottom = 60f;
         private const float PortraitSize = 200f;
+        // 2026-10-24：3 → 4。原先 BuildOptions 里硬编码 Min(count, 3)，第 4 个选项被静默吞掉。
+        private const int MaxVisibleOptions = 4;
         private const float OptionHeight = 92f;
         private const float OptionSpacing = 12f;
         private const float OptionCardWidth = 820f;
@@ -104,7 +106,7 @@ namespace StudentGrowth
             optionsRoot.anchorMax = new Vector2(0.5f, 0.5f);
             optionsRoot.pivot = new Vector2(0.5f, 0.5f);
             optionsRoot.anchoredPosition = Vector2.zero;
-            optionsRoot.sizeDelta = new Vector2(OptionCardWidth, 3f * (OptionHeight + OptionSpacing) + OptionCardPadding);
+            optionsRoot.sizeDelta = new Vector2(OptionCardWidth, MaxVisibleOptions * (OptionHeight + OptionSpacing) + OptionCardPadding);
 
             Image optionsBackdrop = optionsObject.AddComponent<Image>();
             optionsBackdrop.color = new Color(0f, 0f, 0f, 0.8f);
@@ -289,12 +291,18 @@ namespace StudentGrowth
                 return;
             }
 
-            int visible = Mathf.Min(line.options.Count, 3);
+            int visible = Mathf.Min(line.options.Count, MaxVisibleOptions);
             if (visible > 0 && optionsRoot != null)
             {
                 optionsRoot.sizeDelta = new Vector2(OptionCardWidth,
                     visible * (OptionHeight + OptionSpacing) + OptionCardPadding);
                 optionsRoot.gameObject.SetActive(true);
+            }
+            if (visible < line.options.Count)
+            {
+                // 超出上限的选项不会显示，剧情组很难发现——必须在日志里留痕。
+                Debug.LogWarning("[DialogueView] 选项数 " + line.options.Count + " 超过上限 "
+                    + MaxVisibleOptions + "，多余选项未显示。");
             }
             for (int i = 0; i < visible; i++)
             {
@@ -342,6 +350,13 @@ namespace StudentGrowth
             button.interactable = unlocked;
             if (!unlocked)
             {
+                // 2026-10-24：置灰的同时说明原因，玩家不用猜「为什么选不了」。
+                string reason = FormatRequirementText(option.requirements);
+                if (!string.IsNullOrEmpty(reason))
+                {
+                    label.text += "\n<size=16>未满足：" + reason + "</size>";
+                }
+
                 label.color = new Color(label.color.r, label.color.g, label.color.b, 0.45f);
             }
 
@@ -388,14 +403,50 @@ namespace StudentGrowth
                 return true;
             }
 
-            // 条件判定复用事件系统的实现，避免两套规则漂移。
-            PlayerState playerState = sessionState == null ? null : sessionState.playerState;
-            if (playerState == null)
+            // 好感度条件需要整张会话状态；sessionState 为空时条件自动通过（与旧行为一致）。
+            return EventConditionResolver.AreConditionsMet(requirements, sessionState);
+        }
+
+        /// <summary>把条件清单转成一行可读文本，如「压力 ≥ 30、与「图书管理员」好感度 ≥ 10」。</summary>
+        private static string FormatRequirementText(List<EventConditionData> requirements)
+        {
+            if (requirements == null || requirements.Count == 0)
             {
-                return true;
+                return string.Empty;
             }
 
-            return EventConditionResolver.AreConditionsMet(requirements, playerState);
+            List<string> parts = new List<string>();
+            foreach (EventConditionData requirement in requirements)
+            {
+                if (requirement == null)
+                {
+                    continue;
+                }
+
+                string subject = requirement.subject == ConditionSubject.NpcRelationship
+                    ? "与「" + NpcCatalog.DisplayName(requirement.npcId) + "」好感度"
+                    : MapInteractionPromptFormatter.FormatStatName(requirement.statKey);
+                parts.Add(subject + " " + ComparisonSymbol(requirement.comparison) + " " + requirement.value);
+            }
+
+            return string.Join("、", parts.ToArray());
+        }
+
+        private static string ComparisonSymbol(ComparisonType comparison)
+        {
+            switch (comparison)
+            {
+                case ComparisonType.GreaterOrEqual:
+                    return "≥";
+                case ComparisonType.LessOrEqual:
+                    return "≤";
+                case ComparisonType.Equal:
+                    return "=";
+                case ComparisonType.NotEqual:
+                    return "≠";
+                default:
+                    return "?";
+            }
         }
 
         private void Finish()

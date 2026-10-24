@@ -18,6 +18,7 @@ namespace StudentGrowth
         public LocationState locationState = new LocationState();
         public DeckState deckState = new DeckState();
         public ItemInventory itemInventory = new ItemInventory();
+        public NpcRelationshipState npcRelationships = new NpcRelationshipState();
         public List<ActivityData> unlockedActivities = new List<ActivityData>();
         public List<StageData> unlockedStages = new List<StageData>();
         public List<string> clearedStageIds = new List<string>();

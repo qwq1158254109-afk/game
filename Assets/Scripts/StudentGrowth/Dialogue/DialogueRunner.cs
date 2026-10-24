@@ -16,6 +16,12 @@ namespace StudentGrowth
         public DialogueView view;
         public GameSessionState sessionState;
 
+        /// <summary>
+        /// 当前对话归属的 NPC（2026-10-24）。由交互流程在 Play 时传入，
+        /// 「赠送礼物」的好感度记在它头上；没有 NPC 上下文时送礼只回心情（旧行为）。
+        /// </summary>
+        public NpcData currentNpc { get; private set; }
+
         private readonly RewardResolver rewardResolver = new RewardResolver();
         private readonly Dictionary<string, DialogueData> registry = new Dictionary<string, DialogueData>();
         private Action pendingComplete;
@@ -64,13 +70,14 @@ namespace StudentGrowth
             RegisterAll(loaded);
         }
 
-        public bool Play(DialogueData dialogue, Action onComplete = null)
+        public bool Play(DialogueData dialogue, Action onComplete = null, NpcData npc = null)
         {
             if (dialogue == null)
             {
                 return false;
             }
 
+            currentNpc = npc;
             BindView();
             if (view == null)
             {
@@ -184,6 +191,11 @@ namespace StudentGrowth
                 InventoryModel.Drop(sessionState, item);
                 int bonus = Mathf.Clamp(2 + item.price / 8, 2, 8);
                 sessionState.playerState.AddStat(PlayerStatKey.Mood, bonus);
+                // 2026-10-24：送礼同时积累 NPC 好感，曲线与心情一致（价格越贵加得越多）。
+                if (currentNpc != null && !string.IsNullOrEmpty(currentNpc.npcId))
+                {
+                    sessionState.npcRelationships.Add(currentNpc.npcId, bonus);
+                }
                 Sfx.Ui.Confirm();
             });
         }

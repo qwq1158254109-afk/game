@@ -64,6 +64,8 @@ namespace StudentGrowth
         public List<string> defeatedBossIds = new List<string>();
         public List<string> unlockedActivityIds = new List<string>();
         public List<string> unlockedLocationIds = new List<string>();
+        // 2026-10-24：NPC 好感度整表。旧档缺该字段时保持默认空表（MissingMemberHandling.Ignore）。
+        public List<NpcRelationshipEntry> npcRelationships = new List<NpcRelationshipEntry>();
     }
     public sealed class LoadedGameState
     {

@@ -596,7 +596,7 @@ namespace StudentGrowth
                 dialogueRunner.view = EnsureDialogueView();
             }
 
-            bool started = dialogueRunner.Play(target.dialogue, () => EndDialogue(target));
+            bool started = dialogueRunner.Play(target.dialogue, () => EndDialogue(target), target.npc);
             if (!started)
             {
                 ShowPrompt("对话播放失败：缺少对话界面。");

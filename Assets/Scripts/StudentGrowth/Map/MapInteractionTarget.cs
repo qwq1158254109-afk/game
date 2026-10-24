@@ -14,6 +14,11 @@ namespace StudentGrowth
         /// 剧情组只填 DialogueData 资产，不需要改场景逻辑。
         /// </summary>
         public DialogueData dialogue;
+        /// <summary>
+        /// 对话归属的 NPC 实体（2026-10-24）。影响：送礼的好感度记到 npcId 头上；
+        /// 后续好感度门槛、NPC 菜单模板都以它为准。可为空（纯一次性剧情点）。
+        /// </summary>
+        public NpcData npc;
         public MapInteractionPoint interactionPoint;
         public bool isExitPortal;
         public bool consumeTimeOnInteraction = true;

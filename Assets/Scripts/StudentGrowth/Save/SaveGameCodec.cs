@@ -29,7 +29,11 @@ namespace StudentGrowth
                 cardIds = state.deckState.masterDeck.Select(RequiredId).ToList(), itemIds = state.itemInventory.ownedItems.Select(RequiredId).ToList(),
                 activityIds = state.unlockedActivities.Select(RequiredId).ToList(), stageIds = state.unlockedStages.Select(RequiredId).ToList(),
                 clearedStageIds = new List<string>(state.clearedStageIds), defeatedBossIds = new List<string>(state.defeatedBossIds),
-                unlockedActivityIds = new List<string>(state.unlockedActivityIds), unlockedLocationIds = new List<string>(state.unlockedLocationIds) };
+                unlockedActivityIds = new List<string>(state.unlockedActivityIds), unlockedLocationIds = new List<string>(state.unlockedLocationIds),
+                npcRelationships = state.npcRelationships.entries
+                    .Where(e => e != null && !string.IsNullOrWhiteSpace(e.npcId))
+                    .Select(e => new NpcRelationshipEntry { npcId = e.npcId, value = e.value })
+                    .ToList() };
             Validate(record); return record;
         }
         private string RequiredId(ScriptableObject value)
@@ -52,6 +56,14 @@ namespace StudentGrowth
             state.itemInventory.ownedItems = r.itemIds.Select(id => content.Resolve<ItemData>(id)).ToList();
             state.unlockedActivities = r.activityIds.Select(id => content.Resolve<ActivityData>(id)).ToList();
             state.unlockedStages = r.stageIds.Select(id => content.Resolve<StageData>(id)).ToList();
+            state.npcRelationships.entries = r.npcRelationships
+                .Where(e => e != null && !string.IsNullOrWhiteSpace(e.npcId))
+                .Select(e => new NpcRelationshipEntry
+                {
+                    npcId = e.npcId,
+                    value = Mathf.Clamp(e.value, NpcRelationshipState.MinValue, NpcRelationshipState.MaxValue)
+                })
+                .ToList();
             return new LoadedGameState(r,state);
         }
         private static void Validate(SaveGameRecord r)
@@ -66,6 +78,10 @@ namespace StudentGrowth
                 throw new InvalidOperationException("SAVE_INVALID_DATA");
             foreach (var list in new[] { r.cardIds,r.itemIds,r.activityIds,r.stageIds,r.clearedStageIds,r.defeatedBossIds,r.unlockedActivityIds,r.unlockedLocationIds,r.location.unlockedLocationIds,r.location.visitedLocationIds })
                 if (list == null || list.Count > 10000 || list.Any(id => string.IsNullOrWhiteSpace(id) || id.Length > 200)) throw new InvalidOperationException("SAVE_INVALID_IDS");
+            if (r.npcRelationships == null || r.npcRelationships.Count > 1000
+                || r.npcRelationships.Any(e => e == null || string.IsNullOrWhiteSpace(e.npcId) || e.npcId.Length > 200
+                    || e.value < NpcRelationshipState.MinValue || e.value > NpcRelationshipState.MaxValue))
+                throw new InvalidOperationException("SAVE_INVALID_DATA");
         }
         private static bool Finite(double value) => !double.IsNaN(value) && !double.IsInfinity(value);
     }
