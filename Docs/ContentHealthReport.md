@@ -1,7 +1,7 @@
 # 内容体检报告
 
 > 由 `ContentHealthAudit` 生成（工具位于 `Assets/Scripts/StudentGrowth/Editor/ContentHealthAudit.cs`）
-> 生成时间：2026-10-22 15:33:10
+> 生成时间：2026-10-23 18:19:06
 
 > **口径分两套，并排给出，不静默替换。**
 > 「纸面上界」= 把扫描到的所有来源都算上（含未接线资产、锁死地点内的内容），首版口径，系统性偏乐观。
@@ -16,9 +16,9 @@
 | 零来源的属性（实机口径） | **0 / 13** |
 | 瓶颈属性（实机来源仅 1 处） | **0 / 13** |
 | 无来源或无出口的资源类型 | **7 / 13** |
-| **未接线的活动资产**（写完没挂进场景） | **0 / 14** |
-| **实机不可达的活动**（未接线 + 地点锁死） | **0 / 14** |
-| 实机可达活动（按 activityId 去重） | **14 / 14** |
+| **未接线的活动资产**（写完没挂进场景） | **0 / 15** |
+| **实机不可达的活动**（未接线 + 地点锁死） | **0 / 15** |
+| 实机可达活动（按 activityId 去重） | **15 / 15** |
 | 阶段地图上无任何活动的地点 | **0**（—） |
 | **阻塞级问题合计** | **0** |
 
@@ -32,8 +32,8 @@
 - 运行时内容：阶段 3 / 地点 6 / 结局 6
 - 房间门映射：经 RoomDoor 把 3 个子场景并入所属地点
 - ⚠ 以下场景引用了活动资产，却归不到任何地点（阶段地图未登记、也没有房间门连过去），其中活动只能按「未接线」处理：HomeMapScene.unity
-- 场景接线索引：扫描地图场景 11 个（另跳过 Backups/_Recovery 下的 30 个），找到 14 个活动资产被 MapInteractionTarget 引用（合计 22 处引用）
-- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 67 个，其中活动 14 个
+- 场景接线索引：扫描地图场景 11 个（另跳过 Backups/_Recovery 下的 30 个），找到 15 个活动资产被 MapInteractionTarget 引用（合计 24 处引用）
+- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 73 个，其中活动 15 个
 - 地点可达性不动点：迭代 1 轮后收敛，可达地点 6 / 6
 
 ## 2. 结局可达性
@@ -68,7 +68,7 @@
 | AddCard | 1 | 有 |
 | UpgradeCard | 0 | ⚠ 零次出现 —— 无来源或无出口 |
 | RemoveCard | 0 | ⚠ 零次出现 —— 无来源或无出口 |
-| AddPlayerStat | 42 | 有 |
+| AddPlayerStat | 44 | 有 |
 | ReducePlayerStat | 0 | ⚠ 零次出现 —— 无来源或无出口 |
 | AddMoney | 3 | 有 |
 | ReducePressure | 7 | 有 |
@@ -89,9 +89,9 @@
 | 数学 | 35 | 6 | 6 | 55 | 55 | 有 | 阶段可用活动固定奖励 ｜ activity_math_drill（数学刷题）<br>活动资产固定奖励 ｜ activity_home_computer_study（电脑学习）<br>活动资产固定奖励 ｜ activity_school_class_study（课堂学习） |
 | 英语 | 35 | 2 | 2 | 40 | 40 | 有 | 阶段可用活动关联小游戏成功 ｜ activity_word_memory_mini（单词记忆）<br>卡牌效果 ｜ card_study_word_dictation（默写单词） |
 | 精力 | 60 | 6 | 6 | 60 | 60 | 有 | 阶段可用活动固定奖励 ｜ activity_rest_early_sleep（早点休息）<br>阶段可用活动固定奖励 ｜ activity_music_break（听音乐放松）<br>活动资产固定奖励 ｜ activity_home_rest_early_sleep（早点休息） |
-| 精力上限 | 60 | 2 | 2 | 64 | 64 | 有 | 阶段可用活动固定奖励 ｜ activity_rest_early_sleep（早点休息）<br>阶段可用活动固定奖励 ｜ activity_music_break（听音乐放松） |
+| 精力上限 | 60 | 3 | 3 | 65 | 65 | 有 | 阶段可用活动固定奖励 ｜ activity_rest_early_sleep（早点休息）<br>阶段可用活动固定奖励 ｜ activity_music_break（听音乐放松）<br>活动资产固定奖励 ｜ activity_home_wardrobe_tidy（整理衣柜） |
 | 压力 | 20 | 5 | 5 | 41 | 41 | 有 | 阶段Boss失败奖励 ｜ boss_class_quiz（课堂小测）<br>阶段Boss失败奖励 ｜ boss_month_exam（月考）<br>阶段Boss失败奖励 ｜ boss_final_exam（期末综合考试） |
-| 心情 | 60 | 8 | 8 | 85 | 85 | 有 | 阶段可用活动关联事件选项1(稳妥处理) ｜ activity_family_dinner_event（家庭晚饭聊天）<br>阶段可用活动关联事件选项1(稳妥处理) ｜ activity_weekend_plan_event（周末安排）<br>活动资产固定奖励 ｜ activity_club_relax（社团休息） |
+| 心情 | 60 | 9 | 9 | 88 | 88 | 有 | 阶段可用活动关联事件选项1(稳妥处理) ｜ activity_family_dinner_event（家庭晚饭聊天）<br>阶段可用活动关联事件选项1(稳妥处理) ｜ activity_weekend_plan_event（周末安排）<br>活动资产固定奖励 ｜ activity_club_relax（社团休息） |
 | 亲子关系 | 50 | 6 | 6 | 67 | 67 | 有 | 阶段可用活动关联事件选项1(稳妥处理) ｜ activity_family_dinner_event（家庭晚饭聊天）<br>阶段可用活动关联事件选项1(稳妥处理) ｜ activity_weekend_plan_event（周末安排）<br>活动资产固定奖励 ｜ activity_home_family_dinner（家庭晚饭聊天） |
 | 社交 | 40 | 3 | 3 | 50 | 50 | 有 | 活动资产固定奖励 ｜ activity_club_meeting（社团讨论）<br>卡牌效果 ｜ card_social_club_activity（社团活动）<br>卡牌效果 ｜ card_social_group_discussion（小组讨论） |
 | 兴趣 | 40 | 5 | 5 | 53 | 53 | 有 | 活动资产固定奖励 ｜ activity_club_planning（策划社团活动）<br>活动资产固定奖励 ｜ activity_park_flower_viewing（赏花观察）<br>卡牌效果 ｜ card_interest_competition（参加竞赛） |
@@ -118,6 +118,7 @@
 | 整理计划 | <code>activity_home_desk_plan</code> | location_home | ✅ | ✅ | — |
 | 家庭晚饭聊天 | <code>activity_home_family_dinner</code> | location_home | ✅ | ✅ | — |
 | 早点休息 | <code>activity_home_rest_early_sleep</code> | location_home | ✅ | ✅ | — |
+| 整理衣柜 | <code>activity_home_wardrobe_tidy</code> | location_home | ✅ | ✅ | — |
 | 询问图书管理员 | <code>activity_library_librarian_talk</code> | location_library | ✅ | ✅ | — |
 | 长椅休息 | <code>activity_park_bench_rest</code> | location_park | ✅ | ✅ | — |
 | 赏花观察 | <code>activity_park_flower_viewing</code> | location_park | ✅ | ✅ | — |
@@ -137,6 +138,7 @@
 | <code>activity_home_desk_plan</code> | Assets/Data/StudentGrowth/New2_0/HomeMap/New20_HomeDeskPlan.asset |
 | <code>activity_home_family_dinner</code> | Assets/Data/StudentGrowth/New2_0/HomeMap/New20_HomeFamilyDinner.asset |
 | <code>activity_home_rest_early_sleep</code> | Assets/Data/StudentGrowth/New2_0/HomeMap/New20_HomeRestEarlySleep.asset |
+| <code>activity_home_wardrobe_tidy</code> | Assets/Data/StudentGrowth/New2_0/HomeMap/New20_HomeWardrobeTidy.asset |
 | <code>activity_library_librarian_talk</code> | Assets/Data/StudentGrowth/New2_0/LibraryMap/LibraryLibrarianTalkData.asset |
 | <code>activity_park_bench_rest</code> | Assets/Data/StudentGrowth/New2_0/ParkMap/ParkBenchRest.asset |
 | <code>activity_park_flower_viewing</code> | Assets/Data/StudentGrowth/New2_0/ParkMap/ParkFlowerViewing.asset |
@@ -181,7 +183,7 @@
 | 属性「社交」实机来源 ≥1 处（社团开放后救回） | ✅ 已报出 |
 | 属性「兴趣」实机来源 ≥2 处 | ✅ 已报出 |
 | 无任何已接线活动被地点锁死 | ✅ 已报出（0 个） |
-| 参考：实机可达活动（按 activityId 去重） | 14 / 14 |
+| 参考：实机可达活动（按 activityId 去重） | 15 / 15 |
 
 > **修复前（同日基线）**：社团活动室不可达（兴趣/社交门槛自锁——两个属性的增量来源有一半在社团里面）；连带 3 个已接线活动、6 个交互点位锁死；社交实机零来源（40 恒定）、兴趣实机仅 1 处来源（上界 42）。
 > 修复内容：`StageMapLocationAvailabilityService` 删掉 `club_interest_or_social` 键与 `HasClubAccess`，社团改为 `stage_03_or_later`；`MvpSampleDataFactory` 里社团的 `unlockedByDefault` 改为 true 并移除属性门槛。
