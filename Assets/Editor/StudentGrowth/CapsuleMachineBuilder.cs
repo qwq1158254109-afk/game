@@ -197,6 +197,9 @@ namespace StudentGrowthEditor
 
             SpriteRenderer renderer = machine.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
+            // 地图美术里已经有扭蛋机（2026-10-24 用户确认）：本对象只做隐形交互点，
+            // 占位贴图不显示，避免叠在美术机台上。碰撞保留，防止穿模。
+            renderer.enabled = false;
             renderer.sortingOrder = MapObjectYSorter.CalculateSortingOrder(MachineY, 1000, 100f);
 
             BoxCollider2D body = machine.AddComponent<BoxCollider2D>();
