@@ -50,6 +50,7 @@ namespace StudentGrowth
         private Button pullButton;
         private Text pullButtonText;
         private PixelButton pullPixelButton;
+        private RectTransform textStripRect;
         private RectTransform burstRect;
         private Image burstImage;
         private RectTransform shellLeftRect;
@@ -449,7 +450,12 @@ namespace StudentGrowth
 
             StartCoroutine(PlayBurst(card.rarity));
 
-            // ── 7. 卡牌从光里浮现：卡背弹出 → 翻面
+            // ── 7. 卡牌从光里浮现：卡背弹出 → 翻面（衬底条随卡出现）
+            if (textStripRect != null)
+            {
+                textStripRect.gameObject.SetActive(true);
+            }
+
             cardRect.gameObject.SetActive(true);
             cardImage.sprite = EnsureCardBackSprite();
             cardImage.color = Color.white;
@@ -629,6 +635,10 @@ namespace StudentGrowth
             capsuleGlow.gameObject.SetActive(false);
             cardRect.gameObject.SetActive(false);
             burstRect.gameObject.SetActive(false);
+            if (textStripRect != null)
+            {
+                textStripRect.gameObject.SetActive(false);
+            }
             shellLeftRect.gameObject.SetActive(false);
             shellRightRect.gameObject.SetActive(false);
             ClearParticles();
@@ -791,17 +801,18 @@ namespace StudentGrowth
             cardImage.raycastTarget = false;
             cardObject.SetActive(false);
 
-            // 卡名/费用/结果的衬底条：贴机台下方（中心 -285，高 130 → -220..-350），
-            // 不再压到底部按钮区（按钮区在底部 40..124，提示 140..180，2026-10-25 撞过）。
+            // 卡名/费用/结果的衬底条：贴机台下方（中心 -285，高 130 → -220..-350）。
+            // 只在展示抽到的卡时出现，空闲时隐藏（2026-10-25 用户要求）。
             GameObject stripObject = new GameObject("TextStrip", typeof(RectTransform));
-            RectTransform stripRect = stripObject.transform as RectTransform;
-            stripRect.SetParent(rootRect, false);
-            stripRect.anchorMin = stripRect.anchorMax = new Vector2(0.5f, 0.5f);
-            stripRect.sizeDelta = new Vector2(760f, 130f);
-            stripRect.localPosition = new Vector3(0f, -285f, 0f);
+            textStripRect = stripObject.transform as RectTransform;
+            textStripRect.SetParent(rootRect, false);
+            textStripRect.anchorMin = textStripRect.anchorMax = new Vector2(0.5f, 0.5f);
+            textStripRect.sizeDelta = new Vector2(760f, 130f);
+            textStripRect.localPosition = new Vector3(0f, -285f, 0f);
             Image strip = stripObject.AddComponent<Image>();
             strip.color = new Color(0f, 0f, 0f, 0.72f);
             strip.raycastTarget = false;
+            stripObject.SetActive(false);
 
             cardNameText = CreateText("CardName", rootRect, string.Empty, 38, FontStyle.Bold, TextAnchor.MiddleCenter);
             Place(cardNameText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 52f), new Vector2(0f, -250f));
