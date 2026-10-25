@@ -82,7 +82,10 @@ namespace StudentGrowth
             GameObject viewObject = new GameObject("CapsuleView", typeof(RectTransform));
             RectTransform rect = viewObject.transform as RectTransform;
             rect.SetParent(parent, false);
-            rect.anchorMin = rect.anchorMax = Vector2.zero;
+            // 拉伸铺满父级（画布）：锚点必须 (0,0)-(1,1)，两个角都是 0 会缩成一个
+            // 点贴在左下角，机台只能看见右上角（2026-10-24 实测踩坑）。
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
             rect.offsetMin = rect.offsetMax = Vector2.zero;
             CapsuleView view = viewObject.AddComponent<CapsuleView>();
             view.BuildDefaultLayout();
@@ -539,7 +542,9 @@ namespace StudentGrowth
             GameObject root = new GameObject("Root", typeof(RectTransform));
             rootRect = root.transform as RectTransform;
             rootRect.SetParent(transform, false);
-            rootRect.anchorMin = rootRect.anchorMax = Vector2.zero;
+            // 全屏拉伸（同上：不是缩成一个点）。
+            rootRect.anchorMin = Vector2.zero;
+            rootRect.anchorMax = Vector2.one;
             rootRect.offsetMin = rootRect.offsetMax = Vector2.zero;
 
             backdrop = root.AddComponent<Image>();

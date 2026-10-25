@@ -23,10 +23,10 @@ namespace StudentGrowthEditor
         private const string PackPath = "Assets/Resources/StudentGrowth/NPC/capsule_pack_default.asset";
         private const string ActivityPath = "Assets/Data/StudentGrowth/New2_0/ShopMap/ShopCapsuleGacha.asset";
         private const string MachineName = "CapsuleMachineObject";
-        // 交互点在柜台上（美术扭蛋机所在处，2026-10-24 用户确认）。柜台自带阻挡碰撞，
-        // 本对象的碰撞体保持关闭，只做隐形交互点。
-        private const float MachineX = -2.05f;
-        private const float MachineY = 4.9f;
+        // 最初的位置（2026-10-24 用户确认正确）：背景墙货架与回收箱之间的美术扭蛋机处。
+        // 隐形交互点，无占位贴图无碰撞（保持关闭）。
+        private const float MachineX = 1.8f;
+        private const float MachineY = 5.4f;
 
         [MenuItem("Tools/Student Growth/Shop/Build Capsule Machine")]
         public static void Build()
