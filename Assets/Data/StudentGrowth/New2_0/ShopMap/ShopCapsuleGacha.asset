@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 7f83fc1261026a44a8e921f134bbdc10, type: 3}
   m_Name: ShopCapsuleGacha
-  m_EditorClassIdentifier: StudentGrowth.Runtime:StudentGrowth:ActivityData
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.CapsuleGachaActivityData
   activityId: activity_shop_capsule_gacha
   displayName: "\u626D\u86CB\u62BD\u5361"
   description: "\u6295 40 \u91D1\u62BD\u4E00\u5F20\u5361\uFF1A\u666E\u901A 65% /
