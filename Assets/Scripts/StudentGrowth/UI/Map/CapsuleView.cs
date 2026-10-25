@@ -18,10 +18,12 @@ namespace StudentGrowth
         // 参考分辨率 1920×1080 下的布局常量。
         private const float MachineWidth = 440f;
         private const float MachineHeight = 590f;
-        private const float MachineCenterY = -50f;
+        // 机台居屏幕正中（2026-10-24 用户确认）。
+        private const float MachineCenterY = 0f;
         private const float ChuteX = 0f;
-        private const float ChuteY = -195f;
-        private const float CapsuleRestY = -250f;
+        // 出蛋口在机台贴图下沿（64 高贴图的 y16 像素处）：以机台中心为原点约 -147。
+        private const float ChuteY = -145f;
+        private const float CapsuleRestY = -200f;
         private const float CardWidth = 250f;
         private const float CardHeight = 340f;
 
@@ -188,15 +190,15 @@ namespace StudentGrowth
                 resultText.text = string.Empty;
             }
 
-            // ── 1. 投币：金币抛物线落入投币口
+            // ── 1. 投币：金币抛物线落入投币口（机台右上的投币口像素位）
             coinRect.gameObject.SetActive(true);
             coinRect.localPosition = new Vector3(-330f, -20f, 0f);
             coinRect.localRotation = Quaternion.identity;
             Sfx.Ui.Click();
             yield return Tween(0.45f, p =>
             {
-                float x = Mathf.Lerp(-330f, 58f, p);
-                float y = Mathf.Lerp(-20f, 148f, p) + Mathf.Sin(p * Mathf.PI) * 120f;
+                float x = Mathf.Lerp(-330f, 100f, p);
+                float y = Mathf.Lerp(-20f, -18f, p) + Mathf.Sin(p * Mathf.PI) * 120f;
                 coinRect.localPosition = new Vector3(x, y, 0f);
                 coinRect.localRotation = Quaternion.Euler(0f, 0f, p * 720f);
             });

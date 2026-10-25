@@ -23,9 +23,10 @@ namespace StudentGrowthEditor
         private const string PackPath = "Assets/Resources/StudentGrowth/NPC/capsule_pack_default.asset";
         private const string ActivityPath = "Assets/Data/StudentGrowth/New2_0/ShopMap/ShopCapsuleGacha.asset";
         private const string MachineName = "CapsuleMachineObject";
-        // 贴后墙、回收箱(3.5)与饮料柜(8.55)之间的空档，与两侧组成「机器角」。
-        private const float MachineX = 6.0f;
-        private const float MachineY = 5.0f;
+        // 交互点在柜台上（美术扭蛋机所在处，2026-10-24 用户确认）。柜台自带阻挡碰撞，
+        // 本对象的碰撞体保持关闭，只做隐形交互点。
+        private const float MachineX = -2.05f;
+        private const float MachineY = 4.9f;
 
         [MenuItem("Tools/Student Growth/Shop/Build Capsule Machine")]
         public static void Build()
@@ -205,6 +206,8 @@ namespace StudentGrowthEditor
             BoxCollider2D body = machine.AddComponent<BoxCollider2D>();
             body.size = new Vector2(0.85f, 1.3f);
             body.offset = new Vector2(0f, -0.1f);
+            // 柜台已有阻挡碰撞，这里不重复挡路（2026-10-24）。
+            body.enabled = false;
 
             MapInteractionPoint point = machine.AddComponent<MapInteractionPoint>();
             point.locationId = "location_shop";
