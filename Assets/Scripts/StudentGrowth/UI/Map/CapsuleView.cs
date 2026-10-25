@@ -151,6 +151,10 @@ namespace StudentGrowth
 
             GameUiStyle.ApplyPixelText(text, resolved, style);
             text.color = Color.white;
+            // 像素字体在主题的 Truncate 设置下高/宽不足时会被裁切挤压
+            // （「费用 2」被挤扁，2026-10-25）；放开启用溢出显示。
+            text.verticalOverflow = VerticalWrapMode.Overflow;
+            text.horizontalOverflow = HorizontalWrapMode.Wrap;
         }
 
         public void Close()
@@ -539,6 +543,17 @@ namespace StudentGrowth
             {
                 resultText.text = string.Empty;
             }
+
+            // 卡名/费用是独立文字节点，必须一并清掉（2026-10-25 收起后残留）。
+            if (cardNameText != null)
+            {
+                cardNameText.text = string.Empty;
+            }
+
+            if (cardCostText != null)
+            {
+                cardCostText.text = string.Empty;
+            }
         }
 
         /// <summary>通用补间：p 从 0 到 1；skipRequested 时直接跳到 1。</summary>
@@ -800,6 +815,9 @@ namespace StudentGrowth
             Button backButton = CreateButton("Back", "返 回", new Vector2(0.5f, 0f), new Vector2(0f, 56f), new Vector2(240f, 80f), CloseHistory);
             Text backLabel = backButton.GetComponentInChildren<Text>();
             ApplyTextWhite(backLabel, GameUiStyle.ResolveTheme(theme), GameUiTextStyle.ButtonText);
+            // 必须挂进面板里：CreateButton 默认挂主界面根，会让「返 回」在
+            // 面板关闭时也浮在抽奖界面上（2026-10-25 用户撞见）。
+            backButton.transform.SetParent(historyRoot, true);
 
             overlayObject.SetActive(false);
         }
