@@ -365,6 +365,7 @@ namespace StudentGrowth
             animating = true;
             skipRequested = false;
             animatingDeadline = Time.unscaledTime + 12f;
+            RefreshHeader();
             ResetStage();
             if (resultText != null)
             {
@@ -659,14 +660,17 @@ namespace StudentGrowth
 
             if (pullButtonText != null && pack != null)
             {
-                pullButtonText.text = money >= pack.price
-                    ? "抽一次（" + pack.price + " 金）"
-                    : "金钱不足（需 " + pack.price + "）";
+                pullButtonText.text = animating
+                    ? "跳过演出…"
+                    : money >= pack.price
+                        ? "抽一次（" + pack.price + " 金）"
+                        : "金钱不足（需 " + pack.price + "）";
             }
 
             if (pullButton != null)
             {
-                pullButton.interactable = !animating && pack != null && money >= pack.price;
+                // 演出中保持可点 = 跳过；空闲时按金钱门槛。
+                pullButton.interactable = animating || (pack != null && money >= pack.price);
             }
 
             if (hintText != null && pack != null)
@@ -733,24 +737,9 @@ namespace StudentGrowth
             machineRect.localPosition = new Vector3(0f, MachineCenterY, 0f);
             machineImage = machineObject.AddComponent<Image>();
             machineImage.sprite = EnsureMachineSprite();
-            machineImage.raycastTarget = true;
-            // 只有不透明像素可点击：不然贴图四周的透明边也算「点中机器」，
-            // 表现为点空白处直接抽奖（2026-10-25 实测）。程序生成的贴图可读，满足条件。
-            machineImage.alphaHitTestMinimumThreshold = 0.5f;
-            Button machineButton = machineObject.AddComponent<Button>();
-            machineButton.transition = Selectable.Transition.None;
-            machineButton.targetGraphic = machineImage;
-            machineButton.onClick.AddListener(() =>
-            {
-                if (animating)
-                {
-                    skipRequested = true;
-                }
-                else
-                {
-                    TryPull();
-                }
-            });
+            // 纯装饰：抽奖入口只有「抽一次」按钮（2026-10-25 用户要求），
+            // 机器不响应点击，也不参与射线。
+            machineImage.raycastTarget = false;
 
             // 演出可动件只保留扭蛋本体（金币/旋钮/罩内扭蛋已按简化版移除）。
             // 扭蛋 + 漏光
