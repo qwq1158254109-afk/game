@@ -47,6 +47,9 @@ namespace StudentGrowth
         private Text hintText;
         private Text leaveButtonText;
         private PixelButton leavePixelButton;
+        private Button pullButton;
+        private Text pullButtonText;
+        private PixelButton pullPixelButton;
         private RectTransform burstRect;
         private Image burstImage;
         private RectTransform shellLeftRect;
@@ -145,6 +148,13 @@ namespace StudentGrowth
 
             StopAllCoroutines();
             animating = false;
+            // 释放 EventSystem 选中态：Close 时指针不会正常抬起到按钮上，
+            // PixelButton 会停在按压/选中的视觉状态（2026-10-25 用户反馈）。
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+
             SetVisible(false);
             GameplayInputGate.Release(this, true);
         }
@@ -637,11 +647,21 @@ namespace StudentGrowth
                 moneyText.text = "金钱 " + money;
             }
 
+            if (pullButtonText != null && pack != null)
+            {
+                pullButtonText.text = money >= pack.price
+                    ? "抽一次（" + pack.price + " 金）"
+                    : "金钱不足（需 " + pack.price + "）";
+            }
+
+            if (pullButton != null)
+            {
+                pullButton.interactable = !animating && pack != null && money >= pack.price;
+            }
+
             if (hintText != null && pack != null)
             {
-                hintText.text = money >= pack.price
-                    ? "点击机器抽一次（" + pack.price + " 金）· 每局首抽必得非凡以上"
-                    : "金钱不足（需要 " + pack.price + " 金）· 点击右上角离开";
+                hintText.text = "点击机器或按钮抽奖 · 每局首抽必得非凡以上 · ESC 离开";
             }
         }
 
@@ -795,10 +815,25 @@ namespace StudentGrowth
             Place(moneyText.rectTransform, new Vector2(0f, 1f), new Vector2(420f, 52f), new Vector2(40f, -64f));
 
             hintText = CreateText("Hint", rootRect, string.Empty, 26, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 180f));
+            Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 184f));
 
-            // 离开按钮：底部中央大横条（原右上角 150×56 太小难点中，2026-10-25 用户反馈）。
-            Button leaveButton = CreateButton("Leave", "离 开", new Vector2(0.5f, 0f), new Vector2(0f, 64f), new Vector2(340f, 84f), Close);
+            // 底部主操作条：左「抽一次」右「离开」（2026-10-25：此前抽奖只能点机器
+            // 且无任何文字说明，加显式按钮）。
+            pullButton = CreateButton("Pull", "抽一次", new Vector2(0.5f, 0f), new Vector2(-150f, 64f), new Vector2(340f, 84f), () =>
+            {
+                if (animating)
+                {
+                    skipRequested = true;
+                }
+                else
+                {
+                    TryPull();
+                }
+            });
+            pullButtonText = pullButton.GetComponentInChildren<Text>();
+            pullPixelButton = pullButton.GetComponent<PixelButton>();
+
+            Button leaveButton = CreateButton("Leave", "离 开", new Vector2(0.5f, 0f), new Vector2(180f, 64f), new Vector2(240f, 84f), Close);
             leaveButtonText = leaveButton.GetComponentInChildren<Text>();
             leavePixelButton = leaveButton.GetComponent<PixelButton>();
 
