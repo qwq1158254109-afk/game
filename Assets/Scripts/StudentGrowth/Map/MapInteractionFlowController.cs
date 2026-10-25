@@ -343,7 +343,7 @@ namespace StudentGrowth
                 return true;
             }
 
-            if (requireConfirmForActivities && IsActivityTarget(target))
+            if (requireConfirmForActivities && IsActivityTarget(target) && !IsDirectExecuteActivity(target))
             {
                 ShowConfirm(target);
                 return true;
@@ -351,6 +351,16 @@ namespace StudentGrowth
 
             ExecuteTarget(target);
             return true;
+        }
+
+        /// <summary>
+        /// 「界面即确认」的活动不走确认面板：扭蛋抽奖界面自带价格展示与扣费时机，
+        /// 弹确认面板是多余的一步（2026-10-24 用户反馈）。与商店/出口一样直接执行。
+        /// </summary>
+        private static bool IsDirectExecuteActivity(MapInteractionTarget target)
+        {
+            ActivityData activity = target == null ? null : target.fallbackActivity;
+            return activity != null && activity.activityType == ActivityType.Capsule;
         }
 
         public void ConfirmPending()

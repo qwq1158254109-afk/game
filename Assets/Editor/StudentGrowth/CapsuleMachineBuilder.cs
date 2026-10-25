@@ -23,8 +23,9 @@ namespace StudentGrowthEditor
         private const string PackPath = "Assets/Resources/StudentGrowth/NPC/capsule_pack_default.asset";
         private const string ActivityPath = "Assets/Data/StudentGrowth/New2_0/ShopMap/ShopCapsuleGacha.asset";
         private const string MachineName = "CapsuleMachineObject";
-        private const float MachineX = 1.8f;
-        private const float MachineY = 5.4f;
+        // 贴后墙、回收箱(3.5)与饮料柜(8.55)之间的空档，与两侧组成「机器角」。
+        private const float MachineX = 6.0f;
+        private const float MachineY = 5.0f;
 
         [MenuItem("Tools/Student Growth/Shop/Build Capsule Machine")]
         public static void Build()
