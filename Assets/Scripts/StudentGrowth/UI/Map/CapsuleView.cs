@@ -512,6 +512,33 @@ namespace StudentGrowth
             animating = false;
             skipRequested = false;
             RefreshHeader();
+
+            // 结果展示 3 秒后自动收起，屏幕回到干净的机台画面（2026-10-25
+            // 用户反馈卡牌停留太占视野）。开新一抽会让代数失配，自动作废。
+            revealGeneration++;
+            StartCoroutine(HideCardAfterDelay(revealGeneration));
+        }
+
+        private int revealGeneration;
+
+        private IEnumerator HideCardAfterDelay(int generation)
+        {
+            yield return new WaitForSecondsRealtime(3f);
+            if (generation != revealGeneration || !IsOpen)
+            {
+                yield break;
+            }
+
+            cardRect.gameObject.SetActive(false);
+            if (textStripRect != null)
+            {
+                textStripRect.gameObject.SetActive(false);
+            }
+
+            if (resultText != null)
+            {
+                resultText.text = string.Empty;
+            }
         }
 
         /// <summary>通用补间：p 从 0 到 1；skipRequested 时直接跳到 1。</summary>
