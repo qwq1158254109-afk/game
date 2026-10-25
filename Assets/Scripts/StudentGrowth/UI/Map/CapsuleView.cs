@@ -671,19 +671,31 @@ namespace StudentGrowth
             cardImage.raycastTarget = false;
             cardObject.SetActive(false);
 
-            cardNameText = CreateText("CardName", rootRect, string.Empty, 30, FontStyle.Bold, TextAnchor.MiddleCenter);
-            Place(cardNameText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(600f, 44f), new Vector2(0f, -238f));
-            cardCostText = CreateText("CardCost", rootRect, string.Empty, 22, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Place(cardCostText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(600f, 32f), new Vector2(0f, -272f));
+            // 卡名/费用/结果的衬底条：文字不再直接压在机台深色机身上（2026-10-24
+            // 用户反馈「看不清字」——对比度不足 + 字号偏小，一并处理）。
+            GameObject stripObject = new GameObject("TextStrip", typeof(RectTransform));
+            RectTransform stripRect = stripObject.transform as RectTransform;
+            stripRect.SetParent(rootRect, false);
+            stripRect.anchorMin = stripRect.anchorMax = new Vector2(0.5f, 0.5f);
+            stripRect.sizeDelta = new Vector2(760f, 150f);
+            stripRect.localPosition = new Vector3(0f, -282f, 0f);
+            Image strip = stripObject.AddComponent<Image>();
+            strip.color = new Color(0f, 0f, 0f, 0.72f);
+            strip.raycastTarget = false;
 
-            resultText = CreateText("Result", rootRect, string.Empty, 28, FontStyle.Bold, TextAnchor.MiddleCenter);
-            Place(resultText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(900f, 46f), new Vector2(0f, -320f));
+            cardNameText = CreateText("CardName", rootRect, string.Empty, 38, FontStyle.Bold, TextAnchor.MiddleCenter);
+            Place(cardNameText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 52f), new Vector2(0f, -228f));
+            cardCostText = CreateText("CardCost", rootRect, string.Empty, 26, FontStyle.Normal, TextAnchor.MiddleCenter);
+            Place(cardCostText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 36f), new Vector2(0f, -268f));
 
-            moneyText = CreateText("Money", rootRect, string.Empty, 28, FontStyle.Bold, TextAnchor.MiddleLeft);
-            Place(moneyText.rectTransform, new Vector2(0f, 1f), new Vector2(360f, 46f), new Vector2(40f, -58f));
+            resultText = CreateText("Result", rootRect, string.Empty, 34, FontStyle.Bold, TextAnchor.MiddleCenter);
+            Place(resultText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(900f, 48f), new Vector2(0f, -318f));
 
-            hintText = CreateText("Hint", rootRect, string.Empty, 22, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1200f, 36f), new Vector2(0f, 48f));
+            moneyText = CreateText("Money", rootRect, string.Empty, 34, FontStyle.Bold, TextAnchor.MiddleLeft);
+            Place(moneyText.rectTransform, new Vector2(0f, 1f), new Vector2(420f, 52f), new Vector2(40f, -64f));
+
+            hintText = CreateText("Hint", rootRect, string.Empty, 26, FontStyle.Normal, TextAnchor.MiddleCenter);
+            Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 54f));
 
             Button leaveButton = CreateButton("Leave", "离开", new Vector2(1f, 1f), new Vector2(-110f, -70f), new Vector2(150f, 56f), Close);
 
