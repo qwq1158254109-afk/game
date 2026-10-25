@@ -16,12 +16,12 @@ namespace StudentGrowth
     public sealed class CapsuleView : MonoBehaviour
     {
         // 参考分辨率 1920×1080 下的布局常量。机台上移腾出下方演出区：
-        // 机台占 +355..-235，扭蛋落在机台脚下 -270，文字条在 -330..-460。
+        // 机台占 +355..-235，出蛋口对齐贴图下沿（-115），扭蛋停在机台脚下 -270。
         private const float MachineWidth = 440f;
         private const float MachineHeight = 590f;
         private const float MachineCenterY = 60f;
         private const float ChuteX = 0f;
-        private const float ChuteY = -70f;
+        private const float ChuteY = -115f;
         private const float CapsuleRestY = -270f;
         private const float CardWidth = 250f;
         private const float CardHeight = 340f;
@@ -34,11 +34,6 @@ namespace StudentGrowth
         private Image backdrop;
         private RectTransform machineRect;
         private Image machineImage;
-        private RectTransform knobRect;
-        private Image knobImage;
-        private RectTransform domeCapsulesRect;
-        private RectTransform coinRect;
-        private Image coinImage;
         private RectTransform capsuleRect;
         private Image capsuleImage;
         private Image capsuleGlow;
@@ -50,6 +45,7 @@ namespace StudentGrowth
         private Text moneyText;
         private Text hintText;
         private Text leaveButtonText;
+        private PixelButton leavePixelButton;
         private RectTransform burstRect;
         private Image burstImage;
         private RectTransform shellLeftRect;
@@ -62,10 +58,8 @@ namespace StudentGrowth
         private bool skipRequested;
 
         private static Sprite machineSprite;
-        private static Sprite knobSprite;
         private static Sprite capsuleSprite;
         private static Sprite cardBackSprite;
-        private static Sprite coinSprite;
         private static Sprite shellSprite;
         private static Sprite burstSprite;
         private static Sprite particleSprite;
@@ -120,9 +114,10 @@ namespace StudentGrowth
             GameUiStyle.ApplyPixelText(cardNameText, resolved, GameUiTextStyle.Title);
             GameUiStyle.ApplyPixelText(cardCostText, resolved, GameUiTextStyle.Body);
             GameUiStyle.ApplyPixelText(resultText, resolved, GameUiTextStyle.Subtitle);
-            if (leaveButtonText != null)
+            if (leavePixelButton != null)
             {
-                GameUiStyle.ApplyPixelText(leaveButtonText, resolved, GameUiTextStyle.Subtitle);
+                leavePixelButton.theme = resolved;
+                leavePixelButton.ApplyStyle();
             }
         }
 
@@ -213,37 +208,16 @@ namespace StudentGrowth
                 resultText.text = string.Empty;
             }
 
-            // ── 1. 投币：金币抛物线落入投币口（机台右上，随新布局上移）
-            coinRect.gameObject.SetActive(true);
-            coinRect.localPosition = new Vector3(-330f, 20f, 0f);
-            coinRect.localRotation = Quaternion.identity;
+            // ── 1. 机器晃动（简化版演出：去掉投币金币/旋钮/罩内扭蛋这类
+            //    依赖像素级对齐的可动件，它们只要偏一点就很怪）
             Sfx.Ui.Click();
-            yield return Tween(0.45f, p =>
+            Vector3 machineBase = machineRect.localPosition;
+            yield return Tween(0.6f, p =>
             {
-                float x = Mathf.Lerp(-330f, 100f, p);
-                float y = Mathf.Lerp(20f, 95f, p) + Mathf.Sin(p * Mathf.PI) * 120f;
-                coinRect.localPosition = new Vector3(x, y, 0f);
-                coinRect.localRotation = Quaternion.Euler(0f, 0f, p * 720f);
+                machineRect.localPosition = machineBase
+                    + new Vector3(Mathf.Sin(Time.unscaledTime * 42f) * 6f * (1f - p), 0f, 0f);
             });
-            coinRect.gameObject.SetActive(false);
-
-            // ── 2. 旋钮转动 + 罩内扭蛋翻滚（三声咔哒）
-            float tickAt = 0f;
-            int ticksPlayed = 0;
-            yield return Tween(0.7f, p =>
-            {
-                knobRect.localRotation = Quaternion.Euler(0f, 0f, -p * 540f);
-                domeCapsulesRect.localPosition = new Vector3(
-                    Mathf.Sin(p * 60f) * 4f, Mathf.Cos(p * 47f) * 3f, 0f);
-                if (p > tickAt + 0.22f && ticksPlayed < 3)
-                {
-                    ticksPlayed++;
-                    tickAt = p;
-                    Sfx.Ui.Click();
-                }
-            });
-            knobRect.localRotation = Quaternion.identity;
-            domeCapsulesRect.localPosition = Vector3.zero;
+            machineRect.localPosition = machineBase;
 
             // ── 3. 出蛋：从机台下沿掉出，一次弹跳后停在机台脚下
             Sfx.World.PageFlip();
@@ -488,7 +462,6 @@ namespace StudentGrowth
 
         private void ResetStage()
         {
-            coinRect.gameObject.SetActive(false);
             capsuleRect.gameObject.SetActive(false);
             capsuleGlow.gameObject.SetActive(false);
             cardRect.gameObject.SetActive(false);
@@ -602,51 +575,7 @@ namespace StudentGrowth
                 }
             });
 
-            // 旋钮（叠加在机台右上，转动动画）
-            GameObject knobObject = new GameObject("Knob", typeof(RectTransform));
-            knobRect = knobObject.transform as RectTransform;
-            knobRect.SetParent(machineRect, false);
-            knobRect.anchorMin = knobRect.anchorMax = new Vector2(0.5f, 0.5f);
-            knobRect.sizeDelta = new Vector2(76f, 76f);
-            knobRect.localPosition = new Vector3(126f, -46f, 0f);
-            knobImage = knobObject.AddComponent<Image>();
-            knobImage.sprite = EnsureKnobSprite();
-            knobImage.raycastTarget = false;
-
-            // 玻璃罩内扭蛋群（抖动动画的载体：小扭蛋点阵贴图排布）
-            GameObject domeObject = new GameObject("DomeCapsules", typeof(RectTransform));
-            domeCapsulesRect = domeObject.transform as RectTransform;
-            domeCapsulesRect.SetParent(machineRect, false);
-            domeCapsulesRect.anchorMin = domeCapsulesRect.anchorMax = new Vector2(0.5f, 0.5f);
-            domeCapsulesRect.sizeDelta = new Vector2(220f, 150f);
-            domeCapsulesRect.localPosition = new Vector3(0f, 190f, 0f);
-            for (int i = 0; i < 5; i++)
-            {
-                GameObject dot = new GameObject("DomeCapsule_" + i, typeof(RectTransform));
-                RectTransform dotRect = dot.transform as RectTransform;
-                dotRect.SetParent(domeCapsulesRect, false);
-                dotRect.anchorMin = dotRect.anchorMax = new Vector2(0.5f, 0.5f);
-                dotRect.sizeDelta = new Vector2(52f, 46f);
-                dotRect.localPosition = new Vector3(-70f + i * 35f, Mathf.Sin(i * 2.1f) * 32f, 0f);
-                Image dotImage = dot.AddComponent<Image>();
-                dotImage.sprite = EnsureCapsuleSprite();
-                dotImage.raycastTarget = false;
-                dotImage.color = i % 2 == 0
-                    ? new Color(0.95f, 0.62f, 0.35f, 0.95f)
-                    : new Color(0.38f, 0.70f, 0.72f, 0.95f);
-            }
-
-            // 金币
-            GameObject coinObject = new GameObject("Coin", typeof(RectTransform));
-            coinRect = coinObject.transform as RectTransform;
-            coinRect.SetParent(rootRect, false);
-            coinRect.anchorMin = coinRect.anchorMax = new Vector2(0.5f, 0.5f);
-            coinRect.sizeDelta = new Vector2(44f, 44f);
-            coinImage = coinObject.AddComponent<Image>();
-            coinImage.sprite = EnsureCoinSprite();
-            coinImage.raycastTarget = false;
-            coinObject.SetActive(false);
-
+            // 演出可动件只保留扭蛋本体（金币/旋钮/罩内扭蛋已按简化版移除）。
             // 扭蛋 + 漏光
             GameObject glowObject = new GameObject("CapsuleGlow", typeof(RectTransform));
             RectTransform glowRect = glowObject.transform as RectTransform;
@@ -723,6 +652,7 @@ namespace StudentGrowth
 
             Button leaveButton = CreateButton("Leave", "离开", new Vector2(1f, 1f), new Vector2(-110f, -70f), new Vector2(150f, 56f), Close);
             leaveButtonText = leaveButton.GetComponentInChildren<Text>();
+            leavePixelButton = leaveButton.GetComponent<PixelButton>();
 
             SetVisible(false);
         }
@@ -744,6 +674,10 @@ namespace StudentGrowth
             return rect;
         }
 
+        /// <summary>
+        /// 按钮走对话菜单同款配方（PixelButton + 主题）——那套在本项目里被证明
+        /// 一定能显示字；自己拼 Image+Text 的做法两次都翻车（字看不见）。
+        /// </summary>
         private Button CreateButton(string name, string label, Vector2 anchor, Vector2 position, Vector2 size, UnityEngine.Events.UnityAction action)
         {
             GameObject buttonObject = new GameObject(name, typeof(RectTransform));
@@ -755,16 +689,21 @@ namespace StudentGrowth
             rect.sizeDelta = size;
 
             Image background = buttonObject.AddComponent<Image>();
-            background.color = new Color(0.16f, 0.15f, 0.2f, 0.9f);
             Button button = buttonObject.AddComponent<Button>();
             button.targetGraphic = background;
             button.onClick.AddListener(action);
 
-            Text text = CreateText("Text", rect, label, 24, FontStyle.Bold, TextAnchor.MiddleCenter);
+            Text text = CreateText("Text", rect, label, 26, FontStyle.Bold, TextAnchor.MiddleCenter);
             text.rectTransform.anchorMin = Vector2.zero;
             text.rectTransform.anchorMax = Vector2.one;
-            text.rectTransform.offsetMin = Vector2.zero;
-            text.rectTransform.offsetMax = Vector2.zero;
+            text.rectTransform.offsetMin = new Vector2(12f, 0f);
+            text.rectTransform.offsetMax = new Vector2(-12f, 0f);
+
+            PixelButton pixelButton = buttonObject.AddComponent<PixelButton>();
+            pixelButton.background = background;
+            pixelButton.labelText = text;
+            pixelButton.theme = GameUiStyle.ResolveTheme(theme);
+            pixelButton.ApplyStyle();
             return button;
         }
 
@@ -846,23 +785,6 @@ namespace StudentGrowth
             return machineSprite;
         }
 
-        private static Sprite EnsureKnobSprite()
-        {
-            if (knobSprite != null)
-            {
-                return knobSprite;
-            }
-
-            PixelCanvas canvas = new PixelCanvas(10, 10);
-            Color gold = new Color(0.92f, 0.78f, 0.32f, 1f);
-            Color goldDark = new Color(0.68f, 0.55f, 0.20f, 1f);
-            canvas.FillCircle(5, 5, 4, gold);
-            canvas.Ring(5, 5, 4, goldDark);
-            canvas.FillRect(5, 4, 4, 2, goldDark);    // 指示刻线
-            knobSprite = canvas.ToSprite();
-            return knobSprite;
-        }
-
         private static Sprite EnsureCapsuleSprite()
         {
             if (capsuleSprite != null)
@@ -913,23 +835,6 @@ namespace StudentGrowth
             };
             cardBackSprite = BuildSprite(pattern, new Color(0.16f, 0.15f, 0.22f), new Color(0.55f, 0.52f, 0.62f));
             return cardBackSprite;
-        }
-
-        private static Sprite EnsureCoinSprite()
-        {
-            if (coinSprite != null)
-            {
-                return coinSprite;
-            }
-
-            PixelCanvas canvas = new PixelCanvas(12, 12);
-            Color gold = new Color(0.95f, 0.80f, 0.30f, 1f);
-            Color goldDark = new Color(0.70f, 0.55f, 0.18f, 1f);
-            canvas.FillCircle(6, 6, 5, gold);
-            canvas.Ring(6, 6, 5, goldDark);
-            canvas.FillRect(6, 3, 2, 6, goldDark);
-            coinSprite = canvas.ToSprite();
-            return coinSprite;
         }
 
         private static Sprite EnsureShellSprite()
