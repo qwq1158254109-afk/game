@@ -260,7 +260,6 @@ namespace StudentGrowth
             float suspense = card.rarity == CardRarity.Rare ? 1.4f : card.rarity == CardRarity.Uncommon ? 0.8f : 0.3f;
             capsuleGlow.gameObject.SetActive(true);
             capsuleGlow.color = new Color(glow.r, glow.g, glow.b, 0f);
-            Vector3 machineBase = machineRect.localPosition;
             yield return Tween(suspense, p =>
             {
                 float pulse = 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 12f);
