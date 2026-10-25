@@ -839,11 +839,21 @@ namespace StudentGrowth
                 }
 
                 SetState(exit ? MapInteractionFlowState.Idle : MapInteractionFlowState.Completed);
-                // 执行结果提示给 2.2 秒保持期，不被下一帧的面向刷新覆盖。
-                // 注意：抑制（suppress）只影响**下一帧起**的显示，这句结果提示必须照常出现，
-                // 否则玩家看不到"做了什么/得到什么"。
-                promptHoldUntil = Time.unscaledTime + 2.2f;
-                ShowPrompt(result.message);
+                if (result.shouldOpenCapsule)
+                {
+                    // 扭蛋自带全屏界面，「开始扭蛋抽奖」的行动提示条是多余弹窗（2026-10-24
+                    // 用户反馈），直接抑制；玩家离开机台前不重新点亮。
+                    SuppressPromptFor(target);
+                }
+                else
+                {
+                    // 执行结果提示给 2.2 秒保持期，不被下一帧的面向刷新覆盖。
+                    // 注意：抑制（suppress）只影响**下一帧起**的显示，这句结果提示必须照常出现，
+                    // 否则玩家看不到"做了什么/得到什么"。
+                    promptHoldUntil = Time.unscaledTime + 2.2f;
+                    ShowPrompt(result.message);
+                }
+
                 RefreshHudIfNeeded(result);
                 ShowShopIfNeeded(result);
                 ShowCapsuleIfNeeded(result);

@@ -15,15 +15,14 @@ namespace StudentGrowth
     /// </summary>
     public sealed class CapsuleView : MonoBehaviour
     {
-        // 参考分辨率 1920×1080 下的布局常量。
+        // 参考分辨率 1920×1080 下的布局常量。机台上移腾出下方演出区：
+        // 机台占 +355..-235，扭蛋落在机台脚下 -270，文字条在 -330..-460。
         private const float MachineWidth = 440f;
         private const float MachineHeight = 590f;
-        // 机台居屏幕正中（2026-10-24 用户确认）。
-        private const float MachineCenterY = 0f;
+        private const float MachineCenterY = 60f;
         private const float ChuteX = 0f;
-        // 出蛋口在机台贴图下沿（64 高贴图的 y16 像素处）：以机台中心为原点约 -147。
-        private const float ChuteY = -145f;
-        private const float CapsuleRestY = -200f;
+        private const float ChuteY = -70f;
+        private const float CapsuleRestY = -270f;
         private const float CardWidth = 250f;
         private const float CardHeight = 340f;
 
@@ -50,6 +49,7 @@ namespace StudentGrowth
         private Text resultText;
         private Text moneyText;
         private Text hintText;
+        private Text leaveButtonText;
         private RectTransform burstRect;
         private Image burstImage;
         private RectTransform shellLeftRect;
@@ -101,9 +101,29 @@ namespace StudentGrowth
             animating = false;
             ResetStage();
             SetVisible(true);
+            ApplyStyles();
             RefreshHeader();
             Sfx.Ui.Open();
             GameplayInputGate.Acquire(this);
+        }
+
+        /// <summary>
+        /// 用「已解析主题」给全部文字过一遍字体与配色。创建时传的 theme 可能为 null，
+        /// 不补这一步文字会没有字体（按钮上的字看不见的根源，2026-10-24）。
+        /// DialogueView 的 ApplyStyle 做的就是这件事。
+        /// </summary>
+        private void ApplyStyles()
+        {
+            UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
+            GameUiStyle.ApplyPixelText(moneyText, resolved, GameUiTextStyle.Subtitle);
+            GameUiStyle.ApplyPixelText(hintText, resolved, GameUiTextStyle.Body);
+            GameUiStyle.ApplyPixelText(cardNameText, resolved, GameUiTextStyle.Title);
+            GameUiStyle.ApplyPixelText(cardCostText, resolved, GameUiTextStyle.Body);
+            GameUiStyle.ApplyPixelText(resultText, resolved, GameUiTextStyle.Subtitle);
+            if (leaveButtonText != null)
+            {
+                GameUiStyle.ApplyPixelText(leaveButtonText, resolved, GameUiTextStyle.Subtitle);
+            }
         }
 
         public void Close()
@@ -193,15 +213,15 @@ namespace StudentGrowth
                 resultText.text = string.Empty;
             }
 
-            // ── 1. 投币：金币抛物线落入投币口（机台右上的投币口像素位）
+            // ── 1. 投币：金币抛物线落入投币口（机台右上，随新布局上移）
             coinRect.gameObject.SetActive(true);
-            coinRect.localPosition = new Vector3(-330f, -20f, 0f);
+            coinRect.localPosition = new Vector3(-330f, 20f, 0f);
             coinRect.localRotation = Quaternion.identity;
             Sfx.Ui.Click();
             yield return Tween(0.45f, p =>
             {
                 float x = Mathf.Lerp(-330f, 100f, p);
-                float y = Mathf.Lerp(-20f, -18f, p) + Mathf.Sin(p * Mathf.PI) * 120f;
+                float y = Mathf.Lerp(20f, 95f, p) + Mathf.Sin(p * Mathf.PI) * 120f;
                 coinRect.localPosition = new Vector3(x, y, 0f);
                 coinRect.localRotation = Quaternion.Euler(0f, 0f, p * 720f);
             });
@@ -225,24 +245,29 @@ namespace StudentGrowth
             knobRect.localRotation = Quaternion.identity;
             domeCapsulesRect.localPosition = Vector3.zero;
 
-            // ── 3. 出蛋：从出蛋口掉落并弹跳两次
+            // ── 3. 出蛋：从机台下沿掉出，一次弹跳后停在机台脚下
             Sfx.World.PageFlip();
             capsuleRect.gameObject.SetActive(true);
-            capsuleRect.localPosition = new Vector3(ChuteX, ChuteY + 90f, 0f);
+            capsuleRect.localPosition = new Vector3(ChuteX, ChuteY, 0f);
             capsuleRect.localScale = Vector3.one;
             capsuleImage.color = Color.white;
             capsuleGlow.gameObject.SetActive(false);
-            yield return Tween(0.55f, p =>
+            yield return Tween(0.6f, p =>
             {
-                float drop = Mathf.Lerp(ChuteY + 90f, CapsuleRestY, Mathf.Min(1f, p / 0.45f));
-                if (p > 0.45f)
+                float y;
+                if (p < 0.5f)
                 {
-                    float bounce = (p - 0.45f) / 0.55f;
-                    drop = Mathf.Lerp(CapsuleRestY, CapsuleRestY, bounce)
-                        + Mathf.Abs(Mathf.Sin(bounce * Mathf.PI * 2f)) * 26f * (1f - bounce);
+                    // 掉落
+                    y = Mathf.Lerp(ChuteY, CapsuleRestY, p / 0.5f);
+                }
+                else
+                {
+                    // 落地后弹一次（高度 35px 递减到 0）
+                    float bounce = (p - 0.5f) / 0.5f;
+                    y = CapsuleRestY + Mathf.Abs(Mathf.Sin(bounce * Mathf.PI)) * 35f * (1f - bounce * 0.4f);
                 }
 
-                capsuleRect.localPosition = new Vector3(ChuteX, drop, 0f);
+                capsuleRect.localPosition = new Vector3(ChuteX, y, 0f);
             });
             capsuleRect.localPosition = new Vector3(ChuteX, CapsuleRestY, 0f);
 
@@ -666,30 +691,29 @@ namespace StudentGrowth
             cardRect.SetParent(rootRect, false);
             cardRect.anchorMin = cardRect.anchorMax = new Vector2(0.5f, 0.5f);
             cardRect.sizeDelta = new Vector2(CardWidth, CardHeight);
-            cardRect.localPosition = new Vector3(0f, -40f, 0f);
+            cardRect.localPosition = new Vector3(0f, 40f, 0f);
             cardImage = cardObject.AddComponent<Image>();
             cardImage.raycastTarget = false;
             cardObject.SetActive(false);
 
-            // 卡名/费用/结果的衬底条：文字不再直接压在机台深色机身上（2026-10-24
-            // 用户反馈「看不清字」——对比度不足 + 字号偏小，一并处理）。
+            // 卡名/费用/结果的衬底条：文字不压机台（机台下方 -330..-460 区）。
             GameObject stripObject = new GameObject("TextStrip", typeof(RectTransform));
             RectTransform stripRect = stripObject.transform as RectTransform;
             stripRect.SetParent(rootRect, false);
             stripRect.anchorMin = stripRect.anchorMax = new Vector2(0.5f, 0.5f);
-            stripRect.sizeDelta = new Vector2(760f, 150f);
-            stripRect.localPosition = new Vector3(0f, -282f, 0f);
+            stripRect.sizeDelta = new Vector2(760f, 130f);
+            stripRect.localPosition = new Vector3(0f, -395f, 0f);
             Image strip = stripObject.AddComponent<Image>();
             strip.color = new Color(0f, 0f, 0f, 0.72f);
             strip.raycastTarget = false;
 
             cardNameText = CreateText("CardName", rootRect, string.Empty, 38, FontStyle.Bold, TextAnchor.MiddleCenter);
-            Place(cardNameText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 52f), new Vector2(0f, -228f));
+            Place(cardNameText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 52f), new Vector2(0f, -345f));
             cardCostText = CreateText("CardCost", rootRect, string.Empty, 26, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Place(cardCostText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 36f), new Vector2(0f, -268f));
+            Place(cardCostText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 36f), new Vector2(0f, -383f));
 
             resultText = CreateText("Result", rootRect, string.Empty, 34, FontStyle.Bold, TextAnchor.MiddleCenter);
-            Place(resultText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(900f, 48f), new Vector2(0f, -318f));
+            Place(resultText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(900f, 44f), new Vector2(0f, -432f));
 
             moneyText = CreateText("Money", rootRect, string.Empty, 34, FontStyle.Bold, TextAnchor.MiddleLeft);
             Place(moneyText.rectTransform, new Vector2(0f, 1f), new Vector2(420f, 52f), new Vector2(40f, -64f));
@@ -698,6 +722,7 @@ namespace StudentGrowth
             Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 54f));
 
             Button leaveButton = CreateButton("Leave", "离开", new Vector2(1f, 1f), new Vector2(-110f, -70f), new Vector2(150f, 56f), Close);
+            leaveButtonText = leaveButton.GetComponentInChildren<Text>();
 
             SetVisible(false);
         }
