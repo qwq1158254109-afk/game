@@ -68,8 +68,13 @@ namespace StudentGrowth
         private static Sprite burstSprite;
         private static Sprite particleSprite;
 
-        /// <summary>场景里没有就现建一个（挂在运行时画布下），有则复用。</summary>
-        public static CapsuleView Ensure(RectTransform parent)
+        /// <summary>
+        /// 场景里没有就现建。2026-10-25 关键修复：不再复用 MapUiFactory.EnsureRuntimeCanvas——
+        /// 它会抓场景里「任意一块」画布，商店场景有多块，挂到没有 GraphicRaycaster 的画布上
+        /// 就表现为「界面看得见但按钮全点不动」。改为自建专属画布（同对话系统的做法）：
+        /// 自带射线组件、sortingOrder 230 压过对话(215)与 HUD、参考分辨率与布局常数一致。
+        /// </summary>
+        public static CapsuleView Ensure()
         {
             CapsuleView existing = FindFirstObjectByType<CapsuleView>(FindObjectsInactive.Include);
             if (existing != null)
@@ -77,15 +82,21 @@ namespace StudentGrowth
                 return existing;
             }
 
-            GameObject viewObject = new GameObject("CapsuleView", typeof(RectTransform));
-            RectTransform rect = viewObject.transform as RectTransform;
-            rect.SetParent(parent, false);
-            // 拉伸铺满父级（画布）：锚点必须 (0,0)-(1,1)，两个角都是 0 会缩成一个
-            // 点贴在左下角，机台只能看见右上角（2026-10-24 实测踩坑）。
+            GameObject canvasObject = new GameObject("[UI] CapsuleCanvas", typeof(RectTransform));
+            Canvas canvas = canvasObject.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 230;
+            CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
+            scaler.matchWidthOrHeight = 0.5f;
+            canvasObject.AddComponent<GraphicRaycaster>();
+
+            RectTransform rect = canvasObject.transform as RectTransform;
             rect.anchorMin = Vector2.zero;
             rect.anchorMax = Vector2.one;
             rect.offsetMin = rect.offsetMax = Vector2.zero;
-            CapsuleView view = viewObject.AddComponent<CapsuleView>();
+            CapsuleView view = canvasObject.AddComponent<CapsuleView>();
             view.BuildDefaultLayout();
             return view;
         }

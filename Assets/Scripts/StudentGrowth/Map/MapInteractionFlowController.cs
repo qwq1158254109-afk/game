@@ -1214,15 +1214,10 @@ namespace StudentGrowth
                 return;
             }
 
-            RectTransform canvasRect = ResolveCanvasRect();
-            if (canvasRect == null)
-            {
-                return;
-            }
-
+            // 专属画布（Ensure 内自建）：挂错画布会导致按钮收不到点击（2026-10-25）。
             if (capsuleView == null)
             {
-                capsuleView = CapsuleView.Ensure(canvasRect);
+                capsuleView = CapsuleView.Ensure();
                 capsuleView.theme = theme;
             }
 
