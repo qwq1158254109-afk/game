@@ -734,6 +734,9 @@ namespace StudentGrowth
             machineImage = machineObject.AddComponent<Image>();
             machineImage.sprite = EnsureMachineSprite();
             machineImage.raycastTarget = true;
+            // 只有不透明像素可点击：不然贴图四周的透明边也算「点中机器」，
+            // 表现为点空白处直接抽奖（2026-10-25 实测）。程序生成的贴图可读，满足条件。
+            machineImage.alphaHitTestMinimumThreshold = 0.5f;
             Button machineButton = machineObject.AddComponent<Button>();
             machineButton.transition = Selectable.Transition.None;
             machineButton.targetGraphic = machineImage;
