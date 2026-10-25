@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace StudentGrowth
@@ -164,6 +165,61 @@ namespace StudentGrowth
                 animatingDeadline = -1f;
                 ResetStage();
             }
+
+            // 点击调试探测（2026-10-25「按钮点不动」排查用）：打印每次点击命中的
+            // UI 对象链。按钮失效时看这条日志即可定位是哪层挡了射线。确认修复后移除。
+            if (MousePressedThisFrame())
+            {
+                LogPointerHits();
+            }
+        }
+
+        private static bool MousePressedThisFrame()
+        {
+            if (!legacyInputBlocked)
+            {
+                try
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        return true;
+                    }
+                }
+                catch (System.InvalidOperationException)
+                {
+                    legacyInputBlocked = true;
+                }
+            }
+
+            return false;
+        }
+
+        private static void LogPointerHits()
+        {
+            EventSystem eventSystem = EventSystem.current;
+            if (eventSystem == null)
+            {
+                Debug.LogWarning("[CapsuleView] 场景里没有 EventSystem，UI 点击全部失效。");
+                return;
+            }
+
+            Vector2 position = Input.mousePosition;
+            PointerEventData eventData = new PointerEventData(eventSystem) { position = position };
+            List<RaycastResult> results = new List<RaycastResult>();
+            eventSystem.RaycastAll(eventData, results);
+            if (results.Count == 0)
+            {
+                Debug.LogWarning("[CapsuleView] 点击(" + position + ") 未命中任何 UI——射线被挡或坐标在界面外。");
+                return;
+            }
+
+            List<string> names = new List<string>();
+            for (int i = 0; i < results.Count && i < 5; i++)
+            {
+                names.Add(results[i].gameObject.name);
+            }
+
+            Debug.Log("[CapsuleView] 点击(" + position + ") 命中：" + string.Join(" <- ", names.ToArray()));
         }
 
         private static bool EscapePressed()
@@ -728,9 +784,10 @@ namespace StudentGrowth
             Place(moneyText.rectTransform, new Vector2(0f, 1f), new Vector2(420f, 52f), new Vector2(40f, -64f));
 
             hintText = CreateText("Hint", rootRect, string.Empty, 26, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 54f));
+            Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 180f));
 
-            Button leaveButton = CreateButton("Leave", "离开", new Vector2(1f, 1f), new Vector2(-110f, -70f), new Vector2(150f, 56f), Close);
+            // 离开按钮：底部中央大横条（原右上角 150×56 太小难点中，2026-10-25 用户反馈）。
+            Button leaveButton = CreateButton("Leave", "离 开", new Vector2(0.5f, 0f), new Vector2(0f, 64f), new Vector2(340f, 84f), Close);
             leaveButtonText = leaveButton.GetComponentInChildren<Text>();
             leavePixelButton = leaveButton.GetComponent<PixelButton>();
 
