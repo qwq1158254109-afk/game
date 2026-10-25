@@ -127,16 +127,26 @@ namespace StudentGrowth
         private void ApplyStyles()
         {
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
-            GameUiStyle.ApplyPixelText(moneyText, resolved, GameUiTextStyle.Subtitle);
-            GameUiStyle.ApplyPixelText(hintText, resolved, GameUiTextStyle.Body);
-            GameUiStyle.ApplyPixelText(cardNameText, resolved, GameUiTextStyle.Title);
-            GameUiStyle.ApplyPixelText(cardCostText, resolved, GameUiTextStyle.Body);
-            GameUiStyle.ApplyPixelText(resultText, resolved, GameUiTextStyle.Subtitle);
-            if (leavePixelButton != null)
+            // 全部文字显式白色：本界面背景是深色（压黑幕/深灰按钮），主题的
+            // 按钮反向色在此不可见（2026-10-25 按钮字/提示看不见的修复）。
+            ApplyTextWhite(moneyText, resolved, GameUiTextStyle.Subtitle);
+            ApplyTextWhite(hintText, resolved, GameUiTextStyle.Body);
+            ApplyTextWhite(cardNameText, resolved, GameUiTextStyle.Title);
+            ApplyTextWhite(cardCostText, resolved, GameUiTextStyle.Body);
+            ApplyTextWhite(resultText, resolved, GameUiTextStyle.Subtitle);
+            ApplyTextWhite(pullButtonText, resolved, GameUiTextStyle.ButtonText);
+            ApplyTextWhite(leaveButtonText, resolved, GameUiTextStyle.ButtonText);
+        }
+
+        private static void ApplyTextWhite(Text text, UIThemeConfig resolved, GameUiTextStyle style)
+        {
+            if (text == null)
             {
-                leavePixelButton.theme = resolved;
-                leavePixelButton.ApplyStyle();
+                return;
             }
+
+            GameUiStyle.ApplyPixelText(text, resolved, style);
+            text.color = Color.white;
         }
 
         public void Close()
@@ -792,30 +802,31 @@ namespace StudentGrowth
             cardImage.raycastTarget = false;
             cardObject.SetActive(false);
 
-            // 卡名/费用/结果的衬底条：文字不压机台（机台下方 -330..-460 区）。
+            // 卡名/费用/结果的衬底条：贴机台下方（中心 -285，高 130 → -220..-350），
+            // 不再压到底部按钮区（按钮区在底部 40..124，提示 140..180，2026-10-25 撞过）。
             GameObject stripObject = new GameObject("TextStrip", typeof(RectTransform));
             RectTransform stripRect = stripObject.transform as RectTransform;
             stripRect.SetParent(rootRect, false);
             stripRect.anchorMin = stripRect.anchorMax = new Vector2(0.5f, 0.5f);
             stripRect.sizeDelta = new Vector2(760f, 130f);
-            stripRect.localPosition = new Vector3(0f, -395f, 0f);
+            stripRect.localPosition = new Vector3(0f, -285f, 0f);
             Image strip = stripObject.AddComponent<Image>();
             strip.color = new Color(0f, 0f, 0f, 0.72f);
             strip.raycastTarget = false;
 
             cardNameText = CreateText("CardName", rootRect, string.Empty, 38, FontStyle.Bold, TextAnchor.MiddleCenter);
-            Place(cardNameText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 52f), new Vector2(0f, -345f));
+            Place(cardNameText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 52f), new Vector2(0f, -250f));
             cardCostText = CreateText("CardCost", rootRect, string.Empty, 26, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Place(cardCostText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 36f), new Vector2(0f, -383f));
+            Place(cardCostText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(720f, 36f), new Vector2(0f, -288f));
 
             resultText = CreateText("Result", rootRect, string.Empty, 34, FontStyle.Bold, TextAnchor.MiddleCenter);
-            Place(resultText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(900f, 44f), new Vector2(0f, -432f));
+            Place(resultText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(900f, 44f), new Vector2(0f, -330f));
 
             moneyText = CreateText("Money", rootRect, string.Empty, 34, FontStyle.Bold, TextAnchor.MiddleLeft);
             Place(moneyText.rectTransform, new Vector2(0f, 1f), new Vector2(420f, 52f), new Vector2(40f, -64f));
 
             hintText = CreateText("Hint", rootRect, string.Empty, 26, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 184f));
+            Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 160f));
 
             // 底部主操作条：左「抽一次」右「离开」（2026-10-25：此前抽奖只能点机器
             // 且无任何文字说明，加显式按钮）。
