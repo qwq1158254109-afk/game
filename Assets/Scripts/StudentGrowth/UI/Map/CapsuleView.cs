@@ -56,6 +56,9 @@ namespace StudentGrowth
         private List<CardData> pool;
         private bool animating;
         private bool skipRequested;
+        /// <summary>动画看门狗：演出协程意外死掉时强制复位，避免 animating 卡 true。</summary>
+        private float animatingDeadline = -1f;
+        private static bool legacyInputBlocked;
 
         private static Sprite machineSprite;
         private static Sprite capsuleSprite;
@@ -136,6 +139,78 @@ namespace StudentGrowth
 
         public bool IsOpen => gameObject.activeSelf;
 
+        private void Update()
+        {
+            if (!IsOpen)
+            {
+                return;
+            }
+
+            // 逃生口一：ESC 强制关闭。抽奖界面持有输入闸门，任何渲染异常导致
+            // 界面不可点时，玩家至少能按 ESC 退出，不会把游戏卡死在这里。
+            if (EscapePressed())
+            {
+                Close();
+                return;
+            }
+
+            // 逃生口二：看门狗。演出协程被外部 StopAllCoroutines 之类打断后
+            // animating 会永远停在 true（按钮全灭）。超过期限强制复位。
+            if (animating && animatingDeadline > 0f && Time.unscaledTime > animatingDeadline)
+            {
+                Debug.LogWarning("[CapsuleView] 演出超时，看门狗强制复位。");
+                animating = false;
+                skipRequested = false;
+                animatingDeadline = -1f;
+                ResetStage();
+            }
+        }
+
+        private static bool EscapePressed()
+        {
+            if (!legacyInputBlocked)
+            {
+                try
+                {
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        return true;
+                    }
+                }
+                catch (System.InvalidOperationException)
+                {
+                    legacyInputBlocked = true;
+                }
+            }
+
+            return ReadInputSystemKey("escapeKey", "wasPressedThisFrame");
+        }
+
+        /// <summary>反射读新 Input System，与 InventoryController 的既有模式一致。</summary>
+        private static bool ReadInputSystemKey(string keyPropertyName, string statePropertyName)
+        {
+            System.Type keyboardType = System.Type.GetType("UnityEngine.InputSystem.Keyboard, Unity.InputSystem");
+            if (keyboardType == null)
+            {
+                return false;
+            }
+
+            object keyboard = keyboardType.GetProperty("current")?.GetValue(null, null);
+            if (keyboard == null)
+            {
+                return false;
+            }
+
+            object key = keyboardType.GetProperty(keyPropertyName)?.GetValue(keyboard, null);
+            if (key == null)
+            {
+                return false;
+            }
+
+            return (bool)(keyboardType.Assembly.GetType("UnityEngine.InputSystem.Controls.ButtonControl")
+                ?.GetProperty(statePropertyName)?.GetValue(key, null) ?? false);
+        }
+
         // ------------------------------------------------------------------
         // 抽卡
         // ------------------------------------------------------------------
@@ -202,6 +277,7 @@ namespace StudentGrowth
         {
             animating = true;
             skipRequested = false;
+            animatingDeadline = Time.unscaledTime + 12f;
             ResetStage();
             if (resultText != null)
             {
@@ -547,6 +623,11 @@ namespace StudentGrowth
             backdrop = root.AddComponent<Image>();
             backdrop.color = BackdropColor;
             backdrop.raycastTarget = true;
+            // 逃生口三：点击压黑背景 = 关闭（模态标准行为，离开按钮之外的保底出口）。
+            Button backdropButton = root.AddComponent<Button>();
+            backdropButton.transition = Selectable.Transition.None;
+            backdropButton.targetGraphic = backdrop;
+            backdropButton.onClick.AddListener(Close);
             canvasGroup = UiAnimationHelper.EnsureCanvasGroup(root);
 
             // 机台（可点击 = 抽奖 / 演出中 = 跳过）
