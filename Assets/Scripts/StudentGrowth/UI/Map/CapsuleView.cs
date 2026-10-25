@@ -720,11 +720,8 @@ namespace StudentGrowth
             backdrop = root.AddComponent<Image>();
             backdrop.color = BackdropColor;
             backdrop.raycastTarget = true;
-            // 逃生口三：点击压黑背景 = 关闭（模态标准行为，离开按钮之外的保底出口）。
-            Button backdropButton = root.AddComponent<Button>();
-            backdropButton.transition = Selectable.Transition.None;
-            backdropButton.targetGraphic = backdrop;
-            backdropButton.onClick.AddListener(Close);
+            // 注意：背景上不放关闭按钮——演出中随手点击容易落在背景上，
+            // 会把抽奖直接打断退出（2026-10-25 实测）。退出只走 ESC 和「离开」按钮。
             canvasGroup = UiAnimationHelper.EnsureCanvasGroup(root);
 
             // 机台（可点击 = 抽奖 / 演出中 = 跳过）
