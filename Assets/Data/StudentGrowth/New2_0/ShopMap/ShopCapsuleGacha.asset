@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ShopCapsuleGacha
+  m_EditorClassIdentifier: StudentGrowth.Runtime:StudentGrowth:ActivityData
+  activityId: activity_shop_capsule_gacha
+  displayName: "\u626D\u86CB\u62BD\u5361"
+  description: "\u6295 40 \u91D1\u62BD\u4E00\u5F20\u5361\uFF1A\u666E\u901A 65% /
+    \u975E\u51E1 27% / \u7A00\u6709 8%\uFF0C\u6BCF\u5C40\u9996\u62BD\u5FC5\u5F97\u975E\u51E1\u4EE5\u4E0A\u3002"
+  activityType: 6
+  backgroundSprite: {fileID: 0}
+  icon: {fileID: 0}
+  imagePath: 
+  timeCost: 0
+  maxUsesPerStage: -1
+  battleRewardTiming: 0
+  linkedChallenge: {fileID: 0}
+  linkedEvent: {fileID: 0}
+  linkedMiniGame: {fileID: 0}
+  fixedRewards: []
+  possibleRewards: []
+  appearConditions: []
