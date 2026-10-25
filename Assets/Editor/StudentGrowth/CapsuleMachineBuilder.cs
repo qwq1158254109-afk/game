@@ -23,10 +23,10 @@ namespace StudentGrowthEditor
         private const string PackPath = "Assets/Resources/StudentGrowth/NPC/capsule_pack_default.asset";
         private const string ActivityPath = "Assets/Data/StudentGrowth/New2_0/ShopMap/ShopCapsuleGacha.asset";
         private const string MachineName = "CapsuleMachineObject";
-        // 美术扭蛋机的确切位置（2026-10-25 用户在编辑器中选中实测：X=6, Y=-0.4）。
+        // 用户确认的最终位置（2026-10-25：「还是回到之前的位置」）。
         // 隐形交互点。改位置只改这里，然后重跑构建菜单。
-        private const float MachineX = 6.0f;
-        private const float MachineY = -0.4f;
+        private const float MachineX = 1.8f;
+        private const float MachineY = 5.4f;
 
         [MenuItem("Tools/Student Growth/Shop/Build Capsule Machine")]
         public static void Build()
