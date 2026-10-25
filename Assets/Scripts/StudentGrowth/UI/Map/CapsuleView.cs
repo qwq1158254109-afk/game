@@ -51,6 +51,9 @@ namespace StudentGrowth
         private Text pullButtonText;
         private PixelButton pullPixelButton;
         private RectTransform textStripRect;
+        private RectTransform historyRoot;
+        private Text historySummaryText;
+        private Text historyEntriesText;
         private RectTransform burstRect;
         private Image burstImage;
         private RectTransform shellLeftRect;
@@ -179,11 +182,18 @@ namespace StudentGrowth
                 return;
             }
 
-            // 逃生口一：ESC 强制关闭。抽奖界面持有输入闸门，任何渲染异常导致
-            // 界面不可点时，玩家至少能按 ESC 退出，不会把游戏卡死在这里。
+            // 逃生口一：ESC 关闭。记录面板开着时先关记录，再退整个界面。
             if (EscapePressed())
             {
-                Close();
+                if (HistoryIsOpen)
+                {
+                    CloseHistory();
+                }
+                else
+                {
+                    Close();
+                }
+
                 return;
             }
 
@@ -339,6 +349,17 @@ namespace StudentGrowth
             }
 
             sessionState.deckState.AddCardToMasterDeck(outcome.card);
+            sessionState.capsulePulls.Add(new CapsulePullEntry
+            {
+                cardId = outcome.card.cardId,
+                cardName = outcome.card.displayName,
+                rarity = (int)outcome.card.rarity,
+                duplicate = outcome.duplicate
+            });
+            if (sessionState.capsulePulls.Count > 200)
+            {
+                sessionState.capsulePulls.RemoveAt(0);
+            }
             string suffix;
             if (outcome.duplicate)
             {
@@ -718,6 +739,124 @@ namespace StudentGrowth
         }
 
         // ------------------------------------------------------------------
+        // 抽卡记录面板
+        // ------------------------------------------------------------------
+
+        private void BuildHistoryPanel()
+        {
+            GameObject overlayObject = new GameObject("HistoryPanel", typeof(RectTransform));
+            historyRoot = overlayObject.transform as RectTransform;
+            historyRoot.SetParent(rootRect, false);
+            historyRoot.anchorMin = Vector2.zero;
+            historyRoot.anchorMax = Vector2.one;
+            historyRoot.offsetMin = historyRoot.offsetMax = Vector2.zero;
+            Image overlay = overlayObject.AddComponent<Image>();
+            overlay.color = new Color(0f, 0f, 0f, 0.88f);
+
+            Text title = CreateText("Title", historyRoot, "抽卡记录", 42, FontStyle.Bold, TextAnchor.MiddleCenter);
+            title.rectTransform.anchorMin = title.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            title.rectTransform.sizeDelta = new Vector2(600f, 70f);
+            title.rectTransform.anchoredPosition = new Vector2(0f, -50f);
+            ApplyTextWhite(title, GameUiStyle.ResolveTheme(theme), GameUiTextStyle.Title);
+
+            historySummaryText = CreateText("Summary", historyRoot, string.Empty, 28, FontStyle.Bold, TextAnchor.MiddleCenter);
+            historySummaryText.rectTransform.anchorMin = historySummaryText.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            historySummaryText.rectTransform.sizeDelta = new Vector2(1100f, 46f);
+            historySummaryText.rectTransform.anchoredPosition = new Vector2(0f, -130f);
+
+            historyEntriesText = CreateText("Entries", historyRoot, string.Empty, 24, FontStyle.Normal, TextAnchor.UpperLeft);
+            historyEntriesText.supportRichText = true;
+            historyEntriesText.rectTransform.anchorMin = historyEntriesText.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            historyEntriesText.rectTransform.sizeDelta = new Vector2(1000f, 640f);
+            historyEntriesText.rectTransform.anchoredPosition = new Vector2(0f, -180f);
+
+            Button backButton = CreateButton("Back", "返 回", new Vector2(0.5f, 0f), new Vector2(0f, 56f), new Vector2(240f, 80f), CloseHistory);
+            Text backLabel = backButton.GetComponentInChildren<Text>();
+            ApplyTextWhite(backLabel, GameUiStyle.ResolveTheme(theme), GameUiTextStyle.ButtonText);
+
+            overlayObject.SetActive(false);
+        }
+
+        private void ShowHistory()
+        {
+            if (historyRoot == null)
+            {
+                return;
+            }
+
+            List<CapsulePullEntry> pulls = sessionState == null
+                ? null
+                : sessionState.capsulePulls;
+            if (pulls == null || pulls.Count == 0)
+            {
+                historySummaryText.text = "还没有抽过卡";
+                historyEntriesText.text = string.Empty;
+                historyRoot.gameObject.SetActive(true);
+                return;
+            }
+
+            int common = 0, uncommon = 0, rare = 0, duplicate = 0;
+            for (int i = 0; i < pulls.Count; i++)
+            {
+                if (pulls[i] == null)
+                {
+                    continue;
+                }
+
+                if (pulls[i].rarity == 2) rare++;
+                else if (pulls[i].rarity == 1) uncommon++;
+                else common++;
+                if (pulls[i].duplicate) duplicate++;
+            }
+
+            int spent = pack != null ? pulls.Count * pack.price : 0;
+            historySummaryText.text = "共 " + pulls.Count + " 次｜"
+                + "普通 " + common + " · 非凡 " + uncommon + " · 稀有 " + rare
+                + "｜重复 " + duplicate
+                + (pack != null ? "｜累计花费 " + spent + " 金" : string.Empty);
+
+            List<string> lines = new List<string>();
+            int from = pulls.Count - 1;
+            int to = Mathf.Max(0, pulls.Count - 20);
+            for (int i = from; i >= to; i--)
+            {
+                CapsulePullEntry entry = pulls[i];
+                if (entry == null)
+                {
+                    continue;
+                }
+
+                lines.Add((i + 1) + ". " + RarityTag(entry.rarity) + " " + entry.cardName
+                    + (entry.duplicate ? "（重复）" : string.Empty));
+            }
+
+            historyEntriesText.text = string.Join("\n", lines.ToArray())
+                + (pulls.Count > 20 ? "\n…（只显示最近 20 条，共 " + pulls.Count + " 条）" : string.Empty);
+            historyRoot.gameObject.SetActive(true);
+            Sfx.Ui.Open();
+        }
+
+        private void CloseHistory()
+        {
+            if (historyRoot != null)
+            {
+                historyRoot.gameObject.SetActive(false);
+            }
+        }
+
+        private bool HistoryIsOpen => historyRoot != null && historyRoot.gameObject.activeSelf;
+
+        private static string RarityTag(int rarity)
+        {
+            switch (rarity)
+            {
+                case 2: return "<color=#FFD24A>稀有</color>";
+                case 1: return "<color=#7DB8FF>非凡</color>";
+                default: return "<color=#DDDDDD>普通</color>";
+            }
+        }
+
+        // ------------------------------------------------------------------
         // 布局：全屏机台
         // ------------------------------------------------------------------
 
@@ -828,9 +967,8 @@ namespace StudentGrowth
             hintText = CreateText("Hint", rootRect, string.Empty, 26, FontStyle.Normal, TextAnchor.MiddleCenter);
             Place(hintText.rectTransform, new Vector2(0.5f, 0f), new Vector2(1300f, 42f), new Vector2(0f, 160f));
 
-            // 底部主操作条：左「抽一次」右「离开」（2026-10-25：此前抽奖只能点机器
-            // 且无任何文字说明，加显式按钮）。
-            pullButton = CreateButton("Pull", "抽一次", new Vector2(0.5f, 0f), new Vector2(-150f, 64f), new Vector2(340f, 84f), () =>
+            // 底部操作条：抽一次 / 记录 / 离开。
+            pullButton = CreateButton("Pull", "抽一次", new Vector2(0.5f, 0f), new Vector2(-230f, 64f), new Vector2(280f, 84f), () =>
             {
                 if (animating)
                 {
@@ -844,9 +982,13 @@ namespace StudentGrowth
             pullButtonText = pullButton.GetComponentInChildren<Text>();
             pullPixelButton = pullButton.GetComponent<PixelButton>();
 
-            Button leaveButton = CreateButton("Leave", "离 开", new Vector2(0.5f, 0f), new Vector2(180f, 64f), new Vector2(240f, 84f), Close);
+            Button historyButton = CreateButton("History", "记录", new Vector2(0.5f, 0f), new Vector2(0f, 64f), new Vector2(160f, 84f), ShowHistory);
+
+            Button leaveButton = CreateButton("Leave", "离 开", new Vector2(0.5f, 0f), new Vector2(200f, 64f), new Vector2(200f, 84f), Close);
             leaveButtonText = leaveButton.GetComponentInChildren<Text>();
             leavePixelButton = leaveButton.GetComponent<PixelButton>();
+
+            BuildHistoryPanel();
 
             SetVisible(false);
         }

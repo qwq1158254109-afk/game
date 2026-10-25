@@ -1,8 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace StudentGrowth
 {
+    /// <summary>一次扭蛋抽卡的记录（进存档）。普通可序列化类，不是 SO。</summary>
+    [Serializable]
+    public class CapsulePullEntry
+    {
+        public string cardId;
+        public string cardName;
+        /// <summary>CardRarity 序号：0 普通 / 1 非凡 / 2 稀有。</summary>
+        public int rarity;
+        public bool duplicate;
+    }
+
     /// <summary>
     /// 扭蛋抽卡的纯逻辑（设计文档：Docs/CapsuleGachaDesign-2026-10-24.md）。
     /// 不碰会话状态——扣钱 / 入组 / 返现 / 保底标记由调用方结算，这里保持无副作用，

@@ -48,6 +48,8 @@ namespace StudentGrowth
         public bool tutorialSeen;
         // 扭蛋首抽保底（2026-10-24）。旧档缺字段 = false = 保底可用。
         public bool capsulePityUsed;
+        // 扭蛋抽卡记录（2026-10-25），上限 200 条。旧档缺字段 = 空表。
+        public List<CapsulePullEntry> capsulePulls = new List<CapsulePullEntry>();
         public string scenePath;
         public bool hasPlayerPosition;
         public float playerX, playerY, facingX, facingY = -1;

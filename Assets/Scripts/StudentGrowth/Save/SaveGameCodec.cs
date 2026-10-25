@@ -33,6 +33,10 @@ namespace StudentGrowth
                 npcRelationships = state.npcRelationships.entries
                     .Where(e => e != null && !string.IsNullOrWhiteSpace(e.npcId))
                     .Select(e => new NpcRelationshipEntry { npcId = e.npcId, value = e.value })
+                    .ToList(),
+                capsulePulls = state.capsulePulls
+                    .Where(e => e != null && !string.IsNullOrWhiteSpace(e.cardId))
+                    .Select(e => new CapsulePullEntry { cardId = e.cardId, cardName = e.cardName, rarity = e.rarity, duplicate = e.duplicate })
                     .ToList() };
             Validate(record); return record;
         }
@@ -64,6 +68,12 @@ namespace StudentGrowth
                     value = Mathf.Clamp(e.value, NpcRelationshipState.MinValue, NpcRelationshipState.MaxValue)
                 })
                 .ToList();
+            state.capsulePulls = r.capsulePulls == null
+                ? new List<CapsulePullEntry>()
+                : r.capsulePulls
+                    .Where(e => e != null && !string.IsNullOrWhiteSpace(e.cardId))
+                    .Take(200)
+                    .ToList();
             return new LoadedGameState(r,state);
         }
         private static void Validate(SaveGameRecord r)
