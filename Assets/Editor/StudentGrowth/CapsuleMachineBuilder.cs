@@ -132,9 +132,11 @@ namespace StudentGrowthEditor
             return pack;
         }
 
-        private static ActivityData GenerateActivity(CapsulePackData pack)
+        private static CapsuleGachaActivityData GenerateActivity(CapsulePackData pack)
         {
-            ActivityData activity = GetOrCreateAsset<ActivityData>(ActivityPath);
+            // 必须用独立子类 CapsuleGachaActivityData：共文件的 ActivityData 落资产
+            // m_Script 必坏（2026-10-24 实测首版即如此，游戏里报「活动数据不存在」）。
+            CapsuleGachaActivityData activity = GetOrCreateAsset<CapsuleGachaActivityData>(ActivityPath);
             activity.activityId = "activity_shop_capsule_gacha";
             activity.displayName = "扭蛋抽卡";
             activity.description = "投 " + pack.price + " 金抽一张卡：普通 65% / 非凡 27% / 稀有 8%，每局首抽必得非凡以上。";
@@ -153,6 +155,13 @@ namespace StudentGrowthEditor
             if (asset != null)
             {
                 return asset;
+            }
+
+            // 加载为 null 但文件还在 = 脚本引用坏死的残留资产（m_Script {fileID:0}），
+            // 直接删掉重建，否则 CreateAsset 会撞在坏文件上。
+            if (File.Exists(path))
+            {
+                AssetDatabase.DeleteAsset(path);
             }
 
             asset = ScriptableObject.CreateInstance<T>();
