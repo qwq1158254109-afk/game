@@ -116,8 +116,15 @@ namespace StudentGrowth
             }
 
             ClearDropArm();
+
+            // 2026-10-24：还挂着选择回调时，关闭面板 = 玩家取消选择，必须以 null 回调
+            // 让调用方收尾（对话送礼流程靠它复位输入锁并回到菜单）。之前直接丢弃回调，
+            // 取消送礼后对话面板被 suppressAdvance 锁死，永远点不动。
+            // 选中道具的路径在 Close 之前已清空回调，不会双重触发。
+            Action<ItemData> pending = selectionCallback;
             selectionCallback = null;
             ReleaseGate();
+            pending?.Invoke(null);
         }
 
         public void Toggle(GameSessionState state)

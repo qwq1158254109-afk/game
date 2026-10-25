@@ -16,6 +16,51 @@ namespace StudentGrowth
         public DialogueView view;
         public GameSessionState sessionState;
 
+        /// <summary>
+        /// 当前对话归属的 NPC（2026-10-24）。由交互流程在 Play 时传入，
+        /// 「赠送礼物」的好感度记在它头上；没有 NPC 上下文时送礼只回心情（旧行为）。
+        /// </summary>
+        public NpcData currentNpc { get; private set; }
+
+        /// <summary>对话结束后的待办动作（由选项触发，交互流程在 EndDialogue 里消费）。</summary>
+        public bool pendingOpenShop { get; private set; }
+        public bool pendingFallbackActivity { get; private set; }
+
+        public bool ConsumePendingOpenShop()
+        {
+            bool value = pendingOpenShop;
+            pendingOpenShop = false;
+            return value;
+        }
+
+        public bool ConsumePendingFallbackActivity()
+        {
+            bool value = pendingFallbackActivity;
+            pendingFallbackActivity = false;
+            return value;
+        }
+
+        /// <summary>
+        /// 每次玩家重新打开对话前清空待办动作。
+        /// 注意不能在 Play 里清——菜单选项跳转子对话（HandleJumpRequested → Play）会再次进 Play，
+        /// 那样选项刚设置的标志会被自己吃掉。
+        /// </summary>
+        public void ClearPendingActions()
+        {
+            pendingOpenShop = false;
+            pendingFallbackActivity = false;
+            pendingGiftOption = null;
+            if (view != null)
+            {
+                view.suppressAdvance = false;
+            }
+        }
+
+        /// <summary>送礼等待中的选项（含收礼对话 nextDialogueId）。背包关闭后由 ResumeAfterGift 消费。</summary>
+        private DialogueOption pendingGiftOption;
+        /// <summary>送礼选项所在的那段对话（通常是菜单），取消送礼时回到它重选。</summary>
+        private DialogueData currentDialogueData;
+
         private readonly RewardResolver rewardResolver = new RewardResolver();
         private readonly Dictionary<string, DialogueData> registry = new Dictionary<string, DialogueData>();
         private Action pendingComplete;
@@ -64,13 +109,14 @@ namespace StudentGrowth
             RegisterAll(loaded);
         }
 
-        public bool Play(DialogueData dialogue, Action onComplete = null)
+        public bool Play(DialogueData dialogue, Action onComplete = null, NpcData npc = null)
         {
             if (dialogue == null)
             {
                 return false;
             }
 
+            currentNpc = npc;
             BindView();
             if (view == null)
             {
@@ -80,12 +126,14 @@ namespace StudentGrowth
             }
 
             pendingComplete = onComplete;
+            currentDialogueData = dialogue;
             view.sessionState = sessionState;
+            view.currentNpc = currentNpc;
             view.Show(dialogue, HandleFinished);
             return true;
         }
 
-        public bool PlayById(string dialogueId, Action onComplete = null)
+        public bool PlayById(string dialogueId, Action onComplete = null, NpcData npc = null)
         {
             if (string.IsNullOrEmpty(dialogueId))
             {
@@ -99,7 +147,7 @@ namespace StudentGrowth
                 return false;
             }
 
-            return Play(dialogue, onComplete);
+            return Play(dialogue, onComplete, npc);
         }
 
         public bool IsPlaying => view != null && view.gameObject.activeSelf;
@@ -140,8 +188,24 @@ namespace StudentGrowth
                 return;
             }
 
+            if (option.openShop)
+            {
+                pendingOpenShop = true;
+            }
+
+            if (option.useFallbackActivity)
+            {
+                pendingFallbackActivity = true;
+            }
+
             if (option.chooseItemAsGift)
             {
+                pendingGiftOption = option;
+                if (view != null)
+                {
+                    view.suppressAdvance = true;
+                }
+
                 StartCoroutine(OpenGiftPickerNextFrame());
                 return;
             }
@@ -162,7 +226,9 @@ namespace StudentGrowth
 
         /// <summary>
         /// 「赠送礼物」：等对话框收起一帧，再打开背包的选择模式。
-        /// 选中道具后从背包移除，并按价值回一点心情（不给道具本身的使用效果）。
+        /// 2026-10-24 修复顺序：先挑道具、选中并发放效果后才播收礼对话（nextDialogueId）；
+        /// 取消则回到送礼前的那段对话（通常是菜单）重选。旧行为是点选项的瞬间就播
+        /// 「收下了礼物」，玩家还没送出去 NPC 就先道谢了。
         /// </summary>
         private IEnumerator OpenGiftPickerNextFrame()
         {
@@ -170,6 +236,7 @@ namespace StudentGrowth
 
             if (sessionState == null || sessionState.playerState == null)
             {
+                ResumeAfterGift(false);
                 yield break;
             }
 
@@ -178,14 +245,51 @@ namespace StudentGrowth
             {
                 if (item == null)
                 {
+                    ResumeAfterGift(false);
                     return;
                 }
 
                 InventoryModel.Drop(sessionState, item);
                 int bonus = Mathf.Clamp(2 + item.price / 8, 2, 8);
                 sessionState.playerState.AddStat(PlayerStatKey.Mood, bonus);
+                // 送礼同时积累 NPC 好感，曲线与心情一致（价格越贵加得越多）。
+                if (currentNpc != null && !string.IsNullOrEmpty(currentNpc.npcId))
+                {
+                    sessionState.npcRelationships.Add(currentNpc.npcId, bonus);
+                    // 送礼当场涨好感，对话框里的小心心要同步点亮。
+                    if (view != null)
+                    {
+                        view.RefreshNpcHearts();
+                    }
+                }
                 Sfx.Ui.Confirm();
+                ResumeAfterGift(true);
             });
+        }
+
+        /// <summary>背包关闭后的收尾：送出了播收礼对话，取消了回菜单，都没有则按结束处理。</summary>
+        private void ResumeAfterGift(bool giftGiven)
+        {
+            DialogueOption giftOption = pendingGiftOption;
+            pendingGiftOption = null;
+            if (view != null)
+            {
+                view.suppressAdvance = false;
+            }
+
+            if (giftGiven && giftOption != null && !string.IsNullOrEmpty(giftOption.nextDialogueId))
+            {
+                PlayById(giftOption.nextDialogueId, pendingComplete);
+                return;
+            }
+
+            if (currentDialogueData != null)
+            {
+                Play(currentDialogueData, pendingComplete, currentNpc);
+                return;
+            }
+
+            HandleFinished();
         }
 
         private void HandleJumpRequested(string nextDialogueId)
@@ -193,7 +297,8 @@ namespace StudentGrowth
             // PlayById 内部会把 pendingComplete 重新登记给下一段对话。
             // 这里千万不能再把它清空 —— 清了之后整条链路播完不会触发结束回调，
             // 输入闸门永远不释放，表现就是「选完选项后人物不能动」。
-            PlayById(nextDialogueId, pendingComplete);
+            // NPC 上下文也要一路带下去，否则子对话里好感度小心心会消失。
+            PlayById(nextDialogueId, pendingComplete, currentNpc);
         }
 
         private void HandleFinished()

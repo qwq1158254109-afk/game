@@ -23,6 +23,8 @@ namespace StudentGrowth
         private const float PanelHeight = 340f;
         private const float PanelBottom = 60f;
         private const float PortraitSize = 200f;
+        // 2026-10-24：3 → 4。原先 BuildOptions 里硬编码 Min(count, 3)，第 4 个选项被静默吞掉。
+        private const int MaxVisibleOptions = 4;
         private const float OptionHeight = 92f;
         private const float OptionSpacing = 12f;
         private const float OptionCardWidth = 820f;
@@ -31,6 +33,15 @@ namespace StudentGrowth
 
         public UIThemeConfig theme;
         public GameSessionState sessionState;
+
+        /// <summary>当前对话归属的 NPC（由 DialogueRunner 在 Play 时写入），好感度小心心按它显示。</summary>
+        public NpcData currentNpc;
+
+        /// <summary>
+        /// 送礼流程中置 true：背包选择器开着，对话面板不能再被点击推进
+        /// （否则会把菜单点结束，等玩家挑完道具回来时流程已经散了）。
+        /// </summary>
+        public bool suppressAdvance;
         public GameObject panelRoot;
         public PixelPanel panelStyle;
         public CanvasGroup canvasGroup;
@@ -48,6 +59,8 @@ namespace StudentGrowth
         private bool typing;
         private Coroutine typeRoutine;
         private readonly List<Button> optionButtons = new List<Button>();
+        private Image[] heartImages;
+        private RectTransform heartsRoot;
 
         private void Awake()
         {
@@ -100,11 +113,14 @@ namespace StudentGrowth
             GameObject optionsObject = new GameObject("Options", typeof(RectTransform));
             optionsRoot = optionsObject.transform as RectTransform;
             optionsRoot.SetParent(parent, false);
-            optionsRoot.anchorMin = new Vector2(0.5f, 0.5f);
-            optionsRoot.anchorMax = new Vector2(0.5f, 0.5f);
-            optionsRoot.pivot = new Vector2(0.5f, 0.5f);
-            optionsRoot.anchoredPosition = Vector2.zero;
-            optionsRoot.sizeDelta = new Vector2(OptionCardWidth, 3f * (OptionHeight + OptionSpacing) + OptionCardPadding);
+            // 底部锚定：卡片底边固定在「对话框顶部 + 24px」，选项多时向上生长。
+            // 不能用居中+读父 rect 算偏移——视图创建的同一帧 rect 还没布局（读到 0），
+            // 会把卡片甩到屏幕顶端（2026-10-24 实测：第一次对话置顶、第二次才恢复）。
+            optionsRoot.anchorMin = new Vector2(0.5f, 0f);
+            optionsRoot.anchorMax = new Vector2(0.5f, 0f);
+            optionsRoot.pivot = new Vector2(0.5f, 0f);
+            optionsRoot.anchoredPosition = new Vector2(0f, PanelBottom + PanelHeight + 24f);
+            optionsRoot.sizeDelta = new Vector2(OptionCardWidth, MaxVisibleOptions * (OptionHeight + OptionSpacing) + OptionCardPadding);
 
             Image optionsBackdrop = optionsObject.AddComponent<Image>();
             optionsBackdrop.color = new Color(0f, 0f, 0f, 0.8f);
@@ -115,6 +131,7 @@ namespace StudentGrowth
             SetRect(continueHint.rectTransform, new Vector2(1000f, -296f), new Vector2(160f, 30f), new Vector2(0f, 1f));
 
             ApplyStyle();
+            EnsureHeartsRow();
             SetVisible(false);
         }
 
@@ -132,6 +149,7 @@ namespace StudentGrowth
             lineIndex = -1;
             ShowLine(0);
             SetVisible(true);
+            RefreshNpcHearts();
             Sfx.Ui.Open();
         }
 
@@ -149,7 +167,7 @@ namespace StudentGrowth
         /// <summary>点击/按键推进。正在打字时先补全当前句，不跳句。</summary>
         public void Advance()
         {
-            if (currentDialogue == null)
+            if (currentDialogue == null || suppressAdvance)
             {
                 return;
             }
@@ -187,6 +205,7 @@ namespace StudentGrowth
             lineIndex = index;
             DialogueLine line = currentDialogue.lines[index];
             Sfx.World.PageFlip();
+            RefreshNpcHearts();
 
             if (speakerText != null)
             {
@@ -289,12 +308,27 @@ namespace StudentGrowth
                 return;
             }
 
-            int visible = Mathf.Min(line.options.Count, 3);
+            int visible = Mathf.Min(line.options.Count, MaxVisibleOptions);
             if (visible > 0 && optionsRoot != null)
             {
-                optionsRoot.sizeDelta = new Vector2(OptionCardWidth,
-                    visible * (OptionHeight + OptionSpacing) + OptionCardPadding);
+                float height = visible * (OptionHeight + OptionSpacing) + OptionCardPadding;
+                optionsRoot.sizeDelta = new Vector2(OptionCardWidth, height);
+
+                // 每次显示都重设锚点与位置（幂等）：底部锚定、底边固定在对话框顶部
+                // 上方 24px。必须在这里设——预制体实例可能带着旧的居中锚点，
+                // 而且不能依赖父 rect（首帧未布局，读出来是错的）。
+                optionsRoot.anchorMin = new Vector2(0.5f, 0f);
+                optionsRoot.anchorMax = new Vector2(0.5f, 0f);
+                optionsRoot.pivot = new Vector2(0.5f, 0f);
+                optionsRoot.anchoredPosition = new Vector2(0f, PanelBottom + PanelHeight + 24f);
+
                 optionsRoot.gameObject.SetActive(true);
+            }
+            if (visible < line.options.Count)
+            {
+                // 超出上限的选项不会显示，剧情组很难发现——必须在日志里留痕。
+                Debug.LogWarning("[DialogueView] 选项数 " + line.options.Count + " 超过上限 "
+                    + MaxVisibleOptions + "，多余选项未显示。");
             }
             for (int i = 0; i < visible; i++)
             {
@@ -342,6 +376,13 @@ namespace StudentGrowth
             button.interactable = unlocked;
             if (!unlocked)
             {
+                // 2026-10-24：置灰的同时说明原因，玩家不用猜「为什么选不了」。
+                string reason = FormatRequirementText(option.requirements);
+                if (!string.IsNullOrEmpty(reason))
+                {
+                    label.text += "\n<size=16>未满足：" + reason + "</size>";
+                }
+
                 label.color = new Color(label.color.r, label.color.g, label.color.b, 0.45f);
             }
 
@@ -366,6 +407,15 @@ namespace StudentGrowth
             Sfx.Ui.Confirm();
             onOptionChosen?.Invoke(option);
 
+            if (option.chooseItemAsGift)
+            {
+                // 2026-10-24 修复：不能现在就跳 nextDialogueId——那会变成
+                // 「还没送出就先道谢」。先清掉选项等背包，选中后由 Runner 播收礼对话，
+                // 取消则回到本菜单。
+                ClearOptions();
+                return;
+            }
+
             if (!string.IsNullOrEmpty(option.nextDialogueId))
             {
                 onJumpRequested?.Invoke(option.nextDialogueId);
@@ -388,14 +438,50 @@ namespace StudentGrowth
                 return true;
             }
 
-            // 条件判定复用事件系统的实现，避免两套规则漂移。
-            PlayerState playerState = sessionState == null ? null : sessionState.playerState;
-            if (playerState == null)
+            // 好感度条件需要整张会话状态；sessionState 为空时条件自动通过（与旧行为一致）。
+            return EventConditionResolver.AreConditionsMet(requirements, sessionState);
+        }
+
+        /// <summary>把条件清单转成一行可读文本，如「压力 ≥ 30、与「图书管理员」好感度 ≥ 10」。</summary>
+        private static string FormatRequirementText(List<EventConditionData> requirements)
+        {
+            if (requirements == null || requirements.Count == 0)
             {
-                return true;
+                return string.Empty;
             }
 
-            return EventConditionResolver.AreConditionsMet(requirements, playerState);
+            List<string> parts = new List<string>();
+            foreach (EventConditionData requirement in requirements)
+            {
+                if (requirement == null)
+                {
+                    continue;
+                }
+
+                string subject = requirement.subject == ConditionSubject.NpcRelationship
+                    ? "与「" + NpcCatalog.DisplayName(requirement.npcId) + "」好感度"
+                    : MapInteractionPromptFormatter.FormatStatName(requirement.statKey);
+                parts.Add(subject + " " + ComparisonSymbol(requirement.comparison) + " " + requirement.value);
+            }
+
+            return string.Join("、", parts.ToArray());
+        }
+
+        private static string ComparisonSymbol(ComparisonType comparison)
+        {
+            switch (comparison)
+            {
+                case ComparisonType.GreaterOrEqual:
+                    return "≥";
+                case ComparisonType.LessOrEqual:
+                    return "≤";
+                case ComparisonType.Equal:
+                    return "=";
+                case ComparisonType.NotEqual:
+                    return "≠";
+                default:
+                    return "?";
+            }
         }
 
         private void Finish()
@@ -430,6 +516,123 @@ namespace StudentGrowth
             }
 
             optionsRoot.gameObject.SetActive(false);
+        }
+
+        // ------------------------------------------------------------------
+        // 好感度小心心（2026-10-24）：头像下方一行 5 颗，每 20 点点亮一颗。
+        // 心形是程序生成的 7×6 像素图，不依赖字体字形和美术资源；
+        // 对话 UI 预制体与代码构建两条路径都靠 EnsureHeartsRow 兜底。
+        // ------------------------------------------------------------------
+        private static Sprite heartSprite;
+        private static readonly string[] HeartPattern =
+        {
+            ".##.##.",
+            "#######",
+            "#######",
+            ".#####.",
+            "..###..",
+            "...#..."
+        };
+
+        public void RefreshNpcHearts()
+        {
+            if (heartImages == null || heartImages.Length == 0)
+            {
+                return;
+            }
+
+            bool show = currentNpc != null
+                && !string.IsNullOrEmpty(currentNpc.npcId)
+                && sessionState != null;
+            if (heartsRoot != null)
+            {
+                heartsRoot.gameObject.SetActive(show);
+            }
+
+            if (!show)
+            {
+                return;
+            }
+
+            EnsureHeartsRow();
+            int value = sessionState.npcRelationships.Get(currentNpc.npcId);
+            int filled = Mathf.Clamp(value / 20, 0, heartImages.Length);
+            for (int i = 0; i < heartImages.Length; i++)
+            {
+                heartImages[i].color = i < filled
+                    ? new Color(0.91f, 0.33f, 0.33f, 1f)
+                    : new Color(0f, 0f, 0f, 0.35f);
+            }
+        }
+
+        private void EnsureHeartsRow()
+        {
+            if (heartImages != null && heartImages.Length > 0)
+            {
+                return;
+            }
+
+            RectTransform parent = panelRoot != null
+                ? panelRoot.transform as RectTransform
+                : transform as RectTransform;
+            if (parent == null)
+            {
+                return;
+            }
+
+            GameObject rowObject = new GameObject("NpcHearts", typeof(RectTransform));
+            heartsRoot = rowObject.transform as RectTransform;
+            heartsRoot.SetParent(parent, false);
+            heartsRoot.anchorMin = heartsRoot.anchorMax = new Vector2(0f, 1f);
+            heartsRoot.pivot = new Vector2(0f, 1f);
+            heartsRoot.anchoredPosition = new Vector2(28f, -236f);
+            heartsRoot.sizeDelta = new Vector2(125f, 18f);
+
+            Sprite heart = EnsureHeartSprite();
+            heartImages = new Image[5];
+            for (int i = 0; i < heartImages.Length; i++)
+            {
+                GameObject heartObject = new GameObject("Heart_" + i, typeof(RectTransform));
+                RectTransform rect = heartObject.transform as RectTransform;
+                rect.SetParent(heartsRoot, false);
+                rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
+                rect.pivot = new Vector2(0f, 1f);
+                rect.anchoredPosition = new Vector2(i * 25f, 0f);
+                rect.sizeDelta = new Vector2(21f, 18f);
+                Image image = heartObject.AddComponent<Image>();
+                image.sprite = heart;
+                image.raycastTarget = false;
+                heartImages[i] = image;
+            }
+
+            heartsRoot.gameObject.SetActive(false);
+        }
+
+        private static Sprite EnsureHeartSprite()
+        {
+            if (heartSprite != null)
+            {
+                return heartSprite;
+            }
+
+            int width = HeartPattern[0].Length;
+            int height = HeartPattern.Length;
+            Texture2D texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    texture.SetPixel(x, height - 1 - y, HeartPattern[y][x] == '#' ? Color.white : Color.clear);
+                }
+            }
+
+            texture.Apply();
+            heartSprite = Sprite.Create(texture, new Rect(0f, 0f, width, height), new Vector2(0.5f, 0.5f), width);
+            return heartSprite;
         }
 
         private void ApplyPortrait(Sprite sprite)

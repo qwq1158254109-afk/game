@@ -21,7 +21,11 @@ MonoBehaviour:
     portraitOverride: {fileID: 0}
     options:
     - text: 打招呼
-      rewards: []
+      rewards:
+      - rewardType: 13
+        value: 1
+        npcId: npc_librarian
+        description: 好感 +1
       nextDialogueId: dialogue_library_greet
       requirements: []
     - text: 赠送礼物（从背包选择）
@@ -44,3 +48,8 @@ MonoBehaviour:
       - statKey: 12
         comparison: 0
         value: 15
+    - text: 告辞
+      rewards: []
+      nextDialogueId: 
+      chooseItemAsGift: 0
+      requirements: []

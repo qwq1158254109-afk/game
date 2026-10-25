@@ -201,6 +201,9 @@ namespace StudentGrowth
         public ActivityData activity;
         public StageData stage;
 
+        [Tooltip("RewardType = AddRelationship 时生效：好感度记到哪个 NPC 头上（NpcData.npcId）。")]
+        public string npcId;
+
         public string description;
     }
 
@@ -228,25 +231,13 @@ namespace StudentGrowth
     [Serializable]
     public class EventConditionData
     {
+        // 2026-10-24：subject 默认 PlayerStat，存量资产（不序列化新字段）行为不变。
+        public ConditionSubject subject;
         public PlayerStatKey statKey;
         public ComparisonType comparison;
         public int value;
-    }
 
-    [CreateAssetMenu(menuName = "Game Data/Ending Data")]
-    public class EndingData : ScriptableObject
-    {
-        public string endingId;
-        public string displayName;
-        public string description;
-        public Sprite illustrationSprite;
-        public string imagePath;
-        public List<EventConditionData> conditions = new List<EventConditionData>();
-        public int minimumClearedStages;
-        public int minimumDefeatedBosses;
-        public int minimumSubjectAverage;
-        public int maximumPressure = 100;
-        public bool requireEndingReached;
-        public int priority;
+        [Tooltip("subject = NpcRelationship 时生效：判与哪个 NPC 的好感度（NpcData.npcId）。")]
+        public string npcId;
     }
 }

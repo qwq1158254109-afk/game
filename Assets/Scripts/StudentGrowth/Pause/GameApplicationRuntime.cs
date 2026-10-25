@@ -188,7 +188,32 @@ namespace StudentGrowth
                 if(saveFeedbackPanel!=null) saveFeedbackPanel.SetActive(true); toastUntil=Time.realtimeSinceStartup+4;
             })); }
         }
-        private void OnSceneLoaded(Scene scene,LoadSceneMode mode) => StartCoroutine(BindDayEvents());
+        private void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+        {
+            PlayBgmForScene(scene.path);
+            StartCoroutine(BindDayEvents());
+        }
+
+        /// <summary>
+        /// 按场景切 BGM。
+        ///
+        /// 目前项目里**一个 BGM 素材都没有**（61 个音频全是 SFX），所以这条链路现在不发声。
+        /// 提前接好是为了素材就位后不用再改代码：把文件放到
+        /// Assets/Resources/Audio/BGM/{menu,map,battle}.ogg 就会自动播放。
+        /// BgmPlayer.Play 在资源缺失时静默返回，不会刷错误日志。
+        /// </summary>
+        private static void PlayBgmForScene(string scenePath)
+        {
+            if(string.IsNullOrEmpty(scenePath)) return;
+
+            string clip;
+            if(scenePath.IndexOf("MainMenu",StringComparison.OrdinalIgnoreCase)>=0) clip="menu";
+            else if(scenePath.IndexOf("Battle",StringComparison.OrdinalIgnoreCase)>=0) clip="battle";
+            else if(scenePath.IndexOf("/Maps/",StringComparison.OrdinalIgnoreCase)>=0) clip="map";
+            else return;
+
+            BgmPlayer.Play(clip);
+        }
         private IEnumerator BindDayEvents()
         {
             if (timeController != null) timeController.DayStarted -= OnDayStarted;

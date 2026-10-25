@@ -16,10 +16,12 @@ MonoBehaviour:
   displayName: "\u6D4F\u89C8\u5546\u5E97"
   description: "\u67E5\u770B\u8D27\u67B6\u4E0E\u8865\u7ED9\u3002\u8D2D\u4E70\u7CFB\u7EDF\u540E\u7EED\u63A5\u5165\u3002"
   activityType: 4
-  backgroundSprite: {fileID: 0}
-  icon: {fileID: 0}
-  imagePath: 
+  backgroundSprite: {fileID: -2351607977772436645, guid: 5a409cf7689d45e29e94e36466818a16, type: 3}
+  icon: {fileID: 8325389884539379624, guid: ac4b5d7ac3065c447b2a498d8f9c579b, type: 3}
+  imagePath: Assets/Art/Pixel/Backgrounds/bg_school_shop_rpg_map.png
   timeCost: 0
+  maxUsesPerStage: 1
+  battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
   linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}

@@ -16,14 +16,14 @@ MonoBehaviour:
   displayName: "\u8BE2\u95EE\u56FE\u4E66\u7BA1\u7406\u5458"
   description: "\u56FE\u4E66\u7BA1\u7406\u5458\u63D0\u9192\u4F60\u4FDD\u6301\u5B89\u9759\uFF0C\u5E76\u5EFA\u8BAE\u5148\u6574\u7406\u590D\u4E60\u76EE\u6807\uFF0C\u518D\u53BB\u5BF9\u5E94\u4E66\u67B6\u67E5\u627E\u8D44\u6599\u3002"
   activityType: 0
-  backgroundSprite: {fileID: 0}
-  icon: {fileID: 0}
-  imagePath: 
+  backgroundSprite: {fileID: 6397069402581240290, guid: f6e7451fd1adbfb4c920235120ce2ab0, type: 3}
+  icon: {fileID: -6075400843478778027, guid: 2a1ea2b2605ef834e8f7064a385a82f5, type: 3}
+  imagePath: Assets/Art/Pixel/Backgrounds/bg_home_dining_room.png
   timeCost: 1
   maxUsesPerStage: -1
   battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
-  linkedEvent: {fileID: 11400000, guid: d470b5aa02fb422d968b664997bb7c07, type: 2}
+  linkedEvent: {fileID: 0}
   linkedMiniGame: {fileID: 0}
   fixedRewards: []
   possibleRewards: []

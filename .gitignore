@@ -94,3 +94,17 @@ __pycache__/
 # Unity 强杀后生成的崩溃恢复场景（不属于项目内容，且体积大）
 /Assets/_Recovery/
 
+# 本地 AI 助手的会话元数据（只在本机有用）
+/.workbuddy/
+/.workbuddy-ai/
+
+# Unity 里随手建的测试资源（方形/三角形临时图、空白材质、空图集）
+/Assets/Square.*
+/Assets/Triangle.*
+/Assets/New Sprite Atlas.*
+/Assets/新建材质.*
+
+# 临时场景状态备份（_backup_*/ 目录已在上面忽略，这里补单个文件）
+/_backup_*.txt
+
+

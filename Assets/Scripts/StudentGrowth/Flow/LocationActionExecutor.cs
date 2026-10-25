@@ -37,6 +37,7 @@ namespace StudentGrowth
         public bool shouldOpenBattle;
         public bool shouldOpenDialogue;
         public bool shouldOpenShop;
+        public bool shouldOpenCapsule;
         public bool shouldReturnToMap;
         /// <summary>
         /// 本次执行的是「回家睡觉」。睡觉自带换日过场（SleepTransitionView），
@@ -197,6 +198,7 @@ namespace StudentGrowth
             result.shouldOpenBattle = activity.activityType == ActivityType.CardBattle && activity.linkedChallenge != null;
             result.shouldOpenDialogue = activity.activityType == ActivityType.Event && activity.linkedEvent != null;
             result.shouldOpenShop = activity.activityType == ActivityType.Shop;
+            result.shouldOpenCapsule = activity.activityType == ActivityType.Capsule;
             result.timeAdvanced = result.remainingDailyActionPointsAfter < result.remainingDailyActionPointsBefore
                 || result.periodAfter != result.periodBefore
                 || Mathf.Max(0, activity.timeCost) > 0 && result.remainingTimeAfter < result.remainingTimeBefore;

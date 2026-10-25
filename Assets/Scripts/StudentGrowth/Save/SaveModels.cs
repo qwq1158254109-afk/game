@@ -46,6 +46,8 @@ namespace StudentGrowth
         public long saveSequence;
         public string savedAtUtc;
         public bool tutorialSeen;
+        // 扭蛋首抽保底（2026-10-24）。旧档缺字段 = false = 保底可用。
+        public bool capsulePityUsed;
         public string scenePath;
         public bool hasPlayerPosition;
         public float playerX, playerY, facingX, facingY = -1;
@@ -64,6 +66,8 @@ namespace StudentGrowth
         public List<string> defeatedBossIds = new List<string>();
         public List<string> unlockedActivityIds = new List<string>();
         public List<string> unlockedLocationIds = new List<string>();
+        // 2026-10-24：NPC 好感度整表。旧档缺该字段时保持默认空表（MissingMemberHandling.Ignore）。
+        public List<NpcRelationshipEntry> npcRelationships = new List<NpcRelationshipEntry>();
     }
     public sealed class LoadedGameState
     {

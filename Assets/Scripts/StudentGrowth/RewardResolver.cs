@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace StudentGrowth
 {
@@ -61,6 +62,16 @@ namespace StudentGrowth
                     {
                         sessionState.stageState.remainingTime = 0;
                     }
+                    break;
+                case RewardType.AddRelationship:
+                    // npcId 为空的 AddRelationship 是配置错误：静默跳过会让剧情组以为好感加上了。
+                    if (string.IsNullOrEmpty(reward.npcId))
+                    {
+                        Debug.LogWarning("[RewardResolver] AddRelationship 缺少 npcId，奖励被跳过。");
+                        break;
+                    }
+
+                    sessionState.npcRelationships.Add(reward.npcId, reward.value);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("reward.rewardType", reward.rewardType, "Unsupported reward type.");

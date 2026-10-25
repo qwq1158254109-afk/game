@@ -1016,3 +1016,22 @@ V0.2 推荐顺序：
   - `Tools/Student Growth/UI/Generate Map UI Prefabs`（对应 `Assets/Scripts/StudentGrowth/Editor/MapUiPrefabGeneratorEditorUtility.cs`）
   - `Tools/Student Growth/Maps/Build Home Room Scenes`（四间一起重建）/ `Rebuild Living Room Only`（只客厅）
   - `Tools/Student Growth/Maps/Rebuild Home RPG Map`（对应 `Assets/Scripts/StudentGrowth/Editor/HomeMapSceneBuilder.cs`）
+
+### 20.6 AI 像素素材入库工序（2026-10-25 新增）
+
+AI 生图/放大会产出"伪像素"（网格漂移、非整数格、发糊、色数上万），进 Unity 前必须过 `Tools/fix_pixel_art.py` 门控（基于 vendored 的 [Retro-Diffusion/pixel-art-fixer](https://github.com/Retro-Diffusion/pixel-art-fixer) v1.1，MIT，库在 `Tools/pixel-art-fixer/pixelfixer/`，上游提交 ef376e5）：
+
+```bash
+python Tools/fix_pixel_art.py <图片或目录>              # 检测 + 脏图自动修复
+python Tools/fix_pixel_art.py <路径> --downscale-clean  # CLEAN 图额外输出 1x 缩小版
+python Tools/fix_pixel_art.py <路径> --out <目录>       # 默认输出到 _tmp_img/pixel_fix_out
+```
+
+- **三态结果**（详见 report.json）：
+  - `CLEAN`：本身就是真像素的整数放大（块不均匀 ≤0.5%），**不要**送修复器，直接整数倍缩小（`--downscale-clean`）或保持原样；
+  - `FIXED`：真伪像素图，已由修复器重建 1x 真像素，特征是颜色数坍缩（实测 4~6 万 → 几千），可直接收货；
+  - `REVIEW`：confidence=low 或修复后颜色不减反增，**必须人工比对后再收**（颜色变多=误检信号）。
+- **为什么有门槛检测**：修复器对"干净整数放大"的图偶尔会误判非整数步长（实测 warm_tea：干净 4x 被判 3.893，输出 132x192 且颜色 56→64）。门槛检测按 2..16 整数步长分块验均匀性，干净的直接短路，双保险。
+- **2026-10-24 全量基线**：`FanworkPixel/Generated/PNG` 54 张 → CLEAN 31 / 修复 21 / low 置信 REVIEW 2；`icon_item_energy_drink` 48x48 → 修复为 23x23（2x 块不均匀 41.67%，真脏图）。
+- 修复产物是 1x 原生分辨率，进 Unity 按 10 节像素规范设置（Point 采样、无压缩、PPU 对齐）；依赖 numpy/scipy/opencv-python/Pillow（本机 Python 3.14 已装齐）。
+- 该目录被 `.gitignore` 的 `/_tmp_img/` 规则覆盖的只有输出目录；`Tools/pixel-art-fixer/` 与 `Tools/fix_pixel_art.py` 已入库。

@@ -35,6 +35,8 @@ namespace StudentGrowth
         /// <summary>阶段成长报告。首次需要时运行时创建。</summary>
         public StageReportView stageReportView;
         public MapShopView shopView;
+        /// <summary>扭蛋抽奖界面。首次需要时运行时创建。</summary>
+        public CapsuleView capsuleView;
         public MapInteractionConfirmView confirmView;
         public MapActivityResultView resultView;
         public bool requireConfirmForActivities = true;
@@ -272,6 +274,16 @@ namespace StudentGrowth
 
         public bool TryBeginInteraction(MapInteractionTarget target)
         {
+            return TryBeginInteraction(target, false);
+        }
+
+        /// <summary>
+        /// skipDialogue = true：跳过剧情对话分支，直接走活动/事件流程。
+        /// 用于 NPC 菜单里「一起吃晚饭」这类选项——对话结束后回落执行交互点上原定的活动，
+        /// 时间消耗与次数上限和直接交互完全一致。
+        /// </summary>
+        private bool TryBeginInteraction(MapInteractionTarget target, bool skipDialogue)
+        {
             ResolveReferences();
             if (target == null)
             {
@@ -290,7 +302,7 @@ namespace StudentGrowth
 
             // 剧情对话优先于一切：不消耗时间、不计次数、不弹确认面板。
             // 剧情组往 target.dialogue 里填资产即可，不用碰这里的流程。
-            if (target.dialogue != null)
+            if (!skipDialogue && target.dialogue != null)
             {
                 BeginDialogue(target);
                 return true;
@@ -591,12 +603,13 @@ namespace StudentGrowth
 
             SuppressPromptFor(target);
             dialogueRunner.sessionState = ResolveSessionState();
+            dialogueRunner.ClearPendingActions();
             if (dialogueRunner.view == null)
             {
                 dialogueRunner.view = EnsureDialogueView();
             }
 
-            bool started = dialogueRunner.Play(target.dialogue, () => EndDialogue(target));
+            bool started = dialogueRunner.Play(target.dialogue, () => EndDialogue(target), target.npc);
             if (!started)
             {
                 ShowPrompt("对话播放失败：缺少对话界面。");
@@ -621,6 +634,26 @@ namespace StudentGrowth
             if (existing != null)
             {
                 return existing;
+            }
+
+            // 优先用预制体（Tools → Student Growth → UI → 生成对话预制体 产出），
+            // 这样布局可以直接在 Unity 里改；没有预制体才回退到代码搭建。
+            GameObject prefab = Resources.Load<GameObject>("StudentGrowth/UI/DialogueView");
+            if (prefab != null)
+            {
+                GameObject instance = Instantiate(prefab);
+                DialogueView instantiated = instance.GetComponentInChildren<DialogueView>(true);
+                if (instantiated != null)
+                {
+                    if (instantiated.theme == null)
+                    {
+                        instantiated.theme = theme;
+                    }
+
+                    return instantiated;
+                }
+
+                Destroy(instance);
             }
 
             GameObject canvasObject = new GameObject("[UI] DialogueCanvas", typeof(RectTransform));
@@ -653,10 +686,32 @@ namespace StudentGrowth
         /// <summary>对话结束：放开输入、恢复提示栏与交互状态。</summary>
         private void EndDialogue(MapInteractionTarget target)
         {
+            // 对话选项可以携带「结束后动作」：打开商店 / 回落执行交互点原定的活动。
+            // 必须在释放输入闸门前取走，且 fallback 重入会在流程里自己管理状态。
+            bool openShop = dialogueRunner != null && dialogueRunner.ConsumePendingOpenShop();
+            bool fallbackActivity = dialogueRunner != null
+                && dialogueRunner.ConsumePendingFallbackActivity()
+                && target != null
+                && target.fallbackActivity != null;
+
             if (dialogueGateHeld)
             {
                 dialogueGateHeld = false;
                 GameplayInputGate.Release(this, true);
+            }
+
+            if (openShop)
+            {
+                OpenShopAfterDialogue();
+                SetState(MapInteractionFlowState.Idle);
+                ApplyVisuals();
+                return;
+            }
+
+            if (fallbackActivity)
+            {
+                TryBeginInteraction(target, true);
+                return;
             }
 
             if (target != null && currentTarget == target)
@@ -781,6 +836,7 @@ namespace StudentGrowth
                 ShowPrompt(result.message);
                 RefreshHudIfNeeded(result);
                 ShowShopIfNeeded(result);
+                ShowCapsuleIfNeeded(result);
                 ShowDialogueIfNeeded(result);
                 ShowActivityResultIfNeeded(result, exit);
             }
@@ -1099,6 +1155,58 @@ namespace StudentGrowth
                 shopView.Configure(ResolveSessionState(), FindObjectOfType<FullscreenMapHudView>());
                 shopView.Show();
             }
+        }
+
+        /// <summary>对话选项 openShop 的落点：与 ShowShopIfNeeded 同一套打开逻辑，只是不经过活动执行。</summary>
+        private void OpenShopAfterDialogue()
+        {
+            CreateShopUiIfNeeded();
+            if (shopView != null)
+            {
+                shopView.theme = theme;
+                shopView.Configure(ResolveSessionState(), FindObjectOfType<FullscreenMapHudView>());
+                shopView.Show();
+            }
+        }
+
+        /// <summary>
+        /// 扭蛋机交互的落点（ActivityType.Capsule → shouldOpenCapsule）。
+        /// 卡包配置与奖励卡池都按约定路径加载，缺资产时明确提示而不是静默失败。
+        /// </summary>
+        private void ShowCapsuleIfNeeded(LocationActionExecutionResult result)
+        {
+            if (result == null || !result.shouldOpenCapsule)
+            {
+                return;
+            }
+
+            CapsulePackData pack = Resources.Load<CapsulePackData>("StudentGrowth/NPC/capsule_pack_default");
+            if (pack == null)
+            {
+                Debug.LogWarning("[Capsule] 缺少卡包配置 Resources/StudentGrowth/NPC/capsule_pack_default");
+                return;
+            }
+
+            CardPoolData poolData = CardPoolCatalog.Find("pool_reward");
+            if (poolData == null || poolData.cards == null || poolData.cards.Count == 0)
+            {
+                Debug.LogWarning("[Capsule] 缺少奖励卡池 pool_reward");
+                return;
+            }
+
+            RectTransform canvasRect = ResolveCanvasRect();
+            if (canvasRect == null)
+            {
+                return;
+            }
+
+            if (capsuleView == null)
+            {
+                capsuleView = CapsuleView.Ensure(canvasRect);
+                capsuleView.theme = theme;
+            }
+
+            capsuleView.Open(ResolveSessionState(), pack, poolData.cards);
         }
 
         private void ShowActivityResultIfNeeded(LocationActionExecutionResult result, bool exit)

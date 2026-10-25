@@ -19,9 +19,10 @@ MonoBehaviour:
   cardType: 2
   rarity: 0
   cost: 1
+  price: 0
   description: "\u63A8\u8FDB 5\uFF1B\u62BD 1 \u5F20\u3002"
   cardSprite: {fileID: 21300000, guid: 779835a7928f9db4cb954fc7257ca8f0, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 779835a7928f9db4cb954fc7257ca8f0, type: 3}
   imagePath: Assets/Art/CardReferences/FanworkPixel/Generated/PNG/card_social_borrow_notes.png
   targetType: 2
   damage: 0

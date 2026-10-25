@@ -77,6 +77,12 @@ namespace StudentGrowth
         [Tooltip("勾选后不直接发奖励，而是打开背包让玩家挑一件道具送出去。")]
         public bool chooseItemAsGift;
 
+        [Tooltip("选中后结束对话并打开商店界面（售货员类 NPC 用）。需要交互点所在地图有商店 UI。")]
+        public bool openShop;
+
+        [Tooltip("选中后结束对话，回落执行交互点上原本配置的活动（如「一起吃晚饭」走家庭晚饭活动，含时间消耗与次数上限）。")]
+        public bool useFallbackActivity;
+
         [Tooltip("不满足条件的选项会置灰。留空表示永远可选。")]
         public List<EventConditionData> requirements = new List<EventConditionData>();
     }

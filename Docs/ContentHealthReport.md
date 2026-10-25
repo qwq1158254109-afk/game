@@ -1,7 +1,7 @@
 # 内容体检报告
 
 > 由 `ContentHealthAudit` 生成（工具位于 `Assets/Scripts/StudentGrowth/Editor/ContentHealthAudit.cs`）
-> 生成时间：2026-10-22 15:33:10
+> 生成时间：2026-10-24 22:32:03
 
 > **口径分两套，并排给出，不静默替换。**
 > 「纸面上界」= 把扫描到的所有来源都算上（含未接线资产、锁死地点内的内容），首版口径，系统性偏乐观。
@@ -15,7 +15,7 @@
 | 不可达地点 | **0 / 6** |
 | 零来源的属性（实机口径） | **0 / 13** |
 | 瓶颈属性（实机来源仅 1 处） | **0 / 13** |
-| 无来源或无出口的资源类型 | **7 / 13** |
+| 无来源或无出口的资源类型 | **8 / 14** |
 | **未接线的活动资产**（写完没挂进场景） | **0 / 14** |
 | **实机不可达的活动**（未接线 + 地点锁死） | **0 / 14** |
 | 实机可达活动（按 activityId 去重） | **14 / 14** |
@@ -28,12 +28,12 @@
 
 ## 1. 数据源清点
 
-- GameBootstrapperData 资产：**未找到**（StudentGrowth/MvpBootstrapperData）→ 实际运行走 MvpSampleDataFactory 代码兜底
+- GameBootstrapperData 资产：**已找到** → 实际运行使用资产数据
 - 运行时内容：阶段 3 / 地点 6 / 结局 6
 - 房间门映射：经 RoomDoor 把 3 个子场景并入所属地点
 - ⚠ 以下场景引用了活动资产，却归不到任何地点（阶段地图未登记、也没有房间门连过去），其中活动只能按「未接线」处理：HomeMapScene.unity
 - 场景接线索引：扫描地图场景 11 个（另跳过 Backups/_Recovery 下的 30 个），找到 14 个活动资产被 MapInteractionTarget 引用（合计 22 处引用）
-- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 67 个，其中活动 14 个
+- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 88 个，其中活动 14 个
 - 地点可达性不动点：迭代 1 轮后收敛，可达地点 6 / 6
 
 ## 2. 结局可达性
@@ -78,6 +78,7 @@
 | UnlockActivity | 0 | ⚠ 零次出现 —— 无来源或无出口 |
 | UnlockStage | 0 | ⚠ 零次出现 —— 无来源或无出口 |
 | AddStageTime | 0 | ⚠ 零次出现 —— 无来源或无出口 |
+| AddRelationship | 0 | ⚠ 零次出现 —— 无来源或无出口 |
 
 ## 5. 属性来源
 
