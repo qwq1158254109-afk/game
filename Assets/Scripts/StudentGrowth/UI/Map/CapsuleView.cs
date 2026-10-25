@@ -771,7 +771,7 @@ namespace StudentGrowth
             Color bodyDark = new Color(0.52f, 0.20f, 0.19f, 1f);
             Color plate = new Color(0.90f, 0.86f, 0.76f, 1f);
             Color dark = new Color(0.13f, 0.12f, 0.15f, 1f);
-            Color base = new Color(0.35f, 0.30f, 0.30f, 1f);
+            Color baseColor = new Color(0.35f, 0.30f, 0.30f, 1f);
 
             canvas.FillCircle(24, 50, 17, glass);
             canvas.Ring(24, 50, 17, glassEdge);
@@ -794,8 +794,8 @@ namespace StudentGrowth
 
             canvas.FillRect(16, 16, 16, 7, dark);     // 出蛋口
             canvas.FillRect(17, 22, 14, 2, bodyDark);
-            canvas.FillRect(10, 9, 9, 7, base);       // 支脚
-            canvas.FillRect(29, 9, 9, 7, base);
+            canvas.FillRect(10, 9, 9, 7, baseColor);  // 支脚
+            canvas.FillRect(29, 9, 9, 7, baseColor);
             canvas.FillRect(8, 7, 32, 2, bodyDark);
 
             machineSprite = canvas.ToSprite();
