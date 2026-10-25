@@ -1216,6 +1216,7 @@ namespace StudentGrowth
                 || result.activity == null
                 || result.isSleepActivity
                 || result.shouldOpenShop
+                || result.shouldOpenCapsule
                 || result.shouldOpenDialogue
                 || result.shouldOpenBattle)
             {

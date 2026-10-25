@@ -61,6 +61,11 @@ namespace StudentGrowth
                 case ActivityType.Training:
                     result.message = "训练已完成。";
                     break;
+                case ActivityType.Capsule:
+                    // 扭蛋本身不算一次「行动结果」：界面由交互流程的
+                    // shouldOpenCapsule 打开（同 Shop 的开门方式）。
+                    result.message = "开始扭蛋抽奖。";
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException("activityData.activityType", activityData.activityType, "Unsupported activity type.");
             }
