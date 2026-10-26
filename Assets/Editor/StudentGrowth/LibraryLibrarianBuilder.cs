@@ -232,7 +232,9 @@ namespace StudentGrowthEditor
             // 现在改成：耗 1 次行动、可反复询问、挂一个对话事件。
             activity.timeCost = 1;
             activity.maxUsesPerStage = -1;
-            activity.linkedEvent = AssetDatabase.LoadAssetAtPath<GameEventData>(EventPath);
+            // 2026-10-26：改成按落盘子类加载。GameEventData 定义在 DataDefinitions.cs（主类 StageData），
+            // 按父类加载会把资产静默反序列化成 StageData 并返回 null，事件从此不生效。
+            activity.linkedEvent = AssetDatabase.LoadAssetAtPath<LibraryMapEventData>(EventPath);
             if (activity.linkedEvent == null)
             {
                 Debug.LogWarning("[LibraryLibrarian] 缺少对话事件资产：" + EventPath);
