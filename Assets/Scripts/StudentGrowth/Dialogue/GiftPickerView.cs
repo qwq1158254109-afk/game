@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,30 +13,46 @@ namespace StudentGrowth
     /// 旧做法复用的是 InventoryPanelView（800×560 居中，占 y 80~640），
     /// 而对话框是 1200×340 贴底、选项区从 y 424 往上长，两者几何上必然重叠，
     /// 实测界面糊成一坨（背包压对话、选项区冲出屏幕）。
-    /// 现在改成宽度对齐原选项卡片（820）的紧凑条，只列可赠送道具，
-    /// 一屏一个焦点，不再需要遮罩或跳转。
+    ///
+    /// 2026-10-26 二次修订（尺寸对齐对话选择栏）：
+    /// 尺寸改为 820×432，与 DialogueView 的 optionsRoot 完全一致（OptionCardWidth 820，
+    /// 4 项时高度 4×(92+12)+16=432），底边同为 y=424，取代原先的 820×268。
+    /// **前提修正：CanvasScaler 参考分辨率必须是 1920×1080。**
+    /// 之前这里用的是 1280×720，而对话 UI 挂在 1920×1080 的 Canvas 下——
+    /// 同一个「424」在两种参考分辨率下对应的屏幕位置差了 20% 屏高，
+    /// 所谓「贴在对话框上方原位」实际是悬在屏幕中部偏上，这是「布局很乱」的另一半根因。
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class GiftPickerView : MonoBehaviour
     {
         private const int Columns = 5;
-        private const int Rows = 2;
+        private const int Rows = 3;
         private const int PageSize = Columns * Rows;
 
-        private const float SlotSize = 84f;
+        private const float SlotSize = 88f;
         private const float SlotGap = 14f;
         private const float PanelWidth = 820f;
-        private const float PanelHeight = 268f;
+        private const float PanelHeight = 432f;
 
-        /// <summary>与 DialogueView 的 optionsRoot 同一条底边（PanelBottom 60 + PanelHeight 340 + 24）。</summary>
+        /// <summary>
+        /// 与 DialogueView 的 optionsRoot 同一条底边（PanelBottom 60 + PanelHeight 340 + 24）。
+        /// 注意：只有在两边都是 1920×1080 参考分辨率时这个数值才等价。
+        /// </summary>
         private const float PanelBottom = 424f;
 
-        private const float GridLeft = 20f;
-        private const float GridTop = 64f;
+        private const float Padding = 20f;
+        private const float GridTop = 92f;
         private const float DetailLeft = 536f;
         private const float DetailWidth = 264f;
 
         private static GiftPickerView instance;
+
+        /// <summary>
+        /// 道具图标缓存。运行时道具由 MvpSampleDataFactory 用代码建，
+        /// 只填了 imagePath（磁盘路径），icon（Sprite）恒为 null，
+        /// 所以这里要从 PNG 现读，且必须缓存——Refresh 每次选格/翻页都会调。
+        /// </summary>
+        private static readonly Dictionary<string, Sprite> iconCache = new Dictionary<string, Sprite>();
 
         private GameSessionState session;
         private UIThemeConfig theme;
@@ -132,7 +149,9 @@ namespace StudentGrowth
 
             CanvasScaler scaler = gameObject.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1280f, 720f);
+            // 2026-10-26：1280×720 → 1920×1080，与对话 UI 所在 Canvas 统一。
+            // 不统一的话，同一套坐标在屏幕上会被放大 1.5 倍（字被裁、位置悬空）。
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = 0.5f;
 
             gameObject.AddComponent<GraphicRaycaster>();
@@ -159,7 +178,7 @@ namespace StudentGrowth
 
             // PixelPanel 在 ResolveReferences 里会把「面板下第一个 Text」认成自己的标题，
             // 每次 OnEnable 都用 Subtitle 样式刷一遍（还会挂 PixelText 反复刷）。
-            // 实测「送点什么？」因此被压成 Subtitle 的 24，比正文还小。
+            // 实测「送点什么？」因此被压成 Subtitle 的字号，比正文还小。
             // 这里先塞一个隐藏的占位给它抓，真标题就不会被碰。
             Text panelTitlePlaceholder = CreateLabel(panel, "PanelTitle", string.Empty, GameUiTextStyle.Subtitle, false, TextAnchor.MiddleLeft);
             panelTitlePlaceholder.gameObject.SetActive(false);
@@ -174,35 +193,44 @@ namespace StudentGrowth
         private void BuildHeader(RectTransform panel)
         {
             Text title = CreateLabel(panel, "Title", "送点什么？", GameUiTextStyle.Title, false, TextAnchor.MiddleLeft);
-            // 字号显式指定：主题 Title 在运行时被 PixelPanel 的标题逻辑压成 Body 的 24。
-            // rect 高度必须大于「字号 × 行高」——之前 34 高装 28 号，文字被 Truncate
-            // 裁得只剩几道横线（实测截图里标题看着像下划线）。
+            // 字号显式指定：主题 Title 在运行时被 PixelPanel 的标题逻辑压成 Body 的字号。
+            // rect 高度必须大于「字号 × 行高」——Unity Text 实际渲染高度约 fontSize×1.3，
+            // 26 号至少要 34 高，这里给 44 留余量（之前 40 高装 26 号会裁掉底部）。
             title.fontSize = 26;
-            Place(title.rectTransform, TopLeft, TopLeft, new Vector2(GridLeft, -20f), new Vector2(300f, 40f));
+            Place(title.rectTransform, TopLeft, TopLeft, new Vector2(Padding, -18f), new Vector2(300f, 44f));
 
-            // 翻页放标题右侧的空位（标题文字实际只占 134 宽），
-            // 不能放卡片右端——那里是详情区，会压住道具名。
+            // 翻页组右对齐到内容右边界（820-20=800），与标题分列两端。
             // 文案用「上页/下页」而不是「‹ ›」：像素字体缺这两个字形，会渲染成几道横线。
-            prevButton = CreateButton(panel, "PrevPage", "上页", Vector2.zero, new Vector2(76f, 46f), () => ChangePage(-1));
-            Place(prevButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(330f, -16f), new Vector2(76f, 46f));
+            prevButton = CreateButton(panel, "PrevPage", "上页", Vector2.zero, new Vector2(76f, 44f), () => ChangePage(-1));
+            Place(prevButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(584f, -16f), new Vector2(76f, 44f));
 
             pageLabel = CreateLabel(panel, "PageLabel", string.Empty, GameUiTextStyle.SmallText, false, TextAnchor.MiddleCenter);
-            Place(pageLabel.rectTransform, TopLeft, TopLeft, new Vector2(410f, -16f), new Vector2(40f, 46f));
+            Place(pageLabel.rectTransform, TopLeft, TopLeft, new Vector2(672f, -16f), new Vector2(44f, 44f));
 
-            nextButton = CreateButton(panel, "NextPage", "下页", Vector2.zero, new Vector2(76f, 46f), () => ChangePage(1));
-            Place(nextButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(454f, -16f), new Vector2(76f, 46f));
+            nextButton = CreateButton(panel, "NextPage", "下页", Vector2.zero, new Vector2(76f, 44f), () => ChangePage(1));
+            Place(nextButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(724f, -16f), new Vector2(76f, 44f));
 
-
+            // 标题与内容区之间的分隔线：让标题行和网格区在视觉上分层，
+            // 也让「字贴到边框上」的观感彻底消失。
+            Image divider = CreateImage("Divider", panel);
+            divider.raycastTarget = false;
+            divider.sprite = GameUiStyle.GetSolidSprite();
+            divider.type = Image.Type.Simple;
+            divider.color = new Color(0.29f, 0.18f, 0.10f, 0.28f);
+            Place(divider.rectTransform, TopLeft, TopLeft, new Vector2(Padding, -76f), new Vector2(PanelWidth - Padding * 2f, 2f));
         }
 
         private void BuildGrid(RectTransform panel)
         {
+            float gridWidth = Columns * SlotSize + (Columns - 1) * SlotGap;
+            float gridHeight = Rows * SlotSize + (Rows - 1) * SlotGap;
+
             for (int i = 0; i < PageSize; i++)
             {
                 int col = i % Columns;
                 int row = i / Columns;
                 Vector2 pos = new Vector2(
-                    GridLeft + col * (SlotSize + SlotGap),
+                    Padding + col * (SlotSize + SlotGap),
                     -GridTop - row * (SlotSize + SlotGap));
 
                 RectTransform slot = CreateRect("Slot" + i, panel, new Vector2(SlotSize, SlotSize), Vector2.zero);
@@ -224,42 +252,47 @@ namespace StudentGrowth
                 Place(icon.rectTransform, Center, Center, Vector2.zero, new Vector2(SlotSize - 24f, SlotSize - 24f));
                 icon.raycastTarget = false;
                 icon.preserveAspect = true;
+                // 初始关闭：Image 的 sprite 为 null 且 enabled=true 时会渲染一块白色方块，
+                // 在 Refresh 之前会看到 15 个白格。背包同样先关后开（InventoryPanelView:264）。
+                icon.enabled = false;
                 slotIcons.Add(icon);
 
                 Text count = CreateLabel(slot, "Count", string.Empty, GameUiTextStyle.SmallText, false, TextAnchor.LowerRight);
-                Place(count.rectTransform, BottomRight, BottomRight, new Vector2(-4f, 2f), new Vector2(40f, 18f));
+                Place(count.rectTransform, BottomRight, BottomRight, new Vector2(-6f, 4f), new Vector2(48f, 22f));
                 slotCounts.Add(count);
             }
 
             emptyHint = CreateLabel(panel, "EmptyHint", "身上没有可以送出的东西。", GameUiTextStyle.Body, false, TextAnchor.MiddleCenter);
-            Place(emptyHint.rectTransform, TopLeft, TopLeft, new Vector2(GridLeft, -GridTop), new Vector2(Columns * SlotSize + (Columns - 1) * SlotGap, Rows * SlotSize + SlotGap));
+            Place(emptyHint.rectTransform, TopLeft, TopLeft, new Vector2(Padding, -GridTop), new Vector2(gridWidth, gridHeight));
             emptyHint.gameObject.SetActive(false);
         }
 
         private void BuildDetail(RectTransform panel)
         {
             detailName = CreateLabel(panel, "DetailName", string.Empty, GameUiTextStyle.Subtitle, false, TextAnchor.UpperLeft);
-            detailName.fontSize = 22;
-            Place(detailName.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -22f), new Vector2(DetailWidth, 36f));
+            detailName.fontSize = 24;
+            Place(detailName.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -92f), new Vector2(DetailWidth, 44f));
 
             detailMeta = CreateLabel(panel, "DetailMeta", string.Empty, GameUiTextStyle.SmallText, false, TextAnchor.UpperLeft);
-            detailMeta.fontSize = 13;
-            detailMeta.lineSpacing = 1.1f;
-            Place(detailMeta.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -62f), new Vector2(DetailWidth, 66f));
+            detailMeta.fontSize = 18;
+            detailMeta.lineSpacing = 1.15f;
+            Place(detailMeta.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -144f), new Vector2(DetailWidth, 84f));
 
             detailInfo = CreateLabel(panel, "DetailInfo", string.Empty, GameUiTextStyle.Body, false, TextAnchor.UpperLeft);
-            // 正文压到 16 并收紧行距：276 宽里 24 号会挤成一坨。
-            detailInfo.fontSize = 16;
-            detailInfo.lineSpacing = 1.1f;
+            // 描述做成可换行 + Truncate，高度按「18 号 ≈ 每行 21，5 行」给足 104，
+            // 短描述标题不会被裁，长描述也有余量（旧版 94 高装 16 号只够 5 行，实测被裁）。
+            detailInfo.fontSize = 18;
+            detailInfo.lineSpacing = 1.15f;
             detailInfo.horizontalOverflow = HorizontalWrapMode.Wrap;
             detailInfo.verticalOverflow = VerticalWrapMode.Truncate;
-            Place(detailInfo.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -130f), new Vector2(DetailWidth, 94f));
+            Place(detailInfo.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -236f), new Vector2(DetailWidth, 104f));
 
-            giftButton = CreateButton(panel, "Gift", "赠送", Vector2.zero, new Vector2(100f, 36f), OnGift);
-            Place(giftButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -228f), new Vector2(100f, 36f));
+            // 按钮底边 -398，距面板底 432 还有 34：不会再被 3px 边框压住。
+            giftButton = CreateButton(panel, "Gift", "赠送", Vector2.zero, new Vector2(124f, 46f), OnGift);
+            Place(giftButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -352f), new Vector2(124f, 46f));
 
-            Button cancel = CreateButton(panel, "Cancel", "取消", Vector2.zero, new Vector2(100f, 36f), OnCancel);
-            Place(cancel.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft + 112f, -228f), new Vector2(100f, 36f));
+            Button cancel = CreateButton(panel, "Cancel", "取消", Vector2.zero, new Vector2(124f, 46f), OnCancel);
+            Place(cancel.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft + 140f, -352f), new Vector2(124f, 46f));
         }
 
         // ── 数据 ────────────────────────────────────────────────
@@ -372,9 +405,11 @@ namespace StudentGrowth
                     continue;
                 }
 
-                slotIcons[i].sprite = entry.item.icon;
-                slotIcons[i].color = entry.item.icon != null ? Color.white : FallbackColor(entry.item);
-                slotIcons[i].enabled = true;
+                Sprite icon = ResolveIcon(entry.item, out Color tint);
+                slotIcons[i].sprite = icon;
+                slotIcons[i].color = tint;
+                // sprite 为 null 时必须关掉，否则会渲染成纯色方块（旧版就是这里恒为 true）。
+                slotIcons[i].enabled = icon != null;
 
                 bool showCount = entry.count > 1;
                 slotCounts[i].text = showCount ? entry.count.ToString() : string.Empty;
@@ -412,6 +447,101 @@ namespace StudentGrowth
                 + "\n价格：" + selected.price
                 + "\n送出后：心情 +" + GiftMoodBonus(selected);
             detailInfo.text = string.IsNullOrEmpty(selected.description) ? "（没有描述）" : selected.description;
+        }
+
+        // ── 图标 ────────────────────────────────────────────────
+
+        /// <summary>
+        /// 取道具图标，并给出应当乘上去的着色。
+        ///
+        /// 运行时道具（MvpSampleDataFactory 建的）只有 imagePath，icon 恒为 null，
+        /// 所以这里按 icon → imagePath → 目录表 → 通用图标 的顺序回退。
+        /// 回退到通用图标时按 itemId 加色相，至少能靠颜色区分不同道具。
+        /// </summary>
+        private Sprite ResolveIcon(ItemData item, out Color tint)
+        {
+            tint = Color.white;
+            if (item == null)
+            {
+                return null;
+            }
+
+            if (item.icon != null)
+            {
+                return item.icon;
+            }
+
+            Sprite loaded = LoadIconSprite(item.imagePath);
+            if (loaded == null
+                && !string.IsNullOrEmpty(item.itemId)
+                && GameArtAssetCatalog.TryGetItemIconPath(item.itemId, out string catalogPath))
+            {
+                loaded = LoadIconSprite(catalogPath);
+            }
+
+            if (loaded != null)
+            {
+                return loaded;
+            }
+
+            tint = FallbackColor(item);
+            return theme != null ? theme.inventoryIcon : null;
+        }
+
+        /// <summary>
+        /// 从 Assets 下的 PNG 现读图标（与 StudentGrowthMvpRuntimeUi.LoadSprite 同一做法）。
+        /// 结果进静态缓存：Refresh 在每次选格/翻页都会调用，不缓存会反复读盘。
+        /// 注意这是 Editor / 开发期的读法（依赖 Application.dataPath 下真实存在的 Assets 目录），
+        /// 打包后 Assets 不随包分发，届时会回退到通用图标——与项目内既有做法保持一致。
+        /// </summary>
+        private static Sprite LoadIconSprite(string assetPath)
+        {
+            if (string.IsNullOrEmpty(assetPath))
+            {
+                return null;
+            }
+
+            if (iconCache.TryGetValue(assetPath, out Sprite cached))
+            {
+                return cached;
+            }
+
+            Sprite sprite = null;
+            try
+            {
+                string fullPath = assetPath.StartsWith("Assets/", StringComparison.Ordinal)
+                    ? Path.Combine(Application.dataPath, assetPath.Substring("Assets/".Length))
+                    : assetPath;
+
+                if (File.Exists(fullPath))
+                {
+                    byte[] bytes = File.ReadAllBytes(fullPath);
+                    Texture2D texture = new Texture2D(2, 2, TextureFormat.RGBA32, false)
+                    {
+                        filterMode = FilterMode.Point,
+                        wrapMode = TextureWrapMode.Clamp
+                    };
+
+                    if (texture.LoadImage(bytes))
+                    {
+                        texture.filterMode = FilterMode.Point;
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                        sprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.one * 0.5f, 100f);
+                    }
+                    else
+                    {
+                        Destroy(texture);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning("[GiftPicker] 读取图标失败：" + assetPath + " / " + exception.Message);
+                sprite = null;
+            }
+
+            iconCache[assetPath] = sprite;
+            return sprite;
         }
 
         // ── 小工具 ────────────────────────────────────────────────
@@ -457,6 +587,7 @@ namespace StudentGrowth
                 : new Color(0.33f, 0.28f, 0.23f, 1f);
         }
 
+        /// <summary>同一道具永远得到同一个颜色，让兜底图标也能一眼区分（与背包 TintFor 同算法）。</summary>
         private static Color FallbackColor(ItemData item)
         {
             if (item == null || string.IsNullOrEmpty(item.itemId))
@@ -488,7 +619,7 @@ namespace StudentGrowth
             text.alignment = alignment;
             text.raycastTarget = false;
             // 2026-10-26：这里不用 ApplyPixelText。挂上 PixelText 组件后，OnEnable 会用
-            // 组件自身的 textStyle 再刷一次字号，实测标题被刷成 Body 的 24（主题 Title 是 36），
+            // 组件自身的 textStyle 再刷一次字号，实测标题被刷成 Body 的字号（主题 Title 更大），
             // 表现为「标题比正文还小」。ApplyText 只设字体/字号/颜色，不挂组件，字号稳定。
             GameUiStyle.ApplyText(text, theme, style, inverse);
             return text;
