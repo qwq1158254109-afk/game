@@ -1,28 +1,29 @@
 """
-道具图标生成器 —— 功能饮料（item_energy_drink）
+道具图标生成器 —— 功能饮料（item_energy_drink）· 能量罐款式
+
+造型参考经典能量饮料罐的色块分布：银底 + 深蓝上段 + 红色标识带。
+**不绘制任何品牌 logo**（版权考虑），用抽象色块表达「能量饮料」的视觉语言。
 
 规范（Docs/ArtStyleGuide.md §4）：
 - 画布 48x48，透明底，长边撑满 40px 安全区
-- 1px #342216 描边，只在轮廓外
-- 主色 #E2B24C / #FFE5B8 / #C59B64 / #9A6235，点缀 #B6483C
+- 1px #342216 描边
 - 色数 <= 8
-- 验收：缩到 24x24 仍能认出是饮料罐
 
-修正（相对第一版）：
-1. 高光改成连续竖线——第一版用 y%4 做断点，画出来是锯齿楼梯
-2. 罐体收窄到 14px 宽（原 18px 像罐头），长宽比 1:2.9
-3. 拉环重画成 6x3 的环形，能看出是拉环
-4. 标签上的白色块改成一横一竖：横条暗示文字、方块暗示商标
+色板（新增两色，因原暖色板画不出银蓝罐）：
+  #342216 描边    #C8CDD2 罐身银    #8A8F94 银暗部
+  #1D3C87 深蓝段  #B6483C 红标识带  #E2B24C 黄点缀
+  #F5EFE6 高光
 """
 
 from PIL import Image
 
-OUTLINE  = (0x34, 0x22, 0x16)
-GOLD     = (0xE2, 0xB2, 0x4C)
-GOLD_DK  = (0x9A, 0x62, 0x35)
-HILIGHT  = (0xFF, 0xE5, 0xB8)
-RED      = (0xB6, 0x48, 0x3C)
-METAL    = (0x8A, 0x8F, 0x94)
+OUTLINE = (0x34, 0x22, 0x16)
+SILVER  = (0xC8, 0xCD, 0xD2)
+SILV_DK = (0x8A, 0x8F, 0x94)
+BLUE    = (0x1D, 0x3C, 0x87)
+RED     = (0xB6, 0x48, 0x3C)
+YELLOW  = (0xE2, 0xB2, 0x4C)
+WHITE   = (0xF5, 0xEF, 0xE6)
 
 W, H = 48, 48
 img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -45,15 +46,12 @@ def hline(x, y, w, color):
     rect(x, y, w, 1, color)
 
 
-# ══ 罐体轮廓 ══════════════════════════════════════════
-# 罐体 14 宽 x 41 高（比例 1:2.9），居中：
-# 安全区 4..43，中心 24，所以 x 17..30
 BODY_L, BODY_R = 17, 30
 TOP, BOTTOM = 4, 44
 
 
 def inset_at(y):
-    """按高度返回左右内缩量，做出圆柱的顶底收窄。"""
+    """圆柱顶底收窄。"""
     if y <= TOP + 2:
         return 2
     if y <= TOP + 4:
@@ -65,57 +63,56 @@ def inset_at(y):
     return 0
 
 
-# 描边
+# ══ 描边 ══════════════════════════════════════════════
 for y in range(TOP, BOTTOM + 1):
     ins = inset_at(y)
     hline(BODY_L + ins, y, (BODY_R - ins) - (BODY_L + ins) + 1, OUTLINE)
 
-# 填充
+# ══ 罐身：银底 ════════════════════════════════════════
 for y in range(TOP + 1, BOTTOM):
     ins = inset_at(y)
-    hline(BODY_L + ins + 1, y, (BODY_R - ins - 1) - (BODY_L + ins + 1) + 1, GOLD)
+    hline(BODY_L + ins + 1, y, (BODY_R - ins - 1) - (BODY_L + ins + 1) + 1, SILVER)
 
-# ══ 顶盖与拉环 ════════════════════════════════════════
-# 罐口金属圈
-hline(19, 6, 10, METAL)
-hline(19, 7, 10, GOLD_DK)
-# 拉环：6x3 的环（描边 + 内部金属）
-rect(21, 8, 6, 3, OUTLINE)
-rect(22, 8, 4, 1, METAL)
-rect(23, 9, 2, 1, GOLD_DK)
+# ══ 上段：深蓝色块（能量罐的蓝段）══════════════════════
+# y 10..18 填蓝，顶部留 1px 银边
+rect(19, 10, 10, 9, BLUE)
+# 蓝段内一条白斜纹（用阶梯表现斜线：14px 宽画不出真斜纹）
+dot(20, 12, WHITE); dot(21, 12, WHITE)
+dot(21, 13, WHITE); dot(22, 13, WHITE)
+dot(22, 14, WHITE); dot(23, 14, WHITE)
+dot(23, 15, WHITE); dot(24, 15, WHITE)
+dot(24, 16, WHITE); dot(25, 16, WHITE)
 
-# ══ 标签带 ════════════════════════════════════════════
-hline(18, 19, 12, GOLD_DK)
-rect(18, 20, 12, 13, RED)
-hline(18, 33, 12, GOLD_DK)
+# ══ 中段：红色标识带 ══════════════════════════════════
+hline(19, 19, 10, SILV_DK)
+rect(19, 20, 10, 11, RED)
+hline(19, 31, 10, SILV_DK)
 
-# 标签内容：一条横线（暗示文字）+ 一个小方块（暗示商标）
-rect(20, 23, 8, 2, HILIGHT)
-rect(20, 27, 3, 3, HILIGHT)
-rect(25, 27, 3, 1, HILIGHT)
-# 标签底部一条金线
-hline(20, 31, 8, GOLD)
+# 标识带内：单个黄块居中 + 下方一条白线（两个并排黄块会读成“眼睛”）
+rect(22, 23, 5, 4, YELLOW)
+rect(21, 28, 7, 1, WHITE)
+
+# ══ 下段：银底 + 细线 ═════════════════════════════════
+hline(19, 34, 10, SILV_DK)
 
 # ══ 高光与暗部 ════════════════════════════════════════
-# 左侧 1px 连续高光（受光面），标签区跳过
 for y in range(11, 39):
-    if 21 <= y <= 32:
+    if 20 <= y <= 31:
         continue
-    dot(19, y, HILIGHT)
-# 右侧 1px 暗部
-for y in range(11, 39):
-    if 21 <= y <= 32:
-        continue
-    dot(28, y, GOLD_DK)
+    dot(19, y, WHITE)      # 左侧 1px 连续高光
+    dot(28, y, SILV_DK)    # 右侧 1px 暗部
+
+# ══ 顶盖 ══════════════════════════════════════════════
+hline(19, 6, 10, WHITE)
+hline(19, 7, 10, SILV_DK)
+rect(21, 8, 6, 2, OUTLINE)
+rect(22, 8, 4, 1, SILV_DK)
 
 # ══ 底部 ══════════════════════════════════════════════
-hline(20, 41, 8, GOLD_DK)  # 罐底暗边（原来这里还多画了一行描边，导致底部像凹槽，已删）
+hline(20, 41, 8, SILV_DK)
 
 img.save("_tmp_img/icons/icon_item_energy_drink.png")
 img.resize((W * 8, H * 8), Image.NEAREST).save("_tmp_img/icons/icon_item_energy_drink_8x.png")
-img.resize((24, 24), Image.LANCZOS).save("_tmp_img/icons/icon_item_energy_drink_24.png")
-img.resize((24, 24), Image.LANCZOS).resize((192, 192), Image.NEAREST).save(
-    "_tmp_img/icons/icon_item_energy_drink_24_check.png")
 
 colors = set()
 for y in range(H):
