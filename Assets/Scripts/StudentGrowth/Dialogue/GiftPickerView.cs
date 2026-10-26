@@ -205,19 +205,15 @@ namespace StudentGrowth
             Place(prevButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(584f, -16f), new Vector2(76f, 44f));
 
             pageLabel = CreateLabel(panel, "PageLabel", string.Empty, GameUiTextStyle.SmallText, false, TextAnchor.MiddleCenter);
+            // SmallText 是 12 号，在 1920 参考下比正文小一圈，页码容易看不清，提到 18。
+            pageLabel.fontSize = 18;
             Place(pageLabel.rectTransform, TopLeft, TopLeft, new Vector2(672f, -16f), new Vector2(44f, 44f));
 
             nextButton = CreateButton(panel, "NextPage", "下页", Vector2.zero, new Vector2(76f, 44f), () => ChangePage(1));
             Place(nextButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(724f, -16f), new Vector2(76f, 44f));
 
-            // 标题与内容区之间的分隔线：让标题行和网格区在视觉上分层，
-            // 也让「字贴到边框上」的观感彻底消失。
-            Image divider = CreateImage("Divider", panel);
-            divider.raycastTarget = false;
-            divider.sprite = GameUiStyle.GetSolidSprite();
-            divider.type = Image.Type.Simple;
-            divider.color = new Color(0.29f, 0.18f, 0.10f, 0.28f);
-            Place(divider.rectTransform, TopLeft, TopLeft, new Vector2(Padding, -76f), new Vector2(PanelWidth - Padding * 2f, 2f));
+            // 曾加过一条分隔线（y=-76），实测距详情标题顶边只有 8px（屏幕像素），
+            // 视觉上和标题挤在一起，且纸纹底本身就有横线，加它没有信息价值，已删。
         }
 
         private void BuildGrid(RectTransform panel)
