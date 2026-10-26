@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,6 +49,10 @@ namespace StudentGrowth
         private Button tabItemButton;
         private Button tabCardButton;
         private int currentTab;
+        // 2026-10-26：道具/卡牌的图标走 imagePath 按需读盘。Refresh 每次
+        // 买卖都会重跑，不缓存就是反复 IO。
+        private static readonly Dictionary<string, Sprite> iconCache = new Dictionary<string, Sprite>();
+
         public List<ItemData> stockItems = new List<ItemData>();
         public List<CardData> shopCards = new List<CardData>();
         public RectTransform cardListRoot;
@@ -366,7 +372,7 @@ namespace StudentGrowth
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
             }
 
-            CreateStockIcon("ItemIcon", rect, item == null || item.icon == null ? resolved.inventoryIcon : item.icon, new Vector2(12f, -12f), new Vector2(28f, 28f), resolved.inverseText);
+            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(12f, -14f), new Vector2(32f, 32f), resolved.inverseText);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolvePrice(item), 15, FontStyle.Bold, TextAnchor.MiddleRight);
             SetRect(priceText.rectTransform, new Vector2(296f, -10f), new Vector2(68f, 20f), new Vector2(0f, 1f));
@@ -455,8 +461,7 @@ namespace StudentGrowth
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
             }
 
-            Sprite cardSprite = card == null ? null : card.icon;
-            CreateStockIcon("CardIcon", rect, cardSprite == null ? resolved.inventoryIcon : cardSprite, new Vector2(12f, -12f), new Vector2(28f, 28f), resolved.inverseText);
+            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(12f, -14f), new Vector2(32f, 32f), resolved.inverseText);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolveCardPrice(card), 15, FontStyle.Bold, TextAnchor.MiddleRight);
             SetRect(priceText.rectTransform, new Vector2(296f, -10f), new Vector2(68f, 20f), new Vector2(0f, 1f));
@@ -935,6 +940,130 @@ namespace StudentGrowth
             return image;
         }
 
+        /// <summary>
+        /// 解析道具图标：优先 imagePath 读盘，其次 ItemData.icon，再退到
+        /// GameArtAssetCatalog 的约定路径，最后用主题通用图标兜底。
+        /// 运行时 CreateInstance 出来的道具 icon 字段是 null，只查它必然全空。
+        /// </summary>
+        private static Sprite ResolveItemSprite(ItemData item, UIThemeConfig resolved)
+        {
+            if (item == null)
+            {
+                return resolved.inventoryIcon;
+            }
+
+            Sprite loaded = LoadIconSprite(item.imagePath);
+            if (loaded != null)
+            {
+                return loaded;
+            }
+
+            if (item.icon != null)
+            {
+                return item.icon;
+            }
+
+            if (!string.IsNullOrEmpty(item.itemId)
+                && GameArtAssetCatalog.TryGetItemIconPath(item.itemId, out string catalogPath))
+            {
+                loaded = LoadIconSprite(catalogPath);
+                if (loaded != null)
+                {
+                    return loaded;
+                }
+            }
+
+            return resolved.inventoryIcon;
+        }
+
+        /// <summary>解析卡牌图标，顺序同道具。</summary>
+        private static Sprite ResolveCardSprite(CardData card, UIThemeConfig resolved)
+        {
+            if (card == null)
+            {
+                return resolved.inventoryIcon;
+            }
+
+            Sprite loaded = LoadIconSprite(card.imagePath);
+            if (loaded != null)
+            {
+                return loaded;
+            }
+
+            if (card.icon != null)
+            {
+                return card.icon;
+            }
+
+            if (!string.IsNullOrEmpty(card.cardId)
+                && GameArtAssetCatalog.TryGetCardImagePath(card.cardId, out string catalogPath))
+            {
+                loaded = LoadIconSprite(catalogPath);
+                if (loaded != null)
+                {
+                    return loaded;
+                }
+            }
+
+            return resolved.inventoryIcon;
+        }
+
+        /// <summary>
+        /// 从 Assets 目录读 PNG 并建 Sprite，结果进静态缓存。
+        /// 与 GiftPickerView.LoadIconSprite 同一套做法；打包后 Assets 不随包
+        /// 分发，会回退到通用图标，与项目内既有约定一致。
+        /// </summary>
+        private static Sprite LoadIconSprite(string assetPath)
+        {
+            if (string.IsNullOrEmpty(assetPath))
+            {
+                return null;
+            }
+
+            if (iconCache.TryGetValue(assetPath, out Sprite cached))
+            {
+                return cached;
+            }
+
+            Sprite sprite = null;
+            try
+            {
+                string fullPath = assetPath.StartsWith("Assets/", StringComparison.Ordinal)
+                    ? Path.Combine(Application.dataPath, assetPath.Substring("Assets/".Length))
+                    : assetPath;
+
+                if (File.Exists(fullPath))
+                {
+                    byte[] bytes = File.ReadAllBytes(fullPath);
+                    Texture2D texture = new Texture2D(2, 2, TextureFormat.RGBA32, false)
+                    {
+                        filterMode = FilterMode.Point,
+                        wrapMode = TextureWrapMode.Clamp
+                    };
+
+                    if (texture.LoadImage(bytes))
+                    {
+                        texture.filterMode = FilterMode.Point;
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                        sprite = Sprite.Create(texture,
+                            new Rect(0f, 0f, texture.width, texture.height),
+                            Vector2.one * 0.5f, 100f);
+                    }
+                    else
+                    {
+                        Destroy(texture);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                sprite = null;
+            }
+
+            iconCache[assetPath] = sprite;
+            return sprite;
+        }
+
         private static Image CreateStockIcon(string name, RectTransform parent, Sprite sprite, Vector2 anchoredPosition, Vector2 sizeDelta, Color color)
         {
             GameObject iconObject = new GameObject(name, typeof(RectTransform));
@@ -987,6 +1116,10 @@ namespace StudentGrowth
             Image image = buttonObject.AddComponent<Image>();
             Button button = buttonObject.AddComponent<Button>();
             button.targetGraphic = image;
+            // Button 默认 ColorTint 会接管 image.color：鼠标移开后把颜色刷成
+            // normalColor（白），而 PixelButton 设的底色被覆盖，看起来就像
+            // 「选中后再也不恢复」。送礼面板同样显式关掉（GiftPickerView:248）。
+            button.transition = Selectable.Transition.None;
 
             Text text = CreateText("Text", rect, label, 16, FontStyle.Bold, TextAnchor.MiddleCenter);
             text.rectTransform.anchorMin = Vector2.zero;
