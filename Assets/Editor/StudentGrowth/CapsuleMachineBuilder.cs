@@ -26,7 +26,7 @@ namespace StudentGrowthEditor
         // 用户确认的最终位置（2026-10-25：「还是回到之前的位置」）。
         // 隐形交互点。改位置只改这里，然后重跑构建菜单。
         private const float MachineX = 1.8f;
-        private const float MachineY = 5.4f;
+        private const float MachineY = 4.2f;
 
         [MenuItem("Tools/Student Growth/Shop/Build Capsule Machine")]
         public static void Build()
@@ -47,6 +47,20 @@ namespace StudentGrowthEditor
 
         private static Sprite GenerateSprite()
         {
+            // 2026-10-26：真美术已入库（72×96 @ PPU 24 = 3×4 世界单位，Tools/make_capsule_machine_72x96.py 生成）。
+            // 旧逻辑每次运行都 WriteAllBytes 覆盖，会把画好的图冲掉。
+            // 现在改成「文件存在就只校正导入参数，不重画」。
+            if (File.Exists(SpritePath))
+            {
+                EnsureImportSettings();
+                Sprite existing = AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);
+                if (existing != null)
+                {
+                    Debug.Log("[CapsuleMachine] 使用已有贴图 " + SpritePath);
+                    return existing;
+                }
+            }
+
             // '.'=透明 '#'=机身红 'o'=玻璃 'a'/'b'/'c'=扭蛋三色 '-'=投币口 '='=底座
             string[] pattern =
             {
@@ -104,20 +118,42 @@ namespace StudentGrowthEditor
             Directory.CreateDirectory(Path.GetDirectoryName(SpritePath));
             File.WriteAllBytes(SpritePath, texture.EncodeToPNG());
             Object.DestroyImmediate(texture);
+            EnsureImportSettings();
+
+            return AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);
+        }
+
+        /// <summary>
+        /// 只校正导入参数（PPU 16 / Point / 无压缩 / Single），不重画图片。
+        /// 参数已正确时直接返回，避免每次跑菜单都触发一次重导入。
+        /// </summary>
+        private static void EnsureImportSettings()
+        {
             AssetDatabase.ImportAsset(SpritePath, ImportAssetOptions.ForceSynchronousImport);
 
             TextureImporter importer = AssetImporter.GetAtPath(SpritePath) as TextureImporter;
-            if (importer != null)
+            if (importer == null)
             {
-                importer.textureType = TextureImporterType.Sprite;
-                importer.spriteImportMode = SpriteImportMode.Single;
-                importer.spritePixelsPerUnit = 16;
-                importer.filterMode = FilterMode.Point;
-                importer.textureCompression = TextureImporterCompression.Uncompressed;
-                importer.SaveAndReimport();
+                return;
             }
 
-            return AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);
+            bool alreadyCorrect = importer.textureType == TextureImporterType.Sprite
+                && importer.spriteImportMode == SpriteImportMode.Single
+                && Mathf.Approximately(importer.spritePixelsPerUnit, 24f)
+                && importer.filterMode == FilterMode.Point
+                && importer.textureCompression == TextureImporterCompression.Uncompressed;
+
+            if (alreadyCorrect)
+            {
+                return;
+            }
+
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Single;
+            importer.spritePixelsPerUnit = 24;
+            importer.filterMode = FilterMode.Point;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.SaveAndReimport();
         }
 
         private static CapsulePackData GeneratePack()
@@ -198,15 +234,16 @@ namespace StudentGrowthEditor
 
             SpriteRenderer renderer = machine.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
-            // 地图美术里已经有扭蛋机（2026-10-24 用户确认）：本对象只做隐形交互点，
-            // 占位贴图不显示，避免叠在美术机台上。碰撞保留，防止穿模。
-            renderer.enabled = false;
+            // 2026-10-26 更正：旧注释写「地图美术里已经有扭蛋机」，但实测商店场景
+            // 截图里没有扭蛋机，本对象的 SpriteRenderer 是唯一载体（原本 enabled=false，
+            // 等于玩家看不到、只能撞到隐形交互点）。已改为 visible。
+            renderer.enabled = true;
             renderer.sortingOrder = MapObjectYSorter.CalculateSortingOrder(MachineY, 1000, 100f);
 
             BoxCollider2D body = machine.AddComponent<BoxCollider2D>();
-            body.size = new Vector2(0.85f, 1.3f);
-            body.offset = new Vector2(0f, -0.1f);
-            // 柜台已有阻挡碰撞，这里不重复挡路（2026-10-24）。
+            body.size = new Vector2(2.6f, 3.6f);
+            body.offset = new Vector2(0f, -0.2f);
+            // 碰撞仍关闭：柜台已有阻挡碰撞，这里不重复挡路（2026-10-24 决定保留）。
             body.enabled = false;
 
             MapInteractionPoint point = machine.AddComponent<MapInteractionPoint>();
