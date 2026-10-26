@@ -195,6 +195,13 @@ namespace StudentGrowth
             background.color = background.sprite != null && background.sprite != GetSolidSprite()
                 ? Color.white
                 : selected ? resolved.buttonSelected : button.interactable ? resolved.buttonNormal : resolved.buttonDisabled;
+
+            // 2026-10-26：主题里没有 buttonSelectedSprite 时，上面那段会换回默认底图，
+            // 悬停前后长得一模一样，看不出「哪个被选中」。补一层颜色高亮兜底。
+            if (selected && resolved.buttonSelectedSprite == null)
+            {
+                background.color = resolved.buttonSelected;
+            }
         }
 
         public static Color ResolvePanelColor(UIThemeConfig theme, GameUiPanelVariant variant)
