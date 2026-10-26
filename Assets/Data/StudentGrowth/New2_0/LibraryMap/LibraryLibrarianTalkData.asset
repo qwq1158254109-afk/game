@@ -23,7 +23,7 @@ MonoBehaviour:
   maxUsesPerStage: -1
   battleRewardTiming: 0
   linkedChallenge: {fileID: 0}
-  linkedEvent: {fileID: 0}
+  linkedEvent: {fileID: 11400000, guid: d470b5aa02fb422d968b664997bb7c07, type: 2}
   linkedMiniGame: {fileID: 0}
   fixedRewards: []
   possibleRewards: []

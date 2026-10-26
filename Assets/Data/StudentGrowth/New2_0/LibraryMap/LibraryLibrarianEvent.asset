@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d34b0e1627e7a8f4fa62d84389ed15a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e87f32b930d472587120c31c0d9c89d, type: 3}
   m_Name: LibraryLibrarianEvent
-  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.GameEventData
+  m_EditorClassIdentifier: StudentGrowth.Runtime::StudentGrowth.LibraryMapEventData
   eventId: event_library_librarian_talk
   title: 图书管理员
   description: 管理员从书堆后抬头：「找资料？先把要找的东西说清楚，比在书架之间乱转快得多。自习区在靠窗那排，安静。」
