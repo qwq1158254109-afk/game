@@ -14,8 +14,10 @@ namespace StudentGrowth
         // （原来单列 3 行，9 件只显示 3 件，其余永远看不到）。
         private const float StockRowHeight = 76f;
         private const float StockRowSpacing = 8f;
-        private const float StockColumnWidth = 380f;
-        private const float StockColumnGap = 20f;
+        // 3 列必须放进列表区 1160：3*372 + 2*22 = 1160，正好不留缝。
+        // 之前写 380/20 得 1180，超出 20px，第 3 列会画到面板外。
+        private const float StockColumnWidth = 372f;
+        private const float StockColumnGap = 22f;
         private const int StockColumns = 3;
         private const int MaxVisibleStockItems = StockColumns * 3;
 
@@ -576,6 +578,38 @@ namespace StudentGrowth
         }
 
         /// <summary>
+        /// 拆掉旧布局并按当前代码重建。用于场景里序列化的历史实例——
+        /// BuildDefaultLayout 有「已有 titleText/stockListRoot 就直接返回」的保护，
+        /// 不清空引用它永远不会重排。
+        /// </summary>
+        private void RebuildLayout(RectTransform panelRect)
+        {
+            for (int i = panelRect.childCount - 1; i >= 0; i--)
+            {
+                GameObject child = panelRect.GetChild(i).gameObject;
+                if (Application.isPlaying)
+                {
+                    Destroy(child);
+                }
+                else
+                {
+                    DestroyImmediate(child);
+                }
+            }
+
+            // 清空引用，绕过 BuildDefaultLayout 的 early return
+            titleText = null;
+            stockListRoot = null;
+            cardListRoot = null;
+            cardSectionTitle = null;
+            tabItemButton = null;
+            tabCardButton = null;
+
+            panelRect.sizeDelta = new Vector2(1200f, ShopPanelHeight);
+            BuildDefaultLayout(panelRect);
+        }
+
+        /// <summary>
         /// 幂等把面板撑到含卡牌区的高度，并补齐缺失的卡牌列表节点。
         /// 场景里已序列化的 MapShopView 实例不会再走 BuildDefaultLayout，
         /// 没有这一步就会出现「加了卡牌但界面上看不到」。
@@ -588,6 +622,21 @@ namespace StudentGrowth
             }
 
             RectTransform panelRect = panelRoot.transform as RectTransform;
+            if (panelRect == null)
+            {
+                return;
+            }
+
+            // 2026-10-26：三列改版后，场景里序列化的旧实例（620x660 单列布局）
+            // 不会走 BuildDefaultLayout，只补高度是修不好的——旧高度 660 反而
+            // 比新高度 400 大，连高度判断都过不了。这里按面板宽度判定版本，
+            // 不是 1200 就拆掉子节点整体重建。
+            if (!Mathf.Approximately(panelRect.sizeDelta.x, 1200f))
+            {
+                RebuildLayout(panelRect);
+                return;
+            }
+
             if (panelRect != null && panelRect.sizeDelta.y < ShopPanelHeight)
             {
                 panelRect.sizeDelta = new Vector2(panelRect.sizeDelta.x, ShopPanelHeight);
