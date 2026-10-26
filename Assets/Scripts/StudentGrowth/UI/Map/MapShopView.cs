@@ -647,29 +647,39 @@ namespace StudentGrowth
         /// </summary>
         private void RebuildLayout(RectTransform panelRect)
         {
+            // 记住原来的父节点。BuildDefaultLayout(parent) 内部会执行
+            // panelRect.SetParent(parent)，如果把它自己传进去就是「自己当自己的父」，
+            // Unity 直接报错。
+            Transform originalParent = panelRect.parent;
+
+            // 必须用 DestroyImmediate：Destroy 是延迟到帧末销毁，而紧接着就要
+            // 重建一套新子节点，同一帧内两套 UI 并存。旧字段仍指向「待销毁」的
+            // 组件，任何一次访问都会抛 NullReference。UI 重建开销很小，立即销毁。
             for (int i = panelRect.childCount - 1; i >= 0; i--)
             {
-                GameObject child = panelRect.GetChild(i).gameObject;
-                if (Application.isPlaying)
-                {
-                    Destroy(child);
-                }
-                else
-                {
-                    DestroyImmediate(child);
-                }
+                DestroyImmediate(panelRect.GetChild(i).gameObject);
             }
 
-            // 清空引用，绕过 BuildDefaultLayout 的 early return
+            // 清空全部子节点引用，绕过 BuildDefaultLayout 的 early return，
+            // 也避免后续代码拿着已销毁对象继续用。
             titleText = null;
+            moneyText = null;
+            descriptionText = null;
+            feedbackText = null;
             stockListRoot = null;
             cardListRoot = null;
             cardSectionTitle = null;
             tabItemButton = null;
             tabCardButton = null;
+            prevPageButton = null;
+            nextPageButton = null;
+            pageLabel = null;
+            closeButton = null;
+            shopIcon = null;
+            moneyIcon = null;
 
             panelRect.sizeDelta = new Vector2(1200f, ShopPanelHeight);
-            BuildDefaultLayout(panelRect);
+            BuildDefaultLayout(originalParent as RectTransform);
         }
 
         /// <summary>
