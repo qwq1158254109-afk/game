@@ -11,6 +11,7 @@
     python tools/unity_cmd.py capture_scene_view --args '{"path": "Docs/shot.png"}'
     python tools/unity_cmd.py --list          # 列出 Unity 侧注册的全部命令
     python tools/unity_cmd.py --status        # 查看桥心跳
+    python tools/unity_cmd.py --probe         # 判定该走 MCP 还是桥
 
 退出码：0 成功 / 1 命令执行失败 / 2 桥未就绪或参数错误 / 3 超时
 """
@@ -18,8 +19,10 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import os
+import socket
 import sys
 import time
 import uuid
@@ -99,6 +102,109 @@ class BridgeNotReady(RuntimeError):
     pass
 
 
+# ------------------------------------------------------------------ MCP 探活
+#
+# 端口 LISTENING 不等于 MCP 可用：mcp-unity 在 domain reload 后会出现
+# 「旧 socket 占着端口、新实例绑不上、旧实例不处理请求」的假活状态。
+# 只有真正握手一次才能区分。逻辑与 tools/ensure_unity.ps1 的 Test-WebSocketHandshake 一致。
+
+
+def mcp_port() -> int:
+    settings = read_json(os.path.join(project_root(), "ProjectSettings", "McpUnitySettings.json"))
+    if isinstance(settings, dict) and isinstance(settings.get("Port"), int):
+        return settings["Port"]
+    return 8095
+
+
+def mcp_token() -> str | None:
+    path = os.path.join(project_root(), "Library", "McpUnity", "bridge-token")
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            token = fh.read().strip()
+    except OSError:
+        return None
+    return token or None
+
+
+def mcp_handshake(port: int, timeout: float = 6.0) -> dict:
+    token = mcp_token()
+    if token is None:
+        return {"ok": False, "reason": "no-token", "detail": "缺少 Library/McpUnity/bridge-token"}
+
+    key = base64.b64encode(os.urandom(16)).decode()
+    auth = base64.b64encode(f"mcp-unity:{token}".encode()).decode()
+    attempts: list[dict] = []
+
+    # 端口可能只绑 ::1，也可能只绑 127.0.0.1，两个都试，并保留每个的结论。
+    for host in ("::1", "127.0.0.1"):
+        family = socket.AF_INET6 if ":" in host else socket.AF_INET
+        try:
+            with socket.socket(family, socket.SOCK_STREAM) as sock:
+                sock.settimeout(timeout)
+                sock.connect((host, port))
+                request = (
+                    f"GET /McpUnity HTTP/1.1\r\n"
+                    f"Host: {host}:{port}\r\n"
+                    "Upgrade: websocket\r\n"
+                    "Connection: Upgrade\r\n"
+                    f"Sec-WebSocket-Key: {key}\r\n"
+                    "Sec-WebSocket-Version: 13\r\n"
+                    f"Authorization: Basic {auth}\r\n"
+                    "X-Client-Name: unity-channel-probe\r\n\r\n"
+                )
+                sock.sendall(request.encode("ascii"))
+                first = sock.recv(256).decode("latin-1", "replace").split("\r\n", 1)[0]
+                if " 101" in first:
+                    return {"ok": True, "host": host, "status": first, "attempts": attempts + [{"host": host, "result": "ok", "status": first}]}
+                attempts.append({"host": host, "result": "rejected", "status": first})
+        except socket.timeout:
+            attempts.append({"host": host, "result": "timeout"})
+        except OSError as exc:
+            attempts.append({"host": host, "result": "refused", "detail": str(exc)})
+
+    # 判定优先级：timeout 是「假活」特征（端口在听但不响应），比 refused 更值得报警。
+    results = {a["result"] for a in attempts}
+    if "timeout" in results:
+        reason = "timeout-zombie"
+    elif "rejected" in results:
+        reason = "rejected"
+    else:
+        reason = "refused"
+    return {"ok": False, "reason": reason, "attempts": attempts}
+
+
+def probe(timeout: float = 6.0) -> dict:
+    """判定该用哪条通道：MCP 优先，MCP 假活则退到文件桥。"""
+    port = mcp_port()
+    mcp = mcp_handshake(port, timeout)
+
+    beat = heartbeat()
+    age = heartbeat_age(beat) if beat else None
+    bridge_ready = bool(beat) and age is not None and age < 10 and not beat.get("isCompiling")
+
+    if mcp.get("ok"):
+        choice = "mcp"
+        reason = "MCP 握手成功"
+    elif bridge_ready:
+        choice = "bridge"
+        reason = f"MCP 不可用（{mcp.get('reason')}），文件桥就绪"
+    else:
+        choice = "none"
+        reason = "MCP 与文件桥都不可用"
+
+    return {
+        "recommend": choice,
+        "reason": reason,
+        "mcp": {"port": port, **mcp},
+        "bridge": {
+            "ready": bridge_ready,
+            "heartbeatAgeSeconds": None if age is None else round(age, 1),
+            "isCompiling": None if beat is None else beat.get("isCompiling"),
+            "armedAt": None if beat is None else beat.get("armedAt"),
+        },
+    }
+
+
 def send(command: str, args: dict, timeout: float) -> tuple[int, dict]:
     root = bridge_root()
     cmd_dir = os.path.join(root, "cmd")
@@ -152,8 +258,21 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT, help="超时秒数，默认 30")
     parser.add_argument("--list", action="store_true", help="列出 Unity 侧注册的命令")
     parser.add_argument("--status", action="store_true", help="打印桥心跳")
+    parser.add_argument(
+        "--probe",
+        action="store_true",
+        help="探测 MCP 握手与桥心跳，判定该走哪条通道（MCP 优先）",
+    )
+    parser.add_argument(
+        "--probe-timeout", type=float, default=6.0, help="--probe 的 MCP 握手超时秒数，默认 6"
+    )
     parser.add_argument("--raw", action="store_true", help="只输出 result 字段")
     opts = parser.parse_args(argv)
+
+    if opts.probe:
+        report = probe(opts.probe_timeout)
+        emit(report)
+        return 0 if report["recommend"] != "none" else 2
 
     if opts.status:
         beat = heartbeat()

@@ -981,7 +981,7 @@ V0.2 推荐顺序：
 
 - Unity 版本 6000.4.6f1（`ProjectSettings/ProjectVersion.txt`）。
 - mcp-unity 1.5.0，端口 **8095**（`ProjectSettings/McpUnitySettings.json`，2026-10-23 核对；早期文档与日志里写的 8096 是旧值，以本行为准），桥接令牌 `Library/McpUnity/bridge-token`。WorkBuddy 客户端配置在 `C:\Users\cyl\.workbuddy-ai\mcp.json`，dsh 的配置在 `C:\Users\cyl\.dsh\profiles\desktop\cordis.patch.yml`，两者各起一个 node 桥接进程，同一时间只建议一个客户端连。
-- **recompile 必然把 MCP 打半残**（2026-10-19 三次复现）：任何一次 recompile（含保存脚本触发的域重载）都会让 mcp-unity 的 WebSocket 重绑失败，日志写 `Failed to start WebSocket server: Port 8095 is already in use`，表现为端口在听、握手超时。处理：关 Unity → 等端口彻底消失 → 重启 Unity。**不要反复重试 MCP**。
+- **recompile 必然把 MCP 打半残**（2026-10-19 三次复现）：任何一次 recompile（含保存脚本触发的域重载）都会让 mcp-unity 的 WebSocket 重绑失败，日志写 `Failed to start WebSocket server: Port 8095 is already in use`，表现为端口在听、握手超时。处理：**2026-10-26 起不再重启 Unity，直接切 AgentBridge（见 20.7）**。旧办法（关 Unity → 等端口彻底消失 → 重启 Unity）保留为最后手段。**不要反复重试 MCP**。
 - **僵尸端口**：强杀 Unity 会留下「pid 已不存在、netstat 仍显示 LISTENING」的 8095。此时新启动的 Unity 会静默失去 MCP 服务（NO_LISTENER），且不自动重试。必须等 `netstat -ano | findstr :8095` 完全为空再启动。
 - 因此：**一次性把代码改完再编译**，编译后统一「重启 Unity → 跑菜单 → 截图验证」，不要边改边验。
 - Game 视图在 1x 下会裁切房间，不能当判据；出对照图用菜单 `Tools/Student Growth/Dev/Capture Room Screenshot`（1600×900 离屏渲染、无 HUD，输出 `_room_shot.png`）。
@@ -1057,3 +1057,27 @@ python Tools/fix_pixel_art.py <路径> --out <目录>       # 默认输出到 _t
 - **2026-10-24 全量基线**：`FanworkPixel/Generated/PNG` 54 张 → CLEAN 31 / 修复 21 / low 置信 REVIEW 2；`icon_item_energy_drink` 48x48 → 修复为 23x23（2x 块不均匀 41.67%，真脏图）。
 - 修复产物是 1x 原生分辨率，进 Unity 按 10 节像素规范设置（Point 采样、无压缩、PPU 对齐）；依赖 numpy/scipy/opencv-python/Pillow（本机 Python 3.14 已装齐）。
 - 该目录被 `.gitignore` 的 `/_tmp_img/` 规则覆盖的只有输出目录；`Tools/pixel-art-fixer/` 与 `Tools/fix_pixel_art.py` 已入库。
+
+### 20.7 控制通道优先级（2026-10-26 新增）
+
+两条通道并存，**MCP 优先，MCP 假活才退到文件桥**。
+
+| 通道 | 入口 | 何时用 |
+| --- | --- | --- |
+| MCP（首选） | `mcp__mcp-unity__*` 工具 | 默认。31 个通用工具，能力最全 |
+| AgentBridge（备选） | `python Tools/unity_cmd.py <cmd>` | MCP 握手超时 / 命令 `expired in queue` 时 |
+
+**判定顺序**：
+
+1. 先跑 `python Tools/unity_cmd.py --probe`，它做一次真实 WebSocket 握手并读桥心跳，直接给结论：
+   - `recommend: "mcp"` → 用 MCP，不要碰桥；
+   - `recommend: "bridge"` → MCP 已假活，改用桥，**不要重启 Unity**；
+   - `recommend: "none"` → 两条都不通，Unity 多半没开，先跑 `tools/ensure_unity.ps1`。
+2. `mcp.reason` 的取值即诊断结论：`timeout-zombie` = 端口在听但不响应（假活，旧 socket 未释放）；`refused` = 端口没绑（MCP 没启动）；`rejected` = 握手被拒（令牌不对）。
+
+**桥的能力边界**（12 条命令，详见 `python Tools/unity_cmd.py --list`）：
+`ping` / `commands` / `scene_info` / `hierarchy` / `find` / `console` / `menu` / `play` / `open_scene` / `save_scene` / `capture_view` / `recompile`。
+
+MCP 有而桥没有的（改对象、加组件、建材质、跑测试等），需要时在 `CommandBridge.cs` 的 `RegisterCommands()` 里补一条，而不是退回重启 Unity。
+
+**为什么不重启 Unity**：重启要 10–50s 冷启动，且 `Temp/UnityLockfile` 残留会让新实例自杀；桥在 domain reload 后 200ms 内自动重建，代价几乎为零。**只有当 `--probe` 报 `recommend: "none"` 且桥心跳也不动时，才走重启流程。**
