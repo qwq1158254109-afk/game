@@ -414,10 +414,10 @@ namespace StudentGrowth
         private Button CreateStockButton(ItemData item, int index)
         {
             Button button = CreateButton("ShopItem_" + index, stockListRoot, ResolveItemName(item), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f));
-            // 2026-10-26：不再用 interactable = false 拦点击。
-            // 买不起时按钮点不动，玩家分不清「没反应」和「钱不够」。
-            // 一律走 Purchase，失败由 SetFeedback 打印原因（金钱不足等）。
-            button.interactable = true;
+            // 买不起时保持不可点，让 SetSelectedButtonVisual 走 disabled 灰态，
+            // 玩家一眼能看出哪些买不了（横条右下也写着「金钱不足」）。
+            // 点击反馈交给 feedbackText——下方仍会写原因。
+            button.interactable = CanAfford(item);
             ItemData captured = item;
             button.onClick.AddListener(() => Purchase(captured));
             ConfigureStockButton(button, item);
@@ -506,8 +506,7 @@ namespace StudentGrowth
         private Button CreateCardButton(CardData card, int index)
         {
             Button button = CreateButton("ShopCard_" + index, cardListRoot, ResolveCardName(card), Vector2.zero, new Vector2(572f, StockRowHeight), new Vector2(0f, 1f));
-            // 同理：买不起也让点，由 TryPurchaseCard 返回原因
-            button.interactable = true;
+            button.interactable = CanAffordCard(card);
             CardData captured = card;
             button.onClick.AddListener(() => PurchaseCard(captured));
             ConfigureCardButton(button, card);
