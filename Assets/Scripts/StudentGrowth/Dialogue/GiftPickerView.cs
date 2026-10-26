@@ -22,18 +22,18 @@ namespace StudentGrowth
         private const int Rows = 2;
         private const int PageSize = Columns * Rows;
 
-        private const float SlotSize = 76f;
-        private const float SlotGap = 12f;
+        private const float SlotSize = 84f;
+        private const float SlotGap = 14f;
         private const float PanelWidth = 820f;
-        private const float PanelHeight = 232f;
+        private const float PanelHeight = 268f;
 
         /// <summary>与 DialogueView 的 optionsRoot 同一条底边（PanelBottom 60 + PanelHeight 340 + 24）。</summary>
         private const float PanelBottom = 424f;
 
         private const float GridLeft = 20f;
-        private const float GridTop = 56f;
-        private const float DetailLeft = 480f;
-        private const float DetailWidth = 296f;
+        private const float GridTop = 64f;
+        private const float DetailLeft = 536f;
+        private const float DetailWidth = 264f;
 
         private static GiftPickerView instance;
 
@@ -178,17 +178,21 @@ namespace StudentGrowth
             // rect 高度必须大于「字号 × 行高」——之前 34 高装 28 号，文字被 Truncate
             // 裁得只剩几道横线（实测截图里标题看着像下划线）。
             title.fontSize = 26;
-            Place(title.rectTransform, TopLeft, TopLeft, new Vector2(GridLeft, -10f), new Vector2(300f, 40f));
+            Place(title.rectTransform, TopLeft, TopLeft, new Vector2(GridLeft, -20f), new Vector2(300f, 40f));
 
-            // 翻页用中文标签：像素字体里没有「‹ ›」字形，实测渲染成几道横线。
-            prevButton = CreateButton(panel, "PrevPage", "上一页", Vector2.zero, new Vector2(64f, 32f), () => ChangePage(-1));
-            Place(prevButton.transform as RectTransform, TopRight, TopRight, new Vector2(-176f, -10f), new Vector2(64f, 32f));
+            // 翻页放标题右侧的空位（标题文字实际只占 134 宽），
+            // 不能放卡片右端——那里是详情区，会压住道具名。
+            // 文案用「上页/下页」而不是「‹ ›」：像素字体缺这两个字形，会渲染成几道横线。
+            prevButton = CreateButton(panel, "PrevPage", "上页", Vector2.zero, new Vector2(76f, 46f), () => ChangePage(-1));
+            Place(prevButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(330f, -16f), new Vector2(76f, 46f));
 
             pageLabel = CreateLabel(panel, "PageLabel", string.Empty, GameUiTextStyle.SmallText, false, TextAnchor.MiddleCenter);
-            Place(pageLabel.rectTransform, TopRight, TopRight, new Vector2(-134f, -10f), new Vector2(40f, 32f));
+            Place(pageLabel.rectTransform, TopLeft, TopLeft, new Vector2(410f, -16f), new Vector2(40f, 46f));
 
-            nextButton = CreateButton(panel, "NextPage", "下一页", Vector2.zero, new Vector2(64f, 32f), () => ChangePage(1));
-            Place(nextButton.transform as RectTransform, TopRight, TopRight, new Vector2(-66f, -10f), new Vector2(64f, 32f));
+            nextButton = CreateButton(panel, "NextPage", "下页", Vector2.zero, new Vector2(76f, 46f), () => ChangePage(1));
+            Place(nextButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(454f, -16f), new Vector2(76f, 46f));
+
+
         }
 
         private void BuildGrid(RectTransform panel)
@@ -236,26 +240,26 @@ namespace StudentGrowth
         {
             detailName = CreateLabel(panel, "DetailName", string.Empty, GameUiTextStyle.Subtitle, false, TextAnchor.UpperLeft);
             detailName.fontSize = 22;
-            Place(detailName.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -10f), new Vector2(DetailWidth, 34f));
+            Place(detailName.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -22f), new Vector2(DetailWidth, 36f));
 
             detailMeta = CreateLabel(panel, "DetailMeta", string.Empty, GameUiTextStyle.SmallText, false, TextAnchor.UpperLeft);
             detailMeta.fontSize = 13;
             detailMeta.lineSpacing = 1.1f;
-            Place(detailMeta.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -46f), new Vector2(DetailWidth, 62f));
+            Place(detailMeta.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -62f), new Vector2(DetailWidth, 66f));
 
             detailInfo = CreateLabel(panel, "DetailInfo", string.Empty, GameUiTextStyle.Body, false, TextAnchor.UpperLeft);
-            // 正文压到 16 并收紧行距：320 宽、3 行的空间里，24 号会挤成一坨。
+            // 正文压到 16 并收紧行距：276 宽里 24 号会挤成一坨。
             detailInfo.fontSize = 16;
             detailInfo.lineSpacing = 1.1f;
             detailInfo.horizontalOverflow = HorizontalWrapMode.Wrap;
             detailInfo.verticalOverflow = VerticalWrapMode.Truncate;
-            Place(detailInfo.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -110f), new Vector2(DetailWidth, 78f));
+            Place(detailInfo.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -130f), new Vector2(DetailWidth, 94f));
 
             giftButton = CreateButton(panel, "Gift", "赠送", Vector2.zero, new Vector2(100f, 36f), OnGift);
-            Place(giftButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -190f), new Vector2(100f, 36f));
+            Place(giftButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -228f), new Vector2(100f, 36f));
 
             Button cancel = CreateButton(panel, "Cancel", "取消", Vector2.zero, new Vector2(100f, 36f), OnCancel);
-            Place(cancel.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft + 112f, -190f), new Vector2(100f, 36f));
+            Place(cancel.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft + 112f, -228f), new Vector2(100f, 36f));
         }
 
         // ── 数据 ────────────────────────────────────────────────
