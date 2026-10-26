@@ -12,6 +12,14 @@ namespace StudentGrowth
         public Image background;
         public Text labelText;
         public bool selected;
+
+        /// <summary>
+        /// true = 高亮只跟鼠标悬停（移开即恢复），忽略 selected；
+        /// false = 保留 selected 语义（地图菜单、阶段节点这类需要持续高亮的场景）。
+        /// 商店的商品横条用 true：需求是「只在悬停时变化」。
+        /// </summary>
+        public bool highlightOnHoverOnly;
+
         public bool animateScale = true;
         public bool applyOnAwake = true;
 
@@ -63,13 +71,20 @@ namespace StudentGrowth
         public void RefreshSelectionVisual()
         {
             ResolveReferences();
-            GameUiStyle.SetSelectedButtonVisual(button, background, theme, selected);
+
+            // 2026-10-26：highlightOnHoverOnly 的按钮只看悬停，不看 selected。
+            // 原因：鼠标点击会让 EventSystem 记住 currentSelectedGameObject，
+            // 解除要等点别处，于是点过的按钮一直亮着、移开也不恢复。
+            // 默认 false 保留原语义，不影响战斗 UI / 地图菜单 / 阶段节点。
+            bool highlight = highlightOnHoverOnly ? pointerInside : selected;
+            GameUiStyle.SetSelectedButtonVisual(button, background, theme, highlight);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             pointerInside = true;
             AnimateToHoverState();
+            RefreshSelectionVisual();
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -90,15 +105,6 @@ namespace StudentGrowth
         {
             pointerDown = false;
             AnimateToHoverState();
-
-            // 2026-10-26：鼠标点完立刻清掉 EventSystem 的选中态。
-            // 否则按钮会一直停在 selected（点别处才解除），表现为
-            // 「点过之后鼠标移开颜色不恢复」。
-            if (EventSystem.current != null
-                && EventSystem.current.currentSelectedGameObject == gameObject)
-            {
-                EventSystem.current.SetSelectedGameObject(null);
-            }
         }
 
         public void OnSelect(BaseEventData eventData)
