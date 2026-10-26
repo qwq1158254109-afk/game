@@ -196,7 +196,79 @@ namespace McpUnity.Unity
             {
                 _webSocketServer = null;
                 Clients.Clear();
+
+                // 关键：websocket-sharp 的监听循环跑在 Editor AppDomain 的线程上，域重载会直接
+                // 杀掉该线程，而底层 socket 句柄要等 GC 终结器才关闭。终结器来不及跑，端口就
+                // 留在 LISTENING 状态、却没人 accept —— 新一代服务器绑不上，表现为「端口假活」
+                // （上游 issue #141）。这里在停服后主动跑终结器，并同步确认端口是否真的释放。
+                ForceReleaseListenerPort(McpUnitySettings.Instance.Port);
+
                 McpLogger.LogInfo("WebSocket server stopped and resources cleaned up.");
+            }
+        }
+
+        /// <summary>
+        /// 主动触发 GC 终结器，让上一代监听 socket 的句柄同步关闭，并确认端口真的空出来了。
+        /// 只解决「句柄没人关」这一种情形；若端口被别的进程占着，这里只会留下一条告警。
+        /// </summary>
+        private static void ForceReleaseListenerPort(int port)
+        {
+            const int passes = 3;
+            for (int pass = 0; pass < passes; pass++)
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+
+                if (IsListenerPortFree(port))
+                {
+                    if (pass > 0)
+                    {
+                        McpLogger.LogInfo($"Port {port} released after {pass + 1} finalizer pass(es).");
+                    }
+
+                    return;
+                }
+
+                Thread.Sleep(20);
+            }
+
+            McpLogger.LogWarning(
+                $"Port {port} still bound after {passes} finalizer passes; the next start will " +
+                "likely report 'already in use'. Use AgentBridge (Tools/unity_cmd.py) meanwhile.");
+        }
+
+        /// <summary>
+        /// 试着在服务器使用的同一地址上绑定一次，用来判断端口是否已释放。
+        /// 服务器绑的是 "localhost"，本机解析到 ::1，所以优先探 IPv6 环回。
+        /// </summary>
+        private static bool IsListenerPortFree(int port)
+        {
+            System.Net.IPAddress address = Socket.OSSupportsIPv6
+                ? System.Net.IPAddress.IPv6Loopback
+                : System.Net.IPAddress.Loopback;
+
+            TcpListener probe = null;
+            try
+            {
+                probe = new TcpListener(address, port);
+                probe.Start();
+                return true;
+            }
+            catch (SocketException)
+            {
+                return false;
+            }
+            finally
+            {
+                try
+                {
+                    probe?.Stop();
+                }
+                catch (SocketException)
+                {
+                    // 探针自身关闭失败不影响结论。
+                }
             }
         }
 
@@ -375,6 +447,7 @@ namespace McpUnity.Unity
                 var host = McpUnitySettings.Instance.AllowRemoteConnections ? "0.0.0.0" : "localhost";
                 webSocketServer = new WebSocketServer($"ws://{host}:{McpUnitySettings.Instance.Port}");
                 ConfigureWebSocketSecurity(webSocketServer, authenticationToken);
+                TryEnableReuseAddress(webSocketServer);
                 webSocketServer.Log.Output = (data, path) => { };
                 webSocketServer.AddWebSocketService("/McpUnity", () => new McpUnitySocketHandler(this, connectionGeneration));
                 webSocketServer.Start();
@@ -414,6 +487,30 @@ namespace McpUnity.Unity
                 CleanupFailedStart(webSocketServer);
                 McpLogger.LogError($"Failed to start WebSocket server: {ex.Message}\n{ex.StackTrace}");
                 return StartServerResult.Failed;
+            }
+        }
+
+        /// <summary>
+        /// 打开 ReuseAddress。Windows 的 SO_REUSEADDR 允许抢占一个已处于 LISTENING 的端口
+        /// （Linux 不允许），因此这是让新一代服务器接管上一代遗留监听 socket 的唯一低成本手段。
+        /// 属性在预编译的 websocket-sharp.dll 里，用反射设置，取不到就静默跳过。
+        /// </summary>
+        private static void TryEnableReuseAddress(WebSocketServer webSocketServer)
+        {
+            try
+            {
+                System.Reflection.PropertyInfo prop = webSocketServer.GetType().GetProperty(
+                    "ReuseAddress",
+                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+
+                if (prop != null && prop.CanWrite && prop.PropertyType == typeof(bool))
+                {
+                    prop.SetValue(webSocketServer, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                McpLogger.LogWarning($"Could not enable ReuseAddress: {ex.Message}");
             }
         }
 
