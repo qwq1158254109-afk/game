@@ -414,7 +414,10 @@ namespace StudentGrowth
         private Button CreateStockButton(ItemData item, int index)
         {
             Button button = CreateButton("ShopItem_" + index, stockListRoot, ResolveItemName(item), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f));
-            button.interactable = CanAfford(item);
+            // 2026-10-26：不再用 interactable = false 拦点击。
+            // 买不起时按钮点不动，玩家分不清「没反应」和「钱不够」。
+            // 一律走 Purchase，失败由 SetFeedback 打印原因（金钱不足等）。
+            button.interactable = true;
             ItemData captured = item;
             button.onClick.AddListener(() => Purchase(captured));
             ConfigureStockButton(button, item);
@@ -503,7 +506,8 @@ namespace StudentGrowth
         private Button CreateCardButton(CardData card, int index)
         {
             Button button = CreateButton("ShopCard_" + index, cardListRoot, ResolveCardName(card), Vector2.zero, new Vector2(572f, StockRowHeight), new Vector2(0f, 1f));
-            button.interactable = CanAffordCard(card);
+            // 同理：买不起也让点，由 TryPurchaseCard 返回原因
+            button.interactable = true;
             CardData captured = card;
             button.onClick.AddListener(() => PurchaseCard(captured));
             ConfigureCardButton(button, card);
@@ -753,6 +757,9 @@ namespace StudentGrowth
 
         private void Purchase(ItemData item)
         {
+            Debug.Log("[MapShop] 购买请求 item=" + (item == null ? "NULL" : item.itemId)
+                + " 金钱=" + (sessionState != null && sessionState.playerState != null
+                    ? sessionState.playerState.GetStat(PlayerStatKey.Money).ToString() : "?"));
             ShopPurchaseResult result = purchaseService.TryPurchase(item, sessionState);
             SetFeedback(result);
             if (result.success)
