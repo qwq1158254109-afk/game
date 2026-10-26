@@ -20,6 +20,18 @@ namespace StudentGrowth
         /// </summary>
         public bool highlightOnHoverOnly;
 
+        /// <summary>
+        /// true = 用纯色块做底，忽略主题的 buttonSprite。
+        /// 商店商品横条这种 570x100 的大条目用九宫格贴图时，四个角保持原尺寸、
+        /// 四条边被拉长，看起来就是一圈多余的细框。送礼格子也因为这个原因
+        /// 改成了纯色（见 GiftPickerView.ApplySlotStyle 的注释）。
+        /// </summary>
+        public bool solidBackground;
+
+        public Color solidNormal = new Color(0.33f, 0.28f, 0.23f, 1f);
+        public Color solidHover = new Color(0.45f, 0.37f, 0.29f, 1f);
+        public Color solidDisabled = new Color(0.25f, 0.22f, 0.18f, 1f);
+
         public bool animateScale = true;
         public bool applyOnAwake = true;
 
@@ -71,6 +83,18 @@ namespace StudentGrowth
         public void RefreshSelectionVisual()
         {
             ResolveReferences();
+
+            // 纯色模式：不走 SetSelectedButtonVisual，直接刷 color。
+            // 这样不会被 buttonSprite 的九宫格边干扰，也不受主题配色牵制。
+            if (solidBackground)
+            {
+                background.sprite = GameUiStyle.GetSolidSprite();
+                background.type = Image.Type.Simple;
+                background.color = button != null && !button.interactable
+                    ? solidDisabled
+                    : pointerInside ? solidHover : solidNormal;
+                return;
+            }
 
             // 2026-10-26：highlightOnHoverOnly 的按钮只看悬停，不看 selected。
             // 原因：鼠标点击会让 EventSystem 记住 currentSelectedGameObject，
