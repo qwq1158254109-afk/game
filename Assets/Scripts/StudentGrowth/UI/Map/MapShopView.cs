@@ -14,18 +14,20 @@ namespace StudentGrowth
         private const string HintColor = "#73E7C1";
         // 2026-10-26 商店改版：3 列 x 3 行 = 9 个格子，正好装下全部商品
         // （原来单列 3 行，9 件只显示 3 件，其余永远看不到）。
-        private const float StockRowHeight = 76f;
-        private const float StockRowSpacing = 8f;
-        // 3 列必须放进列表区 1160：3*372 + 2*22 = 1160，正好不留缝。
-        // 之前写 380/20 得 1180，超出 20px，第 3 列会画到面板外。
-        private const float StockColumnWidth = 372f;
-        private const float StockColumnGap = 22f;
-        private const int StockColumns = 3;
-        private const int MaxVisibleStockItems = StockColumns * 3;
+        private const float StockRowHeight = 100f;
+        private const float StockRowSpacing = 10f;
+        // 2026-10-26 二次改版：3 列 372 宽塞不下「图标+名称+价格+详情+状态」
+        // 五个元素（第一行就占 352，只剩 20px 呼吸），改为 2 列 570 宽。
+        // 2*570 + 20 = 1160 正好填满列表区；每页 2x3 = 6 件，靠翻页看剩余。
+        private const float StockColumnWidth = 570f;
+        private const float StockColumnGap = 20f;
+        private const int StockColumns = 2;
+        private const int StockPageRows = 3;
+        private const int MaxVisibleStockItems = StockColumns * StockPageRows;
 
         // 卡牌区在道具区下方。面板原高 424 放不下第二块列表，扩到 660；
         // 场景里已序列化的实例不会重跑 BuildDefaultLayout，靠 EnsureLayoutExpanded 幂等修正。
-        private const float ShopPanelHeight = 400f;
+        private const float ShopPanelHeight = 480f;
         private const float CardSectionTitleTop = -362f;
         private const float CardListTop = -386f;
         private const float CardListHeight = 198f;
@@ -49,6 +51,13 @@ namespace StudentGrowth
         private Button tabItemButton;
         private Button tabCardButton;
         private int currentTab;
+
+        // 2026-10-26：每页 2x3 = 6 件，超出靠翻页。道具与卡牌各自记页码。
+        private Button prevPageButton;
+        private Button nextPageButton;
+        private Text pageLabel;
+        private int stockPage;
+        private int cardPage;
         // 2026-10-26：道具/卡牌的图标走 imagePath 按需读盘。Refresh 每次
         // 买卖都会重跑，不缓存就是反复 IO。
         private static readonly Dictionary<string, Sprite> iconCache = new Dictionary<string, Sprite>();
@@ -196,7 +205,7 @@ namespace StudentGrowth
             GameObject stockListObject = new GameObject("StockList", typeof(RectTransform));
             stockListRoot = stockListObject.transform as RectTransform;
             stockListRoot.SetParent(panelRect, false);
-            SetRect(stockListRoot, new Vector2(20f, -98f), new Vector2(1160f, 252f), new Vector2(0f, 1f));
+            SetRect(stockListRoot, new Vector2(20f, -98f), new Vector2(1160f, 320f), new Vector2(0f, 1f));
 
             cardSectionTitle = CreateText("CardSectionTitle", panelRect, "卡牌", 18, FontStyle.Bold, TextAnchor.MiddleLeft);
             SetRect(cardSectionTitle.rectTransform, new Vector2(24f, CardSectionTitleTop), new Vector2(572f, 22f), new Vector2(0f, 1f));
@@ -205,11 +214,21 @@ namespace StudentGrowth
             GameObject cardListObject = new GameObject("CardList", typeof(RectTransform));
             cardListRoot = cardListObject.transform as RectTransform;
             cardListRoot.SetParent(panelRect, false);
-            SetRect(cardListRoot, new Vector2(20f, -98f), new Vector2(1160f, 252f), new Vector2(0f, 1f));
+            SetRect(cardListRoot, new Vector2(20f, -98f), new Vector2(1160f, 320f), new Vector2(0f, 1f));
 
             feedbackText = CreateText("Feedback", panelRect, string.Empty, 17, FontStyle.Bold, TextAnchor.MiddleLeft);
             feedbackText.supportRichText = true;
-            SetRect(feedbackText.rectTransform, new Vector2(20f, 14f), new Vector2(1160f, 30f), Vector2.zero);
+            SetRect(feedbackText.rectTransform, new Vector2(20f, 14f), new Vector2(780f, 30f), Vector2.zero);
+
+            // 翻页组固定在反馈行右侧，不占列表空间
+            prevPageButton = CreateButton("PrevPage", panelRect, "上页", new Vector2(830f, 12f), new Vector2(76f, 32f), new Vector2(0f, 0f));
+            prevPageButton.onClick.AddListener(() => ChangePage(-1));
+
+            pageLabel = CreateText("PageLabel", panelRect, string.Empty, 16, FontStyle.Bold, TextAnchor.MiddleCenter);
+            SetRect(pageLabel.rectTransform, new Vector2(916f, 12f), new Vector2(48f, 32f), new Vector2(0f, 0f));
+
+            nextPageButton = CreateButton("NextPage", panelRect, "下页", new Vector2(974f, 12f), new Vector2(76f, 32f), new Vector2(0f, 0f));
+            nextPageButton.onClick.AddListener(() => ChangePage(1));
 
             ApplyStyle();
             SetTab(0);
@@ -246,6 +265,7 @@ namespace StudentGrowth
             RefreshStockList();
             RefreshCardList();
             RefreshTabState();
+            RefreshPageState();
             ApplyStyle();
         }
 
@@ -253,6 +273,48 @@ namespace StudentGrowth
         /// 切换道具 / 卡牌页签。两个列表挂在同一块区域（y -110 起、1160x252），
         /// 靠 SetActive 切换，不再像旧版那样上下堆叠。
         /// </summary>
+        /// <summary>翻页。页码在各自 Refresh 里做 Clamp，越界会自动收敛。</summary>
+        private void ChangePage(int delta)
+        {
+            if (currentTab == 0)
+            {
+                stockPage += delta;
+            }
+            else
+            {
+                cardPage += delta;
+            }
+
+            Refresh();
+        }
+
+        /// <summary>按当前页签与商品数决定翻页组的显隐和页码文案。</summary>
+        private void RefreshPageState()
+        {
+            int total = currentTab == 0 ? stockItems.Count : shopCards.Count;
+            int pageCount = Mathf.Max(1, (total + MaxVisibleStockItems - 1) / MaxVisibleStockItems);
+            int current = Mathf.Clamp(currentTab == 0 ? stockPage : cardPage, 0, pageCount - 1);
+
+            bool needsPaging = pageCount > 1;
+            if (prevPageButton != null)
+            {
+                prevPageButton.gameObject.SetActive(needsPaging);
+                prevPageButton.interactable = current > 0;
+            }
+
+            if (nextPageButton != null)
+            {
+                nextPageButton.gameObject.SetActive(needsPaging);
+                nextPageButton.interactable = current < pageCount - 1;
+            }
+
+            if (pageLabel != null)
+            {
+                pageLabel.gameObject.SetActive(needsPaging);
+                pageLabel.text = needsPaging ? (current + 1) + "/" + pageCount : string.Empty;
+            }
+        }
+
         private void SetTab(int tab)
         {
             currentTab = tab;
@@ -318,12 +380,15 @@ namespace StudentGrowth
                 return;
             }
 
-            int count = Mathf.Min(stockItems.Count, MaxVisibleStockItems);
+            int pageCount = Mathf.Max(1, (stockItems.Count + MaxVisibleStockItems - 1) / MaxVisibleStockItems);
+            stockPage = Mathf.Clamp(stockPage, 0, pageCount - 1);
+            int start = stockPage * MaxVisibleStockItems;
+            int count = Mathf.Min(MaxVisibleStockItems, stockItems.Count - start);
             for (int i = 0; i < count; i++)
             {
                 int col = i % StockColumns;
                 int row = i / StockColumns;
-                Button itemButton = CreateStockButton(stockItems[i], i);
+                Button itemButton = CreateStockButton(stockItems[start + i], start + i);
                 RectTransform rect = itemButton.transform as RectTransform;
                 SetRect(rect,
                     new Vector2(col * (StockColumnWidth + StockColumnGap), -row * (StockRowHeight + StockRowSpacing)),
@@ -331,12 +396,7 @@ namespace StudentGrowth
                     new Vector2(0f, 1f));
             }
 
-            if (stockItems.Count > count)
-            {
-                Text overflow = CreateText("StockOverflow", stockListRoot, "还有 " + (stockItems.Count - count) + " 件商品未显示。", 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-                SetRect(overflow.rectTransform, new Vector2(0f, -250f), new Vector2(1160f, 24f), new Vector2(0f, 1f));
-                GameUiStyle.ApplyPixelText(overflow, theme, GameUiTextStyle.SmallText);
-            }
+            // 翻页后不再需要「还有 N 件未显示」提示
         }
 
         private Button CreateStockButton(ItemData item, int index)
@@ -368,24 +428,24 @@ namespace StudentGrowth
             {
                 label.text = ResolveItemName(item);
                 label.alignment = TextAnchor.MiddleLeft;
-                SetRect(label.rectTransform, new Vector2(46f, -10f), new Vector2(240f, 20f), new Vector2(0f, 1f));
+                SetRect(label.rectTransform, new Vector2(76f, -16f), new Vector2(300f, 24f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
             }
 
-            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(12f, -14f), new Vector2(32f, 32f), resolved.inverseText);
+            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(16f, -26f), new Vector2(48f, 48f), resolved.inverseText);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolvePrice(item), 15, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(priceText.rectTransform, new Vector2(296f, -10f), new Vector2(68f, 20f), new Vector2(0f, 1f));
+            SetRect(priceText.rectTransform, new Vector2(440f, -16f), new Vector2(100f, 24f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
             priceText.color = resolved.gold;
 
             Text detailText = CreateText("Detail", rect, BuildStockDetail(item), 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-            SetRect(detailText.rectTransform, new Vector2(12f, -40f), new Vector2(266f, 18f), new Vector2(0f, 1f));
+            SetRect(detailText.rectTransform, new Vector2(76f, -56f), new Vector2(344f, 20f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
 
             bool affordable = CanAfford(item);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(286f, -40f), new Vector2(78f, 18f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(440f, -56f), new Vector2(100f, 20f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
             statusText.color = affordable ? resolved.success : resolved.danger;
         }
@@ -407,12 +467,15 @@ namespace StudentGrowth
                 return;
             }
 
-            int count = Mathf.Min(shopCards.Count, MaxVisibleStockItems);
+            int pageCount = Mathf.Max(1, (shopCards.Count + MaxVisibleStockItems - 1) / MaxVisibleStockItems);
+            cardPage = Mathf.Clamp(cardPage, 0, pageCount - 1);
+            int start = cardPage * MaxVisibleStockItems;
+            int count = Mathf.Min(MaxVisibleStockItems, shopCards.Count - start);
             for (int i = 0; i < count; i++)
             {
                 int col = i % StockColumns;
                 int row = i / StockColumns;
-                Button cardButton = CreateCardButton(shopCards[i], i);
+                Button cardButton = CreateCardButton(shopCards[start + i], start + i);
                 RectTransform rect = cardButton.transform as RectTransform;
                 SetRect(rect,
                     new Vector2(col * (StockColumnWidth + StockColumnGap), -row * (StockRowHeight + StockRowSpacing)),
@@ -420,12 +483,7 @@ namespace StudentGrowth
                     new Vector2(0f, 1f));
             }
 
-            if (shopCards.Count > count)
-            {
-                Text overflow = CreateText("CardOverflow", cardListRoot, "还有 " + (shopCards.Count - count) + " 张卡牌未显示。", 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-                SetRect(overflow.rectTransform, new Vector2(0f, -262f), new Vector2(1160f, 24f), new Vector2(0f, 1f));
-                GameUiStyle.ApplyPixelText(overflow, theme, GameUiTextStyle.SmallText);
-            }
+            // 翻页后不再需要「还有 N 张未显示」提示
         }
 
         private Button CreateCardButton(CardData card, int index)
@@ -457,24 +515,24 @@ namespace StudentGrowth
             {
                 label.text = ResolveCardName(card);
                 label.alignment = TextAnchor.MiddleLeft;
-                SetRect(label.rectTransform, new Vector2(46f, -10f), new Vector2(240f, 20f), new Vector2(0f, 1f));
+                SetRect(label.rectTransform, new Vector2(76f, -16f), new Vector2(300f, 24f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
             }
 
-            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(12f, -14f), new Vector2(32f, 32f), resolved.inverseText);
+            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(16f, -26f), new Vector2(48f, 48f), resolved.inverseText);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolveCardPrice(card), 15, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(priceText.rectTransform, new Vector2(296f, -10f), new Vector2(68f, 20f), new Vector2(0f, 1f));
+            SetRect(priceText.rectTransform, new Vector2(440f, -16f), new Vector2(100f, 24f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
             priceText.color = resolved.gold;
 
             Text detailText = CreateText("Detail", rect, BuildCardDetail(card), 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-            SetRect(detailText.rectTransform, new Vector2(12f, -40f), new Vector2(266f, 18f), new Vector2(0f, 1f));
+            SetRect(detailText.rectTransform, new Vector2(76f, -56f), new Vector2(344f, 20f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
 
             bool affordable = CanAffordCard(card);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(286f, -40f), new Vector2(78f, 18f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(440f, -56f), new Vector2(100f, 20f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
             statusText.color = affordable ? resolved.success : resolved.danger;
         }
