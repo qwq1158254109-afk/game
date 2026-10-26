@@ -1,40 +1,48 @@
 """
-道具图标生成器 —— 功能饮料（item_energy_drink）· 能量罐款式
+道具图标生成器 —— 功能饮料（item_energy_drink）· 矮宽金罐 v3
 
-造型参考经典能量饮料罐的色块分布：银底 + 深蓝上段 + 红色标识带。
-**不绘制任何品牌 logo**（版权考虑），用抽象色块表达「能量饮料」的视觉语言。
+造型依据用户参考图（中国版能量饮料 250ml 罐）：银白罐口 / 琥珀金罐身 /
+深蓝近黑底带。**按要求去掉全部文字与品牌图形**。
 
-规范（Docs/ArtStyleGuide.md §4）：
-- 画布 48x48，透明底，长边撑满 40px 安全区
-- 1px #342216 描边
-- 色数 <= 8
+v3 修正（v1/v2 都读成「金色盒子」）：
+1. **宽度改用奇数**：v2 的宽度序列是 18/22/24/26（全偶数），
+   每次变化左右边界各跳 2px，收口变成台阶、描边看着像断开。
+   改奇数后边界每次只移动 1px，弧线才连得上。
+2. **高度拉到 38**（y 5..42）：v2 的 26x32 长宽比 1:1.23 太方，
+   48 画布上怎么收口都像个盒。现在 23x38 = 1:1.65，
+   仍是矮罐（标准罐约 1:1.9），但保住了「罐」的竖直感。
+3. **明暗加宽**：左侧 2px 高光、右侧 3px 暗部，中间留纯金，
+   三段拉开才能读出圆柱；v2 只有 1px 高光，等于平涂。
 
-色板（新增两色，因原暖色板画不出银蓝罐）：
-  #342216 描边    #C8CDD2 罐身银    #8A8F94 银暗部
-  #1D3C87 深蓝段  #B6483C 红标识带  #E2B24C 黄点缀
-  #F5EFE6 高光
+规范：48x48、透明底、1px #342216 描边、<=8 色
 """
 
 from PIL import Image
 
 OUTLINE = (0x34, 0x22, 0x16)
-SILVER  = (0xC8, 0xCD, 0xD2)
-SILV_DK = (0x8A, 0x8F, 0x94)
-BLUE    = (0x1D, 0x3C, 0x87)
-RED     = (0xB6, 0x48, 0x3C)
-YELLOW  = (0xE2, 0xB2, 0x4C)
-WHITE   = (0xF5, 0xEF, 0xE6)
+GOLD    = (0xE8, 0xB3, 0x3C)
+GOLD_DK = (0xC8, 0x92, 0x2A)
+NAVY    = (0x1A, 0x27, 0x44)
+SILVER  = (0xD8, 0xD8, 0xD8)
+WHITE   = (0xFF, 0xE5, 0xB8)
 
 W, H = 48, 48
+CENTER = 24
+
+# 逐行宽度表（全部奇数，保证左右边界平滑移动）
+# 高度 y 5..42 = 38，最大宽 23，长宽比 1:1.65
+PROFILE = [
+    (5, 17), (6, 19), (7, 21),
+    (8, 23), (9, 23), (10, 23), (11, 23), (12, 23), (13, 23), (14, 23),
+    (15, 23), (16, 23), (17, 23), (18, 23), (19, 23), (20, 23), (21, 23),
+    (22, 23), (23, 23), (24, 23), (25, 23), (26, 23), (27, 23), (28, 23),
+    (29, 23), (30, 23), (31, 23), (32, 23), (33, 23), (34, 23), (35, 23),
+    (36, 23), (37, 23), (38, 23), (39, 23),
+    (40, 21), (41, 19), (42, 17),
+]
+
 img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
 px = img.load()
-
-
-def rect(x, y, w, h, color):
-    for yy in range(y, y + h):
-        for xx in range(x, x + w):
-            if 0 <= xx < W and 0 <= yy < H:
-                px[xx, yy] = color + (255,)
 
 
 def dot(x, y, color):
@@ -42,74 +50,58 @@ def dot(x, y, color):
         px[x, y] = color + (255,)
 
 
-def hline(x, y, w, color):
-    rect(x, y, w, 1, color)
+def span(width):
+    left = CENTER - width // 2
+    return left, left + width - 1
 
 
-BODY_L, BODY_R = 17, 30
-TOP, BOTTOM = 4, 44
-
-
-def inset_at(y):
-    """圆柱顶底收窄。"""
-    if y <= TOP + 2:
-        return 2
-    if y <= TOP + 4:
-        return 1
-    if y >= BOTTOM - 3:
-        return 2
-    if y >= BOTTOM - 5:
-        return 1
-    return 0
+def fill_row(y, width, color):
+    l, r = span(width)
+    for x in range(l, r + 1):
+        dot(x, y, color)
 
 
 # ══ 描边 ══════════════════════════════════════════════
-for y in range(TOP, BOTTOM + 1):
-    ins = inset_at(y)
-    hline(BODY_L + ins, y, (BODY_R - ins) - (BODY_L + ins) + 1, OUTLINE)
+for y, width in PROFILE:
+    fill_row(y, width, OUTLINE)
 
-# ══ 罐身：银底 ════════════════════════════════════════
-for y in range(TOP + 1, BOTTOM):
-    ins = inset_at(y)
-    hline(BODY_L + ins + 1, y, (BODY_R - ins - 1) - (BODY_L + ins + 1) + 1, SILVER)
+# ══ 主体分区 ══════════════════════════════════════════
+# 银口 6..8 / 金 9..33 / 过渡 34 / 深蓝 35..40 / 银底 41
+for y, width in PROFILE:
+    l, r = span(width)
+    inner_l, inner_r = l + 1, r - 1
 
-# ══ 上段：深蓝色块（能量罐的蓝段）══════════════════════
-# y 10..18 填蓝，顶部留 1px 银边
-rect(19, 10, 10, 9, BLUE)
-# 蓝段内一条白斜纹（用阶梯表现斜线：14px 宽画不出真斜纹）
-dot(20, 12, WHITE); dot(21, 12, WHITE)
-dot(21, 13, WHITE); dot(22, 13, WHITE)
-dot(22, 14, WHITE); dot(23, 14, WHITE)
-dot(23, 15, WHITE); dot(24, 15, WHITE)
-dot(24, 16, WHITE); dot(25, 16, WHITE)
+    if y <= 8:
+        color = SILVER
+    elif y <= 33:
+        color = GOLD
+    elif y <= 34:
+        color = GOLD_DK
+    elif y <= 40:
+        color = NAVY
+    else:
+        color = SILVER
 
-# ══ 中段：红色标识带 ══════════════════════════════════
-hline(19, 19, 10, SILV_DK)
-rect(19, 20, 10, 11, RED)
-hline(19, 31, 10, SILV_DK)
+    for x in range(inner_l, inner_r + 1):
+        dot(x, y, color)
 
-# 标识带内：单个黄块居中 + 下方一条白线（两个并排黄块会读成“眼睛”）
-rect(22, 23, 5, 4, YELLOW)
-rect(21, 28, 7, 1, WHITE)
+# ══ 圆柱明暗：左 2px 高光 / 右 3px 暗部 ═══════════════
+for y, width in PROFILE:
+    l, r = span(width)
+    if 9 <= y <= 34:
+        # 金色段：左 1px 高光 / 右 2px 暗部 / 中间纯金 —— 三段才读得出圆柱
+        dot(l + 1, y, WHITE)
+        dot(r - 1, y, GOLD_DK)
+        dot(r - 2, y, GOLD_DK)
+    elif 35 <= y <= 40:
+        # 深蓝段：只做右侧暗部，保持色带干净
+        dot(l + 1, y, GOLD_DK)
+        dot(r - 1, y, OUTLINE)
 
-# ══ 下段：银底 + 细线 ═════════════════════════════════
-hline(19, 34, 10, SILV_DK)
-
-# ══ 高光与暗部 ════════════════════════════════════════
-for y in range(11, 39):
-    if 20 <= y <= 31:
-        continue
-    dot(19, y, WHITE)      # 左侧 1px 连续高光
-    dot(28, y, SILV_DK)    # 右侧 1px 暗部
-
-# ══ 顶盖 ══════════════════════════════════════════════
-hline(19, 6, 10, WHITE)
-hline(19, 7, 10, SILV_DK)
-rect(21, 8, 6, 2, OUTLINE)
-rect(22, 8, 4, 1, SILV_DK)
-
-# ══ 底部 ══════════════════════════════════════════════
-hline(20, 41, 8, SILV_DK)
+# 罐口与罐身的分界暗线
+l10, r10 = span(23)
+for x in range(l10 + 2, r10 - 1):
+    dot(x, 8, GOLD_DK)
 
 img.save("_tmp_img/icons/icon_item_energy_drink.png")
 img.resize((W * 8, H * 8), Image.NEAREST).save("_tmp_img/icons/icon_item_energy_drink_8x.png")
