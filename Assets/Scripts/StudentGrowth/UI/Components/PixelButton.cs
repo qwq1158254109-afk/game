@@ -90,6 +90,15 @@ namespace StudentGrowth
         {
             pointerDown = false;
             AnimateToHoverState();
+
+            // 2026-10-26：鼠标点完立刻清掉 EventSystem 的选中态。
+            // 否则按钮会一直停在 selected（点别处才解除），表现为
+            // 「点过之后鼠标移开颜色不恢复」。
+            if (EventSystem.current != null
+                && EventSystem.current.currentSelectedGameObject == gameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
         }
 
         public void OnSelect(BaseEventData eventData)

@@ -1086,8 +1086,13 @@ namespace StudentGrowth
             Sprite sprite = null;
             try
             {
+                // Application.dataPath 末尾可能带斜杠，直接用 Path.Combine 会拼出
+                // 「Assets\/Art/...」这种混合分隔符，File.Exists 在某些情况下判假。
+                // 这里统一成目录分隔符再拼。
+                string dataPath = Application.dataPath.TrimEnd('/', '\\');
                 string fullPath = assetPath.StartsWith("Assets/", StringComparison.Ordinal)
-                    ? Path.Combine(Application.dataPath, assetPath.Substring("Assets/".Length))
+                    ? Path.Combine(dataPath,
+                        assetPath.Substring("Assets/".Length).Replace('/', Path.DirectorySeparatorChar))
                     : assetPath;
 
                 if (File.Exists(fullPath))
@@ -1113,12 +1118,23 @@ namespace StudentGrowth
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Debug.LogWarning("[MapShop] 读取图标失败：" + assetPath + " / " + exception.Message);
                 sprite = null;
             }
 
-            iconCache[assetPath] = sprite;
+            if (sprite == null)
+            {
+                Debug.LogWarning("[MapShop] 图标为空：" + assetPath);
+            }
+            else
+            {
+                // 只缓存成功结果。原实现连 null 一起缓存，一旦某次读取失败
+                // （比如面板在资源就绪前就 Refresh 过一次），这个路径就永久坏掉。
+                iconCache[assetPath] = sprite;
+            }
+
             return sprite;
         }
 
