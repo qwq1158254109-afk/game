@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace StudentGrowth
@@ -37,6 +38,57 @@ namespace StudentGrowth
         private StageHubLocationNodeView hoveredNode;
         private float nextRefreshTime;
         private bool initialized;
+        private bool ownsGate;
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            ReleaseGate();
+        }
+
+        /// <summary>
+        /// 场景加载完成就解锁。Acquire 只发生在「确认进入地点」之后，
+        /// 那一刻已经在切场景了，新场景一加载就该恢复移动。
+        /// 这是兜底：万一本对象没有走 OnDestroy（例如被直接销毁），
+        /// 闸门也不会跨场景残留把角色永久锁死。
+        /// </summary>
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            ReleaseGate();
+        }
+
+        private void AcquireGate()
+        {
+            if (ownsGate)
+            {
+                return;
+            }
+
+            ownsGate = true;
+            GameplayInputGate.Acquire(this);
+        }
+
+        private void ReleaseGate()
+        {
+            if (!ownsGate)
+            {
+                return;
+            }
+
+            ownsGate = false;
+            // consumeCurrentFrame：确认的那一帧不要被当成移动输入带进新场景。
+            GameplayInputGate.Release(this, true);
+        }
 
         private void Start()
         {
@@ -155,23 +207,59 @@ namespace StudentGrowth
                 return;
             }
 
+            // 先起守护（协程同步跑到第一个 yield，Acquire 当场生效），再执行交互。
+            // 顺序反了的话，同步切场景会让协程来不及登记，过场照样能走。
+            StartCoroutine(GuardUntilSceneChanges());
+
             LocationActionExecutionResult result = interactionController.TryInteract(point);
             if (result != null && !result.success)
             {
                 locationInfoView?.SetResultMessage(result.message);
+                // 交互失败 = 不会切场景，立刻解锁，别让玩家干等 1.5 秒。
+                ReleaseGate();
             }
+        }
+
+        /// <summary>
+        /// 锁住输入直到场景真的换了。
+        /// 必须带超时：TryInteract 返回 success 不等于一定会 LoadScene
+        /// （显示模式被拦、路由提前 return 等分支都会返回成功但不切场景），
+        /// 无脑 Acquire 就会把角色永久锁死——比原来的「过场能走」严重得多。
+        /// </summary>
+        private System.Collections.IEnumerator GuardUntilSceneChanges()
+        {
+            AcquireGate();
+            string sceneBefore = SceneManager.GetActiveScene().name;
+            float deadline = Time.unscaledTime + 1.5f;
+            while (Time.unscaledTime < deadline)
+            {
+                if (SceneManager.GetActiveScene().name != sceneBefore)
+                {
+                    // 已经换了场景，剩下的交给 OnSceneLoaded 释放。
+                    yield break;
+                }
+
+                yield return null;
+            }
+
+            ReleaseGate();
         }
 
         public void Back()
         {
             ResolveRuntimeReferences();
+            // 先起守护（协程会在 StartCoroutine 里同步跑到第一个 yield，Acquire 当场生效），
+            // 再触发路由——顺序反了的话，同步切场景会让协程来不及登记。
+            StartCoroutine(GuardUntilSceneChanges());
+
             if (runtimeSceneController != null)
             {
                 runtimeSceneController.ReturnToStageMap();
-                return;
             }
-
-            locationSceneRouter?.ReturnToStageMap();
+            else
+            {
+                locationSceneRouter?.ReturnToStageMap();
+            }
         }
 
         public bool IsCurrentLocation(string locationId)
