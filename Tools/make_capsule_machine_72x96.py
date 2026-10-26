@@ -139,14 +139,15 @@ for yy in range(GL_Y - 1, GL_Y + GL_H + 1):
 # 左上反光两道
 rect(GL_X + 5, GL_Y + 5, 15, 2, WHITE)
 rect(GL_X + 5, GL_Y + 9, 8, 2, WHITE)
-# 罩底阴影（扭蛋堆积）
-rect(GL_X + 1, GL_Y + GL_H - 6, GL_W - 2, 5, GLASS_DK)
+# 罩底不画任何横条：实测无论宽窄，横贯的深色带都会被读成「水面」。
+# 球的堆叠感交给 y 抖动与相互遮挡表达。
 
-# 罩内 9 颗扭蛋：下 4 / 中 3 / 上 2
+# 罩内 9 颗扭蛋：三排中心统一在 x≈35（玻璃罩内区 x 10..61，中心 35.5）
+# y 各带 ±1 抖动，避免排成完美 4/3/2 菱形网格（旧版看起来像台球摆三角）
 balls = [
-    (16, 45, RED), (25, 45, YELLOW), (34, 45, WHITE), (43, 45, RED),
-    (20, 37, YELLOW), (30, 37, RED), (40, 37, WHITE),
-    (25, 30, WHITE), (36, 30, YELLOW),
+    (21, 45, RED), (30, 46, YELLOW), (39, 45, WHITE), (49, 44, RED),
+    (25, 38, YELLOW), (35, 37, RED), (44, 38, WHITE),
+    (30, 31, WHITE), (40, 30, YELLOW),
 ]
 for bx, by, col in balls:
     pattern(bx, by, BALL, col)
