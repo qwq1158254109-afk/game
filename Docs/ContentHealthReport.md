@@ -1,7 +1,7 @@
 # 内容体检报告
 
 > 由 `ContentHealthAudit` 生成（工具位于 `Assets/Scripts/StudentGrowth/Editor/ContentHealthAudit.cs`）
-> 生成时间：2026-10-24 22:32:03
+> 生成时间：2026-10-26 10:37:41
 
 > **口径分两套，并排给出，不静默替换。**
 > 「纸面上界」= 把扫描到的所有来源都算上（含未接线资产、锁死地点内的内容），首版口径，系统性偏乐观。
@@ -16,9 +16,9 @@
 | 零来源的属性（实机口径） | **0 / 13** |
 | 瓶颈属性（实机来源仅 1 处） | **0 / 13** |
 | 无来源或无出口的资源类型 | **8 / 14** |
-| **未接线的活动资产**（写完没挂进场景） | **0 / 14** |
-| **实机不可达的活动**（未接线 + 地点锁死） | **0 / 14** |
-| 实机可达活动（按 activityId 去重） | **14 / 14** |
+| **未接线的活动资产**（写完没挂进场景） | **0 / 15** |
+| **实机不可达的活动**（未接线 + 地点锁死） | **0 / 15** |
+| 实机可达活动（按 activityId 去重） | **15 / 15** |
 | 阶段地图上无任何活动的地点 | **0**（—） |
 | **阻塞级问题合计** | **0** |
 
@@ -32,8 +32,8 @@
 - 运行时内容：阶段 3 / 地点 6 / 结局 6
 - 房间门映射：经 RoomDoor 把 3 个子场景并入所属地点
 - ⚠ 以下场景引用了活动资产，却归不到任何地点（阶段地图未登记、也没有房间门连过去），其中活动只能按「未接线」处理：HomeMapScene.unity
-- 场景接线索引：扫描地图场景 11 个（另跳过 Backups/_Recovery 下的 30 个），找到 14 个活动资产被 MapInteractionTarget 引用（合计 22 处引用）
-- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 88 个，其中活动 14 个
+- 场景接线索引：扫描地图场景 11 个（另跳过 Backups/_Recovery 下的 30 个），找到 15 个活动资产被 MapInteractionTarget 引用（合计 23 处引用）
+- 资产内容：Assets/Data 与 Assets/Resources 下扫描到 ScriptableObject 90 个，其中活动 15 个
 - 地点可达性不动点：迭代 1 轮后收敛，可达地点 6 / 6
 
 ## 2. 结局可达性
@@ -126,6 +126,7 @@
 | 课堂学习 | <code>activity_school_class_study</code> | location_school | ✅ | ✅ | — |
 | 老师答疑 | <code>activity_school_teacher_help</code> | location_school | ✅ | ✅ | — |
 | 浏览商店 | <code>activity_shop_browse_goods</code> | location_shop | ✅ | ✅ | — |
+| 扭蛋抽卡 | <code>activity_shop_capsule_gacha</code> | location_shop | ✅ | ✅ | — |
 
 > 同上：地点栏为空 = 没有任何场景引用它，或引用它的场景归不到任何地点（后者会在第 1 节「数据源清点」里以 ⚠ 行列出）；资产路径见下表。
 
@@ -145,6 +146,7 @@
 | <code>activity_school_class_study</code> | Assets/Data/StudentGrowth/New2_0/SchoolMap/SchoolClassStudy.asset |
 | <code>activity_school_teacher_help</code> | Assets/Data/StudentGrowth/New2_0/SchoolMap/SchoolTeacherHelp.asset |
 | <code>activity_shop_browse_goods</code> | Assets/Data/StudentGrowth/New2_0/ShopMap/New20_ShopBrowseGoods.asset |
+| <code>activity_shop_capsule_gacha</code> | Assets/Data/StudentGrowth/New2_0/ShopMap/ShopCapsuleGacha.asset |
 
 ## 7. 附带发现
 
@@ -182,7 +184,7 @@
 | 属性「社交」实机来源 ≥1 处（社团开放后救回） | ✅ 已报出 |
 | 属性「兴趣」实机来源 ≥2 处 | ✅ 已报出 |
 | 无任何已接线活动被地点锁死 | ✅ 已报出（0 个） |
-| 参考：实机可达活动（按 activityId 去重） | 14 / 14 |
+| 参考：实机可达活动（按 activityId 去重） | 15 / 15 |
 
 > **修复前（同日基线）**：社团活动室不可达（兴趣/社交门槛自锁——两个属性的增量来源有一半在社团里面）；连带 3 个已接线活动、6 个交互点位锁死；社交实机零来源（40 恒定）、兴趣实机仅 1 处来源（上界 42）。
 > 修复内容：`StageMapLocationAvailabilityService` 删掉 `club_interest_or_social` 键与 `HasClubAccess`，社团改为 `stage_03_or_later`；`MvpSampleDataFactory` 里社团的 `unlockedByDefault` 改为 true 并移除属性门槛。
