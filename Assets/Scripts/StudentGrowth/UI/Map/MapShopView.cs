@@ -438,6 +438,13 @@ namespace StudentGrowth
             }
 
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
+
+            // 2026-10-26：所有商品横条强制使用同一张底图。
+            // 之前左右两列出现不同外观（右边有内嵌亮边、左边没有），
+            // 说明某条分支改过 background.sprite（selected / disabled 都会换图）。
+            // 这里统一钉死，不依赖按钮状态。
+            ForceStockBackground(button, resolved);
+
             Text label = button.GetComponentInChildren<Text>(true);
             if (label != null)
             {
@@ -527,6 +534,8 @@ namespace StudentGrowth
             }
 
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
+            ForceStockBackground(button, resolved);
+
             Text label = button.GetComponentInChildren<Text>(true);
             if (label != null)
             {
@@ -1166,6 +1175,37 @@ namespace StudentGrowth
             }
 
             return sprite;
+        }
+
+        /// <summary>
+        /// 把商品横条的底图钉死成主题的 buttonSprite（Sliced 九宫格），
+        /// 不随 selected / interactable 状态换图。买不起用整体压暗表示，
+        /// 不改底图本身，保证 6 个横条外观一致。
+        /// </summary>
+        private static void ForceStockBackground(Button button, UIThemeConfig resolved)
+        {
+            if (button == null)
+            {
+                return;
+            }
+
+            Image background = button.targetGraphic as Image;
+            if (background == null)
+            {
+                return;
+            }
+
+            // 优先用 buttonSelectedSprite：用户截图里「带内嵌亮边」的那种外观
+            // 来自选中底图，默认的 buttonSprite 少了那圈内框。没有选中底图时
+            // 才退回 buttonSprite。
+            Sprite skin = resolved.buttonSelectedSprite != null
+                ? resolved.buttonSelectedSprite
+                : resolved.buttonSprite;
+            background.sprite = skin != null ? skin : GameUiStyle.GetSolidSprite();
+            background.type = skin != null ? Image.Type.Sliced : Image.Type.Simple;
+            background.color = button.interactable
+                ? Color.white
+                : new Color(0.62f, 0.58f, 0.54f, 1f);
         }
 
         private static Image CreateStockIcon(string name, RectTransform parent, Sprite sprite, Vector2 anchoredPosition, Vector2 sizeDelta, Color color)
