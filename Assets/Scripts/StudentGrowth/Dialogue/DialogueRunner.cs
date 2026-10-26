@@ -240,8 +240,11 @@ namespace StudentGrowth
                 yield break;
             }
 
-            InventoryPanelView panel = InventoryPanelView.Ensure();
-            panel.OpenForSelection(sessionState, item =>
+            // 2026-10-26：改用送礼专用选择条（820 宽，贴在对话框上方原位）。
+            // 旧版复用 InventoryPanelView（800×560 居中），与 1200×340 的对话框
+            // 几何上必然重叠，实测界面糊成一坨。
+            GiftPickerView picker = GiftPickerView.Ensure();
+            picker.Open(sessionState, item =>
             {
                 if (item == null)
                 {
@@ -264,7 +267,7 @@ namespace StudentGrowth
                 }
                 Sfx.Ui.Confirm();
                 ResumeAfterGift(true);
-            });
+            }, () => ResumeAfterGift(false));
         }
 
         /// <summary>背包关闭后的收尾：送出了播收礼对话，取消了回菜单，都没有则按结束处理。</summary>
