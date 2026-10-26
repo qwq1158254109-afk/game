@@ -44,7 +44,13 @@ namespace StudentGrowth
                 CreateWarmTea(),
                 CreateEnergyDrink(),
                 CreateWrongBook(),
-                CreateLuckyPen()
+                CreateLuckyPen(),
+                // 2026-10-26 补齐的 5 件：此前只有图标没有数据
+                CreateAlarmClock(),
+                CreateHeadphones(),
+                CreateParentNote(),
+                CreatePencilCase(),
+                CreateStickerStar()
             };
         }
 
@@ -537,6 +543,115 @@ namespace StudentGrowth
             itemData.price = 24;
             itemData.triggerTiming = ItemTriggerTiming.OnBossStart;
             itemData.effects.Add(new CardEffectData { effectType = CardEffectType.AddChallengeProgress, value = 10 });
+            GameArtBindingUtility.ApplyKnownArtPath(itemData);
+            return itemData;
+        }
+
+        // ── 2026-10-26 补齐的道具 ─────────────────────────────────────
+        // 起因：这些 itemId 早就写进了 GameArtAssetCatalog.ItemIconPaths（图也有），
+        // 但一直没有 ItemData，所以商店里永远买不到、图标永远不出现。
+        // 效果按「学生生活会怎么用它」来配，不复用已有的精力/进度类效果以免撞车。
+
+        /// <summary>闹钟：提前起床，换一天从容 → 减压力。</summary>
+        private static ItemData CreateAlarmClock()
+        {
+            ItemData itemData = ScriptableObject.CreateInstance<ItemData>();
+            itemData.itemId = "item_alarm_clock";
+            itemData.displayName = "闹钟";
+            itemData.itemType = ItemType.Consumable;
+            itemData.description = "早起一小时，把一天的节奏调松一点。压力 -6。";
+            itemData.price = 22;
+            itemData.triggerTiming = ItemTriggerTiming.OnUse;
+            itemData.canUseInStageScreen = true;
+            itemData.canUseInBattle = false;
+            itemData.consumedOnUse = true;
+            itemData.effects.Add(new CardEffectData { effectType = CardEffectType.ReducePressure, value = 6 });
+            GameArtBindingUtility.ApplyKnownArtPath(itemData);
+            return itemData;
+        }
+
+        /// <summary>耳机：听音乐放松 → 大幅减压力，顺带抬心情。</summary>
+        private static ItemData CreateHeadphones()
+        {
+            ItemData itemData = ScriptableObject.CreateInstance<ItemData>();
+            itemData.itemId = "item_headphones";
+            itemData.displayName = "耳机";
+            itemData.itemType = ItemType.Consumable;
+            itemData.description = "戴上就不想说话的那半小时。压力 -8，心情 +3。";
+            itemData.price = 25;
+            itemData.triggerTiming = ItemTriggerTiming.OnUse;
+            itemData.canUseInStageScreen = true;
+            itemData.canUseInBattle = false;
+            itemData.consumedOnUse = true;
+            itemData.effects.Add(new CardEffectData { effectType = CardEffectType.ReducePressure, value = 8 });
+            itemData.effects.Add(new CardEffectData
+            {
+                effectType = CardEffectType.AddPlayerStat,
+                targetStat = PlayerStatKey.Mood,
+                value = 3
+            });
+            GameArtBindingUtility.ApplyKnownArtPath(itemData);
+            return itemData;
+        }
+
+        /// <summary>家长便条：家里留的字条 → 抬亲子关系。</summary>
+        private static ItemData CreateParentNote()
+        {
+            ItemData itemData = ScriptableObject.CreateInstance<ItemData>();
+            itemData.itemId = "item_parent_note";
+            itemData.displayName = "家长便条";
+            itemData.itemType = ItemType.Consumable;
+            itemData.description = "压在桌上的字条，只写了两行。亲子关系 +6。";
+            itemData.price = 30;
+            itemData.triggerTiming = ItemTriggerTiming.OnUse;
+            itemData.canUseInStageScreen = true;
+            itemData.canUseInBattle = false;
+            itemData.consumedOnUse = true;
+            itemData.effects.Add(new CardEffectData
+            {
+                effectType = CardEffectType.AddPlayerStat,
+                targetStat = PlayerStatKey.ParentRelation,
+                value = 6
+            });
+            GameArtBindingUtility.ApplyKnownArtPath(itemData);
+            return itemData;
+        }
+
+        /// <summary>文具盒：装备齐全，开局多 1 点战斗能量（被动，不消耗）。</summary>
+        private static ItemData CreatePencilCase()
+        {
+            ItemData itemData = ScriptableObject.CreateInstance<ItemData>();
+            itemData.itemId = "item_pencil_case";
+            itemData.displayName = "文具盒";
+            itemData.itemType = ItemType.Passive;
+            itemData.description = "笔、橡皮、尺子都在该在的位置。战斗开始时额外获得 1 点能量。";
+            itemData.price = 28;
+            itemData.triggerTiming = ItemTriggerTiming.OnBattleStart;
+            itemData.canUseInBattle = true;
+            itemData.effects.Add(new CardEffectData { effectType = CardEffectType.GainBattleEnergy, value = 1 });
+            GameArtBindingUtility.ApplyKnownArtPath(itemData);
+            return itemData;
+        }
+
+        /// <summary>星星贴纸：给自己的小奖励 → 抬自信。</summary>
+        private static ItemData CreateStickerStar()
+        {
+            ItemData itemData = ScriptableObject.CreateInstance<ItemData>();
+            itemData.itemId = "item_sticker_star";
+            itemData.displayName = "星星贴纸";
+            itemData.itemType = ItemType.Consumable;
+            itemData.description = "贴在错题本封面上的那种。自信 +4。";
+            itemData.price = 15;
+            itemData.triggerTiming = ItemTriggerTiming.OnUse;
+            itemData.canUseInStageScreen = true;
+            itemData.canUseInBattle = false;
+            itemData.consumedOnUse = true;
+            itemData.effects.Add(new CardEffectData
+            {
+                effectType = CardEffectType.AddPlayerStat,
+                targetStat = PlayerStatKey.Confidence,
+                value = 4
+            });
             GameArtBindingUtility.ApplyKnownArtPath(itemData);
             return itemData;
         }

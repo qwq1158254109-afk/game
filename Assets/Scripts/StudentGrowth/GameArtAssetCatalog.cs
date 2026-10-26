@@ -53,7 +53,6 @@ namespace StudentGrowth
         {
             { "item_alarm_clock", PixelArtRoot + "/Icons/Items/icon_item_alarm_clock.png" },
             { "item_energy_drink", PixelArtRoot + "/Icons/Items/icon_item_energy_drink.png" },
-            { "item_exam_ticket", PixelArtRoot + "/Icons/Items/icon_item_exam_ticket.png" },
             { "item_headphones", PixelArtRoot + "/Icons/Items/icon_item_headphones.png" },
             { "item_lucky_pen", PixelArtRoot + "/Icons/Items/icon_item_lucky_pen.png" },
             { "item_parent_note", PixelArtRoot + "/Icons/Items/icon_item_parent_note.png" },
