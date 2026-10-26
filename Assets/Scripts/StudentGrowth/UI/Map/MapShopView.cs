@@ -1237,9 +1237,11 @@ namespace StudentGrowth
             pixelButton.theme = theme;
             // 商品横条只在鼠标悬停时高亮，移开立即恢复。
             // 不加这句会走 selected 语义，点过的横条会一直亮着（2026-10-26 用户反馈）。
-            pixelButton.highlightOnHoverOnly = true;
-            // 大尺寸横条不用九宫格按钮贴图：570x100 下边框会被拉成一圈细线。
-            pixelButton.solidBackground = true;
+            // 2026-10-26 用户确认：商品横条就用主题的 buttonSprite 底图
+            // （深棕木牌 + 内嵌亮边，即用户截图里的「图1」）。
+            // 不用 solidBackground —— 那会变成纯色块，不是要的样子。
+            // 也不用 highlightOnHoverOnly —— 悬停只保留 PixelButton 自带的缩放，
+            // 不再切换底图/颜色，避免「悬停后变成另一个样式」。
             pixelButton.ApplyStyle();
             return button;
         }
