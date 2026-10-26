@@ -981,7 +981,7 @@ V0.2 推荐顺序：
 
 - Unity 版本 6000.4.6f1（`ProjectSettings/ProjectVersion.txt`）。
 - mcp-unity 1.5.0，端口 **8095**（`ProjectSettings/McpUnitySettings.json`，2026-10-23 核对；早期文档与日志里写的 8096 是旧值，以本行为准），桥接令牌 `Library/McpUnity/bridge-token`。WorkBuddy 客户端配置在 `C:\Users\cyl\.workbuddy-ai\mcp.json`，dsh 的配置在 `C:\Users\cyl\.dsh\profiles\desktop\cordis.patch.yml`，两者各起一个 node 桥接进程，同一时间只建议一个客户端连。
-- **recompile 必然把 MCP 打半残**（2026-10-19 三次复现）：任何一次 recompile（含保存脚本触发的域重载）都会让 mcp-unity 的 WebSocket 重绑失败，日志写 `Failed to start WebSocket server: Port 8095 is already in use`，表现为端口在听、握手超时。处理：**2026-10-26 起不再重启 Unity，直接切 AgentBridge（见 20.7）**。旧办法（关 Unity → 等端口彻底消失 → 重启 Unity）保留为最后手段。**不要反复重试 MCP**。
+- **recompile 曾必然把 MCP 打半残**（2026-10-19 三次复现）：任何一次 recompile（含保存脚本触发的域重载）都会让 mcp-unity 的 WebSocket 重绑失败，日志写 `Failed to start WebSocket server: Port 8095 is already in use`，表现为端口在听、握手超时。**2026-10-26 已在嵌入包里修掉**（`McpUnityServer.cs` 的 `ForceReleaseListenerPort` + `TryEnableReuseAddress`，见 20.7）；修后连续 3 次 reload 实测零失败。若升级 `com.gamelovers.mcp-unity` 会覆盖该补丁，升级后须重新打上并复测。
 - **僵尸端口**：强杀 Unity 会留下「pid 已不存在、netstat 仍显示 LISTENING」的 8095。此时新启动的 Unity 会静默失去 MCP 服务（NO_LISTENER），且不自动重试。必须等 `netstat -ano | findstr :8095` 完全为空再启动。
 - 因此：**一次性把代码改完再编译**，编译后统一「重启 Unity → 跑菜单 → 截图验证」，不要边改边验。
 - Game 视图在 1x 下会裁切房间，不能当判据；出对照图用菜单 `Tools/Student Growth/Dev/Capture Room Screenshot`（1600×900 离屏渲染、无 HUD，输出 `_room_shot.png`）。
@@ -1081,3 +1081,16 @@ python Tools/fix_pixel_art.py <路径> --out <目录>       # 默认输出到 _t
 MCP 有而桥没有的（改对象、加组件、建材质、跑测试等），需要时在 `CommandBridge.cs` 的 `RegisterCommands()` 里补一条，而不是退回重启 Unity。
 
 **为什么不重启 Unity**：重启要 10–50s 冷启动，且 `Temp/UnityLockfile` 残留会让新实例自杀；桥在 domain reload 后 200ms 内自动重建，代价几乎为零。**只有当 `--probe` 报 `recommend: "none"` 且桥心跳也不动时，才走重启流程。**
+
+#### 20.7.1 MCP 端口假活的修复（2026-10-26）
+
+`Packages/mcp-unity/Editor/UnityBridge/McpUnityServer.cs` 有两处本地补丁，**升级该包会被覆盖**：
+
+| 改动 | 作用 |
+| --- | --- |
+| `StopServer` 的 finally 里调 `ForceReleaseListenerPort` | GC 终结器最多跑 3 轮 + 用 `TcpListener` 实绑验证端口是否真的释放；仍占用则记 warning |
+| `StartServerInternal` 里调 `TryEnableReuseAddress` | 反射设置 `ReuseAddress=true`，Windows 的 SO_REUSEADDR 允许抢占已 LISTENING 的端口 |
+
+修复前实测：一天内 MCP 成功绑定 **0 次**、失败 **276 次**。修复后：连续 3 次主动 recompile，每次 reload 的 `already in use` 增量均为 **0**，`--probe` 三次全返回 `recommend: mcp`。
+
+若哪天又开始假活，先跑 `python Tools/unity_cmd.py --probe` 看 `mcp.reason`：`timeout-zombie` 说明补丁失效（多半是包被升级了），按上表重打即可。
