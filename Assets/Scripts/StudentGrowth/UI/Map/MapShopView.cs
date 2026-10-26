@@ -58,6 +58,7 @@ namespace StudentGrowth
         private Text pageLabel;
         private int stockPage;
         private int cardPage;
+        private bool stockDiagLogged;
         // 2026-10-26：道具/卡牌的图标走 imagePath 按需读盘。Refresh 每次
         // 买卖都会重跑，不缓存就是反复 IO。
         private static readonly Dictionary<string, Sprite> iconCache = new Dictionary<string, Sprite>();
@@ -380,6 +381,17 @@ namespace StudentGrowth
                 return;
             }
 
+            // 一次性诊断：只在需要定位图标问题时留下痕迹
+            if (!stockDiagLogged && stockItems.Count > 0)
+            {
+                stockDiagLogged = true;
+                ItemData probe = stockItems[0];
+                Debug.Log("[MapShop] 诊断 item=" + (probe == null ? "NULL" : probe.itemId)
+                    + " path=" + (probe == null ? "-" : (string.IsNullOrEmpty(probe.imagePath) ? "EMPTY" : probe.imagePath))
+                    + " icon=" + (probe == null || probe.icon == null ? "NULL" : probe.icon.name)
+                    + " 总数=" + stockItems.Count);
+            }
+
             int pageCount = Mathf.Max(1, (stockItems.Count + MaxVisibleStockItems - 1) / MaxVisibleStockItems);
             stockPage = Mathf.Clamp(stockPage, 0, pageCount - 1);
             int start = stockPage * MaxVisibleStockItems;
@@ -432,7 +444,9 @@ namespace StudentGrowth
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
             }
 
-            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(16f, -26f), new Vector2(48f, 48f), resolved.inverseText);
+            // 第三个参数是染色：原来传 inverseText（深色），图标被整体压暗，
+            // 在深棕横条上等于看不见。图标应该保持原色。
+            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(16f, -26f), new Vector2(48f, 48f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolvePrice(item), 15, FontStyle.Bold, TextAnchor.MiddleRight);
             SetRect(priceText.rectTransform, new Vector2(440f, -16f), new Vector2(100f, 24f), new Vector2(0f, 1f));
@@ -519,7 +533,7 @@ namespace StudentGrowth
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
             }
 
-            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(16f, -26f), new Vector2(48f, 48f), resolved.inverseText);
+            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(16f, -26f), new Vector2(48f, 48f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolveCardPrice(card), 15, FontStyle.Bold, TextAnchor.MiddleRight);
             SetRect(priceText.rectTransform, new Vector2(440f, -16f), new Vector2(100f, 24f), new Vector2(0f, 1f));
