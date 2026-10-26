@@ -180,6 +180,14 @@ def probe(timeout: float = 6.0) -> dict:
     port = mcp_port()
     mcp = mcp_handshake(port, timeout)
 
+    # domain reload 有几百毫秒的空窗（旧监听已关、新监听还没起），此时探测会得到 refused。
+    # 这不是故障，稍等再试一次即可，否则会误报成「该用桥」。
+    if not mcp.get("ok") and mcp.get("reason") == "refused":
+        time.sleep(0.7)
+        retry = mcp_handshake(port, min(timeout, 3.0))
+        if retry.get("ok"):
+            mcp = retry
+
     beat = heartbeat()
     age = heartbeat_age(beat) if beat else None
     bridge_ready = bool(beat) and age is not None and age < 10 and not beat.get("isCompiling")
