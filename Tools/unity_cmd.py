@@ -142,9 +142,11 @@ def mcp_handshake(port: int, timeout: float = 6.0) -> dict:
             with socket.socket(family, socket.SOCK_STREAM) as sock:
                 sock.settimeout(timeout)
                 sock.connect((host, port))
+                # IPv6 的 Host 头必须写成 [::1]:port，否则 websocket-sharp 回 400。
+                host_header = f"[{host}]:{port}" if ":" in host else f"{host}:{port}"
                 request = (
                     f"GET /McpUnity HTTP/1.1\r\n"
-                    f"Host: {host}:{port}\r\n"
+                    f"Host: {host_header}\r\n"
                     "Upgrade: websocket\r\n"
                     "Connection: Upgrade\r\n"
                     f"Sec-WebSocket-Key: {key}\r\n"
