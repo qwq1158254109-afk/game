@@ -25,14 +25,14 @@ namespace StudentGrowth
     [DisallowMultipleComponent]
     public sealed class GiftPickerView : MonoBehaviour
     {
-        private const int Columns = 5;
-        private const int Rows = 3;
+        private const int Columns = 7;
+        private const int Rows = 2;
         private const int PageSize = Columns * Rows;
 
-        private const float SlotSize = 88f;
-        private const float SlotGap = 14f;
-        private const float PanelWidth = 820f;
-        private const float PanelHeight = 432f;
+        private const float SlotSize = 112f;
+        private const float SlotGap = 16f;
+        private const float PanelWidth = 1200f;
+        private const float PanelHeight = 400f;
 
         /// <summary>
         /// 与 DialogueView 的 optionsRoot 同一条底边（PanelBottom 60 + PanelHeight 340 + 24）。
@@ -40,10 +40,16 @@ namespace StudentGrowth
         /// </summary>
         private const float PanelBottom = 424f;
 
+        /// <summary>
+        /// 图标显示边长。必须是源图 48 的整数倍——48x48 缩放到 64（1.33 倍）
+        /// 会出现半像素，边缘发糊；96 = 2 倍，正好铺进 112 的格子并留 8px 边。
+        /// </summary>
+        private const float IconSize = 96f;
+
         private const float Padding = 20f;
-        private const float GridTop = 92f;
-        private const float DetailLeft = 536f;
-        private const float DetailWidth = 264f;
+        private const float GridTop = 64f;
+        private const float DetailLeft = 920f;
+        private const float DetailWidth = 260f;
 
         private static GiftPickerView instance;
 
@@ -202,15 +208,15 @@ namespace StudentGrowth
             // 翻页组右对齐到内容右边界（820-20=800），与标题分列两端。
             // 文案用「上页/下页」而不是「‹ ›」：像素字体缺这两个字形，会渲染成几道横线。
             prevButton = CreateButton(panel, "PrevPage", "上页", Vector2.zero, new Vector2(76f, 44f), () => ChangePage(-1));
-            Place(prevButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(584f, -16f), new Vector2(76f, 44f));
+            Place(prevButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(900f, -16f), new Vector2(76f, 44f));
 
             pageLabel = CreateLabel(panel, "PageLabel", string.Empty, GameUiTextStyle.SmallText, false, TextAnchor.MiddleCenter);
             // SmallText 是 12 号，在 1920 参考下比正文小一圈，页码容易看不清，提到 18。
             pageLabel.fontSize = 18;
-            Place(pageLabel.rectTransform, TopLeft, TopLeft, new Vector2(672f, -16f), new Vector2(44f, 44f));
+            Place(pageLabel.rectTransform, TopLeft, TopLeft, new Vector2(988f, -16f), new Vector2(44f, 44f));
 
             nextButton = CreateButton(panel, "NextPage", "下页", Vector2.zero, new Vector2(76f, 44f), () => ChangePage(1));
-            Place(nextButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(724f, -16f), new Vector2(76f, 44f));
+            Place(nextButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(1040f, -16f), new Vector2(76f, 44f));
 
             // 曾加过一条分隔线（y=-76），实测距详情标题顶边只有 8px（屏幕像素），
             // 视觉上和标题挤在一起，且纸纹底本身就有横线，加它没有信息价值，已删。
@@ -245,7 +251,7 @@ namespace StudentGrowth
                 slots.Add(button);
 
                 Image icon = CreateImage("Icon", slot);
-                Place(icon.rectTransform, Center, Center, Vector2.zero, new Vector2(SlotSize - 24f, SlotSize - 24f));
+                Place(icon.rectTransform, Center, Center, Vector2.zero, new Vector2(IconSize, IconSize));
                 icon.raycastTarget = false;
                 icon.preserveAspect = true;
                 // 初始关闭：Image 的 sprite 为 null 且 enabled=true 时会渲染一块白色方块，
@@ -267,12 +273,12 @@ namespace StudentGrowth
         {
             detailName = CreateLabel(panel, "DetailName", string.Empty, GameUiTextStyle.Subtitle, false, TextAnchor.UpperLeft);
             detailName.fontSize = 24;
-            Place(detailName.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -92f), new Vector2(DetailWidth, 44f));
+            Place(detailName.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -64f), new Vector2(DetailWidth, 44f));
 
             detailMeta = CreateLabel(panel, "DetailMeta", string.Empty, GameUiTextStyle.SmallText, false, TextAnchor.UpperLeft);
             detailMeta.fontSize = 18;
             detailMeta.lineSpacing = 1.15f;
-            Place(detailMeta.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -144f), new Vector2(DetailWidth, 84f));
+            Place(detailMeta.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -116f), new Vector2(DetailWidth, 84f));
 
             detailInfo = CreateLabel(panel, "DetailInfo", string.Empty, GameUiTextStyle.Body, false, TextAnchor.UpperLeft);
             // 描述做成可换行 + Truncate，高度按「18 号 ≈ 每行 21，5 行」给足 104，
@@ -281,14 +287,14 @@ namespace StudentGrowth
             detailInfo.lineSpacing = 1.15f;
             detailInfo.horizontalOverflow = HorizontalWrapMode.Wrap;
             detailInfo.verticalOverflow = VerticalWrapMode.Truncate;
-            Place(detailInfo.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -236f), new Vector2(DetailWidth, 104f));
+            Place(detailInfo.rectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -208f), new Vector2(DetailWidth, 80f));
 
             // 按钮底边 -398，距面板底 432 还有 34：不会再被 3px 边框压住。
             giftButton = CreateButton(panel, "Gift", "赠送", Vector2.zero, new Vector2(124f, 46f), OnGift);
-            Place(giftButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -352f), new Vector2(124f, 46f));
+            Place(giftButton.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft, -330f), new Vector2(124f, 46f));
 
             Button cancel = CreateButton(panel, "Cancel", "取消", Vector2.zero, new Vector2(124f, 46f), OnCancel);
-            Place(cancel.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft + 140f, -352f), new Vector2(124f, 46f));
+            Place(cancel.transform as RectTransform, TopLeft, TopLeft, new Vector2(DetailLeft + 132f, -330f), new Vector2(124f, 46f));
         }
 
         // ── 数据 ────────────────────────────────────────────────
