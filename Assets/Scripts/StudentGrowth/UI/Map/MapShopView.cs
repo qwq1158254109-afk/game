@@ -1238,6 +1238,8 @@ namespace StudentGrowth
             // 商品横条只在鼠标悬停时高亮，移开立即恢复。
             // 不加这句会走 selected 语义，点过的横条会一直亮着（2026-10-26 用户反馈）。
             pixelButton.highlightOnHoverOnly = true;
+            // 大尺寸横条不用九宫格按钮贴图：570x100 下边框会被拉成一圈细线。
+            pixelButton.solidBackground = true;
             pixelButton.ApplyStyle();
             return button;
         }
