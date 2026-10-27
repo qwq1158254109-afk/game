@@ -32,6 +32,19 @@ namespace StudentGrowth
         private const float CardListTop = -386f;
         private const float CardListHeight = 198f;
 
+        // 2026-10-27：顶栏右侧三件套（金钱图标 / 金钱文本 / 关闭按钮）此前在
+        // BuildDefaultLayout 和 EnsureLayoutExpanded 里各写一份坐标，两处对不上，
+        // 表现为「金钱文本压住关闭按钮」（1400 宽下重叠 12px；旧版迁移分支更离谱，
+        // 直接把关闭按钮挪到 x=516 的顶栏中间）。现在坐标只在 LayoutTopBar 里推导一次。
+        private const float PanelWidth = 1400f;
+        private const float TopBarRightMargin = 20f;
+        private const float CloseButtonWidth = 112f;
+        private const float CloseButtonHeight = 46f;
+        private const float MoneyTextWidth = 120f;
+        private const float MoneyIconSize = 28f;
+        private const float MoneyIconGap = 8f;
+        private const float MoneyCloseGap = 16f;
+
         public UIThemeConfig theme;
         public GameSessionState sessionState;
         public FullscreenMapHudView hudView;
@@ -58,7 +71,6 @@ namespace StudentGrowth
         private Text pageLabel;
         private int stockPage;
         private int cardPage;
-        private bool stockDiagLogged;
         // 2026-10-26：道具/卡牌的图标走 imagePath 按需读盘。Refresh 每次
         // 买卖都会重跑，不缓存就是反复 IO。
         private static readonly Dictionary<string, Sprite> iconCache = new Dictionary<string, Sprite>();
@@ -121,6 +133,21 @@ namespace StudentGrowth
             Refresh();
         }
 
+        /// <summary>
+        /// 会话兜底。商店有三条创建路径（场景预制体 / 运行时工厂 / 对话选项 openShop），
+        /// 任何一条漏掉 Configure 都会让 sessionState 为 null，界面就整体呈现
+        /// 「金钱 0 + 全部金钱不足」。这里统一兜到全局共享会话，兜不到才保持 null。
+        /// </summary>
+        private GameSessionState ResolveSession()
+        {
+            if (sessionState == null)
+            {
+                sessionState = GameBootstrapper.SharedSession;
+            }
+
+            return sessionState;
+        }
+
         public void SetCatalog(IReadOnlyList<ItemData> items)
         {
             stockItems.Clear();
@@ -159,7 +186,7 @@ namespace StudentGrowth
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
             panelRect.anchoredPosition = Vector2.zero;
-            panelRect.sizeDelta = new Vector2(1400f, ShopPanelHeight);
+            panelRect.sizeDelta = new Vector2(PanelWidth, ShopPanelHeight);
 
             Image background = panelRoot.GetComponent<Image>();
             if (background == null)
@@ -185,13 +212,13 @@ namespace StudentGrowth
             SetRect(titleText.rectTransform, new Vector2(78f, -20f), new Vector2(300f, 48f), new Vector2(0f, 1f));
 
             moneyIcon = CreateIcon("MoneyIcon", panelRect);
-            SetRect(moneyIcon.rectTransform, new Vector2(1138f, -28f), new Vector2(28f, 28f), new Vector2(0f, 1f));
 
-            moneyText = CreateText("Money", panelRect, string.Empty, 18, FontStyle.Bold, TextAnchor.MiddleLeft);
-            SetRect(moneyText.rectTransform, new Vector2(1174f, -24f), new Vector2(110f, 36f), new Vector2(0f, 1f));
+            // 右对齐：数字变长时向左长，不会挤到关闭按钮。
+            moneyText = CreateText("Money", panelRect, string.Empty, 18, FontStyle.Bold, TextAnchor.MiddleRight);
 
-            closeButton = CreateButton("CloseButton", panelRect, "关闭", new Vector2(1272f, -20f), new Vector2(112f, 46f), new Vector2(0f, 1f));
+            closeButton = CreateButton("CloseButton", panelRect, "关闭", Vector2.zero, new Vector2(CloseButtonWidth, CloseButtonHeight), new Vector2(0f, 1f));
             closeButton.onClick.AddListener(Hide);
+            LayoutTopBar(panelRect);
 
             descriptionText = CreateText("Description", panelRect, string.Empty, 17, FontStyle.Normal, TextAnchor.UpperLeft);
             descriptionText.supportRichText = true;
@@ -239,6 +266,7 @@ namespace StudentGrowth
         public void Show()
         {
             ResolveReferences();
+            ResolveSession();
             EnsureLayoutExpanded();
             EnsureDefaultStock();
             SetVisible(true);
@@ -379,17 +407,6 @@ namespace StudentGrowth
                 SetRect(emptyText.rectTransform, Vector2.zero, new Vector2(560f, 30f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(emptyText, theme, GameUiTextStyle.Body);
                 return;
-            }
-
-            // 一次性诊断：只在需要定位图标问题时留下痕迹
-            if (!stockDiagLogged && stockItems.Count > 0)
-            {
-                stockDiagLogged = true;
-                ItemData probe = stockItems[0];
-                Debug.Log("[MapShop] 诊断 item=" + (probe == null ? "NULL" : probe.itemId)
-                    + " path=" + (probe == null ? "-" : (string.IsNullOrEmpty(probe.imagePath) ? "EMPTY" : probe.imagePath))
-                    + " icon=" + (probe == null || probe.icon == null ? "NULL" : probe.icon.name)
-                    + " 总数=" + stockItems.Count);
             }
 
             int pageCount = Mathf.Max(1, (stockItems.Count + MaxVisibleStockItems - 1) / MaxVisibleStockItems);
@@ -596,12 +613,13 @@ namespace StudentGrowth
 
         private bool CanAffordCard(CardData card)
         {
-            if (sessionState == null || sessionState.playerState == null)
+            GameSessionState state = ResolveSession();
+            if (state == null || state.playerState == null)
             {
                 return false;
             }
 
-            return sessionState.playerState.money >= ShopPurchaseService.ResolveCardPrice(card);
+            return state.playerState.money >= ShopPurchaseService.ResolveCardPrice(card);
         }
 
         private static string ResolveCardName(CardData card)
@@ -704,7 +722,7 @@ namespace StudentGrowth
             shopIcon = null;
             moneyIcon = null;
 
-            panelRect.sizeDelta = new Vector2(1400f, ShopPanelHeight);
+            panelRect.sizeDelta = new Vector2(PanelWidth, ShopPanelHeight);
             BuildDefaultLayout(originalParent as RectTransform);
         }
 
@@ -730,7 +748,7 @@ namespace StudentGrowth
             // 不会走 BuildDefaultLayout，只补高度是修不好的——旧高度 660 反而
             // 比新高度 400 大，连高度判断都过不了。这里按面板宽度判定版本，
             // 不是 1200 就拆掉子节点整体重建。
-            if (!Mathf.Approximately(panelRect.sizeDelta.x, 1400f))
+            if (!Mathf.Approximately(panelRect.sizeDelta.x, PanelWidth))
             {
                 RebuildLayout(panelRect);
                 return;
@@ -756,18 +774,44 @@ namespace StudentGrowth
             }
 
             // 关闭按钮也归位：场景里序列化的是旧版小尺寸，右边缘会被面板裁掉一半。
+            // 坐标统一由 LayoutTopBar 推导，不要再在这里写死旧版数字（会挪到顶栏中间）。
+            LayoutTopBar(panelRect);
+        }
+
+        /// <summary>
+        /// 顶栏右侧布局的唯一来源。关闭按钮贴右边缘，金钱文本在其左侧右对齐，
+        /// 金钱图标再往左，三者间距全部由常量推导。
+        /// </summary>
+        private void LayoutTopBar(RectTransform panelRect)
+        {
+            if (panelRect == null)
+            {
+                return;
+            }
+
+            float closeLeft = PanelWidth - TopBarRightMargin - CloseButtonWidth;
+            float moneyRight = closeLeft - MoneyCloseGap;
+            float moneyLeft = moneyRight - MoneyTextWidth;
+            float iconLeft = moneyLeft - MoneyIconGap - MoneyIconSize;
+
+            if (moneyIcon != null)
+            {
+                SetRect(moneyIcon.rectTransform, new Vector2(iconLeft, -28f), new Vector2(MoneyIconSize, MoneyIconSize), new Vector2(0f, 1f));
+            }
+
+            if (moneyText != null)
+            {
+                SetRect(moneyText.rectTransform, new Vector2(moneyLeft, -24f), new Vector2(MoneyTextWidth, 36f), new Vector2(0f, 1f));
+            }
+
             if (closeButton != null)
             {
-                RectTransform closeRect = closeButton.transform as RectTransform;
-                SetRect(closeRect, new Vector2(516f, -20f), new Vector2(80f, 34f), new Vector2(0f, 1f));
+                SetRect(closeButton.transform as RectTransform, new Vector2(closeLeft, -20f), new Vector2(CloseButtonWidth, CloseButtonHeight), new Vector2(0f, 1f));
             }
         }
 
         private void Purchase(ItemData item)
         {
-            Debug.Log("[MapShop] 购买请求 item=" + (item == null ? "NULL" : item.itemId)
-                + " 金钱=" + (sessionState != null && sessionState.playerState != null
-                    ? sessionState.playerState.GetStat(PlayerStatKey.Money).ToString() : "?"));
             ShopPurchaseResult result = purchaseService.TryPurchase(item, sessionState);
             SetFeedback(result);
             if (result.success)
@@ -812,17 +856,19 @@ namespace StudentGrowth
 
         private bool CanAfford(ItemData item)
         {
-            if (sessionState == null || sessionState.playerState == null)
+            GameSessionState state = ResolveSession();
+            if (state == null || state.playerState == null)
             {
                 return false;
             }
 
-            return sessionState.playerState.money >= ShopPurchaseService.ResolvePrice(item);
+            return state.playerState.money >= ShopPurchaseService.ResolvePrice(item);
         }
 
         private string ResolveMoneyText()
         {
-            int money = sessionState == null || sessionState.playerState == null ? 0 : sessionState.playerState.money;
+            GameSessionState state = ResolveSession();
+            int money = state == null || state.playerState == null ? 0 : state.playerState.money;
             return money.ToString();
         }
 
