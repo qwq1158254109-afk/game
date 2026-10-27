@@ -46,6 +46,23 @@ namespace StudentGrowth
         private const float MoneyIconGap = 8f;
         private const float MoneyCloseGap = 16f;
 
+        /// <summary>
+        /// 商店格子专用底图（2026-10-27）：button_normal 去掉 y=7 那条金色高光线。
+        /// 木牌原图 64x24、九宫格 border 5，y=5..18 属于可拉伸区——1px 金线在 372x162
+        /// 的格子里被纵向拉成约 10px 的粗黄带（用户截图报的「黄条」）。
+        /// 按钮只有 46 高，同一张图拉伸 2px 是可用的高光，所以不去动全局贴图，
+        /// 只给高格子换这一张内容区纯木色的变体。
+        /// </summary>
+        private const string StockSkinResourcePath = "StudentGrowth/UI/button_normal_flat";
+
+        /// <summary>
+        /// 商店格子悬停底图（2026-10-27）：button_hover 去掉可拉伸区里的高光行。
+        /// 同一张九宫格，y=5 的近白高光和 y=7 的浅黄线在 162 高的格子里都被拉成
+        /// 约 10px 的粗带，悬停时格子上会横着两条亮条（用户报的「选中态黄条」）。
+        /// 内容区统一成金色，悬停就只剩边框。
+        /// </summary>
+        private const string StockHoverSkinResourcePath = "StudentGrowth/UI/button_hover_flat";
+
         public UIThemeConfig theme;
         public GameSessionState sessionState;
         public FullscreenMapHudView hudView;
@@ -60,6 +77,9 @@ namespace StudentGrowth
         public Text feedbackText;
         public RectTransform stockListRoot;
         public Button closeButton;
+
+        /// <summary>用户主动关闭时的一次性回调（见 SetCloseCallback）。</summary>
+        private Action closeCallback;
 
         // 2026-10-26 商店改版：道具与卡牌改用页签切换，共用同一块列表区域。
         private Button tabItemButton;
@@ -282,7 +302,29 @@ namespace StudentGrowth
 
         public void Hide()
         {
+            // 只有「面板确实可见」才算一次关闭：BuildDefaultLayout / EnsureLayoutExpanded
+            // 末尾也会调 Hide 做初始收起，那种调用不能触发关闭回调。
+            bool wasVisible = panelRoot != null && panelRoot.activeSelf;
             SetVisible(false);
+
+            if (!wasVisible)
+            {
+                return;
+            }
+
+            Action callback = closeCallback;
+            closeCallback = null;
+            callback?.Invoke();
+        }
+
+        /// <summary>
+        /// 登记「用户关掉商店」的一次性回调（2026-10-27：售货员那条线要关店回对话菜单）。
+        /// 传 null 可清除。回调在下次 Hide 且面板确实可见时触发一次，之后自动清空，
+        /// 所以别的入口（活动买道具）打开商店不会被上一条回调误触发。
+        /// </summary>
+        public void SetCloseCallback(Action callback)
+        {
+            closeCallback = callback;
         }
 
         public void Refresh()
@@ -1367,7 +1409,9 @@ namespace StudentGrowth
 
             // 2026-10-27：常态底图用 button_normal（棕木牌），悬停换 button_hover（暖金）。
             // 不再优先 button_selected——那张是墨绿色，用户明确要求「都不要变绿」。
-            Sprite skin = resolved.buttonSprite;
+            // 格子专用变体（button_normal_flat）去掉了会被九宫格拉粗的金线；
+            // 找不到变体时退回主题原图，至少不会空着。
+            Sprite skin = ResolveStockSkin(resolved);
             background.sprite = skin != null ? skin : GameUiStyle.GetSolidSprite();
             background.type = skin != null ? Image.Type.Sliced : Image.Type.Simple;
             background.color = button.interactable
@@ -1385,10 +1429,53 @@ namespace StudentGrowth
             PixelButton pixelButton = button.GetComponent<PixelButton>();
             if (pixelButton != null)
             {
-                pixelButton.restingSprite = resolved.buttonSprite;
-                pixelButton.hoverSprite = resolved.buttonHoverSprite;
+                pixelButton.restingSprite = skin;
+                pixelButton.hoverSprite = ResolveStockHoverSkin(resolved);
                 pixelButton.SetRestingColor(background.color);
             }
+        }
+
+        private static Sprite stockSkin;
+        private static bool stockSkinResolved;
+
+        /// <summary>
+        /// 取商店格子底图。只在第一次调用时读 Resources，之后走静态缓存
+        /// （每次翻页/切页签都会重建格子，不能反复 Load）。
+        /// </summary>
+        private static Sprite ResolveStockSkin(UIThemeConfig resolved)
+        {
+            if (!stockSkinResolved)
+            {
+                stockSkinResolved = true;
+                stockSkin = Resources.Load<Sprite>(StockSkinResourcePath);
+                if (stockSkin == null)
+                {
+                    Debug.LogWarning("[MapShopView] 找不到格子底图 Resources/" + StockSkinResourcePath
+                        + "，退回主题按钮图（会出现被拉粗的金色横条）。");
+                }
+            }
+
+            return stockSkin != null ? stockSkin : (resolved != null ? resolved.buttonSprite : null);
+        }
+
+        private static Sprite stockHoverSkin;
+        private static bool stockHoverSkinResolved;
+
+        /// <summary>取商店格子悬停底图，语义同 ResolveStockSkin。</summary>
+        private static Sprite ResolveStockHoverSkin(UIThemeConfig resolved)
+        {
+            if (!stockHoverSkinResolved)
+            {
+                stockHoverSkinResolved = true;
+                stockHoverSkin = Resources.Load<Sprite>(StockHoverSkinResourcePath);
+                if (stockHoverSkin == null)
+                {
+                    Debug.LogWarning("[MapShopView] 找不到格子悬停底图 Resources/" + StockHoverSkinResourcePath
+                        + "，退回主题按钮悬停图（会出现被拉粗的亮色横条）。");
+                }
+            }
+
+            return stockHoverSkin != null ? stockHoverSkin : (resolved != null ? resolved.buttonHoverSprite : null);
         }
 
         private static Image CreateStockIcon(string name, RectTransform parent, Sprite sprite, Vector2 anchoredPosition, Vector2 sizeDelta, Color color)

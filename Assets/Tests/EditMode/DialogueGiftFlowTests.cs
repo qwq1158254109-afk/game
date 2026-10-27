@@ -8,16 +8,18 @@ using UnityEngine;
 namespace StudentGrowth.Tests
 {
     /// <summary>
-    /// 送礼流程的收尾分支（2026-10-27）。
+    /// 送礼流程的收尾分支（2026-10-27 二次修订：用户要求「赠礼完之后回到对话界面」）。
     ///
-    /// 锁的是「玩家点完『赠送』之后一定走得下去」。四条分支各一条：
-    /// 1. 有收礼对话 → 播它，且 NPC 上下文不能丢（丢了从收礼那句起好感度小心心全灭）；
-    /// 2. 送出了但选项没配 nextDialogueId → 直接结束，不能把整段菜单从头再说一遍；
-    /// 3. nextDialogueId 指向未登记的对话 → 同样直接结束，不能停在菜单上点不动；
-    /// 4. 玩家取消 → 回菜单重选（既有设计，回归保护）。
+    /// 锁的契约是「送礼走完一定回到菜单，而不是被踢回地图」：
+    /// 1. 有收礼对话 → 先播收礼那句，播完回菜单；NPC 上下文全程不能丢
+    ///    （丢了从收礼那句起好感度小心心就全灭）；
+    /// 2. 送出了但选项没配 nextDialogueId → 直接回菜单；
+    /// 3. nextDialogueId 指向未登记的对话 → 同样回菜单，不能停在菜单上点不动；
+    /// 4. 玩家取消 → 回菜单（既有设计）；
+    /// 5. 连菜单都没记住（异常数据）→ 收起面板并结束，不能留个点不动的对话框。
     ///
-    /// 背景：三种失败形态的可见表现完全不同（重播 / 卡住 / 面板不关），
-    /// 所以这四条都写死结果，别只测「不抛异常」。
+    /// 第 1 条顺带防一个死循环：Play 会重新登记 pendingComplete，
+    /// 如果回菜单时用的不是提前抓好的原回调，菜单播完会再绕回送礼收尾。
     /// </summary>
     public class DialogueGiftFlowTests
     {
@@ -29,6 +31,7 @@ namespace StudentGrowth.Tests
         private NpcData npc;
         private DialogueData menu;
         private DialogueData giftLine;
+        private DialogueData greetLine;
         private bool completed;
         private Action pendingAction;
 
@@ -62,6 +65,7 @@ namespace StudentGrowth.Tests
             completed = false;
             pendingAction = () => completed = true;
             SetPrivate(runner, "currentDialogueData", menu);
+            SetPrivate(runner, "giftReturnDialogue", menu);
             SetPrivate(runner, "pendingComplete", pendingAction);
         }
 
@@ -94,46 +98,61 @@ namespace StudentGrowth.Tests
             {
                 UnityEngine.Object.DestroyImmediate(giftLine);
             }
+
+            if (greetLine != null)
+            {
+                UnityEngine.Object.DestroyImmediate(greetLine);
+                greetLine = null;
+            }
         }
 
         [Test]
-        public void GiftWithNextDialogueKeepsNpcContext()
+        public void GiftPlaysReceiptLineThenReturnsToMenu()
         {
             // 真实链路里 currentNpc 是进入菜单对话时由 Play 写入的，这里照走一遍，
             // 否则测的只是「null 传 null 还是 null」，等于没测。
             runner.Play(menu, pendingAction, npc);
             SetPrivate(runner, "pendingGiftOption", GiftOption("dialogue_test_gift"));
+            SetPrivate(runner, "giftReturnDialogue", menu);
 
             InvokeResumeAfterGift(runner, true);
 
-            Assert.AreEqual(giftLine, CurrentDialogue(),
-                "送出礼物后应该播的是收礼对话，不是菜单");
+            Assert.AreEqual(giftLine, CurrentDialogue(), "送出礼物后应该先播收礼对话");
             Assert.AreSame(npc, runner.currentNpc,
                 "收礼对话必须继承送礼所在对话的 NPC，否则好感度小心心会消失");
-            Assert.IsFalse(completed, "收礼对话还没点完，不能提前触发结束回调");
+            Assert.IsFalse(completed, "收礼对话还没播完，不能提前触发结束回调");
+
+            // 点一下把收礼那句播完。
+            view.Advance();
+
+            Assert.AreEqual(menu, CurrentDialogue(), "收礼那句播完必须回到菜单，不能直接结束整段对话");
+            Assert.IsTrue(viewObject.activeSelf, "回菜单时对话面板必须还开着");
+            Assert.IsFalse(completed, "回菜单不等于结束整段对话（告辞才结束）");
         }
 
         [Test]
-        public void GiftWithoutNextDialogueEndsInsteadOfReplayingMenu()
+        public void GiftWithoutNextDialogueReturnsToMenu()
         {
             SetPrivate(runner, "pendingGiftOption", GiftOption(null));
 
             InvokeResumeAfterGift(runner, true);
 
-            Assert.IsTrue(completed, "没有收礼对话时必须直接结束对话，交还输入");
-            Assert.IsFalse(viewObject.activeSelf, "结束时对话面板必须收起，不能留在屏幕上");
+            Assert.AreEqual(menu, CurrentDialogue(), "没配收礼对话时也应回到菜单，而不是把玩家踢回地图");
+            Assert.IsTrue(viewObject.activeSelf, "回菜单时对话面板必须还开着");
+            Assert.IsFalse(completed, "回菜单不等于结束整段对话");
         }
 
         [Test]
-        public void GiftWithUnknownNextDialogueDoesNotStall()
+        public void GiftWithUnknownNextDialogueReturnsToMenu()
         {
             SetPrivate(runner, "pendingGiftOption", GiftOption("dialogue_does_not_exist"));
 
             InvokeResumeAfterGift(runner, true);
 
-            Assert.IsTrue(completed,
-                "跳转目标未登记时 PlayById 只记警告，必须由送礼收尾兜底结束，否则输入闸门永远不释放");
-            Assert.IsFalse(viewObject.activeSelf, "兜底结束时同样要收起面板");
+            Assert.AreEqual(menu, CurrentDialogue(),
+                "跳转目标未登记时 PlayById 只记警告，必须由送礼收尾把菜单接回来，否则对话会停在点不动的状态");
+            Assert.IsTrue(viewObject.activeSelf, "回菜单时对话面板必须还开着");
+            Assert.IsFalse(completed, "回菜单不等于结束整段对话");
         }
 
         [Test]
@@ -146,6 +165,54 @@ namespace StudentGrowth.Tests
             Assert.AreEqual(menu, CurrentDialogue(), "取消送礼后应回到菜单重选");
             Assert.IsTrue(viewObject.activeSelf, "回菜单时对话面板必须还开着");
             Assert.IsFalse(completed, "回菜单不等于结束对话");
+        }
+
+        [Test]
+        public void GiftWithoutMenuEndsInsteadOfStalling()
+        {
+            SetPrivate(runner, "giftReturnDialogue", null);
+            SetPrivate(runner, "pendingGiftOption", GiftOption("dialogue_does_not_exist"));
+
+            InvokeResumeAfterGift(runner, true);
+
+            Assert.IsTrue(completed,
+                "连菜单都没记住时必须兜底结束并放行输入，否则输入闸门永远不释放");
+            Assert.IsFalse(viewObject.activeSelf, "兜底结束时同样要收起面板");
+        }
+
+        [Test]
+        public void JumpReturnsToMenuAfterChildDialogue()
+        {
+            // 「打招呼」这类子对话：View 先发 onOptionChosen、再发 onJumpRequested，
+            // 这里照同样的顺序调，别只测其中一步。
+            runner.Play(menu, pendingAction, npc);
+            greetLine = MakeDialogue("dialogue_test_greet", "「你也好。」");
+            runner.Register(greetLine);
+            DialogueOption greet = new DialogueOption
+            {
+                text = "打招呼",
+                nextDialogueId = "dialogue_test_greet"
+            };
+
+            InvokePrivate(runner, "HandleOptionChosen", greet);
+            InvokePrivate(runner, "HandleJumpRequested", "dialogue_test_greet");
+
+            Assert.AreEqual(greetLine, CurrentDialogue(), "选了打招呼应该播打招呼那段");
+            Assert.IsFalse(completed, "子对话还没播完，不能提前结束整段对话");
+
+            view.Advance();
+
+            Assert.AreEqual(menu, CurrentDialogue(), "打招呼播完必须回到菜单，不能把玩家丢回地图");
+            Assert.IsTrue(viewObject.activeSelf, "回菜单时对话面板必须还开着");
+            Assert.IsFalse(completed, "回菜单不等于结束整段对话（告辞才结束）");
+
+            // 回菜单后再点一次打招呼，仍然要能回菜单（防自我循环 / 状态没清干净）。
+            InvokePrivate(runner, "HandleOptionChosen", greet);
+            InvokePrivate(runner, "HandleJumpRequested", "dialogue_test_greet");
+            view.Advance();
+
+            Assert.AreEqual(menu, CurrentDialogue(), "第二次打招呼也要回菜单");
+            Assert.IsFalse(completed, "第二次回菜单同样不等于结束对话");
         }
 
         // ── 工具 ────────────────────────────────────────────────
@@ -216,11 +283,16 @@ namespace StudentGrowth.Tests
 
         private static void InvokeResumeAfterGift(DialogueRunner target, bool giftGiven)
         {
+            InvokePrivate(target, "ResumeAfterGift", giftGiven);
+        }
+
+        private static void InvokePrivate(DialogueRunner target, string methodName, params object[] args)
+        {
             MethodInfo method = typeof(DialogueRunner).GetMethod(
-                "ResumeAfterGift",
+                methodName,
                 BindingFlags.Instance | BindingFlags.NonPublic);
-            Assert.IsNotNull(method, "DialogueRunner.ResumeAfterGift 不存在，测试已过期");
-            method.Invoke(target, new object[] { giftGiven });
+            Assert.IsNotNull(method, "DialogueRunner." + methodName + " 不存在，测试已过期");
+            method.Invoke(target, args);
         }
 
         private static void SetPrivate(object target, string fieldName, object value)

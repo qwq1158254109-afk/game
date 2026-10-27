@@ -50,6 +50,8 @@ namespace StudentGrowth
             pendingOpenShop = false;
             pendingFallbackActivity = false;
             pendingGiftOption = null;
+            giftReturnDialogue = null;
+            jumpReturnDialogue = null;
             if (view != null)
             {
                 view.suppressAdvance = false;
@@ -60,6 +62,19 @@ namespace StudentGrowth
         private DialogueOption pendingGiftOption;
         /// <summary>送礼选项所在的那段对话（通常是菜单），取消送礼时回到它重选。</summary>
         private DialogueData currentDialogueData;
+        /// <summary>
+        /// 送礼选项所在的那段对话，收礼话说完要回到它（2026-10-27 用户指定）。
+        /// 必须单独记一份：Play 播收礼对话时会把 currentDialogueData 换成收礼那段，
+        /// 那时再取就找不回菜单了。
+        /// </summary>
+        private DialogueData giftReturnDialogue;
+
+        /// <summary>
+        /// 从当前对话点出的子对话播完要回到的那段（2026-10-27 用户指定：打招呼之后
+        /// 也要回到对话栏）。菜单里点「打招呼」「购买参考书」这类只是插一段话，
+        /// 播完应该回菜单继续聊，而不是把整段对话结束、把玩家丢回地图。
+        /// </summary>
+        private DialogueData jumpReturnDialogue;
 
         private readonly RewardResolver rewardResolver = new RewardResolver();
         private readonly Dictionary<string, DialogueData> registry = new Dictionary<string, DialogueData>();
@@ -201,6 +216,9 @@ namespace StudentGrowth
             if (option.chooseItemAsGift)
             {
                 pendingGiftOption = option;
+                // 菜单记为「送完回来找它」。此刻 currentDialogueData 还是菜单，
+                // 一旦 Play 播起收礼对话就会被覆盖成收礼那段。
+                giftReturnDialogue = currentDialogueData;
                 if (view != null)
                 {
                     view.suppressAdvance = true;
@@ -208,6 +226,14 @@ namespace StudentGrowth
 
                 StartCoroutine(OpenGiftPickerNextFrame());
                 return;
+            }
+
+            // 子对话（打招呼 / 购买参考书这类）播完要回到当前这段，不能把整段结束掉。
+            // 这一步必须放在下面几个提前 return 之前：纯分支选项没有奖励，
+            // 摆在奖励检查后面就会被漏掉。
+            if (!string.IsNullOrEmpty(option.nextDialogueId))
+            {
+                jumpReturnDialogue = currentDialogueData;
             }
 
             if (option.rewards == null || option.rewards.Count == 0)
@@ -223,7 +249,6 @@ namespace StudentGrowth
 
             rewardResolver.ApplyRewards(option.rewards, sessionState);
         }
-
         /// <summary>
         /// 「赠送礼物」：等对话框收起一帧，再打开背包的选择模式。
         /// 2026-10-24 修复顺序：先挑道具、选中并发放效果后才播收礼对话（nextDialogueId）；
@@ -271,21 +296,25 @@ namespace StudentGrowth
         }
 
         /// <summary>
-        /// 背包关闭后的收尾：送出了播收礼对话；取消了回菜单重选；其余情况一律按对话结束处理。
+        /// 背包关闭后的收尾。2026-10-27 用户指定：**送礼完成后回到对话界面**，
+        /// 所以送出礼物、取消送礼、以及「送出了但没配收礼话」三种情况统统回菜单，
+        /// 玩家能接着打招呼 / 再送 / 告辞，而不是一送完就被踢回地图。
         ///
-        /// 2026-10-27 修三处（一起看才成立，拆开改任何一处都会留下另一种卡法）：
-        /// 1. 播收礼对话必须带上 currentNpc。Play 内部会把 currentNpc 直接覆盖成参数值，
-        ///    漏传就等于「收礼那句话一出现，好感度小心心全灭」。
-        /// 2. 「送出了礼物但选项没配 nextDialogueId」原先会掉进重播整段对话的分支，
-        ///    玩家会看到 NPC 把开场白再说一遍。送出后没有收礼对话，应当直接结束。
-        /// 3. PlayById 找不到目标对话时只记一条警告就返回，既不放行输入也不关面板：
-        ///    对话框停在菜单最后一句、选项已被清空，点哪都没反应、人物也走不动。
-        ///    这种情况必须兜底结束，否则一次数据配错就锁死整局。
+        /// 三处必须一起改，拆开都会留下另一种卡法：
+        /// 1. 播收礼对话要带上 currentNpc —— Play 会把 currentNpc 覆盖成参数值，
+        ///    漏传等于「收礼那句一出现，好感度小心心全灭」。
+        /// 2. 要回的那段菜单必须提前存进 giftReturnDialogue，不能用 currentDialogueData
+        ///    （播收礼话时它已经被换成收礼那段了）。
+        /// 3. Play 会重新登记 pendingComplete，回菜单前必须先把原回调抓到局部变量，
+        ///    否则菜单播完又会绕回本方法，变成无限循环。
         /// </summary>
         private void ResumeAfterGift(bool giftGiven)
         {
             DialogueOption giftOption = pendingGiftOption;
             pendingGiftOption = null;
+            DialogueData menu = giftReturnDialogue;
+            giftReturnDialogue = null;
+            Action finish = pendingComplete;
             if (view != null)
             {
                 view.suppressAdvance = false;
@@ -293,37 +322,38 @@ namespace StudentGrowth
 
             if (giftGiven && giftOption != null && !string.IsNullOrEmpty(giftOption.nextDialogueId))
             {
-                if (PlayById(giftOption.nextDialogueId, pendingComplete, currentNpc))
+                // 收礼话说完由 ReturnToGiftMenu 把菜单接回来；播放失败（ID 未登记）
+                // 就落到下面同一个回菜单分支，不会卡住。
+                if (PlayById(giftOption.nextDialogueId, () => ReturnToGiftMenu(menu, finish), currentNpc))
                 {
                     return;
                 }
-
-                FinishAfterGift();
-                return;
             }
 
-            // 取消送礼：回到送礼前那段对话（通常是菜单）让玩家重选。
-            if (!giftGiven && currentDialogueData != null)
-            {
-                Play(currentDialogueData, pendingComplete, currentNpc);
-                return;
-            }
-
-            FinishAfterGift();
+            ReturnToGiftMenu(menu, finish);
         }
 
         /// <summary>
-        /// 送礼流程没有下一段对话可播时的收尾。面板此刻还停在菜单那一句上，
-        /// 必须先收起再触发结束回调，否则输入闸门放行了、对话框却还挂在屏幕上。
+        /// 把菜单接回来。没有菜单可回（异常数据）时收起面板并结束，
+        /// 绝不能让对话框停在菜单那一句上——那种状态点哪都没反应、人也走不动。
         /// </summary>
-        private void FinishAfterGift()
+        private void ReturnToGiftMenu(DialogueData menu, Action finish)
         {
+            if (menu != null)
+            {
+                // Play 会把 pendingComplete 重新登记成 finish（原 EndDialogue），
+                // 菜单再播完就是正常结束，不会再绕回这里。
+                Play(menu, finish, currentNpc);
+                return;
+            }
+
             if (view != null)
             {
                 view.Hide();
             }
 
-            HandleFinished();
+            pendingComplete = null;
+            finish?.Invoke();
         }
 
         private void HandleJumpRequested(string nextDialogueId)
@@ -332,7 +362,41 @@ namespace StudentGrowth
             // 这里千万不能再把它清空 —— 清了之后整条链路播完不会触发结束回调，
             // 输入闸门永远不释放，表现就是「选完选项后人物不能动」。
             // NPC 上下文也要一路带下去，否则子对话里好感度小心心会消失。
-            PlayById(nextDialogueId, pendingComplete, currentNpc);
+            //
+            // 2026-10-27：子对话播完要回菜单（用户指定「打招呼之后也回到对话栏」）。
+            // 原回调先抓到局部变量——子对话播完时 pendingComplete 已经指向
+            // 回菜单的那层包装了，直接传就会自我循环。
+            Action finish = pendingComplete;
+            DialogueData back = jumpReturnDialogue;
+            jumpReturnDialogue = null;
+
+            if (PlayById(nextDialogueId, () => ReturnAfterJump(back, finish), currentNpc))
+            {
+                return;
+            }
+
+            ReturnAfterJump(back, finish);
+        }
+
+        /// <summary>
+        /// 子对话播完把上一段接回来。没有上一段可回（异常数据）时收起面板并结束，
+        /// 不能把对话框留在「点哪都没反应」的状态。
+        /// </summary>
+        private void ReturnAfterJump(DialogueData back, Action finish)
+        {
+            if (back != null)
+            {
+                Play(back, finish, currentNpc);
+                return;
+            }
+
+            if (view != null)
+            {
+                view.Hide();
+            }
+
+            pendingComplete = null;
+            finish?.Invoke();
         }
 
         private void HandleFinished()
