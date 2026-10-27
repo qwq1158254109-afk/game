@@ -270,7 +270,18 @@ namespace StudentGrowth
             }, () => ResumeAfterGift(false));
         }
 
-        /// <summary>背包关闭后的收尾：送出了播收礼对话，取消了回菜单，都没有则按结束处理。</summary>
+        /// <summary>
+        /// 背包关闭后的收尾：送出了播收礼对话；取消了回菜单重选；其余情况一律按对话结束处理。
+        ///
+        /// 2026-10-27 修三处（一起看才成立，拆开改任何一处都会留下另一种卡法）：
+        /// 1. 播收礼对话必须带上 currentNpc。Play 内部会把 currentNpc 直接覆盖成参数值，
+        ///    漏传就等于「收礼那句话一出现，好感度小心心全灭」。
+        /// 2. 「送出了礼物但选项没配 nextDialogueId」原先会掉进重播整段对话的分支，
+        ///    玩家会看到 NPC 把开场白再说一遍。送出后没有收礼对话，应当直接结束。
+        /// 3. PlayById 找不到目标对话时只记一条警告就返回，既不放行输入也不关面板：
+        ///    对话框停在菜单最后一句、选项已被清空，点哪都没反应、人物也走不动。
+        ///    这种情况必须兜底结束，否则一次数据配错就锁死整局。
+        /// </summary>
         private void ResumeAfterGift(bool giftGiven)
         {
             DialogueOption giftOption = pendingGiftOption;
@@ -282,14 +293,34 @@ namespace StudentGrowth
 
             if (giftGiven && giftOption != null && !string.IsNullOrEmpty(giftOption.nextDialogueId))
             {
-                PlayById(giftOption.nextDialogueId, pendingComplete);
+                if (PlayById(giftOption.nextDialogueId, pendingComplete, currentNpc))
+                {
+                    return;
+                }
+
+                FinishAfterGift();
                 return;
             }
 
-            if (currentDialogueData != null)
+            // 取消送礼：回到送礼前那段对话（通常是菜单）让玩家重选。
+            if (!giftGiven && currentDialogueData != null)
             {
                 Play(currentDialogueData, pendingComplete, currentNpc);
                 return;
+            }
+
+            FinishAfterGift();
+        }
+
+        /// <summary>
+        /// 送礼流程没有下一段对话可播时的收尾。面板此刻还停在菜单那一句上，
+        /// 必须先收起再触发结束回调，否则输入闸门放行了、对话框却还挂在屏幕上。
+        /// </summary>
+        private void FinishAfterGift()
+        {
+            if (view != null)
+            {
+                view.Hide();
             }
 
             HandleFinished();
