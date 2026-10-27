@@ -100,6 +100,16 @@ namespace StudentGrowth
             ResolveReferences();
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
             GameUiStyle.ApplyButton(button, background, resolved);
+
+            // 2026-10-27：这里必须把 transition 抢回来。
+            // GameUiStyle.ApplyButton 在主题有状态贴图时会把按钮设成 SpriteSwap，
+            // 那是 Unity Selectable 自己的一套状态机：鼠标点击会让按钮进入 selected，
+            // 于是换上 button_selected.png —— 那张是墨绿色的。用户反复报的
+            // 「点击之后变绿」「翻页按钮影响页签」都是它：我们手动换的图被
+            // Selectable 覆盖，且点击残留的选中态会一直亮着。
+            // PixelButton 自己用 RefreshSelectionVisual 管视觉，不需要这套状态机。
+            button.transition = Selectable.Transition.None;
+
             GameUiStyle.ApplyPixelText(labelText, resolved, GameUiTextStyle.ButtonText, true);
             RefreshSelectionVisual();
         }
