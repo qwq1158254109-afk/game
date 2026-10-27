@@ -365,6 +365,21 @@ namespace StudentGrowth
             }
 
             RefreshTabState();
+
+            // 2026-10-27：切页签必须重建列表并重算页码。
+            // 之前这里只切显隐，导致两个问题：
+            // 1. 页码标签沿用上一个页签的（道具 2/2 会显示在只有 1 页的卡牌页上）
+            // 2. 首次切到卡牌页时列表根本没构建过，一片空白
+            // 道具与卡牌的页码各自独立（stockPage / cardPage），Refresh 里按
+            // currentTab 取对应的那个并重新 Clamp。
+            if (panelRoot != null && panelRoot.activeSelf)
+            {
+                Refresh();
+            }
+            else
+            {
+                RefreshPageState();
+            }
         }
 
         private void RefreshTabState()
@@ -735,6 +750,11 @@ namespace StudentGrowth
             {
                 Transform child = cardListRoot.GetChild(i);
                 child.SetParent(null, false);
+                // 2026-10-27：必须先关掉再 Destroy。Destroy 是延迟到帧末的，
+                // 而 SetParent(null) 之后节点留在场景根、localPosition 还是原来那套，
+                // 世界位置就飘了 —— 这一帧里旧的格子会以错位的形态继续渲染，
+                // 看起来就是「翻页后冒出几条横条/绿线」。SetActive(false) 立即生效。
+                child.gameObject.SetActive(false);
                 if (Application.isPlaying)
                 {
                     Destroy(child.gameObject);
@@ -1133,6 +1153,11 @@ namespace StudentGrowth
             {
                 Transform child = stockListRoot.GetChild(i);
                 child.SetParent(null, false);
+                // 2026-10-27：必须先关掉再 Destroy。Destroy 是延迟到帧末的，
+                // 而 SetParent(null) 之后节点留在场景根、localPosition 还是原来那套，
+                // 世界位置就飘了 —— 这一帧里旧的格子会以错位的形态继续渲染，
+                // 看起来就是「翻页后冒出几条横条/绿线」。SetActive(false) 立即生效。
+                child.gameObject.SetActive(false);
                 if (Application.isPlaying)
                 {
                     Destroy(child.gameObject);
