@@ -251,13 +251,18 @@ namespace StudentGrowth
             SetRect(feedbackText.rectTransform, new Vector2(20f, 16f), new Vector2(860f, 36f), Vector2.zero);
 
             // 翻页组固定在反馈行右侧，不占列表空间
-            prevPageButton = CreateButton("PrevPage", panelRect, "上页", new Vector2(906f, 14f), new Vector2(96f, 40f), new Vector2(0f, 0f));
+            // 2026-10-27：翻页原来是两个 96 宽的棕木牌按钮，和右上角的「道具/卡牌」
+            // 页签长得一模一样、又都在右侧，看起来像同一组控件（用户反复说
+            // 「翻页影响页签，两者应该独立」）。改成紧凑箭头 + 纯色底，视觉上分开。
+            prevPageButton = CreateButton("PrevPage", panelRect, "<", new Vector2(1018f, 14f), new Vector2(40f, 40f), new Vector2(0f, 0f));
+            StylePagerButton(prevPageButton);
             prevPageButton.onClick.AddListener(() => ChangePage(-1));
 
             pageLabel = CreateText("PageLabel", panelRect, string.Empty, 16, FontStyle.Bold, TextAnchor.MiddleCenter);
-            SetRect(pageLabel.rectTransform, new Vector2(1010f, 14f), new Vector2(60f, 40f), new Vector2(0f, 0f));
+            SetRect(pageLabel.rectTransform, new Vector2(1066f, 14f), new Vector2(60f, 40f), new Vector2(0f, 0f));
 
-            nextPageButton = CreateButton("NextPage", panelRect, "下页", new Vector2(1078f, 14f), new Vector2(96f, 40f), new Vector2(0f, 0f));
+            nextPageButton = CreateButton("NextPage", panelRect, ">", new Vector2(1134f, 14f), new Vector2(40f, 40f), new Vector2(0f, 0f));
+            StylePagerButton(nextPageButton);
             nextPageButton.onClick.AddListener(() => ChangePage(1));
 
             ApplyStyle();
@@ -474,10 +479,12 @@ namespace StudentGrowth
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
 
             // 货架格子用纯色块（贴图拉伸会变形，见 ForceStockBackground 注释）。
+            // 悬停放大 1.05：主题默认 1.02 在格子上几乎看不出来。
             PixelButton cellButton = button.GetComponent<PixelButton>();
             if (cellButton != null)
             {
                 cellButton.solidBackground = true;
+                cellButton.hoverScaleOverride = 1.05f;
             }
 
             // 2026-10-26：所有商品横条强制使用同一张底图。
@@ -504,9 +511,11 @@ namespace StudentGrowth
             CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(14f, -14f), new Vector2(64f, 64f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolvePrice(item), 15, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(priceText.rectTransform, new Vector2(286f, -10f), new Vector2(72f, 34f), new Vector2(0f, 1f));
+            // 2026-10-27：价格贴着格子右边缘，$98 这种三位数看起来溢出。
+            // 框右边缘从 358 收到 344，字号 18 -> 16。
+            SetRect(priceText.rectTransform, new Vector2(278f, -10f), new Vector2(66f, 34f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
-            priceText.fontSize = 18;
+            priceText.fontSize = 16;
             priceText.color = resolved.gold;
 
             Text detailText = CreateText("Detail", rect, BuildStockDetail(item), 14, FontStyle.Normal, TextAnchor.UpperLeft);
@@ -519,7 +528,7 @@ namespace StudentGrowth
 
             bool affordable = CanAfford(item);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(286f, -108f), new Vector2(72f, 26f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(278f, -108f), new Vector2(66f, 26f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
             statusText.fontSize = 13;
             statusText.color = affordable ? resolved.success : resolved.danger;
@@ -590,6 +599,7 @@ namespace StudentGrowth
             if (cellButton != null)
             {
                 cellButton.solidBackground = true;
+                cellButton.hoverScaleOverride = 1.05f;
             }
 
             ForceStockBackground(button, resolved);
@@ -608,9 +618,11 @@ namespace StudentGrowth
             CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(14f, -12f), new Vector2(64f, 84f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolveCardPrice(card), 15, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(priceText.rectTransform, new Vector2(286f, -10f), new Vector2(72f, 34f), new Vector2(0f, 1f));
+            // 2026-10-27：价格贴着格子右边缘，$98 这种三位数看起来溢出。
+            // 框右边缘从 358 收到 344，字号 18 -> 16。
+            SetRect(priceText.rectTransform, new Vector2(278f, -10f), new Vector2(66f, 34f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
-            priceText.fontSize = 18;
+            priceText.fontSize = 16;
             priceText.color = resolved.gold;
 
             Text detailText = CreateText("Detail", rect, BuildCardDetail(card), 14, FontStyle.Normal, TextAnchor.UpperLeft);
@@ -621,7 +633,7 @@ namespace StudentGrowth
 
             bool affordable = CanAffordCard(card);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(286f, -108f), new Vector2(72f, 26f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(278f, -108f), new Vector2(66f, 26f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
             statusText.fontSize = 13;
             statusText.color = affordable ? resolved.success : resolved.danger;
@@ -1423,6 +1435,30 @@ namespace StudentGrowth
             pixelButton.hoverSprite = resolved.buttonHoverSprite;
             pixelButton.ApplyStyle();
             return button;
+        }
+
+        /// <summary>翻页箭头：纯色小方块 + 悬停放大，不要木牌贴图（会和页签混淆）。</summary>
+        private void StylePagerButton(Button button)
+        {
+            if (button == null)
+            {
+                return;
+            }
+
+            PixelButton pixelButton = button.GetComponent<PixelButton>();
+            if (pixelButton != null)
+            {
+                pixelButton.solidBackground = true;
+                pixelButton.hoverScaleOverride = 1.08f;
+                pixelButton.ApplyStyle();
+            }
+
+            Text label = button.GetComponentInChildren<Text>(true);
+            if (label != null)
+            {
+                label.fontSize = 22;
+                label.color = GameUiStyle.ResolveTheme(theme).inverseText;
+            }
         }
 
         private void SetVisible(bool visible)
