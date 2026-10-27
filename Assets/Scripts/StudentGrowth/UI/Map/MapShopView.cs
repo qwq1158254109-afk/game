@@ -378,12 +378,27 @@ namespace StudentGrowth
                 return;
             }
 
+            Color tint = active
+                ? new Color(0.886f, 0.698f, 0.298f, 1f)
+                : new Color(0.427f, 0.243f, 0.141f, 1f);
+
             Image background = button.targetGraphic as Image;
             if (background != null)
             {
-                background.color = active
-                    ? new Color(0.886f, 0.698f, 0.298f, 1f)
-                    : new Color(0.427f, 0.243f, 0.141f, 1f);
+                // 页签靠纯色区分当前页。必须清掉 sprite：否则主题底图（尤其点击后
+                // 被换上的 button_selected.png）会被这个 tint 染成暗绿。
+                background.sprite = null;
+                background.type = Image.Type.Simple;
+                background.color = tint;
+            }
+
+            PixelButton pixelButton = button.GetComponent<PixelButton>();
+            if (pixelButton != null)
+            {
+                // 纯色方案：别换图，悬停只做提亮。
+                pixelButton.restingSprite = null;
+                pixelButton.hoverSprite = null;
+                pixelButton.SetRestingColor(tint);
             }
 
             Text label = button.GetComponentInChildren<Text>(true);
@@ -433,7 +448,7 @@ namespace StudentGrowth
 
         private Button CreateStockButton(ItemData item, int index)
         {
-            Button button = CreateButton("ShopItem_" + index, stockListRoot, ResolveItemName(item), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f), true);
+            Button button = CreateButton("ShopItem_" + index, stockListRoot, ResolveItemName(item), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f));
             // 买不起时保持不可点，让 SetSelectedButtonVisual 走 disabled 灰态，
             // 玩家一眼能看出哪些买不了（横条右下也写着「金钱不足」）。
             // 点击反馈交给 feedbackText——下方仍会写原因。
@@ -532,7 +547,7 @@ namespace StudentGrowth
 
         private Button CreateCardButton(CardData card, int index)
         {
-            Button button = CreateButton("ShopCard_" + index, cardListRoot, ResolveCardName(card), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f), true);
+            Button button = CreateButton("ShopCard_" + index, cardListRoot, ResolveCardName(card), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f));
             button.interactable = CanAffordCard(card);
             CardData captured = card;
             button.onClick.AddListener(() => PurchaseCard(captured));
@@ -1261,12 +1276,10 @@ namespace StudentGrowth
                 return;
             }
 
-            // 优先用 buttonSelectedSprite：用户截图里「带内嵌亮边」的那种外观
-            // 来自选中底图，默认的 buttonSprite 少了那圈内框。没有选中底图时
-            // 才退回 buttonSprite。
-            Sprite skin = resolved.buttonSelectedSprite != null
-                ? resolved.buttonSelectedSprite
-                : resolved.buttonSprite;
+            // 2026-10-27：常态底图用 button_normal（棕），不再优先 button_selected——
+            // 后者是绿色的，用户明确要求「所有的都不要变绿」。悬停时由 PixelButton
+            // 换成 button_hover（暖金），那才是「变亮」。
+            Sprite skin = resolved.buttonSprite;
             background.sprite = skin != null ? skin : GameUiStyle.GetSolidSprite();
             background.type = skin != null ? Image.Type.Sliced : Image.Type.Simple;
             background.color = button.interactable
@@ -1278,6 +1291,8 @@ namespace StudentGrowth
             PixelButton pixelButton = button.GetComponent<PixelButton>();
             if (pixelButton != null)
             {
+                pixelButton.restingSprite = resolved.buttonSprite;
+                pixelButton.hoverSprite = resolved.buttonHoverSprite;
                 pixelButton.SetRestingColor(background.color);
             }
         }
@@ -1324,7 +1339,7 @@ namespace StudentGrowth
             return text;
         }
 
-        private Button CreateButton(string name, RectTransform parent, string label, Vector2 anchoredPosition, Vector2 sizeDelta, Vector2 anchor, bool hoverOnly = false)
+        private Button CreateButton(string name, RectTransform parent, string label, Vector2 anchoredPosition, Vector2 sizeDelta, Vector2 anchor)
         {
             GameObject buttonObject = new GameObject(name, typeof(RectTransform));
             RectTransform rect = buttonObject.transform as RectTransform;
@@ -1349,11 +1364,15 @@ namespace StudentGrowth
             pixelButton.background = image;
             pixelButton.labelText = text;
             pixelButton.theme = theme;
-            // 2026-10-27 用户要求：物品栏「只要悬停变化，不要点击变化」。
-            // hoverOnlyVisual 屏蔽 selected / pointerDown —— 点过的横条不会再一直亮着，
-            // 底图仍由 ForceStockBackground 钉死（带内嵌亮边的木牌），悬停只做暖色 + 缩放。
-            // 顶栏按钮（关闭/页签/翻页）不传 true：页签要靠 selected 表示当前页。
-            pixelButton.hoverOnlyVisual = hoverOnly;
+            // 2026-10-27 用户要求：商店里「所有的都不要变绿，只保留鼠标悬停变亮」。
+            // 变绿的根因是 SetSelectedButtonVisual 在 selected 时换 button_selected.png，
+            // 而那张图是绿的——点击任何按钮都会触发 EventSystem 的选中态。
+            // 所以商店内所有按钮都走 hoverOnlyVisual：屏蔽 selected / pointerDown，
+            // 悬停用 button_normal -> button_hover 换图（棕 -> 暖金，这才是「变亮」）。
+            pixelButton.hoverOnlyVisual = true;
+            UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
+            pixelButton.restingSprite = resolved.buttonSprite;
+            pixelButton.hoverSprite = resolved.buttonHoverSprite;
             pixelButton.ApplyStyle();
             return button;
         }

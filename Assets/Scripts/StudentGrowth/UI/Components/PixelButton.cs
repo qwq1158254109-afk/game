@@ -28,8 +28,16 @@ namespace StudentGrowth
         /// </summary>
         public bool hoverOnlyVisual;
 
-        /// <summary>hoverOnlyVisual 模式下的常态底图颜色，由 ForceStockBackground 写入。</summary>
+        /// <summary>hoverOnlyVisual 模式下的常态底图颜色（买不起时是压暗色），由外部写入。</summary>
         public Color restingColor = Color.white;
+
+        /// <summary>
+        /// hoverOnlyVisual 模式下的常态 / 悬停底图。两者都给了就换图做「变亮」，
+        /// 不给则退回「把 restingColor 往暖白偏」的颜色方案。
+        /// 换图比调颜色明显得多——主题里 button_hover 本身就是暖金，一眼能看出悬停。
+        /// </summary>
+        public Sprite restingSprite;
+        public Sprite hoverSprite;
 
         /// <summary>hoverOnlyVisual 模式下悬停时的暖色偏移强度（0 = 不变）。</summary>
         [Range(0f, 1f)] public float hoverWarmth = 0.5f;
@@ -112,10 +120,24 @@ namespace StudentGrowth
         {
             ResolveReferences();
 
-            // hoverOnlyVisual：底图由外部（商店的 ForceStockBackground）钉死，这里只改颜色。
-            // 常态 = restingColor，悬停 = restingColor 往暖白偏一点。点击不参与。
+            // hoverOnlyVisual：外观只跟真实鼠标走，点击 / 键盘选中一律不参与。
+            // 给了 restingSprite + hoverSprite 就换图（主题里 hover 是暖金，最直观的「变亮」）；
+            // 没给就退回颜色提亮。
             if (hoverOnlyVisual)
             {
+                if (restingSprite != null && hoverSprite != null)
+                {
+                    Sprite target = pointerOver ? hoverSprite : restingSprite;
+                    if (background.sprite != target)
+                    {
+                        background.sprite = target;
+                        background.type = Image.Type.Sliced;
+                    }
+
+                    background.color = restingColor;
+                    return;
+                }
+
                 background.color = pointerOver ? WarmHighlight(restingColor) : restingColor;
                 return;
             }

@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using StudentGrowth;
 using UnityEngine;
@@ -139,25 +140,67 @@ namespace StudentGrowth.Tests
             Assert.IsNotNull(background);
             Assert.IsTrue(row.hoverOnlyVisual, "商品横条必须走 hoverOnlyVisual（用户要求只要悬停变化）");
 
-            Color resting = background.color;
+            Sprite restingSkin = background.sprite;
+            Color restingColor = background.color;
 
             row.OnPointerEnter(null);
-            Color hover = background.color;
-            Assert.AreNotEqual(resting, hover, "悬停必须有可见变化");
+            bool hoverChanged = background.sprite != restingSkin || background.color != restingColor;
+            Assert.IsTrue(hoverChanged, "悬停必须有可见变化（换暖金底图或提亮）");
+            Sprite hoverSkin = background.sprite;
+            Color hoverColor = background.color;
 
-            // 点击：按下 / 选中 / 抬起都不该改变外观
+            // 点击：按下 / 选中 / 抬起都不该改变外观，尤其不能换成绿色的 button_selected
             row.OnPointerDown(null);
             row.OnSelect(null);
             row.OnPointerUp(null);
-            Assert.AreEqual(hover, background.color, "点击过程中外观不能变化");
+            Assert.AreEqual(hoverSkin, background.sprite, "点击不能换底图（会变成绿色选中图）");
+            Assert.AreEqual(hoverColor, background.color, "点击不能改颜色");
 
             // 鼠标移开：必须回到常态，且不能因为「点过」而留在高亮
             row.OnPointerExit(null);
-            Assert.AreEqual(resting, background.color, "鼠标移开后必须回到常态");
+            Assert.AreEqual(restingSkin, background.sprite, "鼠标移开后必须回到常态底图");
+            Assert.AreEqual(restingColor, background.color, "鼠标移开后必须回到常态颜色");
 
             // 鼠标不在上面时的选中（键盘 / 点击残留选中态）也不能点亮
             row.OnSelect(null);
-            Assert.AreEqual(resting, background.color, "点击选中不能留下高亮");
+            Assert.AreEqual(restingSkin, background.sprite, "点击选中不能留下高亮底图");
+            Assert.AreEqual(restingColor, background.color, "点击选中不能留下高亮颜色");
+        }
+
+        [Test]
+        public void TabsNeverTurnGreenOnClick()
+        {
+            view.Show();
+
+            // 页签点击后若走 selected 分支会换上 button_selected.png（绿色），
+            // 再被 StyleTab 的 tint 染成暗绿——用户报的「变绿」就是这个。
+            Button[] tabs = view.panelRoot.GetComponentsInChildren<Button>(true)
+                .Where(b => b != null && b.name.StartsWith("Tab"))
+                .ToArray();
+            Assert.AreEqual(2, tabs.Length, "商店应有道具 / 卡牌两个页签");
+
+            for (int i = 0; i < tabs.Length; i++)
+            {
+                PixelButton pixelButton = tabs[i].GetComponent<PixelButton>();
+                Assert.IsNotNull(pixelButton);
+                pixelButton.animateScale = false;
+
+                Image background = tabs[i].GetComponent<Image>();
+                Sprite before = background.sprite;
+                Color colorBefore = background.color;
+
+                // 完整走一遍真实鼠标路径：移上去 -> 按下 -> 选中 -> 抬起 -> 移开。
+                // 旧实现在「移开」这一步才刷新视觉，selected 还是 true，
+                // 于是换上绿色的 button_selected —— 用户看到的「点击之后变绿」。
+                pixelButton.OnPointerEnter(null);
+                pixelButton.OnPointerDown(null);
+                pixelButton.OnSelect(null);
+                pixelButton.OnPointerUp(null);
+                pixelButton.OnPointerExit(null);
+
+                Assert.AreEqual(before, background.sprite, "页签点击后移开鼠标不能换底图（会变绿）：" + tabs[i].name);
+                Assert.AreEqual(colorBefore, background.color, "页签点击后移开鼠标不能改颜色：" + tabs[i].name);
+            }
         }
 
         [Test]
