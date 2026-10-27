@@ -204,6 +204,64 @@ namespace StudentGrowth.Tests
         }
 
         [Test]
+        public void PagingIsIndependentPerTab()
+        {
+            view.Show();
+
+            Button tabItem = FindButton("TabItem");
+            Button tabCard = FindButton("TabCard");
+            Button nextPage = FindButton("NextPage");
+            Text pageLabel = FindText("PageLabel");
+            Assert.IsNotNull(tabItem);
+            Assert.IsNotNull(tabCard);
+            Assert.IsNotNull(nextPage);
+            Assert.IsNotNull(pageLabel);
+
+            // 道具 9 件 / 每页 6 件 = 2 页
+            Assert.AreEqual("1/2", pageLabel.text, "道具页应显示 1/2");
+
+            nextPage.onClick.Invoke();
+            Assert.AreEqual("2/2", pageLabel.text, "翻到第 2 页应显示 2/2");
+            Assert.IsTrue(nextPage.gameObject.activeSelf, "第 2 页翻页按钮不能消失");
+
+            // 卡牌只有 4 件 = 1 页：切过去按钮应隐藏，页码不能沿用道具页的 2/2
+            tabCard.onClick.Invoke();
+            Assert.IsFalse(nextPage.gameObject.activeSelf, "卡牌页只有 1 页，翻页按钮应隐藏");
+            Assert.IsFalse(pageLabel.gameObject.activeSelf, "卡牌页只有 1 页，页码应隐藏");
+
+            // 切回道具页，页码要还是 2/2（两个页签各自记页码）
+            tabItem.onClick.Invoke();
+            Assert.IsTrue(nextPage.gameObject.activeSelf, "切回道具页翻页按钮应恢复");
+            Assert.AreEqual("2/2", pageLabel.text, "切回道具页应保留原来的 2/2");
+        }
+
+        private Button FindButton(string name)
+        {
+            Button[] buttons = view.GetComponentsInChildren<Button>(true);
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                if (buttons[i] != null && buttons[i].name == name)
+                {
+                    return buttons[i];
+                }
+            }
+            return null;
+        }
+
+        private Text FindText(string name)
+        {
+            Text[] texts = view.GetComponentsInChildren<Text>(true);
+            for (int i = 0; i < texts.Length; i++)
+            {
+                if (texts[i] != null && texts[i].name == name)
+                {
+                    return texts[i];
+                }
+            }
+            return null;
+        }
+
+        [Test]
         public void InitialMoneyIsShownAndFirstPageHasAffordableItem()
         {
             GameSessionState sessionState = new GameSessionState();
