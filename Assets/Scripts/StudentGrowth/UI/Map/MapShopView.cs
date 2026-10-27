@@ -478,12 +478,12 @@ namespace StudentGrowth
 
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
 
-            // 货架格子用纯色块（贴图拉伸会变形，见 ForceStockBackground 注释）。
             // 悬停放大 1.05：主题默认 1.02 在格子上几乎看不出来。
+            // 底图用木牌贴图（用户要「悬停时那种形状」），变形问题在
+            // ForceStockBackground 里用 pixelsPerUnitMultiplier 压住。
             PixelButton cellButton = button.GetComponent<PixelButton>();
             if (cellButton != null)
             {
-                cellButton.solidBackground = true;
                 cellButton.hoverScaleOverride = 1.05f;
             }
 
@@ -501,19 +501,21 @@ namespace StudentGrowth
                 // 2026-10-27：名字此前用 ButtonText 的 24 号字塞进 28 高的框，
                 // 像素字一行就要 30+ px，被 verticalOverflow=Truncate 整行裁掉 ——
                 // 表现就是「商品名字没显示」。格子布局下给足 34 高，字号 20。
-                SetRect(label.rectTransform, new Vector2(92f, -10f), new Vector2(190f, 34f), new Vector2(0f, 1f));
+                // 木牌有 5px 的上边框（九宫格拉伸后约 9px），内容从 -10 起会被压住，
+                // 统一往下挪到 -24。
+                SetRect(label.rectTransform, new Vector2(92f, -24f), new Vector2(190f, 34f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
                 label.fontSize = 20;
             }
 
             // 第三个参数是染色：原来传 inverseText（深色），图标被整体压暗，
             // 在深棕横条上等于看不见。图标应该保持原色。
-            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(14f, -14f), new Vector2(64f, 64f), Color.white);
+            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(16f, -24f), new Vector2(60f, 60f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolvePrice(item), 15, FontStyle.Bold, TextAnchor.MiddleRight);
             // 2026-10-27：价格贴着格子右边缘，$98 这种三位数看起来溢出。
             // 框右边缘从 358 收到 344，字号 18 -> 16。
-            SetRect(priceText.rectTransform, new Vector2(278f, -10f), new Vector2(66f, 34f), new Vector2(0f, 1f));
+            SetRect(priceText.rectTransform, new Vector2(278f, -24f), new Vector2(66f, 34f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
             priceText.fontSize = 16;
             priceText.color = resolved.gold;
@@ -521,14 +523,14 @@ namespace StudentGrowth
             Text detailText = CreateText("Detail", rect, BuildStockDetail(item), 14, FontStyle.Normal, TextAnchor.UpperLeft);
             // 效果说明原来 12 号（SmallText 样式），用户反馈偏小，提到 14。
             // 格子宽 372，扣掉图标列后还有 268，够放两行。
-            SetRect(detailText.rectTransform, new Vector2(92f, -52f), new Vector2(268f, 50f), new Vector2(0f, 1f));
+            SetRect(detailText.rectTransform, new Vector2(92f, -62f), new Vector2(268f, 50f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
             detailText.fontSize = 14;
             detailText.lineSpacing = 1f;
 
             bool affordable = CanAfford(item);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(278f, -108f), new Vector2(66f, 26f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(278f, -116f), new Vector2(66f, 26f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
             statusText.fontSize = 13;
             statusText.color = affordable ? resolved.success : resolved.danger;
@@ -598,7 +600,6 @@ namespace StudentGrowth
             PixelButton cellButton = button.GetComponent<PixelButton>();
             if (cellButton != null)
             {
-                cellButton.solidBackground = true;
                 cellButton.hoverScaleOverride = 1.05f;
             }
 
@@ -609,31 +610,33 @@ namespace StudentGrowth
             {
                 label.text = ResolveCardName(card);
                 label.alignment = TextAnchor.MiddleLeft;
-                SetRect(label.rectTransform, new Vector2(92f, -10f), new Vector2(190f, 34f), new Vector2(0f, 1f));
+                // 木牌有 5px 的上边框（九宫格拉伸后约 9px），内容从 -10 起会被压住，
+                // 统一往下挪到 -24。
+                SetRect(label.rectTransform, new Vector2(92f, -24f), new Vector2(190f, 34f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
                 label.fontSize = 20;
             }
 
             // 卡牌素材是竖版，给 64x84 让它像一张牌立在格子里。
-            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(14f, -12f), new Vector2(64f, 84f), Color.white);
+            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(16f, -22f), new Vector2(60f, 80f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolveCardPrice(card), 15, FontStyle.Bold, TextAnchor.MiddleRight);
             // 2026-10-27：价格贴着格子右边缘，$98 这种三位数看起来溢出。
             // 框右边缘从 358 收到 344，字号 18 -> 16。
-            SetRect(priceText.rectTransform, new Vector2(278f, -10f), new Vector2(66f, 34f), new Vector2(0f, 1f));
+            SetRect(priceText.rectTransform, new Vector2(278f, -24f), new Vector2(66f, 34f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
             priceText.fontSize = 16;
             priceText.color = resolved.gold;
 
             Text detailText = CreateText("Detail", rect, BuildCardDetail(card), 14, FontStyle.Normal, TextAnchor.UpperLeft);
-            SetRect(detailText.rectTransform, new Vector2(92f, -52f), new Vector2(268f, 50f), new Vector2(0f, 1f));
+            SetRect(detailText.rectTransform, new Vector2(92f, -62f), new Vector2(268f, 50f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
             detailText.fontSize = 14;
             detailText.lineSpacing = 1f;
 
             bool affordable = CanAffordCard(card);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(278f, -108f), new Vector2(66f, 26f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(278f, -116f), new Vector2(66f, 26f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
             statusText.fontSize = 13;
             statusText.color = affordable ? resolved.success : resolved.danger;
@@ -1337,30 +1340,20 @@ namespace StudentGrowth
                 return;
             }
 
-            // 2026-10-27：货架格子用纯色块。九宫格木牌贴图在 372 宽下左右边框会被
-            // 拉成两条粗竖条、内部亮线也变形（截图实测），格子尺寸不适合拉伸贴图。
-            PixelButton solid = button.GetComponent<PixelButton>();
-            if (solid != null && solid.solidBackground)
-            {
-                background.sprite = GameUiStyle.GetSolidSprite();
-                background.type = Image.Type.Simple;
-                Color solidColor = button.interactable ? solid.solidNormal : solid.solidDisabled;
-                background.color = solidColor;
-                solid.restingSprite = null;
-                solid.hoverSprite = null;
-                solid.SetRestingColor(solidColor);
-                return;
-            }
-
-            // 2026-10-27：常态底图用 button_normal（棕），不再优先 button_selected——
-            // 后者是绿色的，用户明确要求「所有的都不要变绿」。悬停时由 PixelButton
-            // 换成 button_hover（暖金），那才是「变亮」。
+            // 2026-10-27：常态底图用 button_normal（棕木牌），悬停换 button_hover（暖金）。
+            // 不再优先 button_selected——那张是墨绿色，用户明确要求「都不要变绿」。
             Sprite skin = resolved.buttonSprite;
             background.sprite = skin != null ? skin : GameUiStyle.GetSolidSprite();
             background.type = skin != null ? Image.Type.Sliced : Image.Type.Simple;
             background.color = button.interactable
                 ? Color.white
                 : new Color(0.62f, 0.58f, 0.54f, 1f);
+
+            // 木牌是 64x24、border 5px、PPU 16。默认 pixelsPerUnitMultiplier=1 时
+            // 边框在 UI 里被放大到约 31px，372 宽的格子里左右各占 31px、中间只剩一条，
+            // 看起来就是「两条粗竖条 + 内容被压扁」。2.5 把边框压到约 12px，
+            // 木牌形状保留，又不会抢内容的地方。
+            background.pixelsPerUnitMultiplier = 3.5f;
 
             // hoverOnlyVisual 的按钮靠颜色做悬停反馈，必须知道「常态色」是哪一档
             // （可购买是白、买不起是压暗），否则悬停一过就被刷回白的。
