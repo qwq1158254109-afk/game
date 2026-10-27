@@ -50,9 +50,14 @@ namespace StudentGrowth
         /// </summary>
         public bool solidBackground;
 
-        public Color solidNormal = new Color(0.33f, 0.28f, 0.23f, 1f);
-        public Color solidHover = new Color(0.45f, 0.37f, 0.29f, 1f);
-        public Color solidDisabled = new Color(0.25f, 0.22f, 0.18f, 1f);
+        // 2026-10-27：原来 (0.33,0.28,0.23) 三通道几乎相等，看起来是「灰色长方形」。
+        // 改成明显偏暖的深棕，悬停时提亮一档。
+        public Color solidNormal = new Color(0.26f, 0.18f, 0.12f, 1f);
+        public Color solidHover = new Color(0.44f, 0.31f, 0.19f, 1f);
+        public Color solidDisabled = new Color(0.17f, 0.14f, 0.11f, 1f);
+
+        /// <summary>悬停缩放倍率覆盖；&lt;= 0 时用主题的 buttonHoverScale。</summary>
+        public float hoverScaleOverride;
 
         public bool animateScale = true;
         public bool applyOnAwake = true;
@@ -231,7 +236,8 @@ namespace StudentGrowth
             if (hoverOnlyVisual)
             {
                 // 只要悬停缩放，按下不再额外变化。
-                scale = pointerOver ? resolved.buttonHoverScale : 1f;
+                float hoverScale = hoverScaleOverride > 0f ? hoverScaleOverride : resolved.buttonHoverScale;
+                scale = pointerOver ? hoverScale : 1f;
             }
             else if (pointerDown)
             {
