@@ -100,7 +100,7 @@ namespace StudentGrowth
                 return;
             }
 
-            RpgPlayerController player = FindObjectOfType<RpgPlayerController>();
+            RpgPlayerController player = FindAnyObjectByType<RpgPlayerController>();
             if (player != null)
             {
                 playerRenderer = player.spriteRenderer != null

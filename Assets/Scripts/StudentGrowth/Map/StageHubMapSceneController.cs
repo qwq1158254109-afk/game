@@ -32,7 +32,7 @@ namespace StudentGrowth
             EnsureStageMapData();
             EnsureTimeActionHud();
 
-            MapLocationPortal[] portals = FindObjectsOfType<MapLocationPortal>();
+            MapLocationPortal[] portals = FindObjectsByType<MapLocationPortal>(FindObjectsInactive.Exclude);
             for (int i = 0; i < portals.Length; i++)
             {
                 MapLocationPortal portal = portals[i];
@@ -66,22 +66,22 @@ namespace StudentGrowth
 
             if (stageController == null)
             {
-                stageController = FindObjectOfType<StageController>();
+                stageController = FindAnyObjectByType<StageController>();
             }
 
             if (timeActionController == null)
             {
-                timeActionController = FindObjectOfType<TimeActionController>();
+                timeActionController = FindAnyObjectByType<TimeActionController>();
             }
 
             if (sceneTransitionController == null)
             {
-                sceneTransitionController = FindObjectOfType<SceneTransitionController>();
+                sceneTransitionController = FindAnyObjectByType<SceneTransitionController>();
             }
 
             if (locationSceneRouter == null)
             {
-                locationSceneRouter = FindObjectOfType<LocationSceneRouter>();
+                locationSceneRouter = FindAnyObjectByType<LocationSceneRouter>();
             }
 
             if (sessionState == null && stageController != null)

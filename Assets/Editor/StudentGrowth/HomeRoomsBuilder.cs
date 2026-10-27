@@ -983,7 +983,7 @@ namespace StudentGrowth.EditorTools
                 return direct;
             }
 
-            Transform[] all = Object.FindObjectsByType<Transform>(FindObjectsSortMode.None);
+            Transform[] all = Object.FindObjectsByType<Transform>();
             for (int i = 0; i < all.Length; i++)
             {
                 if (all[i].name == name)

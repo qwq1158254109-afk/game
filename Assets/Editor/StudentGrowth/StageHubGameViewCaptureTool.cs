@@ -179,9 +179,7 @@ namespace StudentGrowth.Editor
 
         private static void RefreshTextGeometry()
         {
-            Text[] texts = UnityEngine.Object.FindObjectsByType<Text>(
-                FindObjectsInactive.Include,
-                FindObjectsSortMode.None);
+            Text[] texts = UnityEngine.Object.FindObjectsByType<Text>(FindObjectsInactive.Include);
             for (int i = 0; i < texts.Length; i++)
             {
                 Text text = texts[i];

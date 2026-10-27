@@ -14,13 +14,13 @@ namespace StudentGrowth.EditorTools
         public static void Build()
         {
             Directory.CreateDirectory(Root);Directory.CreateDirectory(Output);AssetDatabase.Refresh();
-            var before=new HashSet<int>(Resources.FindObjectsOfTypeAll<ScriptableObject>().Select(o=>o.GetInstanceID()));
+            var before=new HashSet<EntityId>(Resources.FindObjectsOfTypeAll<ScriptableObject>().Select(o=>o.GetEntityId()));
             var rows=new List<string>{"id\tasset\tschema\told_execution\told_display\tcompiled_effects\twarnings\tvalidation"};
             try
             {
                 var session=MvpSampleDataFactory.CreateSessionWithStarterDeck();
                 var stages=MvpSampleDataFactory.CreateThreeStageSequence();
-                var originals=Resources.FindObjectsOfTypeAll<CardData>().Where(c=>!before.Contains(c.GetInstanceID())).OrderBy(c=>c.cardId).ToArray();
+                var originals=Resources.FindObjectsOfTypeAll<CardData>().Where(c=>!before.Contains(c.GetEntityId())).OrderBy(c=>c.cardId).ToArray();
                 foreach(var source in originals)
                 {
                     string path=Root+"/"+source.cardId+".asset";var destination=LoadOrCreate<BattleCardAsset>(path);
@@ -44,7 +44,7 @@ namespace StudentGrowth.EditorTools
             }
             finally
             {
-                foreach(var item in Resources.FindObjectsOfTypeAll<ScriptableObject>().Where(o=>!before.Contains(o.GetInstanceID())
+                foreach(var item in Resources.FindObjectsOfTypeAll<ScriptableObject>().Where(o=>!before.Contains(o.GetEntityId())
                     &&o.GetType().Namespace=="StudentGrowth"&&!EditorUtility.IsPersistent(o)))Object.DestroyImmediate(item);
             }
         }

@@ -12,7 +12,7 @@ namespace StudentGrowth.EditorTools
         [MenuItem("Tools/Student Growth/Battle/Audit P0 P1 content")]
         public static void Run()
         {
-            var before = new HashSet<int>(Resources.FindObjectsOfTypeAll<ScriptableObject>().Select(a => a.GetInstanceID()));
+            var before = new HashSet<EntityId>(Resources.FindObjectsOfTypeAll<ScriptableObject>().Select(a => a.GetEntityId()));
             var lines = new List<string> { "source\ttype\tid\tdisplayName\tvalidation" };
             try
             {
@@ -21,7 +21,7 @@ namespace StudentGrowth.EditorTools
                 MvpSampleDataFactory.CreateThreeStageSequence();
                 MvpSampleDataFactory.CreateDefaultShopItems();
                 var generated = Resources.FindObjectsOfTypeAll<ScriptableObject>()
-                    .Where(a => !before.Contains(a.GetInstanceID()) && a.GetType().Namespace == "StudentGrowth").ToArray();
+                    .Where(a => !before.Contains(a.GetEntityId()) && a.GetType().Namespace == "StudentGrowth").ToArray();
                 foreach (var asset in generated) Describe(asset, "MvpSampleDataFactory", lines);
                 foreach (var type in new[] { "CardData", "ChallengeData", "ItemData", "ActivityData", "StageData", "BattleUIConfig" })
                 {
@@ -39,7 +39,7 @@ namespace StudentGrowth.EditorTools
             }
             finally
             {
-                foreach (var asset in Resources.FindObjectsOfTypeAll<ScriptableObject>().Where(a => !before.Contains(a.GetInstanceID())
+                foreach (var asset in Resources.FindObjectsOfTypeAll<ScriptableObject>().Where(a => !before.Contains(a.GetEntityId())
                     && a.GetType().Namespace == "StudentGrowth" && !EditorUtility.IsPersistent(a))) UnityEngine.Object.DestroyImmediate(asset);
             }
         }

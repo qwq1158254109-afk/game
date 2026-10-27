@@ -280,7 +280,7 @@ namespace StudentGrowth
                 return;
             }
 
-            FullscreenMapSceneController[] controllers = FindObjectsOfType<FullscreenMapSceneController>();
+            FullscreenMapSceneController[] controllers = FindObjectsByType<FullscreenMapSceneController>(FindObjectsInactive.Exclude);
             for (int i = 0; i < controllers.Length; i++)
             {
                 FullscreenMapSceneController controller = controllers[i];

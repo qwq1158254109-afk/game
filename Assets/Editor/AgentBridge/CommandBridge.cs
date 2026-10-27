@@ -763,7 +763,7 @@ public static class AgentBridge
             return main;
         }
 
-        Camera fallback = Object.FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)
+        Camera fallback = Object.FindObjectsByType<Camera>(FindObjectsInactive.Exclude)
             .FirstOrDefault(c => c.enabled && c.cameraType != CameraType.SceneView);
         if (fallback == null)
         {

@@ -24,7 +24,7 @@ namespace StudentGrowth.EditorTools
             Camera cam = Camera.main;
             if (cam == null)
             {
-                Camera[] all = Object.FindObjectsByType<Camera>(FindObjectsSortMode.None);
+                Camera[] all = Object.FindObjectsByType<Camera>();
                 if (all.Length > 0)
                 {
                     cam = all[0];

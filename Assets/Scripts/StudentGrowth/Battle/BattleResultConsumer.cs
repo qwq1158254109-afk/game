@@ -185,7 +185,7 @@ namespace StudentGrowth
 
         private static string StageKey(StageData stage)
         {
-            return string.IsNullOrEmpty(stage.stageId) ? "runtime:" + stage.GetInstanceID() : stage.stageId;
+            return string.IsNullOrEmpty(stage.stageId) ? "runtime:" + stage.GetEntityId() : stage.stageId;
         }
     }
 }

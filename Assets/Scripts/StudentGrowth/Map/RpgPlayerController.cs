@@ -364,7 +364,7 @@ namespace StudentGrowth
 
             if (interactionFlowController == null)
             {
-                interactionFlowController = FindObjectOfType<MapInteractionFlowController>();
+                interactionFlowController = FindAnyObjectByType<MapInteractionFlowController>();
             }
         }
     }
