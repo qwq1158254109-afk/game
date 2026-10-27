@@ -16,10 +16,11 @@ namespace StudentGrowth
         // （原来单列 3 行，9 件只显示 3 件，其余永远看不到）。
         private const float StockRowHeight = 108f;
         private const float StockRowSpacing = 10f;
-        // 2026-10-26 二次改版：3 列 372 宽塞不下「图标+名称+价格+详情+状态」
-        // 五个元素（第一行就占 352，只剩 20px 呼吸），改为 2 列 570 宽。
-        // 2*570 + 20 = 1160 正好填满列表区；每页 2x3 = 6 件，靠翻页看剩余。
-        private const float StockColumnWidth = 670f;
+        // 2026-10-27：面板从 1400 收到 1200（画布参考分辨率是 1280x720，
+        // 1400 宽的商店在 1280 参考下必然溢出屏幕）。列宽同步回到 570：
+        // 2*570 + 20 = 1160，正好等于列表区宽度（1200 - 2*20）。
+        // 每页 2x3 = 6 件，靠翻页看剩余。
+        private const float StockColumnWidth = 570f;
         private const float StockColumnGap = 20f;
         private const int StockColumns = 2;
         private const int StockPageRows = 3;
@@ -36,7 +37,9 @@ namespace StudentGrowth
         // BuildDefaultLayout 和 EnsureLayoutExpanded 里各写一份坐标，两处对不上，
         // 表现为「金钱文本压住关闭按钮」（1400 宽下重叠 12px；旧版迁移分支更离谱，
         // 直接把关闭按钮挪到 x=516 的顶栏中间）。现在坐标只在 LayoutTopBar 里推导一次。
-        private const float PanelWidth = 1400f;
+        // 画布参考分辨率 1280x720（MapUiFactory.EnsureRuntimeCanvas），
+        // 面板必须窄于 1280，否则左右被裁。1200 留 40px 边。
+        private const float PanelWidth = 1200f;
         private const float TopBarRightMargin = 20f;
         private const float CloseButtonWidth = 112f;
         private const float CloseButtonHeight = 46f;
@@ -223,17 +226,17 @@ namespace StudentGrowth
             descriptionText = CreateText("Description", panelRect, string.Empty, 17, FontStyle.Normal, TextAnchor.UpperLeft);
             descriptionText.supportRichText = true;
             descriptionText.lineSpacing = 1.05f;
-            SetRect(descriptionText.rectTransform, new Vector2(26f, -72f), new Vector2(820f, 34f), new Vector2(0f, 1f));
+            SetRect(descriptionText.rectTransform, new Vector2(26f, -72f), new Vector2(790f, 34f), new Vector2(0f, 1f));
 
-            tabItemButton = CreateButton("TabItem", panelRect, "道具", new Vector2(880f, -66f), new Vector2(160f, 46f), new Vector2(0f, 1f));
+            tabItemButton = CreateButton("TabItem", panelRect, "道具", new Vector2(838f, -66f), new Vector2(160f, 46f), new Vector2(0f, 1f));
             tabItemButton.onClick.AddListener(() => SetTab(0));
-            tabCardButton = CreateButton("TabCard", panelRect, "卡牌", new Vector2(1056f, -66f), new Vector2(160f, 46f), new Vector2(0f, 1f));
+            tabCardButton = CreateButton("TabCard", panelRect, "卡牌", new Vector2(1014f, -66f), new Vector2(160f, 46f), new Vector2(0f, 1f));
             tabCardButton.onClick.AddListener(() => SetTab(1));
 
             GameObject stockListObject = new GameObject("StockList", typeof(RectTransform));
             stockListRoot = stockListObject.transform as RectTransform;
             stockListRoot.SetParent(panelRect, false);
-            SetRect(stockListRoot, new Vector2(20f, -124f), new Vector2(1360f, 344f), new Vector2(0f, 1f));
+            SetRect(stockListRoot, new Vector2(20f, -124f), new Vector2(1160f, 344f), new Vector2(0f, 1f));
 
             cardSectionTitle = CreateText("CardSectionTitle", panelRect, "卡牌", 18, FontStyle.Bold, TextAnchor.MiddleLeft);
             SetRect(cardSectionTitle.rectTransform, new Vector2(24f, CardSectionTitleTop), new Vector2(572f, 22f), new Vector2(0f, 1f));
@@ -242,20 +245,20 @@ namespace StudentGrowth
             GameObject cardListObject = new GameObject("CardList", typeof(RectTransform));
             cardListRoot = cardListObject.transform as RectTransform;
             cardListRoot.SetParent(panelRect, false);
-            SetRect(cardListRoot, new Vector2(20f, -124f), new Vector2(1360f, 344f), new Vector2(0f, 1f));
+            SetRect(cardListRoot, new Vector2(20f, -124f), new Vector2(1160f, 344f), new Vector2(0f, 1f));
 
             feedbackText = CreateText("Feedback", panelRect, string.Empty, 17, FontStyle.Bold, TextAnchor.MiddleLeft);
             feedbackText.supportRichText = true;
-            SetRect(feedbackText.rectTransform, new Vector2(20f, 16f), new Vector2(920f, 36f), Vector2.zero);
+            SetRect(feedbackText.rectTransform, new Vector2(20f, 16f), new Vector2(860f, 36f), Vector2.zero);
 
             // 翻页组固定在反馈行右侧，不占列表空间
-            prevPageButton = CreateButton("PrevPage", panelRect, "上页", new Vector2(960f, 14f), new Vector2(96f, 40f), new Vector2(0f, 0f));
+            prevPageButton = CreateButton("PrevPage", panelRect, "上页", new Vector2(906f, 14f), new Vector2(96f, 40f), new Vector2(0f, 0f));
             prevPageButton.onClick.AddListener(() => ChangePage(-1));
 
             pageLabel = CreateText("PageLabel", panelRect, string.Empty, 16, FontStyle.Bold, TextAnchor.MiddleCenter);
-            SetRect(pageLabel.rectTransform, new Vector2(1064f, 14f), new Vector2(60f, 40f), new Vector2(0f, 0f));
+            SetRect(pageLabel.rectTransform, new Vector2(1010f, 14f), new Vector2(60f, 40f), new Vector2(0f, 0f));
 
-            nextPageButton = CreateButton("NextPage", panelRect, "下页", new Vector2(1132f, 14f), new Vector2(96f, 40f), new Vector2(0f, 0f));
+            nextPageButton = CreateButton("NextPage", panelRect, "下页", new Vector2(1078f, 14f), new Vector2(96f, 40f), new Vector2(0f, 0f));
             nextPageButton.onClick.AddListener(() => ChangePage(1));
 
             ApplyStyle();
@@ -430,7 +433,7 @@ namespace StudentGrowth
 
         private Button CreateStockButton(ItemData item, int index)
         {
-            Button button = CreateButton("ShopItem_" + index, stockListRoot, ResolveItemName(item), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f));
+            Button button = CreateButton("ShopItem_" + index, stockListRoot, ResolveItemName(item), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f), true);
             // 买不起时保持不可点，让 SetSelectedButtonVisual 走 disabled 灰态，
             // 玩家一眼能看出哪些买不了（横条右下也写着「金钱不足」）。
             // 点击反馈交给 feedbackText——下方仍会写原因。
@@ -467,7 +470,7 @@ namespace StudentGrowth
             {
                 label.text = ResolveItemName(item);
                 label.alignment = TextAnchor.MiddleLeft;
-                SetRect(label.rectTransform, new Vector2(88f, -18f), new Vector2(380f, 28f), new Vector2(0f, 1f));
+                SetRect(label.rectTransform, new Vector2(88f, -18f), new Vector2(320f, 28f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
             }
 
@@ -476,17 +479,17 @@ namespace StudentGrowth
             CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(18f, -28f), new Vector2(56f, 56f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolvePrice(item), 15, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(priceText.rectTransform, new Vector2(520f, -18f), new Vector2(120f, 28f), new Vector2(0f, 1f));
+            SetRect(priceText.rectTransform, new Vector2(420f, -18f), new Vector2(120f, 28f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
             priceText.color = resolved.gold;
 
             Text detailText = CreateText("Detail", rect, BuildStockDetail(item), 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-            SetRect(detailText.rectTransform, new Vector2(88f, -62f), new Vector2(420f, 22f), new Vector2(0f, 1f));
+            SetRect(detailText.rectTransform, new Vector2(88f, -62f), new Vector2(320f, 22f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
 
             bool affordable = CanAfford(item);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(520f, -62f), new Vector2(120f, 22f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(420f, -62f), new Vector2(120f, 22f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
             statusText.color = affordable ? resolved.success : resolved.danger;
         }
@@ -529,7 +532,7 @@ namespace StudentGrowth
 
         private Button CreateCardButton(CardData card, int index)
         {
-            Button button = CreateButton("ShopCard_" + index, cardListRoot, ResolveCardName(card), Vector2.zero, new Vector2(572f, StockRowHeight), new Vector2(0f, 1f));
+            Button button = CreateButton("ShopCard_" + index, cardListRoot, ResolveCardName(card), Vector2.zero, new Vector2(StockColumnWidth, StockRowHeight), new Vector2(0f, 1f), true);
             button.interactable = CanAffordCard(card);
             CardData captured = card;
             button.onClick.AddListener(() => PurchaseCard(captured));
@@ -558,24 +561,24 @@ namespace StudentGrowth
             {
                 label.text = ResolveCardName(card);
                 label.alignment = TextAnchor.MiddleLeft;
-                SetRect(label.rectTransform, new Vector2(88f, -18f), new Vector2(380f, 28f), new Vector2(0f, 1f));
+                SetRect(label.rectTransform, new Vector2(88f, -18f), new Vector2(320f, 28f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
             }
 
             CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(18f, -28f), new Vector2(56f, 56f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolveCardPrice(card), 15, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(priceText.rectTransform, new Vector2(520f, -18f), new Vector2(120f, 28f), new Vector2(0f, 1f));
+            SetRect(priceText.rectTransform, new Vector2(420f, -18f), new Vector2(120f, 28f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
             priceText.color = resolved.gold;
 
             Text detailText = CreateText("Detail", rect, BuildCardDetail(card), 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-            SetRect(detailText.rectTransform, new Vector2(88f, -62f), new Vector2(420f, 22f), new Vector2(0f, 1f));
+            SetRect(detailText.rectTransform, new Vector2(88f, -62f), new Vector2(320f, 22f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
 
             bool affordable = CanAffordCard(card);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(520f, -62f), new Vector2(120f, 22f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(420f, -62f), new Vector2(120f, 22f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
             statusText.color = affordable ? resolved.success : resolved.danger;
         }
@@ -770,7 +773,8 @@ namespace StudentGrowth
                 GameObject cardListObject = new GameObject("CardList", typeof(RectTransform));
                 cardListRoot = cardListObject.transform as RectTransform;
                 cardListRoot.SetParent(panelRect, false);
-                SetRect(cardListRoot, new Vector2(24f, CardListTop), new Vector2(572f, CardListHeight), new Vector2(0f, 1f));
+                // 卡牌已改成页签共用列表区，兜底也按同一块区域建，不要再退回旧版上下堆叠坐标。
+                SetRect(cardListRoot, new Vector2(20f, -124f), new Vector2(1160f, 344f), new Vector2(0f, 1f));
             }
 
             // 关闭按钮也归位：场景里序列化的是旧版小尺寸，右边缘会被面板裁掉一半。
@@ -974,6 +978,14 @@ namespace StudentGrowth
 
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
 
+            // 商品横条 / 卡牌横条走 hoverOnlyVisual：底图由 ForceStockBackground 钉死，
+            // 这里再刷成纯色会把带内嵌亮边的木牌冲掉。
+            PixelButton pixelButton = button.GetComponent<PixelButton>();
+            if (pixelButton != null && pixelButton.hoverOnlyVisual)
+            {
+                return;
+            }
+
             Image background = button.targetGraphic as Image;
             if (background != null)
             {
@@ -1013,6 +1025,14 @@ namespace StudentGrowth
             if (pixelButton != null)
             {
                 pixelButton.theme = theme;
+                if (pixelButton.hoverOnlyVisual)
+                {
+                    // 底图由 ForceStockBackground 钉死（带内嵌亮边的木牌），
+                    // 这里若走 ApplyStyle 会被主题默认底图覆盖，只剩纯色。
+                    GameUiStyle.ApplyPixelText(button.GetComponentInChildren<Text>(true), theme, GameUiTextStyle.ButtonText, true);
+                    return;
+                }
+
                 pixelButton.ApplyStyle();
                 return;
             }
@@ -1252,6 +1272,14 @@ namespace StudentGrowth
             background.color = button.interactable
                 ? Color.white
                 : new Color(0.62f, 0.58f, 0.54f, 1f);
+
+            // hoverOnlyVisual 的按钮靠颜色做悬停反馈，必须知道「常态色」是哪一档
+            // （可购买是白、买不起是压暗），否则悬停一过就被刷回白的。
+            PixelButton pixelButton = button.GetComponent<PixelButton>();
+            if (pixelButton != null)
+            {
+                pixelButton.SetRestingColor(background.color);
+            }
         }
 
         private static Image CreateStockIcon(string name, RectTransform parent, Sprite sprite, Vector2 anchoredPosition, Vector2 sizeDelta, Color color)
@@ -1296,7 +1324,7 @@ namespace StudentGrowth
             return text;
         }
 
-        private Button CreateButton(string name, RectTransform parent, string label, Vector2 anchoredPosition, Vector2 sizeDelta, Vector2 anchor)
+        private Button CreateButton(string name, RectTransform parent, string label, Vector2 anchoredPosition, Vector2 sizeDelta, Vector2 anchor, bool hoverOnly = false)
         {
             GameObject buttonObject = new GameObject(name, typeof(RectTransform));
             RectTransform rect = buttonObject.transform as RectTransform;
@@ -1321,13 +1349,11 @@ namespace StudentGrowth
             pixelButton.background = image;
             pixelButton.labelText = text;
             pixelButton.theme = theme;
-            // 商品横条只在鼠标悬停时高亮，移开立即恢复。
-            // 不加这句会走 selected 语义，点过的横条会一直亮着（2026-10-26 用户反馈）。
-            // 2026-10-26 用户确认：商品横条就用主题的 buttonSprite 底图
-            // （深棕木牌 + 内嵌亮边，即用户截图里的「图1」）。
-            // 不用 solidBackground —— 那会变成纯色块，不是要的样子。
-            // 也不用 highlightOnHoverOnly —— 悬停只保留 PixelButton 自带的缩放，
-            // 不再切换底图/颜色，避免「悬停后变成另一个样式」。
+            // 2026-10-27 用户要求：物品栏「只要悬停变化，不要点击变化」。
+            // hoverOnlyVisual 屏蔽 selected / pointerDown —— 点过的横条不会再一直亮着，
+            // 底图仍由 ForceStockBackground 钉死（带内嵌亮边的木牌），悬停只做暖色 + 缩放。
+            // 顶栏按钮（关闭/页签/翻页）不传 true：页签要靠 selected 表示当前页。
+            pixelButton.hoverOnlyVisual = hoverOnly;
             pixelButton.ApplyStyle();
             return button;
         }

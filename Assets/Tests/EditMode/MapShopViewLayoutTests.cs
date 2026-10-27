@@ -6,10 +6,11 @@ using UnityEngine.UI;
 namespace StudentGrowth.Tests
 {
     /// <summary>
-    /// 商店顶栏布局与金钱显示。锁三条曾经被用户截图报过的契约：
-    /// 1. 金钱文本不得压住关闭按钮（1400 宽下曾重叠 12px）；
-    /// 2. 关闭按钮必须贴面板右边缘、且完全落在面板内（旧版迁移分支曾把它挪到 x=516 的顶栏中间）；
-    /// 3. 初始金钱 100 时，第一页道具必须至少有一件显示为可购买，不能整页「金钱不足」。
+    /// 商店面板布局与金钱显示。锁四条被用户截图报过的契约：
+    /// 1. 面板宽度必须窄于画布参考宽度 1280（曾做到 1400，屏幕上左右被裁）；
+    /// 2. 金钱文本不得压住关闭按钮（1400 宽下曾重叠 12px）；
+    /// 3. 关闭按钮必须贴面板右边缘、且完全落在面板内（旧版迁移分支曾把它挪到 x=516 的顶栏中间）；
+    /// 4. 初始金钱 100 时，第一页道具必须至少有一件显示为可购买，不能整页「金钱不足」。
     /// </summary>
     public class MapShopViewLayoutTests
     {
@@ -72,9 +73,41 @@ namespace StudentGrowth.Tests
             RectTransform closeRect = RectOf(view.closeButton);
             Assert.IsNotNull(panelRect);
             Assert.IsNotNull(closeRect);
-            Assert.AreEqual(1400f, panelRect.sizeDelta.x, 0.5f, "商店面板宽度应为 1400");
-            Assert.AreEqual(1380f, Right(closeRect), 0.5f, "关闭按钮右边缘应留 20px 边距");
-            Assert.Less(Left(closeRect), 1380f, "关闭按钮必须整块落在面板内");
+            Assert.AreEqual(1200f, panelRect.sizeDelta.x, 0.5f, "商店面板宽度应为 1200");
+            Assert.AreEqual(1180f, Right(closeRect), 0.5f, "关闭按钮右边缘应留 20px 边距");
+            Assert.Less(Left(closeRect), 1180f, "关闭按钮必须整块落在面板内");
+        }
+
+        [Test]
+        public void PanelFitsInsideCanvasReferenceWidth()
+        {
+            view.Show();
+
+            RectTransform panelRect = view.panelRoot == null ? null : view.panelRoot.GetComponent<RectTransform>();
+            Assert.IsNotNull(panelRect);
+            // MapUiFactory.EnsureRuntimeCanvas 的 CanvasScaler.referenceResolution 是 1280x720，
+            // 面板宽于 1280 就会被屏幕左右裁掉（2026-10-27 用户报「太大了装不下」）。
+            Assert.LessOrEqual(panelRect.sizeDelta.x, 1280f,
+                "商店面板宽度 " + panelRect.sizeDelta.x + " 超过了画布参考宽度 1280");
+        }
+
+        [Test]
+        public void StockColumnsFitInsideListArea()
+        {
+            view.Show();
+
+            RectTransform listRect = view.stockListRoot;
+            Assert.IsNotNull(listRect, "商品列表区必须存在");
+
+            Button[] stockButtons = listRect.GetComponentsInChildren<Button>(true);
+            Assert.Greater(stockButtons.Length, 1, "第一页至少要有两件商品才能验列宽");
+
+            RectTransform first = stockButtons[0].transform as RectTransform;
+            RectTransform second = stockButtons[1].transform as RectTransform;
+            Assert.IsNotNull(first);
+            Assert.IsNotNull(second);
+            Assert.LessOrEqual(Right(second), listRect.sizeDelta.x + 0.5f,
+                "第二列右边缘 " + Right(second) + " 溢出了列表区宽度 " + listRect.sizeDelta.x);
         }
 
         [Test]
@@ -87,6 +120,44 @@ namespace StudentGrowth.Tests
             Assert.IsNotNull(iconRect);
             Assert.IsNotNull(moneyRect);
             Assert.LessOrEqual(Right(iconRect), Left(moneyRect), "金钱图标不能压住金钱文本");
+        }
+
+        [Test]
+        public void StockRowHighlightsOnHoverButNotOnClick()
+        {
+            view.Show();
+
+            PixelButton[] rows = view.stockListRoot == null
+                ? new PixelButton[0]
+                : view.stockListRoot.GetComponentsInChildren<PixelButton>(true);
+            Assert.Greater(rows.Length, 0, "第一页必须有商品横条");
+
+            PixelButton row = rows[0];
+            // 关掉缩放动画：EditMode 下 StartCoroutine 不会 tick，测颜色就够了。
+            row.animateScale = false;
+            Image background = row.GetComponent<Image>();
+            Assert.IsNotNull(background);
+            Assert.IsTrue(row.hoverOnlyVisual, "商品横条必须走 hoverOnlyVisual（用户要求只要悬停变化）");
+
+            Color resting = background.color;
+
+            row.OnPointerEnter(null);
+            Color hover = background.color;
+            Assert.AreNotEqual(resting, hover, "悬停必须有可见变化");
+
+            // 点击：按下 / 选中 / 抬起都不该改变外观
+            row.OnPointerDown(null);
+            row.OnSelect(null);
+            row.OnPointerUp(null);
+            Assert.AreEqual(hover, background.color, "点击过程中外观不能变化");
+
+            // 鼠标移开：必须回到常态，且不能因为「点过」而留在高亮
+            row.OnPointerExit(null);
+            Assert.AreEqual(resting, background.color, "鼠标移开后必须回到常态");
+
+            // 鼠标不在上面时的选中（键盘 / 点击残留选中态）也不能点亮
+            row.OnSelect(null);
+            Assert.AreEqual(resting, background.color, "点击选中不能留下高亮");
         }
 
         [Test]
