@@ -21,6 +21,20 @@ namespace StudentGrowth
         public bool highlightOnHoverOnly;
 
         /// <summary>
+        /// true = 外观只跟鼠标悬停走：点击、键盘选中都不换底图、不做按下缩放。
+        /// 商店商品横条用 true（2026-10-27 用户要求「物品栏只要悬停变化，不要点击变化」）。
+        /// 与 highlightOnHoverOnly 的区别：后者只管「是否看 selected」，仍会因点击进入
+        /// selected 而留在高亮态；本开关连 selected / pointerDown 一起屏蔽。
+        /// </summary>
+        public bool hoverOnlyVisual;
+
+        /// <summary>hoverOnlyVisual 模式下的常态底图颜色，由 ForceStockBackground 写入。</summary>
+        public Color restingColor = Color.white;
+
+        /// <summary>hoverOnlyVisual 模式下悬停时的暖色偏移强度（0 = 不变）。</summary>
+        [Range(0f, 1f)] public float hoverWarmth = 0.5f;
+
+        /// <summary>
         /// true = 用纯色块做底，忽略主题的 buttonSprite。
         /// 商店商品横条这种 570x100 的大条目用九宫格贴图时，四个角保持原尺寸、
         /// 四条边被拉长，看起来就是一圈多余的细框。送礼格子也因为这个原因
@@ -41,6 +55,9 @@ namespace StudentGrowth
         private Coroutine scaleRoutine;
         private bool pointerInside;
         private bool pointerDown;
+        // 真实鼠标是否在按钮上。pointerInside 会被 OnSelect 也置 true（键盘选中），
+        // hoverOnlyVisual 要区分这两者，所以单独记一份。
+        private bool pointerOver;
 
         private void Reset()
         {
@@ -80,9 +97,28 @@ namespace StudentGrowth
             RefreshSelectionVisual();
         }
 
+        public void SetRestingColor(Color color)
+        {
+            restingColor = color;
+            // 只有 hoverOnlyVisual 才用得上；其他按钮保持原语义，
+            // 别让这里意外把它们的底图刷一遍。
+            if (hoverOnlyVisual)
+            {
+                RefreshSelectionVisual();
+            }
+        }
+
         public void RefreshSelectionVisual()
         {
             ResolveReferences();
+
+            // hoverOnlyVisual：底图由外部（商店的 ForceStockBackground）钉死，这里只改颜色。
+            // 常态 = restingColor，悬停 = restingColor 往暖白偏一点。点击不参与。
+            if (hoverOnlyVisual)
+            {
+                background.color = pointerOver ? WarmHighlight(restingColor) : restingColor;
+                return;
+            }
 
             // 纯色模式：不走 SetSelectedButtonVisual，直接刷 color。
             // 这样不会被 buttonSprite 的九宫格边干扰，也不受主题配色牵制。
@@ -106,6 +142,7 @@ namespace StudentGrowth
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            pointerOver = true;
             pointerInside = true;
             AnimateToHoverState();
             RefreshSelectionVisual();
@@ -113,6 +150,7 @@ namespace StudentGrowth
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            pointerOver = false;
             pointerInside = false;
             pointerDown = false;
             AnimateToHoverState();
@@ -133,14 +171,28 @@ namespace StudentGrowth
 
         public void OnSelect(BaseEventData eventData)
         {
+            if (hoverOnlyVisual)
+            {
+                // 点击会让 EventSystem 记住选中态，这里不接，避免点过的横条一直亮着。
+                return;
+            }
+
             pointerInside = true;
             AnimateToHoverState();
         }
 
         public void OnDeselect(BaseEventData eventData)
         {
-            pointerInside = false;
             pointerDown = false;
+            if (hoverOnlyVisual)
+            {
+                // 鼠标可能还在上面，别把悬停态一起清掉。
+                AnimateToHoverState();
+                RefreshSelectionVisual();
+                return;
+            }
+
+            pointerInside = false;
             AnimateToHoverState();
             RefreshSelectionVisual();
         }
@@ -154,7 +206,12 @@ namespace StudentGrowth
 
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
             float scale = 1f;
-            if (pointerDown)
+            if (hoverOnlyVisual)
+            {
+                // 只要悬停缩放，按下不再额外变化。
+                scale = pointerOver ? resolved.buttonHoverScale : 1f;
+            }
+            else if (pointerDown)
             {
                 scale = resolved.buttonPressedScale;
             }
@@ -169,6 +226,18 @@ namespace StudentGrowth
             }
 
             scaleRoutine = UiAnimationHelper.ScaleTo(this, rectTransform, baseScale * scale, 0.08f);
+        }
+
+        /// <summary>把常态色往暖白偏一点。白底乘系数不会变，所以用插值而不是乘法。</summary>
+        private Color WarmHighlight(Color color)
+        {
+            if (hoverWarmth <= 0f)
+            {
+                return color;
+            }
+
+            Color warm = new Color(1f, 0.94f, 0.82f, color.a);
+            return Color.Lerp(color, warm, hoverWarmth);
         }
 
         private void ResolveReferences()
