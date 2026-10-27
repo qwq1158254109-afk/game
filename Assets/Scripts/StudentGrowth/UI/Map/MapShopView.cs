@@ -12,18 +12,16 @@ namespace StudentGrowth
         private const string LabelColor = "#9DA7B3";
         private const string ValueColor = "#E9EDF2";
         private const string HintColor = "#73E7C1";
-        // 2026-10-26 商店改版：3 列 x 3 行 = 9 个格子，正好装下全部商品
-        // （原来单列 3 行，9 件只显示 3 件，其余永远看不到）。
-        private const float StockRowHeight = 108f;
-        private const float StockRowSpacing = 10f;
-        // 2026-10-27：面板从 1400 收到 1200（画布参考分辨率是 1280x720，
-        // 1400 宽的商店在 1280 参考下必然溢出屏幕）。列宽同步回到 570：
-        // 2*570 + 20 = 1160，正好等于列表区宽度（1200 - 2*20）。
-        // 每页 2x3 = 6 件，靠翻页看剩余。
-        private const float StockColumnWidth = 570f;
-        private const float StockColumnGap = 20f;
-        private const int StockColumns = 2;
-        private const int StockPageRows = 3;
+        // 2026-10-27：横条改成货架格子（用户：「购买卡牌用这种栏不合适，
+        // 能做成货架上摆着卡牌或者物品的形式吗」）。
+        // 3 列 x 2 行 = 6 格/页：3*372 + 2*22 = 1160 = 列表区宽；
+        // 2*162 + 20 = 344 = 列表区高。格子够宽放「图标 + 名字 + 价格 + 效果」。
+        private const float StockRowHeight = 162f;
+        private const float StockRowSpacing = 20f;
+        private const float StockColumnWidth = 372f;
+        private const float StockColumnGap = 22f;
+        private const int StockColumns = 3;
+        private const int StockPageRows = 2;
         private const int MaxVisibleStockItems = StockColumns * StockPageRows;
 
         // 卡牌区在道具区下方。面板原高 424 放不下第二块列表，扩到 660；
@@ -226,7 +224,8 @@ namespace StudentGrowth
             descriptionText = CreateText("Description", panelRect, string.Empty, 17, FontStyle.Normal, TextAnchor.UpperLeft);
             descriptionText.supportRichText = true;
             descriptionText.lineSpacing = 1.05f;
-            SetRect(descriptionText.rectTransform, new Vector2(26f, -72f), new Vector2(790f, 34f), new Vector2(0f, 1f));
+            // 两行富文本（标题 + 说明）在 17 号下需要 50+ px，46 会把第二行裁成一条线。
+            SetRect(descriptionText.rectTransform, new Vector2(26f, -68f), new Vector2(790f, 58f), new Vector2(0f, 1f));
 
             tabItemButton = CreateButton("TabItem", panelRect, "道具", new Vector2(838f, -66f), new Vector2(160f, 46f), new Vector2(0f, 1f));
             tabItemButton.onClick.AddListener(() => SetTab(0));
@@ -474,6 +473,13 @@ namespace StudentGrowth
 
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
 
+            // 货架格子用纯色块（贴图拉伸会变形，见 ForceStockBackground 注释）。
+            PixelButton cellButton = button.GetComponent<PixelButton>();
+            if (cellButton != null)
+            {
+                cellButton.solidBackground = true;
+            }
+
             // 2026-10-26：所有商品横条强制使用同一张底图。
             // 之前左右两列出现不同外观（右边有内嵌亮边、左边没有），
             // 说明某条分支改过 background.sprite（selected / disabled 都会换图）。
@@ -485,27 +491,37 @@ namespace StudentGrowth
             {
                 label.text = ResolveItemName(item);
                 label.alignment = TextAnchor.MiddleLeft;
-                SetRect(label.rectTransform, new Vector2(88f, -18f), new Vector2(320f, 28f), new Vector2(0f, 1f));
+                // 2026-10-27：名字此前用 ButtonText 的 24 号字塞进 28 高的框，
+                // 像素字一行就要 30+ px，被 verticalOverflow=Truncate 整行裁掉 ——
+                // 表现就是「商品名字没显示」。格子布局下给足 34 高，字号 20。
+                SetRect(label.rectTransform, new Vector2(92f, -10f), new Vector2(190f, 34f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
+                label.fontSize = 20;
             }
 
             // 第三个参数是染色：原来传 inverseText（深色），图标被整体压暗，
             // 在深棕横条上等于看不见。图标应该保持原色。
-            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(18f, -28f), new Vector2(56f, 56f), Color.white);
+            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(14f, -14f), new Vector2(64f, 64f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolvePrice(item), 15, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(priceText.rectTransform, new Vector2(420f, -18f), new Vector2(120f, 28f), new Vector2(0f, 1f));
+            SetRect(priceText.rectTransform, new Vector2(286f, -10f), new Vector2(72f, 34f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
+            priceText.fontSize = 18;
             priceText.color = resolved.gold;
 
-            Text detailText = CreateText("Detail", rect, BuildStockDetail(item), 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-            SetRect(detailText.rectTransform, new Vector2(88f, -62f), new Vector2(320f, 22f), new Vector2(0f, 1f));
+            Text detailText = CreateText("Detail", rect, BuildStockDetail(item), 14, FontStyle.Normal, TextAnchor.UpperLeft);
+            // 效果说明原来 12 号（SmallText 样式），用户反馈偏小，提到 14。
+            // 格子宽 372，扣掉图标列后还有 268，够放两行。
+            SetRect(detailText.rectTransform, new Vector2(92f, -52f), new Vector2(268f, 50f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
+            detailText.fontSize = 14;
+            detailText.lineSpacing = 1f;
 
             bool affordable = CanAfford(item);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(420f, -62f), new Vector2(120f, 22f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(286f, -108f), new Vector2(72f, 26f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
+            statusText.fontSize = 13;
             statusText.color = affordable ? resolved.success : resolved.danger;
         }
 
@@ -569,6 +585,13 @@ namespace StudentGrowth
             }
 
             UIThemeConfig resolved = GameUiStyle.ResolveTheme(theme);
+
+            PixelButton cellButton = button.GetComponent<PixelButton>();
+            if (cellButton != null)
+            {
+                cellButton.solidBackground = true;
+            }
+
             ForceStockBackground(button, resolved);
 
             Text label = button.GetComponentInChildren<Text>(true);
@@ -576,25 +599,31 @@ namespace StudentGrowth
             {
                 label.text = ResolveCardName(card);
                 label.alignment = TextAnchor.MiddleLeft;
-                SetRect(label.rectTransform, new Vector2(88f, -18f), new Vector2(320f, 28f), new Vector2(0f, 1f));
+                SetRect(label.rectTransform, new Vector2(92f, -10f), new Vector2(190f, 34f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
+                label.fontSize = 20;
             }
 
-            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(18f, -28f), new Vector2(56f, 56f), Color.white);
+            // 卡牌素材是竖版，给 64x84 让它像一张牌立在格子里。
+            CreateStockIcon("CardIcon", rect, ResolveCardSprite(card, resolved), new Vector2(14f, -12f), new Vector2(64f, 84f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolveCardPrice(card), 15, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(priceText.rectTransform, new Vector2(420f, -18f), new Vector2(120f, 28f), new Vector2(0f, 1f));
+            SetRect(priceText.rectTransform, new Vector2(286f, -10f), new Vector2(72f, 34f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
+            priceText.fontSize = 18;
             priceText.color = resolved.gold;
 
-            Text detailText = CreateText("Detail", rect, BuildCardDetail(card), 14, FontStyle.Normal, TextAnchor.MiddleLeft);
-            SetRect(detailText.rectTransform, new Vector2(88f, -62f), new Vector2(320f, 22f), new Vector2(0f, 1f));
+            Text detailText = CreateText("Detail", rect, BuildCardDetail(card), 14, FontStyle.Normal, TextAnchor.UpperLeft);
+            SetRect(detailText.rectTransform, new Vector2(92f, -52f), new Vector2(268f, 50f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
+            detailText.fontSize = 14;
+            detailText.lineSpacing = 1f;
 
             bool affordable = CanAffordCard(card);
             Text statusText = CreateText("Status", rect, affordable ? "可购买" : "金钱不足", 14, FontStyle.Bold, TextAnchor.MiddleRight);
-            SetRect(statusText.rectTransform, new Vector2(420f, -62f), new Vector2(120f, 22f), new Vector2(0f, 1f));
+            SetRect(statusText.rectTransform, new Vector2(286f, -108f), new Vector2(72f, 26f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(statusText, resolved, GameUiTextStyle.SmallText, true);
+            statusText.fontSize = 13;
             statusText.color = affordable ? resolved.success : resolved.danger;
         }
 
@@ -781,6 +810,9 @@ namespace StudentGrowth
             {
                 cardSectionTitle = CreateText("CardSectionTitle", panelRect, "卡牌", 18, FontStyle.Bold, TextAnchor.MiddleLeft);
                 SetRect(cardSectionTitle.rectTransform, new Vector2(24f, CardSectionTitleTop), new Vector2(572f, 22f), new Vector2(0f, 1f));
+                // 卡牌已改成页签共用列表区，这个旧标题必须藏起来：它落在列表区下方，
+                // 18 号字塞进 22 高的框会被裁成一条绿色横带（截图里那条绿线就是它）。
+                cardSectionTitle.gameObject.SetActive(false);
             }
 
             if (cardListRoot == null && panelRect != null)
@@ -893,8 +925,9 @@ namespace StudentGrowth
 
         private string BuildDescriptionText()
         {
-            return Section("购买道具与卡牌")
-                + Row("说明", "道具进背包，卡牌进主卡组。消耗品在背包中使用，被动道具在战斗时生效。");
+            // 2026-10-27：原来用 Section + Row 拼两行富文本，第二行在像素字体下
+            // 渲染成一条实心色带（看起来像装饰线）。描述区不需要富文本，改单行纯文本。
+            return "道具进背包，卡牌进主卡组；消耗品在背包使用，被动道具战斗时生效。";
         }
 
         private static string ResolveItemName(ItemData item)
@@ -910,7 +943,7 @@ namespace StudentGrowth
             }
 
             string description = string.IsNullOrEmpty(item.description) ? "暂无说明" : item.description;
-            return GetItemTypeLabel(item.itemType) + " · " + Truncate(description, 28);
+            return GetItemTypeLabel(item.itemType) + "·" + Truncate(description, 28);
         }
 
         private static string GetItemTypeLabel(ItemType type)
@@ -1273,6 +1306,21 @@ namespace StudentGrowth
             Image background = button.targetGraphic as Image;
             if (background == null)
             {
+                return;
+            }
+
+            // 2026-10-27：货架格子用纯色块。九宫格木牌贴图在 372 宽下左右边框会被
+            // 拉成两条粗竖条、内部亮线也变形（截图实测），格子尺寸不适合拉伸贴图。
+            PixelButton solid = button.GetComponent<PixelButton>();
+            if (solid != null && solid.solidBackground)
+            {
+                background.sprite = GameUiStyle.GetSolidSprite();
+                background.type = Image.Type.Simple;
+                Color solidColor = button.interactable ? solid.solidNormal : solid.solidDisabled;
+                background.color = solidColor;
+                solid.restingSprite = null;
+                solid.hoverSprite = null;
+                solid.SetRestingColor(solidColor);
                 return;
             }
 
