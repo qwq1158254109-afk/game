@@ -61,7 +61,7 @@ namespace StudentGrowth.Editor
                 Require(GameObject.Find(layer) != null, layer + " is missing.");
             }
 
-            Grid grid = UnityEngine.Object.FindFirstObjectByType<Grid>();
+            Grid grid = UnityEngine.Object.FindAnyObjectByType<Grid>();
             Require(grid != null && grid.cellSize == Vector3.one, "Grid cell size must be 1 x 1.");
 
             GameObject collision = GameObject.Find("Collision_Tilemap");
@@ -937,7 +937,7 @@ namespace StudentGrowth.Editor
                 Rigidbody2D body = tilemapObject.AddComponent<Rigidbody2D>();
                 body.bodyType = RigidbodyType2D.Static;
                 TilemapCollider2D collider = tilemapObject.AddComponent<TilemapCollider2D>();
-                collider.usedByComposite = true;
+                collider.compositeOperation = Collider2D.CompositeOperation.Merge;
                 CompositeCollider2D composite = tilemapObject.AddComponent<CompositeCollider2D>();
                 composite.geometryType = CompositeCollider2D.GeometryType.Polygons;
             }
@@ -1023,7 +1023,7 @@ namespace StudentGrowth.Editor
 
         private static bool SceneUsesWholeShopBackground()
         {
-            foreach (SpriteRenderer renderer in UnityEngine.Object.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
+            foreach (SpriteRenderer renderer in UnityEngine.Object.FindObjectsByType<SpriteRenderer>())
             {
                 if (renderer == null || renderer.sprite == null)
                 {

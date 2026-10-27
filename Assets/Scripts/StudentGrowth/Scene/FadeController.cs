@@ -51,7 +51,7 @@ namespace StudentGrowth
             {
                 if (instance == null)
                 {
-                    instance = FindObjectOfType<FadeController>();
+                    instance = FindAnyObjectByType<FadeController>();
                 }
 
                 if (instance == null)

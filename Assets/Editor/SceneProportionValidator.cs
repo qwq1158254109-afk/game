@@ -97,7 +97,7 @@ namespace StudentGrowth.Editor
                 results.Add(new Result("Scene Structure", name, GameObject.Find(name) != null, "Required scene object."));
             }
 
-            Grid grid = UnityEngine.Object.FindFirstObjectByType<Grid>();
+            Grid grid = UnityEngine.Object.FindAnyObjectByType<Grid>();
             bool gridPass = grid != null && grid.cellSize == Vector3.one;
             results.Add(new Result("Grid Cell Size", "Grid", gridPass, gridPass ? "Grid cell size is 1x1." : "Grid cell size must be 1x1."));
 
@@ -112,7 +112,7 @@ namespace StudentGrowth.Editor
 
         private static void ValidateObjectScales(List<Result> results)
         {
-            foreach (GameObject gameObject in UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+            foreach (GameObject gameObject in UnityEngine.Object.FindObjectsByType<GameObject>())
             {
                 if (!IsMapObject(gameObject))
                 {
@@ -171,7 +171,7 @@ namespace StudentGrowth.Editor
             }
 
             Vector2 point = spawn.transform.position;
-            Collider2D[] colliders = UnityEngine.Object.FindObjectsByType<Collider2D>(FindObjectsSortMode.None);
+            Collider2D[] colliders = UnityEngine.Object.FindObjectsByType<Collider2D>();
             bool blocked = colliders.Any(collider => collider != null
                 && !collider.isTrigger
                 && collider.gameObject.name != "PlayerRpg"
@@ -242,7 +242,7 @@ namespace StudentGrowth.Editor
 
         private static void ValidateTriggerSizes(List<Result> results)
         {
-            foreach (MapInteractionTarget target in UnityEngine.Object.FindObjectsByType<MapInteractionTarget>(FindObjectsSortMode.None))
+            foreach (MapInteractionTarget target in UnityEngine.Object.FindObjectsByType<MapInteractionTarget>())
             {
                 Collider2D[] colliders = target.GetComponentsInChildren<Collider2D>(true);
                 Collider2D trigger = colliders.FirstOrDefault(collider => collider != null && collider.isTrigger);

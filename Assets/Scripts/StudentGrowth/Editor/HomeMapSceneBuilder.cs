@@ -63,7 +63,7 @@ namespace StudentGrowth.Editor
             Rigidbody2D collisionBody = collision.GetComponent<Rigidbody2D>();
             Require(collisionBody != null && collisionBody.bodyType == RigidbodyType2D.Static, "Collision_Tilemap needs a static Rigidbody2D.");
             TilemapCollider2D tilemapCollider = collision.GetComponent<TilemapCollider2D>();
-            Require(tilemapCollider != null && tilemapCollider.usedByComposite, "Collision_Tilemap needs a TilemapCollider2D using a CompositeCollider2D.");
+            Require(tilemapCollider != null && tilemapCollider.compositeOperation != Collider2D.CompositeOperation.None, "Collision_Tilemap needs a TilemapCollider2D using a CompositeCollider2D.");
             Require(collision.GetComponent<CompositeCollider2D>() != null, "Collision_Tilemap needs a CompositeCollider2D.");
 
             foreach (string objectName in new[] { "BedObject", "DeskObject", "DiningTableObject", "FamilyNpcObject", "ExitDoorObject" })
@@ -84,12 +84,12 @@ namespace StudentGrowth.Editor
             Require(player.GetComponent<Animator>() != null && player.GetComponent<Animator>().runtimeAnimatorController != null, "PlayerRpg needs an Animator Controller.");
             Require(player.GetComponent<RpgPlayerController>() != null, "PlayerRpg needs RpgPlayerController.");
 
-            FullscreenMapSceneController sceneController = Object.FindObjectOfType<FullscreenMapSceneController>();
+            FullscreenMapSceneController sceneController = Object.FindAnyObjectByType<FullscreenMapSceneController>();
             Require(sceneController != null && sceneController.createFallbackRuntimeServices, "FullscreenMapSceneController needs fallback runtime services enabled.");
             MapInteractionTarget exitTarget = GameObject.Find("ExitDoorObject").GetComponent<MapInteractionTarget>();
             Require(exitTarget.isExitPortal && !exitTarget.consumeTimeOnInteraction, "ExitDoorObject must be an exit portal without time cost.");
 
-            MapInteractionTarget[] targets = Object.FindObjectsOfType<MapInteractionTarget>();
+            MapInteractionTarget[] targets = Object.FindObjectsByType<MapInteractionTarget>(FindObjectsInactive.Exclude);
             Require(targets.Length >= 5, "Expected at least five active map interaction targets.");
             VerifyRuntimeInteractionFlow(sceneController);
             Debug.Log("HomeMapScene verification passed with " + targets.Length + " active interaction targets.");
@@ -98,8 +98,8 @@ namespace StudentGrowth.Editor
         private static void VerifyRuntimeInteractionFlow(FullscreenMapSceneController sceneController)
         {
             sceneController.InitializeScene();
-            MapInteractionFlowController flow = Object.FindObjectOfType<MapInteractionFlowController>();
-            StageController stage = Object.FindObjectOfType<StageController>();
+            MapInteractionFlowController flow = Object.FindAnyObjectByType<MapInteractionFlowController>();
+            StageController stage = Object.FindAnyObjectByType<StageController>();
             Require(flow != null, "MapInteractionFlowController is missing at runtime.");
             Require(stage != null && stage.sessionState != null, "StageController runtime service is missing.");
             Require(stage.sessionState.stageState.remainingTime > 1, "Runtime fallback stage time was not initialized.");
@@ -571,7 +571,7 @@ namespace StudentGrowth.Editor
                 Rigidbody2D body = tilemapObject.AddComponent<Rigidbody2D>();
                 body.bodyType = RigidbodyType2D.Static;
                 TilemapCollider2D collider = tilemapObject.AddComponent<TilemapCollider2D>();
-                collider.usedByComposite = true;
+                collider.compositeOperation = Collider2D.CompositeOperation.Merge;
                 tilemapObject.AddComponent<CompositeCollider2D>();
             }
 

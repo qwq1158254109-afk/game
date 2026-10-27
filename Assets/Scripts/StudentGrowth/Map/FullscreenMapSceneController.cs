@@ -608,7 +608,7 @@ namespace StudentGrowth
                 return;
             }
 
-            interactionTargets = FindObjectsOfType<MapInteractionTarget>();
+            interactionTargets = FindObjectsByType<MapInteractionTarget>(FindObjectsInactive.Exclude);
             BindAvailableActivities(interactionTargets);
         }
 
@@ -718,7 +718,7 @@ namespace StudentGrowth
 
         private static PlayerSpawnPoint FindSpawnPoint(string spawnPointId)
         {
-            PlayerSpawnPoint[] spawnPoints = FindObjectsOfType<PlayerSpawnPoint>();
+            PlayerSpawnPoint[] spawnPoints = FindObjectsByType<PlayerSpawnPoint>(FindObjectsInactive.Exclude);
             for (int i = 0; i < spawnPoints.Length; i++)
             {
                 PlayerSpawnPoint spawnPoint = spawnPoints[i];
@@ -733,7 +733,7 @@ namespace StudentGrowth
 
         private static T FindSceneObject<T>() where T : Object
         {
-            return FindObjectOfType<T>();
+            return FindAnyObjectByType<T>();
         }
 
         private bool IsExplorationMap()

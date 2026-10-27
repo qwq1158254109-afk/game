@@ -73,8 +73,7 @@ namespace StudentGrowth
         {
             // 只看「激活的」EventSystem：新输入系统下未激活的模块等于不存在，
             // 不能因为场景里躺着一个没启用的旧 EventSystem 就把兜底的删掉。
-            EventSystem[] all = FindObjectsByType<EventSystem>(
-                FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            EventSystem[] all = FindObjectsByType<EventSystem>(FindObjectsInactive.Exclude);
             if (all == null || all.Length <= 1)
             {
                 return;

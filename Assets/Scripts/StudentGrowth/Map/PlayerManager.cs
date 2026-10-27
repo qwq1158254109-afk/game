@@ -32,7 +32,7 @@ namespace StudentGrowth
             {
                 if (instance == null)
                 {
-                    instance = FindObjectOfType<PlayerManager>();
+                    instance = FindAnyObjectByType<PlayerManager>();
                 }
 
                 if (instance == null)
@@ -107,7 +107,7 @@ namespace StudentGrowth
         public RpgPlayerController ResolvePlayerAfterSceneLoad()
         {
             if (SceneManager.GetActiveScene().path == GameApplicationRuntime.MainMenuPath) return null;
-            RpgPlayerController[] players = FindObjectsOfType<RpgPlayerController>();
+            RpgPlayerController[] players = FindObjectsByType<RpgPlayerController>(FindObjectsInactive.Exclude);
             RpgPlayerController scenePlayer = FindScenePlayer(players);
             if (currentPlayer == null)
             {
@@ -141,7 +141,7 @@ namespace StudentGrowth
 
         private static RpgPlayerController FindBestPlayer()
         {
-            return FindBestPlayer(FindObjectsOfType<RpgPlayerController>());
+            return FindBestPlayer(FindObjectsByType<RpgPlayerController>(FindObjectsInactive.Exclude));
         }
 
         private static RpgPlayerController FindBestPlayer(RpgPlayerController[] players)

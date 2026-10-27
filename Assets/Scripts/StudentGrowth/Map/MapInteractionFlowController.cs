@@ -600,7 +600,7 @@ namespace StudentGrowth
 
             if (dialogueRunner == null)
             {
-                dialogueRunner = FindObjectOfType<DialogueRunner>();
+                dialogueRunner = FindAnyObjectByType<DialogueRunner>();
             }
 
             if (dialogueRunner == null)
@@ -640,7 +640,14 @@ namespace StudentGrowth
         /// </summary>
         private DialogueView EnsureDialogueView()
         {
-            DialogueView existing = FindFirstObjectByType<DialogueView>(FindObjectsInactive.Include);
+            // 先只找激活的：FindAnyObjectByType 不保证优先返回激活实例，
+            // 拿到一个未激活的 DialogueView 就等于「界面不显示」。
+            DialogueView existing = FindAnyObjectByType<DialogueView>();
+            if (existing == null)
+            {
+                existing = FindAnyObjectByType<DialogueView>(FindObjectsInactive.Include);
+            }
+
             if (existing != null)
             {
                 return existing;
@@ -1004,44 +1011,44 @@ namespace StudentGrowth
         {
             if (interactionController == null)
             {
-                interactionController = FindObjectOfType<MapInteractionController>();
+                interactionController = FindAnyObjectByType<MapInteractionController>();
             }
 
             if (promptView == null)
             {
-                promptView = FindObjectOfType<MapInteractionPromptView>();
+                promptView = FindAnyObjectByType<MapInteractionPromptView>();
             }
 
             if (debugOverlay == null)
             {
-                debugOverlay = FindObjectOfType<MapDebugOverlayView>();
+                debugOverlay = FindAnyObjectByType<MapDebugOverlayView>();
             }
 
             if (sceneTransitionController == null)
             {
-                sceneTransitionController = FindObjectOfType<SceneTransitionController>();
+                sceneTransitionController = FindAnyObjectByType<SceneTransitionController>();
             }
 
             if (dialogueView == null)
             {
-                dialogueView = FindObjectOfType<MapDialogueView>();
+                dialogueView = FindAnyObjectByType<MapDialogueView>();
             }
 
             if (shopView == null)
             {
-                shopView = FindObjectOfType<MapShopView>();
+                shopView = FindAnyObjectByType<MapShopView>();
             }
 
             if (confirmView == null)
             {
-                confirmView = FindObjectOfType<MapInteractionConfirmView>();
+                confirmView = FindAnyObjectByType<MapInteractionConfirmView>();
             }
 
             SyncLegacyConfirmFields();
 
             if (resultView == null)
             {
-                resultView = FindObjectOfType<MapActivityResultView>();
+                resultView = FindAnyObjectByType<MapActivityResultView>();
             }
 
             if (sessionState == null && sceneTransitionController != null)
@@ -1051,7 +1058,7 @@ namespace StudentGrowth
 
             if (stateVisuals == null || stateVisuals.Length == 0)
             {
-                stateVisuals = FindObjectsOfType<MapInteractionStateVisual>();
+                stateVisuals = FindObjectsByType<MapInteractionStateVisual>(FindObjectsInactive.Exclude);
             }
         }
 
@@ -1172,7 +1179,7 @@ namespace StudentGrowth
             if (shopView != null)
             {
                 shopView.theme = theme;
-                shopView.Configure(ResolveSessionState(), FindObjectOfType<FullscreenMapHudView>());
+                shopView.Configure(ResolveSessionState(), FindAnyObjectByType<FullscreenMapHudView>());
                 shopView.Show();
             }
         }
@@ -1184,7 +1191,7 @@ namespace StudentGrowth
             if (shopView != null)
             {
                 shopView.theme = theme;
-                shopView.Configure(ResolveSessionState(), FindObjectOfType<FullscreenMapHudView>());
+                shopView.Configure(ResolveSessionState(), FindAnyObjectByType<FullscreenMapHudView>());
                 shopView.Show();
             }
         }
@@ -1430,7 +1437,7 @@ namespace StudentGrowth
                 return;
             }
 
-            FullscreenMapHudView hud = FindObjectOfType<FullscreenMapHudView>();
+            FullscreenMapHudView hud = FindAnyObjectByType<FullscreenMapHudView>();
             if (hud != null)
             {
                 hud.Refresh();

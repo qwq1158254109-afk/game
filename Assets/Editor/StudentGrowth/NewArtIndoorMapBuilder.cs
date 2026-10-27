@@ -961,7 +961,7 @@ namespace StudentGrowth.Editor
                 Rigidbody2D body = tilemapObject.AddComponent<Rigidbody2D>();
                 body.bodyType = RigidbodyType2D.Static;
                 TilemapCollider2D collider = tilemapObject.AddComponent<TilemapCollider2D>();
-                collider.usedByComposite = true;
+                collider.compositeOperation = Collider2D.CompositeOperation.Merge;
                 CompositeCollider2D composite = tilemapObject.AddComponent<CompositeCollider2D>();
                 composite.geometryType = CompositeCollider2D.GeometryType.Polygons;
             }

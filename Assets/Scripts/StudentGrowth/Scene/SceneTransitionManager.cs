@@ -22,7 +22,7 @@ namespace StudentGrowth
             {
                 if (instance == null)
                 {
-                    instance = FindObjectOfType<SceneTransitionManager>();
+                    instance = FindAnyObjectByType<SceneTransitionManager>();
                 }
 
                 if (instance == null)
@@ -131,7 +131,7 @@ namespace StudentGrowth
         {
             GameSessionState state = null;
 
-            SceneTransitionController sceneTransitionController = FindObjectOfType<SceneTransitionController>();
+            SceneTransitionController sceneTransitionController = FindAnyObjectByType<SceneTransitionController>();
             if (sceneTransitionController != null)
             {
                 state = sceneTransitionController.sessionState;
@@ -139,7 +139,7 @@ namespace StudentGrowth
 
             if (state == null)
             {
-                StageController stageController = FindObjectOfType<StageController>();
+                StageController stageController = FindAnyObjectByType<StageController>();
                 if (stageController != null)
                 {
                     state = stageController.sessionState;
@@ -186,7 +186,7 @@ namespace StudentGrowth
 
         private static void RebindMapSceneControllers(RpgPlayerController player)
         {
-            FullscreenMapSceneController[] controllers = FindObjectsOfType<FullscreenMapSceneController>();
+            FullscreenMapSceneController[] controllers = FindObjectsByType<FullscreenMapSceneController>(FindObjectsInactive.Exclude);
             for (int i = 0; i < controllers.Length; i++)
             {
                 FullscreenMapSceneController controller = controllers[i];
@@ -199,7 +199,7 @@ namespace StudentGrowth
 
         private static SpawnPoint FindSpawnPoint(string spawnPointId)
         {
-            SpawnPoint[] spawnPoints = FindObjectsOfType<SpawnPoint>();
+            SpawnPoint[] spawnPoints = FindObjectsByType<SpawnPoint>(FindObjectsInactive.Exclude);
             for (int i = 0; i < spawnPoints.Length; i++)
             {
                 SpawnPoint spawnPoint = spawnPoints[i];
@@ -214,7 +214,7 @@ namespace StudentGrowth
 
         private static PlayerSpawnPoint FindLegacySpawnPoint(string spawnPointId)
         {
-            PlayerSpawnPoint[] spawnPoints = FindObjectsOfType<PlayerSpawnPoint>();
+            PlayerSpawnPoint[] spawnPoints = FindObjectsByType<PlayerSpawnPoint>(FindObjectsInactive.Exclude);
             for (int i = 0; i < spawnPoints.Length; i++)
             {
                 PlayerSpawnPoint spawnPoint = spawnPoints[i];

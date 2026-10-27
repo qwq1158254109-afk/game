@@ -45,7 +45,7 @@ namespace StudentGrowth
                 ? PlayerManager.Instance.ResolvePlayerAfterSceneLoad()
                 : null;
 
-            FullscreenMapSceneController[] maps = Object.FindObjectsByType<FullscreenMapSceneController>(FindObjectsSortMode.None);
+            FullscreenMapSceneController[] maps = Object.FindObjectsByType<FullscreenMapSceneController>();
             for (int i = 0; i < maps.Length; i++)
             {
                 FullscreenMapSceneController map = maps[i];

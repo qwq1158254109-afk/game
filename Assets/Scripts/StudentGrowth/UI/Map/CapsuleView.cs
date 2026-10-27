@@ -83,7 +83,14 @@ namespace StudentGrowth
         /// </summary>
         public static CapsuleView Ensure()
         {
-            CapsuleView existing = FindFirstObjectByType<CapsuleView>(FindObjectsInactive.Include);
+            // 先只找激活的：FindAnyObjectByType 不保证优先返回激活实例，
+            // 拿到未激活的实例会让 Show() 之后界面仍然看不见。
+            CapsuleView existing = FindAnyObjectByType<CapsuleView>();
+            if (existing == null)
+            {
+                existing = FindAnyObjectByType<CapsuleView>(FindObjectsInactive.Include);
+            }
+
             if (existing != null)
             {
                 return existing;
