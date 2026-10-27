@@ -1245,7 +1245,16 @@ namespace StudentGrowth
 
             if (iconCache.TryGetValue(assetPath, out Sprite cached))
             {
-                return cached;
+                // 2026-10-27：缓存里的 Sprite 是运行时 Sprite.Create 出来的，
+                // 可能已经被销毁（Resources.UnloadUnusedAssets 等）。Unity 重载的
+                // == 能识别「假 null」，这里必须验活 —— 直接把失效引用返回给
+                // Image.sprite，表现就是「第二次打开商店图标全没了」。
+                if (cached != null)
+                {
+                    return cached;
+                }
+
+                iconCache.Remove(assetPath);
             }
 
             Sprite sprite = null;
@@ -1268,6 +1277,9 @@ namespace StudentGrowth
                         filterMode = FilterMode.Point,
                         wrapMode = TextureWrapMode.Clamp
                     };
+                    // 运行时贴图不在 Resources 里，默认会被 Resources.UnloadUnusedAssets 回收；
+                    // 缓存持有的只是 Sprite，贴图没了 Sprite 也就废了。
+                    texture.hideFlags = HideFlags.DontUnloadUnusedAsset;
 
                     if (texture.LoadImage(bytes))
                     {
@@ -1291,7 +1303,11 @@ namespace StudentGrowth
 
             if (sprite == null)
             {
-                Debug.LogWarning("[MapShop] 图标为空：" + assetPath);
+                // 2026-10-27：用户报「第二次打开商店图标丢失」，这里留下可追踪的日志，
+                // 下次复现时能直接从 Console 看到是哪个路径读不出来。
+                Debug.LogWarning("[MapShop] 图标为空：" + assetPath
+                    + " | exists=" + File.Exists(assetPath)
+                    + " | cache=" + iconCache.Count);
             }
             else
             {
