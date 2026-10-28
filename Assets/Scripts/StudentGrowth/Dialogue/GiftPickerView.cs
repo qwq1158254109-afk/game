@@ -505,7 +505,15 @@ namespace StudentGrowth
 
             if (iconCache.TryGetValue(assetPath, out Sprite cached))
             {
-                return cached;
+                // 2026-10-28：命中必须验活。域重载 / 场景切换后缓存里的 Sprite 已被销毁，
+                // 字典仍返回一个「伪 null」引用（Unity 对象 == 重载后为 true），
+                // 之后图标就永远消失 —— 与商店第 7 轮「第二次打开图标丢失」同一根因。
+                if (cached != null)
+                {
+                    return cached;
+                }
+
+                iconCache.Remove(assetPath);
             }
 
             Sprite sprite = null;
@@ -528,6 +536,9 @@ namespace StudentGrowth
                     {
                         texture.filterMode = FilterMode.Point;
                         texture.wrapMode = TextureWrapMode.Clamp;
+                        // 运行时建的贴图没有任何资产引用，Resources.UnloadUnusedAssets 会把它当垃圾收走，
+                        // 之后缓存的 Sprite 变成伪 null。标住不让卸。
+                        texture.hideFlags = HideFlags.DontUnloadUnusedAsset;
                         sprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.one * 0.5f, 100f);
                     }
                     else
@@ -542,7 +553,12 @@ namespace StudentGrowth
                 sprite = null;
             }
 
-            iconCache[assetPath] = sprite;
+            // 读失败（文件不存在 / 解码失败）不写缓存：写 null 会让一次临时失败变成永久缺图。
+            if (sprite != null)
+            {
+                iconCache[assetPath] = sprite;
+            }
+
             return sprite;
         }
 
@@ -577,11 +593,19 @@ namespace StudentGrowth
 
         private void ApplySlotStyle(Image background, Button button, bool isSelected)
         {
-            // 照背包 ApplySlotVisual 的做法用 quickbarSlotSprite（专用格子贴图）。
-            // 之前用 SetSelectedButtonVisual 拿的是 buttonSprite（按钮贴图），
-            // Sliced 模式下实测整格不渲染，格子区只剩图标、看着像飘在空中。
-            // 直接用纯色块：卡片底色是米黄纸纹，格子再用同色系贴图会糊成一片。
-            // 深棕底 + 选中暖黄，边界最清楚。
+            // 2026-10-28：格子改用主题纸纹格（quickbarSlotSprite），与背包 ApplySlotVisual 同配方。
+            // 之前是纯色深棕块，压在米黄纸纹面板上是一块「贴上去的补丁」，边界发硬、和面板不咬合。
+            // 选中态仍用暖黄，只是把它作为 tint 乘在纸纹上，保留可辨识度。
+            if (theme != null && theme.quickbarSlotSprite != null)
+            {
+                background.sprite = theme.quickbarSlotSprite;
+                background.type = Image.Type.Sliced;
+                background.color = isSelected
+                    ? new Color(0.96f, 0.76f, 0.36f, 1f)
+                    : Color.white;
+                return;
+            }
+
             background.sprite = GameUiStyle.GetSolidSprite();
             background.type = Image.Type.Simple;
             background.color = isSelected
