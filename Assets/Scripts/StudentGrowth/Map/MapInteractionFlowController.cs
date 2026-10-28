@@ -719,7 +719,7 @@ namespace StudentGrowth
 
             if (openShop)
             {
-                OpenShopAfterDialogue();
+                OpenShopAfterDialogue(target);
                 SetState(MapInteractionFlowState.Idle);
                 ApplyVisuals();
                 return;
@@ -1180,20 +1180,43 @@ namespace StudentGrowth
             {
                 shopView.theme = theme;
                 shopView.Configure(ResolveSessionState(), FindAnyObjectByType<FullscreenMapHudView>());
+                // 活动路径打开商店后关门就回地图，别继承对话那条线的「关店回菜单」回调。
+                shopView.SetCloseCallback(null);
                 shopView.Show();
             }
         }
 
-        /// <summary>对话选项 openShop 的落点：与 ShowShopIfNeeded 同一套打开逻辑，只是不经过活动执行。</summary>
-        private void OpenShopAfterDialogue()
+        /// <summary>
+        /// 对话选项 openShop 的落点：与 ShowShopIfNeeded 同一套打开逻辑，只是不经过活动执行。
+        ///
+        /// 2026-10-27：关掉商店要回到对话菜单（用户指定）。售货员那条线是
+        /// 「菜单 → 看看货架 → 商店 → 关掉 → 接着聊」，不该一关店就把玩家丢回地图。
+        /// </summary>
+        private void OpenShopAfterDialogue(MapInteractionTarget target)
         {
             CreateShopUiIfNeeded();
             if (shopView != null)
             {
                 shopView.theme = theme;
                 shopView.Configure(ResolveSessionState(), FindAnyObjectByType<FullscreenMapHudView>());
+                shopView.SetCloseCallback(target != null && target.dialogue != null
+                    ? (Action)(() => ReturnToDialogueAfterShop(target))
+                    : null);
                 shopView.Show();
             }
+        }
+
+        /// <summary>商店关掉之后把菜单对话接回来（关店不结束整段对话）。</summary>
+        private void ReturnToDialogueAfterShop(MapInteractionTarget target)
+        {
+            if (target == null || target.dialogue == null)
+            {
+                SetState(MapInteractionFlowState.Idle);
+                ApplyVisuals();
+                return;
+            }
+
+            BeginDialogue(target);
         }
 
         /// <summary>
