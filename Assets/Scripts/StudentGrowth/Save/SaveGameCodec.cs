@@ -68,12 +68,20 @@ namespace StudentGrowth
                     value = Mathf.Clamp(e.value, NpcRelationshipState.MinValue, NpcRelationshipState.MaxValue)
                 })
                 .ToList();
-            state.capsulePulls = r.capsulePulls == null
+            // 2026-10-28：原来这里用 Take(200)，取的是**最老**的 200 条 —— 记录超过 200 条时
+            // 会丢掉最新的抽卡，正好和「抽卡记录」这个面板的用途相反。改成保留最近 200 条。
+            List<CapsulePullEntry> restoredPulls = r.capsulePulls == null
                 ? new List<CapsulePullEntry>()
                 : r.capsulePulls
                     .Where(e => e != null && !string.IsNullOrWhiteSpace(e.cardId))
-                    .Take(200)
                     .ToList();
+            const int maxPulls = 200;
+            if (restoredPulls.Count > maxPulls)
+            {
+                restoredPulls = restoredPulls.GetRange(restoredPulls.Count - maxPulls, maxPulls);
+            }
+
+            state.capsulePulls = restoredPulls;
             return new LoadedGameState(r,state);
         }
         private static void Validate(SaveGameRecord r)

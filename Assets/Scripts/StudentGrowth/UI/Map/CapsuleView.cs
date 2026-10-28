@@ -56,6 +56,9 @@ namespace StudentGrowth
         private Text historyEntriesText;
         private RectTransform burstRect;
         private Image burstImage;
+        /// <summary>稀有专属的竖向光柱（2026-10-28，T5）：从蛋的位置升起、迅速淡出。</summary>
+        private RectTransform pillarRect;
+        private Image pillarImage;
         private RectTransform shellLeftRect;
         private RectTransform shellRightRect;
         private readonly List<Image> particles = new List<Image>();
@@ -73,6 +76,7 @@ namespace StudentGrowth
         private static Sprite cardBackSprite;
         private static Sprite shellSprite;
         private static Sprite burstSprite;
+        private static Sprite pillarSprite;
         private static Sprite particleSprite;
 
         /// <summary>
@@ -407,7 +411,7 @@ namespace StudentGrowth
 
             // ── 1. 机器晃动（简化版演出：去掉投币金币/旋钮/罩内扭蛋这类
             //    依赖像素级对齐的可动件，它们只要偏一点就很怪）
-            Sfx.Ui.Click();
+            Sfx.Capsule.Coin();
             Vector3 machineBase = machineRect.localPosition;
             yield return Tween(0.6f, p =>
             {
@@ -417,7 +421,7 @@ namespace StudentGrowth
             machineRect.localPosition = machineBase;
 
             // ── 3. 出蛋：从机台下沿掉出，一次弹跳后停在机台脚下
-            Sfx.World.PageFlip();
+            Sfx.Capsule.Drop();
             capsuleRect.gameObject.SetActive(true);
             capsuleRect.localPosition = new Vector3(ChuteX, ChuteY, 0f);
             capsuleRect.localScale = Vector3.one;
@@ -443,8 +447,17 @@ namespace StudentGrowth
             capsuleRect.localPosition = new Vector3(ChuteX, CapsuleRestY, 0f);
 
             // ── 4. 摇蛋：越来越剧烈
+            // 2026-10-28：摇蛋两段摩擦音，第二段升调，听起来像越摇越急。
+            Sfx.Capsule.Rattle(1f);
+            bool rattleSecond = false;
             yield return Tween(0.5f, p =>
             {
+                if (!rattleSecond && p >= 0.5f)
+                {
+                    rattleSecond = true;
+                    Sfx.Capsule.Rattle(1.18f);
+                }
+
                 float amp = 4f + p * 10f;
                 capsuleRect.localPosition = new Vector3(
                     ChuteX + Mathf.Sin(Time.unscaledTime * 55f) * amp, CapsuleRestY, 0f);
@@ -457,8 +470,18 @@ namespace StudentGrowth
             float suspense = card.rarity == CardRarity.Rare ? 1.4f : card.rarity == CardRarity.Uncommon ? 0.8f : 0.3f;
             capsuleGlow.gameObject.SetActive(true);
             capsuleGlow.color = new Color(glow.r, glow.g, glow.b, 0f);
+            // 2026-10-28：漏光阶段按稀有度打「嗒、嗒」的节拍 —— 越稀有越密，
+            // 音高随进度微升，把等待的紧张感堆起来。
+            float tickInterval = card.rarity == CardRarity.Rare ? 0.13f : card.rarity == CardRarity.Uncommon ? 0.16f : 0.15f;
+            float nextTickAt = 0f;
             yield return Tween(suspense, p =>
             {
+                if (Time.unscaledTime >= nextTickAt)
+                {
+                    nextTickAt = Time.unscaledTime + tickInterval;
+                    Sfx.Capsule.Tick(1f + p * 0.35f);
+                }
+
                 float pulse = 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 12f);
                 capsuleGlow.color = new Color(glow.r, glow.g, glow.b, Mathf.Lerp(0.25f, 0.95f, p) * (0.6f + 0.4f * pulse));
                 capsuleGlow.rectTransform.localScale = Vector3.one * (1.15f + pulse * 0.25f);
@@ -469,15 +492,17 @@ namespace StudentGrowth
             });
             machineRect.localPosition = machineBase;
 
-            // ── 6. 炸壳：蛋壳两半飞出 + 集中线 + 粒子（稀有全屏金闪）
+            // ── 6. 炸壳：蛋壳两半飞出 + 集中线 + 粒子（稀有全屏金闪 + 光柱）
             capsuleRect.gameObject.SetActive(false);
             capsuleGlow.gameObject.SetActive(false);
             SpawnShellHalves();
             SpawnParticles(card.rarity);
-            Sfx.Ui.Confirm();
+            Sfx.Capsule.Pop();
+            Sfx.Capsule.Fanfare(card.rarity);
             if (card.rarity == CardRarity.Rare)
             {
                 StartCoroutine(FlashBackdrop());
+                StartCoroutine(PlayLightPillar());
             }
 
             StartCoroutine(PlayBurst(card.rarity));
@@ -493,6 +518,7 @@ namespace StudentGrowth
             cardImage.color = Color.white;
             cardNameText.text = string.Empty;
             cardCostText.text = string.Empty;
+            Sfx.Capsule.Flip();
             yield return Tween(0.25f, p =>
             {
                 cardRect.localScale = Vector3.Lerp(Vector3.one * 0.3f, Vector3.one, p);
@@ -506,10 +532,8 @@ namespace StudentGrowth
                 {
                     swapped = true;
                     ApplyCardFace(card);
-                    if (card.rarity == CardRarity.Rare)
-                    {
-                        Sfx.Ui.Confirm();
-                    }
+                    // 翻面那一下再补一次短促的「唰」：翻到正面才是信息落点。
+                    Sfx.Capsule.Flip();
                 }
             });
 
@@ -593,6 +617,37 @@ namespace StudentGrowth
             }
 
             backdrop.color = BackdropColor;
+        }
+
+        /// <summary>
+        /// 稀有光柱：从蛋的位置向上拉起一条竖向光带，0.9 s 内放大 + 淡出。
+        /// 只用一次 Image，不加粒子，避免稀有演出掉帧。
+        /// </summary>
+        private IEnumerator PlayLightPillar()
+        {
+            if (pillarRect == null || pillarImage == null)
+            {
+                yield break;
+            }
+
+            const float duration = 0.9f;
+            pillarRect.gameObject.SetActive(true);
+            float end = Time.unscaledTime + duration;
+            while (Time.unscaledTime < end && !skipRequested)
+            {
+                float p = 1f - (end - Time.unscaledTime) / duration;
+                pillarImage.color = new Color(1f, 0.95f, 0.72f, Mathf.Lerp(0.9f, 0f, p));
+                pillarRect.localScale = new Vector3(
+                    Mathf.Lerp(0.55f, 1.5f, p),
+                    Mathf.Lerp(0.4f, 1.15f, p),
+                    1f);
+                yield return null;
+            }
+
+            if (pillarRect != null)
+            {
+                pillarRect.gameObject.SetActive(false);
+            }
         }
 
         private IEnumerator PlayBurst(CardRarity rarity)
@@ -812,12 +867,21 @@ namespace StudentGrowth
             historySummaryText.rectTransform.anchorMin = historySummaryText.rectTransform.anchorMax = new Vector2(0.5f, 1f);
             historySummaryText.rectTransform.sizeDelta = new Vector2(1100f, 46f);
             historySummaryText.rectTransform.anchoredPosition = new Vector2(0f, -130f);
+            // 2026-10-28：这两块原来只走 CreateText 的默认（主题**深色**字），
+            // 压在 0.88 的黑蒙层上完全看不见 —— 用户报的「抽卡记录看不见」。
+            // 标题走了 ApplyTextWhite 所以一直正常，正好反证了原因。
+            // 这里只改颜色、不调 ApplyTextWhite：那会把 fontSize 覆盖成主题样式字号，
+            // 列表 20 行会因此挤成一片；字号保持 CreateText 传入的 28 / 24。
+            historySummaryText.color = Color.white;
 
             historyEntriesText = CreateText("Entries", historyRoot, string.Empty, 24, FontStyle.Normal, TextAnchor.UpperLeft);
             historyEntriesText.supportRichText = true;
             historyEntriesText.rectTransform.anchorMin = historyEntriesText.rectTransform.anchorMax = new Vector2(0.5f, 1f);
             historyEntriesText.rectTransform.sizeDelta = new Vector2(1000f, 640f);
             historyEntriesText.rectTransform.anchoredPosition = new Vector2(0f, -180f);
+            historyEntriesText.color = Color.white;
+            // 20 行 × 24 号在 640 高的容器里贴边，交给 Overflow 兜住，别被裁掉最后一行。
+            historyEntriesText.verticalOverflow = VerticalWrapMode.Overflow;
 
             Button backButton = CreateButton("Back", "返 回", new Vector2(0.5f, 0f), new Vector2(0f, 56f), new Vector2(240f, 80f), CloseHistory);
             Text backLabel = backButton.GetComponentInChildren<Text>();
@@ -847,43 +911,11 @@ namespace StudentGrowth
                 return;
             }
 
-            int common = 0, uncommon = 0, rare = 0, duplicate = 0;
-            for (int i = 0; i < pulls.Count; i++)
-            {
-                if (pulls[i] == null)
-                {
-                    continue;
-                }
-
-                if (pulls[i].rarity == 2) rare++;
-                else if (pulls[i].rarity == 1) uncommon++;
-                else common++;
-                if (pulls[i].duplicate) duplicate++;
-            }
-
-            int spent = pack != null ? pulls.Count * pack.price : 0;
-            historySummaryText.text = "共 " + pulls.Count + " 次｜"
-                + "普通 " + common + " · 非凡 " + uncommon + " · 稀有 " + rare
-                + "｜重复 " + duplicate
-                + (pack != null ? "｜累计花费 " + spent + " 金" : string.Empty);
-
-            List<string> lines = new List<string>();
-            int from = pulls.Count - 1;
-            int to = Mathf.Max(0, pulls.Count - 20);
-            for (int i = from; i >= to; i--)
-            {
-                CapsulePullEntry entry = pulls[i];
-                if (entry == null)
-                {
-                    continue;
-                }
-
-                lines.Add((i + 1) + ". " + RarityTag(entry.rarity) + " " + entry.cardName
-                    + (entry.duplicate ? "（重复）" : string.Empty));
-            }
-
-            historyEntriesText.text = string.Join("\n", lines.ToArray())
-                + (pulls.Count > 20 ? "\n…（只显示最近 20 条，共 " + pulls.Count + " 条）" : string.Empty);
+            // 2026-10-28：统计与「最近 N 条」的拼装抽到 CapsuleHistoryFormatter，
+            // 这里只管往 Text 里塞字符串（纯逻辑可被 EditMode 单测覆盖）。
+            int packPrice = pack != null ? pack.price : 0;
+            historySummaryText.text = CapsuleHistoryFormatter.BuildSummaryText(pulls, packPrice);
+            historyEntriesText.text = CapsuleHistoryFormatter.BuildEntriesText(pulls);
             historyRoot.gameObject.SetActive(true);
             Sfx.Ui.Open();
         }
@@ -897,16 +929,6 @@ namespace StudentGrowth
         }
 
         private bool HistoryIsOpen => historyRoot != null && historyRoot.gameObject.activeSelf;
-
-        private static string RarityTag(int rarity)
-        {
-            switch (rarity)
-            {
-                case 2: return "<color=#FFD24A>稀有</color>";
-                case 1: return "<color=#7DB8FF>非凡</color>";
-                default: return "<color=#DDDDDD>普通</color>";
-            }
-        }
 
         // ------------------------------------------------------------------
         // 布局：全屏机台
@@ -968,6 +990,18 @@ namespace StudentGrowth
             // 蛋壳两半
             shellLeftRect = CreateShell("ShellLeft", new Vector3(ChuteX, CapsuleRestY, 0f), true);
             shellRightRect = CreateShell("ShellRight", new Vector3(ChuteX, CapsuleRestY, 0f), false);
+
+            // 稀有光柱（2026-10-28）：放在集中线之前创建，渲染层级压在卡牌下面。
+            GameObject pillarObject = new GameObject("LightPillar", typeof(RectTransform));
+            pillarRect = pillarObject.transform as RectTransform;
+            pillarRect.SetParent(rootRect, false);
+            pillarRect.anchorMin = pillarRect.anchorMax = new Vector2(0.5f, 0.5f);
+            pillarRect.sizeDelta = new Vector2(260f, 900f);
+            pillarRect.localPosition = new Vector3(0f, -40f, 0f);
+            pillarImage = pillarObject.AddComponent<Image>();
+            pillarImage.sprite = EnsurePillarSprite();
+            pillarImage.raycastTarget = false;
+            pillarObject.SetActive(false);
 
             // 集中线（放射线）爆发层
             GameObject burstObject = new GameObject("Burst", typeof(RectTransform));
@@ -1272,6 +1306,35 @@ namespace StudentGrowth
 
             burstSprite = canvas.ToSprite();
             return burstSprite;
+        }
+
+        /// <summary>
+        /// 光柱贴图：竖向 sin 包络（上下淡出）+ 横向中心亮两侧淡。
+        /// 16×64 的纯程序图，Point 采样，放大后仍是柔和的竖向光带（不是硬边矩形）。
+        /// </summary>
+        private static Sprite EnsurePillarSprite()
+        {
+            if (pillarSprite != null)
+            {
+                return pillarSprite;
+            }
+
+            const int width = 16;
+            const int height = 64;
+            PixelCanvas canvas = new PixelCanvas(width, height);
+            float half = (width - 1) * 0.5f;
+            for (int y = 0; y < height; y++)
+            {
+                float vertical = Mathf.Sin(y / (float)(height - 1) * Mathf.PI);
+                for (int x = 0; x < width; x++)
+                {
+                    float horizontal = Mathf.Pow(1f - Mathf.Abs(x - half) / half, 1.6f);
+                    canvas.SetPixel(x, y, new Color(1f, 0.95f, 0.72f, vertical * horizontal * 0.85f));
+                }
+            }
+
+            pillarSprite = canvas.ToSprite();
+            return pillarSprite;
         }
 
         private static Sprite EnsureParticleSprite()
