@@ -91,7 +91,44 @@
 - 关闭 Search 索引：`Library/Search` 444 MB，主要影响磁盘与首次索引时间。
 - `Unity Hub` 单独占 484 MB，关掉不影响编辑器。
 
-## 五、事实与推测分界
+## 五、第 3 档实测：不加载上次场景（结论：收益有限）
+
+实现方式：把 `Library/LastSceneManagerSetup.txt` 改成 `sceneSetups: []`。
+（Unity 6 的编辑器程序集里搜不到 "Load Previous Scene" 字样，无法确认该 UI 选项存在，故走文件机制。）
+窗口标题变为「大创项目 - 无标题」，确认生效。
+
+| 配置 | 主进程 WorkingSet |
+|---|---:|
+| DX12 + `HomeLivingRoomScene` | 3,528 MB |
+| DX12 + `ShopMapScene` | 3,315 MB |
+| DX12 + 空场景 | 3,131 MB |
+| DX11 + 空场景（`-force-d3d11`） | 2,999 MB |
+
+**结论修正**：本文档第二节曾推测「3.5 GB 里约 2.3 GB 来自场景贴图」，该推测**错误**。
+空场景下仍占 3.1 GB；场景只影响 200–400 MB，图形 API 只差约 130 MB。
+**这 3 GB 是 Unity 6 编辑器加载本项目的固定开销**，与场景、贴图、图形 API 关系都不大。
+另：12:36 那次测到的 1.2 GB 是启动初期时机过早，不能作为基线。
+
+该方案不可持续——`LastSceneManagerSetup.txt` 每次 Unity 正常退出都会被重写，已恢复原内容。
+
+## 六、已执行：移除 com.unity.ai.assistant
+
+包缓存里 `com.unity.ai.assistant` 占 503 MB，带 `Microsoft.CodeAnalysis 3.11`、
+`System.Collections.Immutable`、`System.Reflection.Metadata` 一整套 Roslyn 编译器服务。
+
+实测（同场景 `ShopMapScene`、同 API DX12、同机）：
+
+| | 主进程 WorkingSet |
+|---|---:|
+| 移除前 | 3,159 MB |
+| 移除后 | **2,971 MB** |
+| 差值 | **188 MB（约 6%）** |
+
+验证：`Assets` 下无 `.cs` / `.asmdef` 引用 `Unity.AI`（grep 0 命中）；编译 0 error；
+Console 无 missing / Exception；`PackageCache` 中该包已消失；场景渲染截图一致。
+可逆：Package Manager 重装，或 `git revert`。
+
+## 七、事实与推测分界
 
 **可验证事实**：所有张数、解压体积、GUID 引用数、代码路径引用数、`Editor.log` 原文、
 进程 `WorkingSet`、`Library` 各目录体积、`textureCompression` 分布。
