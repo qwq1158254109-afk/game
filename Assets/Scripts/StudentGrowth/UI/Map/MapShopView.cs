@@ -14,15 +14,33 @@ namespace StudentGrowth
         private const string HintColor = "#73E7C1";
         // 2026-10-27：横条改成货架格子（用户：「购买卡牌用这种栏不合适，
         // 能做成货架上摆着卡牌或者物品的形式吗」）。
-        // 3 列 x 2 行 = 6 格/页：3*372 + 2*22 = 1160 = 列表区宽；
-        // 2*162 + 20 = 344 = 列表区高。格子够宽放「图标 + 名字 + 价格 + 效果」。
+        // 2026-10-28（T6）：左侧腾出立绘列，格子由 372 缩到 292 ——
+        // 3*292 + 2*22 = 920 = 列表区宽；2*162 + 20 = 344 = 列表区高。
+        // 原来 3*372+2*22=1160 铺满整行，没有立绘的位置。
         private const float StockRowHeight = 162f;
         private const float StockRowSpacing = 20f;
-        private const float StockColumnWidth = 372f;
+        private const float StockColumnWidth = 292f;
         private const float StockColumnGap = 22f;
         private const int StockColumns = 3;
         private const int StockPageRows = 2;
         private const int MaxVisibleStockItems = StockColumns * StockPageRows;
+
+        /// <summary>左侧立绘列（2026-10-28，T6）。列表区左边界 = 20 + 220 + 20 = 260。</summary>
+        private const float PortraitColumnWidth = 220f;
+        private const float PortraitColumnGap = 20f;
+        private const float StockListLeft = 20f + PortraitColumnWidth + PortraitColumnGap;
+        private const float StockListWidth = StockColumns * StockColumnWidth + (StockColumns - 1) * StockColumnGap;
+
+        /// <summary>
+        /// 店长立绘（占位，2026-10-28 T6）：用场景里同一套 32x32 角色帧放大 6 倍（192px），
+        /// Point 采样保持像素块。真立绘到位后换这张路径即可，布局不用动。
+        /// （另有一张 256x256 的 char_shop_owner.png，但那是带扫描线条纹的风格化图，
+        /// 和场景里的店长不是同一个形象，摆一起会让人以为是另一个角色。）
+        /// </summary>
+        private const string ShopOwnerPortraitPath =
+            "Assets/Art/New2_0/Characters/ShopOwner/Yellow/Frames/yellow_shop_owner_down_1.png";
+        /// <summary>32 的整数倍：6 倍 = 192，避免非整数缩放把像素块拉得宽窄不一。</summary>
+        private const float PortraitSize = 192f;
 
         // 卡牌区在道具区下方。面板原高 424 放不下第二块列表，扩到 660；
         // 场景里已序列化的实例不会重跑 BuildDefaultLayout，靠 EnsureLayoutExpanded 幂等修正。
@@ -100,6 +118,11 @@ namespace StudentGrowth
         public List<CardData> shopCards = new List<CardData>();
         public RectTransform cardListRoot;
         public Text cardSectionTitle;
+
+        /// <summary>左侧店长立绘列（2026-10-28，T6）。真立绘到位后只换 ShopOwnerPortraitPath。</summary>
+        public RectTransform portraitRoot;
+        public Image portraitImage;
+        private static Sprite portraitSprite;
 
         private readonly ShopPurchaseService purchaseService = new ShopPurchaseService();
 
@@ -252,10 +275,38 @@ namespace StudentGrowth
             tabCardButton = CreateButton("TabCard", panelRect, "卡牌", new Vector2(1014f, -66f), new Vector2(160f, 46f), new Vector2(0f, 1f));
             tabCardButton.onClick.AddListener(() => SetTab(1));
 
+            // 左侧店长立绘列（2026-10-28，T6）：占位图，真立绘到位后只换图不动布局。
+            // 容器 220x280 负责占位，真正的 Image 是它的子节点、固定 192x192（32 的 6 倍）。
+            GameObject portraitObject = new GameObject("ShopPortrait", typeof(RectTransform));
+            portraitRoot = portraitObject.transform as RectTransform;
+            portraitRoot.SetParent(panelRect, false);
+            SetRect(portraitRoot, new Vector2(20f, -170f),
+                new Vector2(PortraitColumnWidth, 280f), new Vector2(0f, 1f));
+
+            GameObject portraitImageObject = new GameObject("ShopPortraitImage", typeof(RectTransform));
+            RectTransform portraitImageRect = portraitImageObject.transform as RectTransform;
+            portraitImageRect.SetParent(portraitRoot, false);
+            portraitImageRect.anchorMin = new Vector2(0.5f, 0.5f);
+            portraitImageRect.anchorMax = new Vector2(0.5f, 0.5f);
+            portraitImageRect.pivot = new Vector2(0.5f, 0.5f);
+            portraitImageRect.sizeDelta = new Vector2(PortraitSize, PortraitSize);
+            portraitImageRect.anchoredPosition = Vector2.zero;
+            portraitImage = portraitImageObject.AddComponent<Image>();
+            // 复用 LoadIconSprite：它已经做过「缓存验活 + DontUnloadUnusedAsset + 失败不缓存」
+            // 三项（2026-10-27 商店图标丢失的修复），立绘走同一条读盘链路即可。
+            portraitSprite = LoadIconSprite(ShopOwnerPortraitPath);
+            portraitImage.sprite = portraitSprite;
+            portraitImage.type = Image.Type.Simple;
+            portraitImage.preserveAspect = true;
+            portraitImage.raycastTarget = false;
+            // 立绘只是装饰：拿不到图就整块隐藏，不占位、不显示空框。
+            portraitObject.SetActive(portraitImage.sprite != null);
+
             GameObject stockListObject = new GameObject("StockList", typeof(RectTransform));
             stockListRoot = stockListObject.transform as RectTransform;
             stockListRoot.SetParent(panelRect, false);
-            SetRect(stockListRoot, new Vector2(20f, -124f), new Vector2(1160f, 344f), new Vector2(0f, 1f));
+            SetRect(stockListRoot, new Vector2(StockListLeft, -124f),
+                new Vector2(StockListWidth, 344f), new Vector2(0f, 1f));
 
             cardSectionTitle = CreateText("CardSectionTitle", panelRect, "卡牌", 18, FontStyle.Bold, TextAnchor.MiddleLeft);
             SetRect(cardSectionTitle.rectTransform, new Vector2(24f, CardSectionTitleTop), new Vector2(572f, 22f), new Vector2(0f, 1f));
@@ -264,7 +315,8 @@ namespace StudentGrowth
             GameObject cardListObject = new GameObject("CardList", typeof(RectTransform));
             cardListRoot = cardListObject.transform as RectTransform;
             cardListRoot.SetParent(panelRect, false);
-            SetRect(cardListRoot, new Vector2(20f, -124f), new Vector2(1160f, 344f), new Vector2(0f, 1f));
+            SetRect(cardListRoot, new Vector2(StockListLeft, -124f),
+                new Vector2(StockListWidth, 344f), new Vector2(0f, 1f));
 
             feedbackText = CreateText("Feedback", panelRect, string.Empty, 17, FontStyle.Bold, TextAnchor.MiddleLeft);
             feedbackText.supportRichText = true;
@@ -560,27 +612,29 @@ namespace StudentGrowth
                 // 表现就是「商品名字没显示」。格子布局下给足 34 高，字号 20。
                 // 木牌有 5px 的上边框（九宫格拉伸后约 9px），内容从 -10 起会被压住，
                 // 统一往下挪到 -24。
-                SetRect(label.rectTransform, new Vector2(92f, -24f), new Vector2(190f, 34f), new Vector2(0f, 1f));
+                // 2026-10-28（T6）：格子 372→292，格内四件套整体左移收窄。
+                SetRect(label.rectTransform, new Vector2(74f, -24f), new Vector2(150f, 34f), new Vector2(0f, 1f));
                 GameUiStyle.ApplyPixelText(label, resolved, GameUiTextStyle.ButtonText, true);
-                label.fontSize = 20;
+                label.fontSize = 18;
             }
 
             // 第三个参数是染色：原来传 inverseText（深色），图标被整体压暗，
             // 在深棕横条上等于看不见。图标应该保持原色。
-            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(16f, -24f), new Vector2(60f, 60f), Color.white);
+            CreateStockIcon("ItemIcon", rect, ResolveItemSprite(item, resolved), new Vector2(14f, -28f), new Vector2(52f, 52f), Color.white);
 
             Text priceText = CreateText("Price", rect, "$" + ShopPurchaseService.ResolvePrice(item), 15, FontStyle.Bold, TextAnchor.MiddleRight);
             // 2026-10-27：价格贴着格子右边缘，$98 这种三位数看起来溢出。
             // 框右边缘从 358 收到 344，字号 18 -> 16。
-            SetRect(priceText.rectTransform, new Vector2(278f, -24f), new Vector2(66f, 34f), new Vector2(0f, 1f));
+            // 2026-10-28（T6）：格子缩到 292，价格右边界跟着收到 278。
+            SetRect(priceText.rectTransform, new Vector2(214f, -24f), new Vector2(64f, 34f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(priceText, resolved, GameUiTextStyle.StatText, true);
-            priceText.fontSize = 16;
+            priceText.fontSize = 15;
             priceText.color = resolved.gold;
 
             Text detailText = CreateText("Detail", rect, BuildStockDetail(item), 14, FontStyle.Normal, TextAnchor.UpperLeft);
             // 效果说明原来 12 号（SmallText 样式），用户反馈偏小，提到 14。
-            // 格子宽 372，扣掉图标列后还有 268，够放两行。
-            SetRect(detailText.rectTransform, new Vector2(92f, -62f), new Vector2(268f, 50f), new Vector2(0f, 1f));
+            // 2026-10-28（T6）：格子宽 292，扣掉图标列后还有 204，够放两行。
+            SetRect(detailText.rectTransform, new Vector2(74f, -62f), new Vector2(204f, 50f), new Vector2(0f, 1f));
             GameUiStyle.ApplyPixelText(detailText, resolved, GameUiTextStyle.SmallText, true);
             detailText.fontSize = 14;
             detailText.lineSpacing = 1f;
@@ -845,6 +899,8 @@ namespace StudentGrowth
             closeButton = null;
             shopIcon = null;
             moneyIcon = null;
+            portraitRoot = null;
+            portraitImage = null;
 
             panelRect.sizeDelta = new Vector2(PanelWidth, ShopPanelHeight);
             BuildDefaultLayout(originalParent as RectTransform);
@@ -873,6 +929,14 @@ namespace StudentGrowth
             // 比新高度 400 大，连高度判断都过不了。这里按面板宽度判定版本，
             // 不是 1200 就拆掉子节点整体重建。
             if (!Mathf.Approximately(panelRect.sizeDelta.x, PanelWidth))
+            {
+                RebuildLayout(panelRect);
+                return;
+            }
+
+            // 2026-10-28（T6）：加立绘列后列表区从 1160 缩到 920、左边界 20 → 260。
+            // 面板宽度没变，所以上面的版本判定抓不到这种旧实例，这里按列表宽度补一刀。
+            if (stockListRoot == null || !Mathf.Approximately(stockListRoot.sizeDelta.x, StockListWidth))
             {
                 RebuildLayout(panelRect);
                 return;

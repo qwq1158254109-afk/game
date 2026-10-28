@@ -53,6 +53,48 @@ namespace StudentGrowth.Tests
         }
 
         [Test]
+        public void PortraitColumnDoesNotOverlapStockList()
+        {
+            view.Show();
+
+            RectTransform portraitRect = view.portraitRoot;
+            RectTransform listRect = view.stockListRoot;
+            Assert.IsNotNull(portraitRect, "立绘列必须存在（2026-10-28 T6）");
+            Assert.IsNotNull(listRect, "商品列表区必须存在");
+            Assert.LessOrEqual(Right(portraitRect), Left(listRect),
+                "立绘列右边缘 " + Right(portraitRect) + " 压住了列表区左边缘 " + Left(listRect));
+        }
+
+        [Test]
+        public void StockGridFillsListWidthExactly()
+        {
+            view.Show();
+
+            RectTransform listRect = view.stockListRoot;
+            Assert.IsNotNull(listRect);
+
+            Button[] stockButtons = listRect.GetComponentsInChildren<Button>(true);
+            Assert.GreaterOrEqual(stockButtons.Length, 3, "第一页至少要有 3 件商品才能验三列");
+
+            RectTransform lastInRow = stockButtons[2].transform as RectTransform;
+            Assert.IsNotNull(lastInRow);
+            // 三列 = 3*292 + 2*22 = 920，应正好铺满列表区宽度（T6 把格子从 372 缩到 292）。
+            Assert.AreEqual(listRect.sizeDelta.x, Right(lastInRow), 0.5f,
+                "第三列右边缘应正好等于列表区宽度，实际 " + Right(lastInRow) + " vs " + listRect.sizeDelta.x);
+        }
+
+        [Test]
+        public void PortraitSitsInsidePanelLeftEdge()
+        {
+            view.Show();
+
+            RectTransform portraitRect = view.portraitRoot;
+            Assert.IsNotNull(portraitRect);
+            Assert.GreaterOrEqual(Left(portraitRect), 0f, "立绘列不能越过面板左边界");
+            Assert.Less(Left(portraitRect), 40f, "立绘列应贴面板左侧（留 20px 内边距）");
+        }
+
+        [Test]
         public void MoneyTextDoesNotOverlapCloseButton()
         {
             view.Show();
