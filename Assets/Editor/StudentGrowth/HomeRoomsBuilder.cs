@@ -20,6 +20,10 @@ namespace StudentGrowth.EditorTools
         private const string PropDir = "Assets/Art/Pixel/Generated/HomeReference/Props";
         private const string SceneDir = "Assets/Scenes/StudentGrowth/Maps";
         private const string RootName = "HomeMapSceneRoot";
+        /// <summary>客厅妈妈 NPC（2026-10-28）：对话菜单与 NPC 实体资产路径。</summary>
+        private const string MotherNpcPath = "Assets/Resources/StudentGrowth/NPC/npc_mother.asset";
+        private const string MotherMenuDialoguePath =
+            "Assets/Resources/StudentGrowth/Dialogue/Dialogue_npc_mother_Menu.asset";
         /// <summary>墙带厚度（世界单位）：画布 28.5 - 2×内半宽 12.75 = 1.5，正好等于门素材的 96px。</summary>
         private const float WallThick = 2.5f;
         /// <summary>门素材：make_rooms.py 按 DOOR_CROP 导出的 128×96 帧（@64PPU = 2.0×1.5 世界单位，
@@ -686,6 +690,29 @@ namespace StudentGrowth.EditorTools
                         if (!Mathf.Approximately(p.scale, 1f))
                         {
                             go.transform.localScale = new Vector3(p.scale, p.scale, 1f);
+                        }
+
+                        // 2026-10-28：客厅妈妈的对话菜单必须写进 builder。
+                        // 之前只在场景里手挂（70b868d），一旦整间从模板重建就会丢；
+                        // 挂接点是 MapInteractionTarget.dialogue / .npc，剧情组只填资产、不改场景逻辑。
+                        if (p.name == "FamilyNpcObject")
+                        {
+                            MapInteractionTarget npcTarget = go.GetComponent<MapInteractionTarget>();
+                            if (npcTarget == null)
+                            {
+                                Debug.LogWarning("[Rooms] " + spec.label + " 的 FamilyNpcObject 缺少 MapInteractionTarget");
+                            }
+                            else
+                            {
+                                npcTarget.dialogue =
+                                    AssetDatabase.LoadAssetAtPath<DialogueData>(MotherMenuDialoguePath);
+                                npcTarget.npc = AssetDatabase.LoadAssetAtPath<NpcData>(MotherNpcPath);
+                                if (npcTarget.dialogue == null || npcTarget.npc == null)
+                                {
+                                    Debug.LogWarning("[Rooms] 妈妈对话/NPC 资产缺失：" +
+                                                     MotherMenuDialoguePath + " / " + MotherNpcPath);
+                                }
+                            }
                         }
 
                         // 2026-10-23：床原来只有底图烘死的碰撞（下半截），上半截能穿过去。
