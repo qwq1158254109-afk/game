@@ -128,7 +128,52 @@
 Console 无 missing / Exception；`PackageCache` 中该包已消失；场景渲染截图一致。
 可逆：Package Manager 重装，或 `git revert`。
 
-## 七、事实与推测分界
+## 七、已执行：清理 1845 张零引用贴图
+
+依据 `Assets/Art/ModernInteriorsImportReport.md`（原文：`Total mapped assets: 1059`、
+`PNG copied into organized folders: 755`、`Original package preserved at Assets/Art/Modern_Interiors`）
+与 MD5 逐个比对：**组织副本 699 张与原始包内容 100% 相同，独有 0 张**。
+
+| 目录 | 移出 | 解压体积 | 保留 |
+|---|---:|---:|---|
+| `Art/CroppedObjects` | 1027 张 | 10.6 MB | 无（GUID 引用 0） |
+| `Art/Modern_Interiors` | 745 张 | 424.5 MB | 4 个 `0_Inside_*_new.png` |
+| `Art/Pixel/UI_Old` | 73 张 | 约 78 MB | 2 张（被 `.asset` 引用） |
+| **合计** | **1845 张** | **约 513 MB** | |
+
+落位 `_parked_art_20261028/`，`git mv` 保留历史，可整目录移回。
+
+### 两个坑（已修正）
+
+1. `NewArtIndoorMapBuilder` 用 `常量 + "/文件名"` 拼接路径读那 4 个 `0_Inside_*_new.png`，
+   脚本里的正则只抓 `"Assets/..."` 字面量，抓不到拼接结果 —— 第一遍把这 4 个文件也移走了，
+   已立刻移回。**清理脚本必须同时匹配目录常量与拼接写法。**
+2. `Art/Pixel/UI_Old/LegacyPixelUI/.../ui_event_window.png`、`ui_shop_window.png`
+   被 `Assets/Data/StudentGrowth/New2_0/**` 下的对话/商店资产引用，保留。
+
+### 实测内存（同一场景 `ShopMapScene`、同一 API DX12）
+
+| 阶段 | 主进程 WorkingSet |
+|---|---:|
+| 清理前（已移除 AI 包） | 2,971 MB |
+| 清理后 | **2,737 MB** |
+| 差值 | **234 MB** |
+
+注意：513 MB 是解压体积的理论值，实际降幅 234 MB —— 说明并非所有贴图同时驻留内存。
+
+## 八、累计效果
+
+同一场景 `ShopMapScene`、同一 API DX12 的对比：
+
+| 阶段 | 主进程 | 相对最初 |
+|---|---:|---:|
+| 最初（含 AI 包 + 全部资源） | 3,315 MB | — |
+| 移除 AI Assistant 包 | 2,971 MB | −344 MB |
+| 清理 1845 张零引用贴图 | **2,737 MB** | **−578 MB（约 17%）** |
+
+另：移出 3 个零引用目录（`Art/Tilemaps` 等 88 MB）与清理同批，未单独测增量。
+
+## 九、事实与推测分界
 
 **可验证事实**：所有张数、解压体积、GUID 引用数、代码路径引用数、`Editor.log` 原文、
 进程 `WorkingSet`、`Library` 各目录体积、`textureCompression` 分布。
