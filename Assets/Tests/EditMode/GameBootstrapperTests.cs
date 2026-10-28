@@ -29,7 +29,9 @@ namespace StudentGrowth.Tests
             GameSessionState state = bootstrapper.CreateSession();
 
             Assert.GreaterOrEqual(state.deckState.masterDeck.Count, 6);
-            Assert.GreaterOrEqual(state.itemInventory.ownedItems.Count, 2);
+            // 2026-10-28（T7）：起手道具目前只有 1 件（MvpSampleDataFactory.AddDefaultStarterItems），
+            // 原来断言 >=2 是过期期望。
+            Assert.GreaterOrEqual(state.itemInventory.ownedItems.Count, 1);
         }
 
         [Test]
@@ -61,8 +63,12 @@ namespace StudentGrowth.Tests
             GameSessionState state = bootstrapper.CreateSession();
             List<StageData> stages = bootstrapper.GetStageSequence();
 
-            Assert.AreEqual(1, state.deckState.masterDeck.Count);
-            Assert.AreEqual(card, state.deckState.masterDeck[0]);
+            // 2026-10-28（T7）：2026-10-17 批次 0 起，起始牌组优先读
+            // Resources/StudentGrowth/Battle/Pools/pool_starter（6 张），
+            // bootstrapperData.starterDeck 只在池子缺失时生效 ——
+            // 所以 deck 不再是 assigned 的那 1 张。assigned data 是否生效，
+            // 由下面的 items / stages 两条断言证明。
+            Assert.AreEqual(6, state.deckState.masterDeck.Count, "起手牌应来自 pool_starter（6 张）");
             Assert.AreEqual(1, state.itemInventory.ownedItems.Count);
             Assert.AreEqual(item, state.itemInventory.ownedItems[0]);
             Assert.AreEqual(1, stages.Count);

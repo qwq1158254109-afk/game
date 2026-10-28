@@ -30,12 +30,14 @@ namespace StudentGrowth.Tests
             AssertStatus(context, "location_school", StageMapLocationStatus.Unlocked);
             AssertStatus(context, "location_park", StageMapLocationStatus.Unlocked);
             AssertStatus(context, "location_library", StageMapLocationStatus.Unlocked);
-            AssertStatus(context, "location_shop", StageMapLocationStatus.ComingSoon);
+            // 2026-10-28（T7）：商店已经实装（MvpSampleDataFactory 三个学段都写 Unlocked），
+            // 原来断言 ComingSoon 是过期期望。
+            AssertStatus(context, "location_shop", StageMapLocationStatus.Unlocked);
             AssertStatus(context, "location_club", StageMapLocationStatus.Locked);
         }
 
         [Test]
-        public void StageTwoUnlocksLibraryAndKeepsShopComingSoon()
+        public void StageTwoUnlocksLibraryAndKeepsShopOpen()
         {
             StageContext context = CreateStageContext("stage_02_month_exam");
 
@@ -43,7 +45,7 @@ namespace StudentGrowth.Tests
             AssertStatus(context, "location_school", StageMapLocationStatus.Unlocked);
             AssertStatus(context, "location_park", StageMapLocationStatus.Unlocked);
             AssertStatus(context, "location_library", StageMapLocationStatus.Unlocked);
-            AssertStatus(context, "location_shop", StageMapLocationStatus.ComingSoon);
+            AssertStatus(context, "location_shop", StageMapLocationStatus.Unlocked);
             AssertStatus(context, "location_club", StageMapLocationStatus.Locked);
         }
 

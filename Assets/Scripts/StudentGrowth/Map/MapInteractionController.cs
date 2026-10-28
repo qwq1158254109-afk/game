@@ -189,7 +189,11 @@ namespace StudentGrowth
             }
 
             sceneTransitionController.ShowMap();
-            if (SceneManager.GetActiveScene().name != "StageHubMapScene"
+            // 2026-10-28（T7）：补 Application.isPlaying —— 编辑器非运行态调 LoadScene
+            // 会直接抛「This can only be used during play mode」，把 EditMode 用例全打红。
+            // Play 模式行为不变。
+            if (Application.isPlaying
+                && SceneManager.GetActiveScene().name != "StageHubMapScene"
                 && Application.CanStreamedLevelBeLoaded("StageHubMapScene"))
             {
                 GameBootstrapper.SetSharedSession(sceneTransitionController.sessionState);
