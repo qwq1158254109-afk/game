@@ -34,6 +34,12 @@ namespace StudentGrowth.Editor
         private const string ShopOwnerAnimatorPath = "Assets/Animations/StudentGrowth/New2_0/ShopMap/ShopOwner.controller";
 
         private const float Ppu = 16f;
+        /// <summary>
+        /// 颜色键抠图的硬切阈值（2026-10-28）。取原连续过渡区间 0.07~0.25 的中点：
+        /// 与键色距离小于它判为背景（全透明），否则判为实体（不透明）。
+        /// 像素风不允许中间 alpha，否则场景里会出现半透明鬼影。
+        /// </summary>
+        private const float ColorKeyCutoff = 0.16f;
         private static readonly Color BackgroundColorFallback = new Color32(149, 166, 196, 255);
 
         [MenuItem("Tools/Student Growth/New Art/Rebuild ShopMapScene With New2_0")]
@@ -47,6 +53,23 @@ namespace StudentGrowth.Editor
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log("ShopMapScene rebuilt as editable New2_0 Tilemap scene.");
+        }
+
+        /// <summary>
+        /// 只重生成商店道具 PNG（2026-10-28 新增）。
+        /// 用途：改了 CropProp 的抠图规则、只想刷新道具贴图时用。
+        /// **不要**为此跑 RebuildShopMapSceneWithNewArt —— 那个会整间重建场景，
+        /// 把场景里手挂的扭蛋机、对话引用一起冲掉。
+        /// </summary>
+        [MenuItem("Tools/Student Growth/New Art/Regenerate Shop Props Only")]
+        public static void RegeneratePropsOnly()
+        {
+            EnsureFolders();
+            ConfigureSourceImporters();
+            GenerateAssets();
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            Debug.Log("[Shop] 道具 PNG 已按新抠图规则重生成（场景未动）。");
         }
 
         [MenuItem("Tools/Student Growth/New Art/Verify ShopMapScene New2_0")]
@@ -324,8 +347,12 @@ namespace StudentGrowth.Editor
                     int sy = source.height - (topY + height) + y;
                     Color pixel = source.GetPixel(sx, sy);
                     float distance = ColorDistance(pixel, key);
-                    float alpha = Mathf.Clamp01((distance - 0.07f) / 0.18f);
-                    pixel.a = alpha;
+                    // 2026-10-28：像素风必须二值 alpha。
+                    // 原来是 Clamp01((distance - 0.07) / 0.18) 的连续过渡，颜色键附近的
+                    // 描边 / 阴影像素会拿到 0.07~0.25 之间的中间 alpha，铺到场景里就是
+                    // 半透明鬼影（商店中间货架最明显，中场上飘一层脏影子）。
+                    // 改成按中点硬切：离键色够远就是实心，够近就全透明，不留中间值。
+                    pixel.a = distance <= ColorKeyCutoff ? 0f : 1f;
                     raw.SetPixel(x, y, pixel);
                 }
             }
