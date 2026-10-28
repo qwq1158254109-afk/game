@@ -365,6 +365,7 @@ namespace StudentGrowth.Editor
             catch (Exception exception)
             {
                 summary.AddIssue("Legacy runtime UI preview audit failed for " + previewMode + ": " + exception.Message);
+                UnityEngine.Debug.LogException(exception);
             }
             finally
             {

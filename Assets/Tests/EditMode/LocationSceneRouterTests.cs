@@ -21,6 +21,11 @@ namespace StudentGrowth.Tests
             stageController = gameObject.AddComponent<StageController>();
             sceneTransitionController = gameObject.AddComponent<SceneTransitionController>();
             router = gameObject.AddComponent<LocationSceneRouter>();
+            // 2026-10-28（T7）：EditMode 里 SceneManager.LoadScene 会抛
+            // 「This can only be used during play mode」。这里关掉 Unity 场景加载，
+            // 只验路由决策本身（时间不消耗 / 状态判定 / currentLocationId 落盘）——
+            // 这些才是这些用例要锁的契约，真加载场景由 PlayMode 覆盖。
+            router.useUnitySceneLoadingForLatestMaps = false;
         }
 
         [TearDown]
@@ -73,9 +78,10 @@ namespace StudentGrowth.Tests
         {
             StartStage("stage_01_adaptation", 6);
 
-            LocationSceneRouteResult result = router.EnterLocationScene("location_library");
+            LocationSceneRouteResult result = router.EnterLocationScene("location_club");
 
-            Assert.IsFalse(result.success);
+            // 2026-10-28（T7）：图书馆三个学段都是 Unlocked，改用社团（stage_01 锁）。
+            Assert.IsFalse(result.success, result.message);
             Assert.AreEqual(StageMapLocationStatus.Locked, result.status);
             Assert.IsTrue(sceneTransitionController.isShowingMap);
             Assert.AreEqual(string.Empty, sessionState.locationState.currentLocationId);
@@ -83,14 +89,19 @@ namespace StudentGrowth.Tests
         }
 
         [Test]
-        public void ComingSoonLocationCannotEnter()
+        public void UnknownLocationIsRejected()
         {
             StartStage("stage_01_adaptation", 6);
 
-            LocationSceneRouteResult result = router.EnterLocationScene("location_shop");
+            // 2026-10-28（T7）：原来这条是 ComingSoonLocationCannotEnter，但商店已实装、
+            // 三个学段都是 Unlocked，整个数据里已经没有 ComingSoon 地点了。
+            // 改为锁「未知地点不会把玩家送进任何场景」—— 防 FindEntry 返回 null 时的空引用。
+            LocationSceneRouteResult result = router.EnterLocationScene("location_does_not_exist");
 
-            Assert.IsFalse(result.success);
-            Assert.AreEqual(StageMapLocationStatus.ComingSoon, result.status);
+            Assert.IsFalse(result.success, result.message);
+            Assert.AreEqual(StageMapLocationStatus.Hidden, result.status);
+            Assert.IsTrue(sceneTransitionController.isShowingMap);
+            Assert.AreEqual(6, sessionState.stageState.remainingTime);
             Assert.IsTrue(sceneTransitionController.isShowingMap);
             Assert.AreEqual(6, sessionState.stageState.remainingTime);
         }

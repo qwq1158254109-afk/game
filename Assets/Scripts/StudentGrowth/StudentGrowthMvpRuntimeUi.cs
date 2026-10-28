@@ -2917,6 +2917,14 @@ namespace StudentGrowth
         {
             BattleUIConfig uiConfig = GetBattleUiConfig();
 
+            // 2026-10-28（T7）：UI 主题审计的预览里没有真实 ChallengeData，state.data 为空。
+            // 原来直接读 targetProgress 会 NRE，把整条审计打断。这里提前返回，
+            // 让审计至少能跑完并报出「哪些节点缺主题组件」。
+            if (state == null || state.data == null)
+            {
+                return;
+            }
+
             Text objective = CreateText(
                 "BattleObjectiveText",
                 parent,
@@ -3819,6 +3827,13 @@ namespace StudentGrowth
 
         private void UpdateChallengeTopStatus(ChallengeRuntimeState state)
         {
+            // 2026-10-28（T7）：UI 主题审计的预览构建 / 数据缺失时 state.data 可能为空，
+            // 原来直接读 .displayName 会抛 NRE，把整条审计打成失败。
+            if (state == null || state.data == null)
+            {
+                return;
+            }
+
             titleText.text = state.data.displayName;
             SetTopStatusActionSpace(false);
             statusText.text = "回合 " + state.currentTurn + " / " + state.data.maxTurns + "    行动能量 " + state.currentEnergy;

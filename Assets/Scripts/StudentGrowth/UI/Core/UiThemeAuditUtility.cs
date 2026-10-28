@@ -125,6 +125,15 @@ namespace StudentGrowth
             }
 
             string value = objectName.ToLowerInvariant();
+
+            // 2026-10-28（T7）：进度条（EnergyBarBack / EnergyBarFill / PressureBarFill …）
+            // 是纯色填充图，本来就不该挂 PixelPanel —— 挂上反而会被九宫格拉伸变形。
+            // 原来 "bar" 一命中就要求 PixelPanel，每个场景都会报一串误报。
+            if (IsProgressBar(value))
+            {
+                return false;
+            }
+
             return value.Contains("panel")
                 || value.Contains("window")
                 || value.Contains("dialog")
@@ -133,6 +142,20 @@ namespace StudentGrowth
                 || value.Contains("hud")
                 || value.Contains("bar")
                 || value.Contains("view");
+        }
+
+        /// <summary>条状填充图：名字里带 bar，且以 back / fill 结尾。</summary>
+        private static bool IsProgressBar(string lowerName)
+        {
+            if (!lowerName.Contains("bar"))
+            {
+                return false;
+            }
+
+            return lowerName.EndsWith("back")
+                || lowerName.EndsWith("fill")
+                || lowerName.Contains("barback")
+                || lowerName.Contains("barfill");
         }
 
         public static string GetHierarchyPath(Transform transform)
@@ -161,6 +184,14 @@ namespace StudentGrowth
             }
 
             summary.buttonCount++;
+            // 2026-10-28（T7）：Button_HitArea 这类纯点击热区没有可见底图，
+            // 挂 PixelButton 反而会多画一层。名字里带 hitarea / hitbox 的直接放过。
+            string lowerName = button.gameObject.name.ToLowerInvariant();
+            if (lowerName.Contains("hitarea") || lowerName.Contains("hitbox"))
+            {
+                return;
+            }
+
             if (button.GetComponent<PixelButton>() == null)
             {
                 summary.AddIssue(scope + " button missing PixelButton: " + GetHierarchyPath(button.transform));

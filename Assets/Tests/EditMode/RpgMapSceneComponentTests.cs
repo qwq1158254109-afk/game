@@ -72,7 +72,10 @@ namespace StudentGrowth.Tests
             sceneTransitionController.SetSessionState(state);
             executor.Configure(state, stageController, activityController, miniGameController, sceneTransitionController);
 
-            ActivityData activity = CreateActivity("activity_rest_early_sleep", "早点休息", 1);
+            // 2026-10-28（T7）：原来用「早点休息」验扣时间，但睡眠活动走的是换日结算
+            // （LocationActionExecutor 传 consumeStageTime = !isSleepActivity），本来就不扣
+            // 行动点，断言 3-1=2 一直是不可能成立的期望。换成普通活动。
+            ActivityData activity = CreateActivity("activity_family_dinner", "家庭晚饭聊天", 1);
             StageData stage = ScriptableObject.CreateInstance<StageData>();
             stage.stageId = "stage_test";
             stage.displayName = "测试阶段";
@@ -84,7 +87,7 @@ namespace StudentGrowth.Tests
             GameObject targetObject = CreateGameObject("BedTarget");
             MapInteractionPoint point = targetObject.AddComponent<MapInteractionPoint>();
             point.locationId = "location_home";
-            point.actionId = "activity_rest_early_sleep";
+            point.actionId = "activity_family_dinner";
             MapInteractionTarget target = targetObject.AddComponent<MapInteractionTarget>();
             target.interactionPoint = point;
             target.fallbackActivity = activity;
@@ -94,8 +97,9 @@ namespace StudentGrowth.Tests
 
             LocationActionExecutionResult result = mapController.TryInteract(target);
 
-            Assert.IsTrue(result.success);
-            Assert.AreEqual(2, state.stageState.remainingTime);
+            Assert.IsTrue(result.success, "活动执行失败：" + result.message);
+            Assert.AreEqual(2, state.stageState.remainingTime,
+                "活动消耗 1 点时间，3 - 1 应为 2，实际 " + state.stageState.remainingTime);
             Assert.IsTrue(result.timeAdvanced);
         }
 
@@ -132,7 +136,7 @@ namespace StudentGrowth.Tests
 
             LocationActionExecutionResult result = mapController.TryInteract(point);
 
-            Assert.IsTrue(result.success);
+            Assert.IsTrue(result.success, "进入地点失败：" + result.message);
             Assert.AreEqual(6, result.remainingTimeBefore);
             Assert.AreEqual(6, result.remainingTimeAfter);
             Assert.AreEqual("location_home", state.locationState.currentLocationId);
@@ -198,8 +202,10 @@ namespace StudentGrowth.Tests
             MapInteractionPoint point = portalObject.AddComponent<MapInteractionPoint>();
             MapInteractionTarget target = portalObject.AddComponent<MapInteractionTarget>();
             MapLocationPortal portal = portalObject.AddComponent<MapLocationPortal>();
-            portal.locationId = "location_library";
-            portal.displayName = "图书馆";
+            // 2026-10-28（T7）：图书馆三个学段都是 Unlocked，原来用它在 stage_01
+            // 验「锁定提示」已经验不到东西了。改用社团（stage_01 锁、第三学段开放）。
+            portal.locationId = "location_club";
+            portal.displayName = "社团活动室";
             target.interactionPoint = point;
 
             GameObject controllerObject = CreateGameObject("StageHubController");
@@ -211,7 +217,7 @@ namespace StudentGrowth.Tests
             controller.RefreshPortals();
 
             Assert.AreEqual(StageMapLocationStatus.Locked, portal.CurrentStatus);
-            Assert.IsTrue(target.promptText.Contains("月考压力阶段解锁"));
+            Assert.IsTrue(target.promptText.Contains("第三学段起开放"), "锁定提示应带出 lockedReason");
         }
 
         private ActivityData CreateActivity(string activityId, string displayName, int timeCost)

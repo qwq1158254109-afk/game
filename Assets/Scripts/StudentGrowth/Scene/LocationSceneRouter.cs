@@ -227,6 +227,13 @@ namespace StudentGrowth
                 return false;
             }
 
+            // 2026-10-28（T7）：编辑器非运行态不能 LoadScene（会抛 InvalidOperationException）。
+            // 路由决策本身与场景加载解耦，EditMode 只验前者。
+            if (!Application.isPlaying)
+            {
+                return false;
+            }
+
             string activeSceneName = SceneManager.GetActiveScene().name;
             if (activeSceneName == entry.sceneName)
             {
@@ -300,6 +307,7 @@ namespace StudentGrowth
                 ? "StageHubMapScene"
                 : stageMapSceneName;
             if (!useUnitySceneLoadingForLatestMaps
+                || !Application.isPlaying
                 || string.IsNullOrEmpty(targetSceneName)
                 || SceneManager.GetActiveScene().name == targetSceneName)
             {
@@ -351,6 +359,14 @@ namespace StudentGrowth
 
         private static bool CanLoadScene(string sceneName)
         {
+            // 2026-10-28（T7）：编辑器非运行态下 Application.CanStreamedLevelBeLoaded
+            // 对任何场景都返回 false，会把「场景已配置」的判定全部打成 Disabled，
+            // EditMode 用例就没法验路由决策。非 Play 模式直接放行，由 Play 模式负责真实校验。
+            if (!Application.isPlaying)
+            {
+                return !string.IsNullOrEmpty(sceneName);
+            }
+
             return !string.IsNullOrEmpty(sceneName) && Application.CanStreamedLevelBeLoaded(sceneName);
         }
 

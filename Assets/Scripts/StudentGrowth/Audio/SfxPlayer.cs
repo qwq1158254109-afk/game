@@ -53,6 +53,14 @@ namespace StudentGrowth
 
         internal static void PlayInternal(string clipPath, float volume, float pitch)
         {
+            // 2026-10-28（T7）：编辑器非运行态不能 DontDestroyOnLoad（会抛
+            // 「can only be used in play mode」）。EditMode 用例只想验「没素材不炸」，
+            // 这里直接静默返回即可，Play 模式行为不变。
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+
             if (instance == null)
             {
                 Bootstrap();
