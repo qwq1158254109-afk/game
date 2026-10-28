@@ -53,5 +53,44 @@ namespace StudentGrowth
             public static void PageFlip() => PlayVaried(new[] { "World/bookFlip1", "World/bookFlip2", "World/bookFlip3" }, 0.6f);
             public static void Coin() => PlayVaried(new[] { "World/handleCoins", "World/handleCoins2" }, 0.7f);
         }
+
+        /// <summary>
+        /// 扭蛋机演出（2026-10-28，T5）。素材由 Tools/make_gacha_sfx.py 程序合成，
+        /// 落在 Resources/Audio/SFX/Gacha/；改音色就重跑那个脚本，不要手改 wav。
+        /// </summary>
+        public static class Capsule
+        {
+            /// <summary>投币：两下上滑的金属音。</summary>
+            public static void Coin() => Play("Gacha/gacha_coin", 0.6f);
+
+            /// <summary>出蛋：塑料蛋落进滑槽的「咚」。</summary>
+            public static void Drop() => Play("Gacha/gacha_drop", 0.65f);
+
+            /// <summary>摇蛋：壳内滚动摩擦，每次随机微调音高避免机械。</summary>
+            public static void Rattle(float pitch = 1f) => Play("Gacha/gacha_rattle", 0.5f, pitch);
+
+            /// <summary>悬念脉冲：漏光阶段按稀有度重复调用，越稀有越密。</summary>
+            public static void Tick(float pitch = 1f) => Play("Gacha/gacha_tick", 0.45f, pitch);
+
+            /// <summary>炸壳：噪声爆裂。</summary>
+            public static void Pop() => Play("Gacha/gacha_pop", 0.75f);
+
+            /// <summary>翻卡：卡背转正面的短促「唰」。</summary>
+            public static void Flip() => Play("Gacha/gacha_flip", 0.6f);
+
+            /// <summary>按稀有度分层的揭晓音乐；普通不出声，避免每次抽卡都吵。</summary>
+            public static void Fanfare(CardRarity rarity)
+            {
+                switch (rarity)
+                {
+                    case CardRarity.Rare:
+                        Play("Gacha/gacha_fanfare_rare", 0.7f);
+                        break;
+                    case CardRarity.Uncommon:
+                        Play("Gacha/gacha_fanfare_uncommon", 0.6f);
+                        break;
+                }
+            }
+        }
     }
 }
