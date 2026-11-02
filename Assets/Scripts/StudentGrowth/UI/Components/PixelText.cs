@@ -12,6 +12,22 @@ namespace StudentGrowth
         public bool inverse;
         public bool applyOnAwake = true;
 
+        /// <summary>
+        /// 字号覆盖：0（默认）跟随主题；大于 0 时用这个字号。
+        /// 开场对话这类需要比常规 UI 大一档的地方用它，不牵动全局字号。
+        /// </summary>
+        [SerializeField] private int fontSizeOverride;
+
+        public int FontSizeOverride
+        {
+            get { return fontSizeOverride; }
+            set
+            {
+                fontSizeOverride = value;
+                ApplyStyle();
+            }
+        }
+
         private void Reset()
         {
             ResolveReferences();
@@ -51,6 +67,10 @@ namespace StudentGrowth
         {
             ResolveReferences();
             GameUiStyle.ApplyText(target, theme, textStyle, inverse);
+            if (fontSizeOverride > 0 && target != null)
+            {
+                target.fontSize = fontSizeOverride;
+            }
         }
 
         private void ResolveReferences()
