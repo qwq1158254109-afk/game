@@ -380,7 +380,7 @@ namespace StudentGrowth
 
         private IEnumerator WaitForGameplay()
         {
-            float deadline = Time.realtimeSinceStartup + 15f;
+            float deadline = Time.realtimeSinceStartup + 2f;
             while (Time.realtimeSinceStartup < deadline)
             {
                 GameApplicationRuntime app = GameApplicationRuntime.Instance;
@@ -397,12 +397,13 @@ namespace StudentGrowth
         {
             // 新游戏加载期间 PauseMenuView 还盖着“正在处理，请稍候…”，
             // 等流程真正进入 Gameplay、遮罩收起后再开始可见的开场。
+            // 这里只做极短的让路（上限 2s），避免点完开始游戏后干等一长段。
             yield return WaitForGameplay();
 
             // 等 MapCameraController / RebindPlayer 在本帧跑完，再把镜头和玩家锁回来。
             yield return null;
             ApplyCloseCamera();
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(0.25f);
 
             StartCoroutine(PullCameraToRoom());
             yield return WalkMotherPath(BuildMotherPath(), MotherWalkSeconds);
