@@ -11,6 +11,7 @@ namespace StudentGrowth
     {
         public const string MainMenuPath="Assets/Scenes/StudentGrowth/MainMenuScene.unity";
         public const string HomePath="Assets/Scenes/StudentGrowth/Maps/HomeLivingRoomScene.unity";
+        public const string BedroomPath="Assets/Scenes/StudentGrowth/Maps/HomeBedroomScene.unity";
         public GameSessionLifetime Lifetime { get; } = new GameSessionLifetime();
         public UnityGameSaveSource Source => source;
         public UnityGameFlowBackend Backend { get; private set; }
@@ -32,7 +33,7 @@ namespace StudentGrowth
                 return instance;
             }
         }
-        [SerializeField] private string newGameScenePath = HomePath;
+        [SerializeField] private string newGameScenePath = BedroomPath;
         public PauseMenuCoordinator Coordinator { get; private set; }
         public SaveLoadService SaveService { get; private set; }
         public IGameFlowService FlowService { get; private set; }
@@ -190,8 +191,32 @@ namespace StudentGrowth
         }
         private void OnSceneLoaded(Scene scene,LoadSceneMode mode)
         {
+            SetMainMenuVisible(scene.path == MainMenuPath);
             PlayBgmForScene(scene.path);
             StartCoroutine(BindDayEvents());
+        }
+
+        /// <summary>
+        /// 主菜单是挂在持久根下的（DDOL），开始游戏后场景虽然切走，它仍会绘制全屏背景，
+        /// 把卧室世界整个盖住。进入非菜单场景时隐藏主菜单根，回标题时再恢复。
+        /// </summary>
+        private static void SetMainMenuVisible(bool visible)
+        {
+            MainMenuView[] views = Resources.FindObjectsOfTypeAll<MainMenuView>();
+            for (int i = 0; i < views.Length; i++)
+            {
+                MainMenuView view = views[i];
+                if (view == null)
+                {
+                    continue;
+                }
+
+                GameObject root = view.gameObject;
+                if (root != null && root.scene.IsValid() && root.scene.name == "DontDestroyOnLoad")
+                {
+                    root.SetActive(visible);
+                }
+            }
         }
 
         /// <summary>
@@ -268,8 +293,13 @@ namespace StudentGrowth
         { CommandResult result=null; yield return Backend.ReturnToMenuAsync(r=>result=r); if(result?.Success!=true) throw new InvalidOperationException(result?.ErrorCode ?? "FLOW_MENU_FAILED"); }
         private IEnumerator StartNewGameAsync()
         {
+            OpeningCutsceneState.Request();
             CommandResult result=null; yield return Backend.StartNewAsync(newGameScenePath,r=>result=r);
-            if(result?.Success!=true) throw new InvalidOperationException(result?.ErrorCode ?? "FLOW_NEW_GAME_FAILED");
+            if(result?.Success!=true)
+            {
+                OpeningCutsceneState.Clear();
+                throw new InvalidOperationException(result?.ErrorCode ?? "FLOW_NEW_GAME_FAILED");
+            }
         }
         private void OnDestroy()
         {
