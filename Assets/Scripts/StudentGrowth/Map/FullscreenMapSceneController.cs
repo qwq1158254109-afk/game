@@ -56,6 +56,12 @@ namespace StudentGrowth
 
         private void Start()
         {
+            // 新游戏开场：黑屏、躺床、妈妈叫起床，播完再交还地图控制。
+            if (OpeningCutsceneController.TryBegin(this))
+            {
+                return;
+            }
+
             RefreshHud();
             ShowLocationToast();
             if (promptView != null)
