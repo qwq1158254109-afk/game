@@ -176,6 +176,17 @@ MonoBehaviour:
   background: {fileID: 694417}
   labelText: {fileID: 1299472719}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &694416
@@ -760,6 +771,17 @@ MonoBehaviour:
   background: {fileID: 65017151}
   labelText: {fileID: 2096258072}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &65017150
@@ -3433,6 +3455,7 @@ MonoBehaviour:
   locationAction: {fileID: 0}
   fallbackActivity: {fileID: 11400000, guid: f64c4e518d9222346b023e4c99455f1b, type: 2}
   dialogue: {fileID: 0}
+  npc: {fileID: 0}
   interactionPoint: {fileID: 220611097}
   isExitPortal: 0
   consumeTimeOnInteraction: 1
@@ -3765,7 +3788,7 @@ Transform:
   m_GameObject: {fileID: 241167445}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8, y: 1.2, z: 0}
+  m_LocalPosition: {x: -4.34, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4999,6 +5022,17 @@ MonoBehaviour:
   background: {fileID: 334296239}
   labelText: {fileID: 2122761006}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &334296238
@@ -5555,6 +5589,7 @@ MonoBehaviour:
   sessionState:
     runId: 
     tutorialSeen: 0
+    capsulePityUsed: 0
     playerState:
       chinese: 35
       math: 35
@@ -5592,6 +5627,9 @@ MonoBehaviour:
       exhaustPile: []
     itemInventory:
       ownedItems: []
+    npcRelationships:
+      entries: []
+    capsulePulls: []
     unlockedActivities: []
     unlockedStages: []
     clearedStageIds: []
@@ -5616,6 +5654,8 @@ MonoBehaviour:
   shopCards: []
   cardListRoot: {fileID: 0}
   cardSectionTitle: {fileID: 0}
+  portraitRoot: {fileID: 0}
+  portraitImage: {fileID: 0}
 --- !u!1 &385528459
 GameObject:
   m_ObjectHideFlags: 0
@@ -5907,6 +5947,7 @@ MonoBehaviour:
   sessionState:
     runId: 
     tutorialSeen: 0
+    capsulePityUsed: 0
     playerState:
       chinese: 35
       math: 35
@@ -5944,6 +5985,9 @@ MonoBehaviour:
       exhaustPile: []
     itemInventory:
       ownedItems: []
+    npcRelationships:
+      entries: []
+    capsulePulls: []
     unlockedActivities: []
     unlockedStages: []
     clearedStageIds: []
@@ -5956,6 +6000,7 @@ MonoBehaviour:
   dialogueRunner: {fileID: 0}
   stageReportView: {fileID: 0}
   shopView: {fileID: 381356281}
+  capsuleView: {fileID: 0}
   confirmView: {fileID: 610692533}
   resultView: {fileID: 478056380}
   requireConfirmForActivities: 1
@@ -7229,6 +7274,7 @@ MonoBehaviour:
   locationAction: {fileID: 0}
   fallbackActivity: {fileID: 0}
   dialogue: {fileID: 0}
+  npc: {fileID: 0}
   interactionPoint: {fileID: 571136024}
   isExitPortal: 0
   consumeTimeOnInteraction: 0
@@ -7787,6 +7833,17 @@ MonoBehaviour:
   background: {fileID: 598085256}
   labelText: {fileID: 1678535296}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &598085255
@@ -8562,6 +8619,17 @@ MonoBehaviour:
   background: {fileID: 651150408}
   labelText: {fileID: 1916257099}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &651150407
@@ -9623,6 +9691,17 @@ MonoBehaviour:
   background: {fileID: 706541593}
   labelText: {fileID: 1831861703}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &706541592
@@ -10264,6 +10343,17 @@ MonoBehaviour:
   background: {fileID: 789334095}
   labelText: {fileID: 1259666734}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &789334094
@@ -10747,6 +10837,7 @@ MonoBehaviour:
   sessionState:
     runId: 
     tutorialSeen: 0
+    capsulePityUsed: 0
     playerState:
       chinese: 35
       math: 35
@@ -10784,6 +10875,9 @@ MonoBehaviour:
       exhaustPile: []
     itemInventory:
       ownedItems: []
+    npcRelationships:
+      entries: []
+    capsulePulls: []
     unlockedActivities: []
     unlockedStages: []
     clearedStageIds: []
@@ -11805,6 +11899,17 @@ MonoBehaviour:
   background: {fileID: 913981654}
   labelText: {fileID: 1436112461}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &913981653
@@ -16487,6 +16592,17 @@ MonoBehaviour:
   background: {fileID: 1311093931}
   labelText: {fileID: 1992963045}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &1311093930
@@ -16742,6 +16858,17 @@ MonoBehaviour:
   background: {fileID: 1332864003}
   labelText: {fileID: 1718691622}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &1332864002
@@ -17368,6 +17495,17 @@ MonoBehaviour:
   background: {fileID: 1356580660}
   labelText: {fileID: 537365150}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &1356580659
@@ -17768,6 +17906,17 @@ MonoBehaviour:
   background: {fileID: 1411435239}
   labelText: {fileID: 2140558924}
   selected: 1
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &1411435238
@@ -17909,6 +18058,17 @@ MonoBehaviour:
   background: {fileID: 1413113119}
   labelText: {fileID: 1593670294}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &1413113118
@@ -21828,6 +21988,7 @@ MonoBehaviour:
   sessionState:
     runId: 
     tutorialSeen: 0
+    capsulePityUsed: 0
     playerState:
       chinese: 35
       math: 35
@@ -21865,6 +22026,9 @@ MonoBehaviour:
       exhaustPile: []
     itemInventory:
       ownedItems: []
+    npcRelationships:
+      entries: []
+    capsulePulls: []
     unlockedActivities: []
     unlockedStages: []
     clearedStageIds: []
@@ -24468,6 +24632,17 @@ MonoBehaviour:
   background: {fileID: 1928019674}
   labelText: {fileID: 1011789172}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &1928019673
@@ -25066,6 +25241,7 @@ MonoBehaviour:
   sessionState:
     runId: 
     tutorialSeen: 0
+    capsulePityUsed: 0
     playerState:
       chinese: 35
       math: 35
@@ -25103,6 +25279,9 @@ MonoBehaviour:
       exhaustPile: []
     itemInventory:
       ownedItems: []
+    npcRelationships:
+      entries: []
+    capsulePulls: []
     unlockedActivities: []
     unlockedStages: []
     clearedStageIds: []
@@ -26437,6 +26616,17 @@ MonoBehaviour:
   background: {fileID: 2020504809}
   labelText: {fileID: 1342320135}
   selected: 0
+  highlightOnHoverOnly: 0
+  hoverOnlyVisual: 0
+  restingColor: {r: 1, g: 1, b: 1, a: 1}
+  restingSprite: {fileID: 0}
+  hoverSprite: {fileID: 0}
+  hoverWarmth: 0.5
+  solidBackground: 0
+  solidNormal: {r: 0.26, g: 0.18, b: 0.12, a: 1}
+  solidHover: {r: 0.44, g: 0.31, b: 0.19, a: 1}
+  solidDisabled: {r: 0.17, g: 0.14, b: 0.11, a: 1}
+  hoverScaleOverride: 0
   animateScale: 1
   applyOnAwake: 1
 --- !u!114 &2020504808
