@@ -20,6 +20,12 @@ namespace StudentGrowth
     {
         private const string BedroomSceneName = "HomeBedroomScene";
         private const string MotherTextureResourcePath = "StudentGrowth/Opening/mother_black_hair";
+        private const string MotherWalkResourcePath = "StudentGrowth/Opening/mother_walk";
+        private const int MotherWalkFrameSize = 32;
+        private const int MotherFacingDown = 0;
+        private const int MotherFacingRight = 1;
+        private const int MotherFacingUp = 2;
+        private static readonly int[] MotherFrameCycle = { 0, 1, 2, 1 };
         private const int BlanketSortingOrder = 2620;
         private const int PlayerLyingSortingOrder = 2610;
         private const int MotherSortingOrder = 1500;
@@ -43,6 +49,11 @@ namespace StudentGrowth
         private SpriteRenderer bedRenderer;
         private SpriteRenderer blanketRenderer;
         private SpriteRenderer motherRenderer;
+        private Transform motherPivot;
+        private Sprite[][] motherWalkFrames;
+        private int motherFacing = MotherFacingDown;
+        private float motherWalkPhase;
+        private float motherStepTimer;
         private Sprite blanketSprite;
         private Sprite motherSprite;
         private Texture2D motherTexture;
@@ -314,14 +325,36 @@ namespace StudentGrowth
             if (dialogueView.speakerText != null)
             {
                 dialogueView.speakerText.rectTransform.anchoredPosition = new Vector2(56f, -24f);
-                dialogueView.speakerText.rectTransform.sizeDelta = new Vector2(1000f, 40f);
+                dialogueView.speakerText.rectTransform.sizeDelta = new Vector2(1000f, 44f);
+                SetDialogueFontSize(dialogueView.speakerText, 34);
             }
 
             if (dialogueView.bodyText != null)
             {
-                dialogueView.bodyText.rectTransform.anchoredPosition = new Vector2(56f, -76f);
-                dialogueView.bodyText.rectTransform.sizeDelta = new Vector2(1088f, 140f);
+                dialogueView.bodyText.rectTransform.anchoredPosition = new Vector2(56f, -84f);
+                dialogueView.bodyText.rectTransform.sizeDelta = new Vector2(1088f, 190f);
+                SetDialogueFontSize(dialogueView.bodyText, 40);
             }
+        }
+
+        /// <summary>
+        /// 主题里的正文只有 24px，开场这段是全屏演出、没有别的 UI 抢注意力，放大一档更好读。
+        /// 字号通过 PixelText 覆盖，不动全局主题。
+        /// </summary>
+        private static void SetDialogueFontSize(Text text, int size)
+        {
+            if (text == null)
+            {
+                return;
+            }
+
+            PixelText pixel = text.GetComponent<PixelText>();
+            if (pixel != null)
+            {
+                pixel.FontSizeOverride = size;
+            }
+
+            text.fontSize = size;
         }
 
         private void BuildBlanket()
@@ -354,28 +387,101 @@ namespace StudentGrowth
 
         private void SpawnMother()
         {
-            motherTexture = Resources.Load<Texture2D>(MotherTextureResourcePath);
-            if (motherTexture == null)
+            motherTexture = Resources.Load<Texture2D>(MotherWalkResourcePath);
+            if (motherTexture != null)
             {
-                Debug.LogWarning("[OpeningCutscene] 缺少妈妈贴图 Resources/" + MotherTextureResourcePath);
-                return;
+                motherTexture.filterMode = FilterMode.Point;
+                BuildMotherWalkFrames();
+                motherSprite = motherWalkFrames[MotherFacingDown][0];
+            }
+            else
+            {
+                // 没有走路图集时退回单帧，至少不会没人。
+                motherTexture = Resources.Load<Texture2D>(MotherTextureResourcePath);
+                if (motherTexture == null)
+                {
+                    Debug.LogWarning("[OpeningCutscene] 缺少妈妈贴图 Resources/" + MotherWalkResourcePath);
+                    return;
+                }
+
+                motherTexture.filterMode = FilterMode.Point;
+                motherSprite = Sprite.Create(
+                    motherTexture,
+                    new Rect(0f, 0f, motherTexture.width, motherTexture.height),
+                    new Vector2(0.5f, 0.5f),
+                    16f);
+                motherSprite.name = "OpeningMotherSprite";
             }
 
-            motherTexture.filterMode = FilterMode.Point;
-            motherSprite = Sprite.Create(
-                motherTexture,
-                new Rect(0f, 0f, motherTexture.width, motherTexture.height),
-                new Vector2(0.5f, 0.5f),
-                16f);
-            motherSprite.name = "OpeningMotherSprite";
+            // 走路动画绕脚底左右摇摆，所以先放一个贴地的空 pivot，贴图挂在它上方半身高处，
+            // 旋转 pivot 时脚不会离地滑动。
+            GameObject pivot = new GameObject("OpeningMotherPivot");
+            pivot.transform.SetParent(transform, false);
+            pivot.transform.position = new Vector3(motherStart.x, motherStart.y, 0f);
+            motherPivot = pivot.transform;
 
             GameObject mother = new GameObject("OpeningMother");
-            mother.transform.SetParent(transform, false);
-            mother.transform.position = new Vector3(motherStart.x, motherStart.y, 0f);
+            mother.transform.SetParent(pivot.transform, false);
+            mother.transform.localPosition = new Vector3(0f, motherSprite.bounds.extents.y, 0f);
             motherRenderer = mother.AddComponent<SpriteRenderer>();
             motherRenderer.sprite = motherSprite;
             motherRenderer.sortingLayerID = bedRenderer != null ? bedRenderer.sortingLayerID : 0;
             motherRenderer.sortingOrder = MotherSortingOrder;
+        }
+
+        private void BuildMotherWalkFrames()
+        {
+            // 图集布局：3 列（帧）× 3 行（朝向 down / right / up），每格 32x32。
+            const int cell = MotherWalkFrameSize;
+            int columns = motherTexture.width / cell;
+            int rows = motherTexture.height / cell;
+            motherWalkFrames = new Sprite[3][];
+            for (int row = 0; row < motherWalkFrames.Length; row++)
+            {
+                int frameCount = Mathf.Max(1, columns);
+                motherWalkFrames[row] = new Sprite[frameCount];
+                if (row >= rows)
+                {
+                    continue;
+                }
+
+                for (int column = 0; column < frameCount; column++)
+                {
+                    Sprite frame = Sprite.Create(
+                        motherTexture,
+                        new Rect(column * cell, motherTexture.height - (row + 1) * cell, cell, cell),
+                        new Vector2(0.5f, 0.5f),
+                        16f);
+                    frame.name = "OpeningMotherFrame_" + row + "_" + column;
+                    motherWalkFrames[row][column] = frame;
+                }
+            }
+        }
+
+        private void PlayMotherWalkFrame(int facing, float phase)
+        {
+            if (motherWalkFrames == null || motherRenderer == null)
+            {
+                return;
+            }
+
+            Sprite[] frames = motherWalkFrames[facing];
+            if (frames == null || frames.Length == 0)
+            {
+                return;
+            }
+
+            int index = MotherFrameCycle[(int)phase % MotherFrameCycle.Length];
+            if (index >= frames.Length)
+            {
+                index = frames.Length - 1;
+            }
+
+            Sprite frame = frames[index];
+            if (frame != null)
+            {
+                motherRenderer.sprite = frame;
+            }
         }
 
         private IEnumerator WaitForGameplay()
@@ -487,20 +593,20 @@ namespace StudentGrowth
 
         private List<Vector2> BuildMotherPath()
         {
-            // 从西门绕到床右侧：先到床尾，再横移到床边，最后沿床沿往上，
-            // 避免直接穿过床的碰撞盒。
+            // 走直角：先沿地面横着走到床右侧，再直线往上停在床边。
+            // 不做斜线，人物朝向就只有"向右"和"向上"两个方向，不会一直在换脸。
+            Vector2 corner = new Vector2(motherEnd.x, motherStart.y);
             return new List<Vector2>
             {
                 motherStart,
-                bedFootPosition,
-                new Vector2(motherEnd.x, bedFootPosition.y),
+                corner,
                 motherEnd
             };
         }
 
         private IEnumerator WalkMotherPath(List<Vector2> points, float duration)
         {
-            if (motherRenderer == null || points == null || points.Count < 2)
+            if (motherPivot == null || points == null || points.Count < 2)
             {
                 yield break;
             }
@@ -516,38 +622,96 @@ namespace StudentGrowth
                 yield break;
             }
 
-            motherRenderer.transform.position = new Vector3(points[0].x, points[0].y, 0f);
+            motherPivot.position = new Vector3(points[0].x, points[0].y, 0f);
+            motherPivot.rotation = Quaternion.identity;
             float elapsed = 0f;
-            int segment = 0;
+
+            // 步频跟着速度走：走完这条路线越久，步子越慢，避免"原地抽动"。
+            // 上限压在 2.8，再快就变成哆嗦而不是走路了。
+            float stepsPerSecond = Mathf.Clamp(
+                totalDistance / Mathf.Max(0.01f, duration) * 0.9f,
+                2f,
+                2.8f);
+            motherStepTimer = 1f / stepsPerSecond;
 
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
-                float travelled = totalDistance * Mathf.Clamp01(elapsed / duration);
+                float progress = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / duration));
+                float travelled = totalDistance * progress;
 
+                // 每帧从 0 重新找所在段。旧的写法把 segment 留到下一帧继续用，
+                // 但 travelled 是整条路径上的绝对距离，于是段索引越跑越靠前，
+                // 人会提前"瞬移"到终点再原地晃。
+                int segment = 0;
+                float remain = travelled;
                 while (segment < points.Count - 2)
                 {
-                    float segmentLength = Vector2.Distance(points[segment], points[segment + 1]);
-                    if (travelled <= segmentLength)
+                    float stepLength = Vector2.Distance(points[segment], points[segment + 1]);
+                    if (remain <= stepLength)
                     {
                         break;
                     }
 
-                    travelled -= segmentLength;
+                    remain -= stepLength;
                     segment++;
                 }
 
                 float currentLength = Vector2.Distance(points[segment], points[segment + 1]);
-                float t = currentLength <= 0.001f ? 0f : Mathf.Clamp01(travelled / currentLength);
+                float t = currentLength <= 0.001f ? 0f : Mathf.Clamp01(remain / currentLength);
                 Vector2 current = Vector2.Lerp(points[segment], points[segment + 1], t);
-                Vector3 position = new Vector3(current.x, current.y, 0f);
-                position.y += Mathf.Sin(elapsed * Mathf.PI * 4f) * 0.045f;
-                motherRenderer.transform.position = position;
+
+                // 朝向：横向为主用右侧帧（往左走时水平翻转），纵向为主用背面 / 正面帧。
+                Vector2 dir = points[segment + 1] - points[segment];
+                bool flip;
+                if (Mathf.Abs(dir.x) >= Mathf.Abs(dir.y))
+                {
+                    motherFacing = MotherFacingRight;
+                    flip = dir.x < 0f;
+                }
+                else
+                {
+                    motherFacing = dir.y > 0f ? MotherFacingUp : MotherFacingDown;
+                    flip = false;
+                }
+
+                if (motherRenderer != null)
+                {
+                    motherRenderer.flipX = flip;
+                }
+
+                // 帧序列按步频走，帧和位移就不会打架。
+                motherWalkPhase += Time.deltaTime * stepsPerSecond;
+                PlayMotherWalkFrame(motherFacing, motherWalkPhase);
+
+                // 脚步音：和主角共用同一套 footstep 素材，踩在当前步频上。
+                motherStepTimer -= Time.deltaTime;
+                if (motherStepTimer <= 0f)
+                {
+                    Sfx.World.Step(false);
+                    motherStepTimer = 1f / stepsPerSecond;
+                }
+
+                // 不再晃动：去掉绕脚底的左右摇摆和水平抖动，只留每步一次的轻微起伏。
+                float phase = elapsed * stepsPerSecond * Mathf.PI * 2f;
+                float ramp = Mathf.Clamp01(Mathf.Min(elapsed, duration - elapsed) / 0.25f);
+                float lift = Mathf.Abs(Mathf.Sin(phase * 0.5f)) * 0.035f * ramp;
+
+                motherPivot.position = new Vector3(current.x, current.y + lift, 0f);
+                motherPivot.rotation = Quaternion.identity;
                 yield return null;
             }
 
             Vector2 last = points[points.Count - 1];
-            motherRenderer.transform.position = new Vector3(last.x, last.y, 0f);
+            motherPivot.position = new Vector3(last.x, last.y, 0f);
+            motherPivot.rotation = Quaternion.identity;
+            motherFacing = MotherFacingDown;
+            if (motherRenderer != null)
+            {
+                motherRenderer.flipX = false;
+            }
+
+            PlayMotherWalkFrame(MotherFacingDown, 0f);
         }
 
         private IEnumerator PlayDialogue()
@@ -704,7 +868,29 @@ namespace StudentGrowth
                 blanketSprite = null;
             }
 
-            if (motherSprite != null)
+            if (motherWalkFrames != null)
+            {
+                for (int row = 0; row < motherWalkFrames.Length; row++)
+                {
+                    Sprite[] frames = motherWalkFrames[row];
+                    if (frames == null)
+                    {
+                        continue;
+                    }
+
+                    for (int i = 0; i < frames.Length; i++)
+                    {
+                        if (frames[i] != null)
+                        {
+                            Destroy(frames[i]);
+                        }
+                    }
+                }
+
+                motherWalkFrames = null;
+                motherSprite = null;
+            }
+            else if (motherSprite != null)
             {
                 Destroy(motherSprite);
                 motherSprite = null;
